@@ -1,0 +1,76 @@
+test timings{
+  tmin 3000
+  tmax 5000
+  twait 2000
+  randomize
+}
+
+test EriksenFlankerBase: categorisation, visual, timings {
+  images = ''                              # Presented visual will be recorded with the trial data
+  categories = incongruent*2, congruent*2  # Shorthand for specifying same category multiple times
+                                    # Category is optional. If given will be recorded with the trial data.
+  correct_responses = 1, 1, 2, 1   # Index in the response array of correct reponse
+                                    # this param is optional. If given experiment executor can register
+                                    # weather response was right or wrong.
+  response:
+    keyboard = LEFT, RIGHT
+    mouse = 'left_arrow.png', 'right_arrow.png'
+}
+
+test EriksenFlanker5: EriksenFlankerBase {
+  practice
+  trials 5
+}
+
+test EriksenFlanker30: EriksenFlankerBase {
+  trials 30
+}
+
+text intro {
+  content:
+    Welcome
+    -------
+    In the following test you will be presented with a line of 5 arrow pointing
+    left or right like in this picture:
+
+    .. image:: left_incongruent.png
+
+    You should respond by the direction of the *middle arrow* as fast as possible
+    by pressing left or right arrow on the keyboard or touching/clicking
+    on appropriate button on the screen.
+
+    You will first do a practice run with 5 trials. After that a real run with
+    30 trial will be performed.
+
+    Press any key or touch/click the screen to continue
+  endcontent
+
+  response:
+    keyboard = ANY
+    mouse = ANY
+}
+
+subject subject_data {
+  full_name string "First and last name"
+  age int
+  gender [Male, Female] "Gender"
+}
+
+
+experiment {
+
+  # First collect information about subject
+  subject_data
+
+  # Show introduction
+  intro
+
+  # Perform practice test serie
+  EriksenFlanker5
+
+  # Perform real test serie (collects data)
+  EriksenFlanker30
+
+}
+
+

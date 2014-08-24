@@ -1,0 +1,2 @@
+ include pyflies/pyflies.tx
+ recursive-include pyflies/generators *.*

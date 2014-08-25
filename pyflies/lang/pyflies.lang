@@ -20,6 +20,7 @@
     <style id="string"            _name="String"                map-to="def:string"/>
     <style id="char"              _name="Character"             map-to="def:character"/>
     <style id="keyword"           _name="Keyword"               map-to="def:keyword"/>
+    <style id="enum"              _name="Enumeration"           map-to="def:builtin"/>
     <style id="operator"          _name="Operator"              map-to="def:operator"/>
     <style id="type"              _name="Data Type"             map-to="def:type"/>
     <style id="escaped-character" _name="Escaped Character"     map-to="def:special-char"/>
@@ -82,15 +83,22 @@
       <keyword>trials</keyword>
       <keyword>content</keyword>
       <keyword>endcontent</keyword>
-      <keyword>response</keyword>
+      <keyword>text</keyword>
       <keyword>subject</keyword>
+      <keyword>experiment</keyword>
       <keyword>tmin</keyword>
       <keyword>tmax</keyword>
       <keyword>twait</keyword>
+      <keyword>randomize</keyword>
+      <keyword>images</keyword>
+      <keyword>categories</keyword>
+      <keyword>correctResponses</keyword>
+      <keyword>keyboard</keyword>
+      <keyword>mouse</keyword>
     </context>
 
     <context id="operators" style-ref="operator">
-      <keyword>sizeof</keyword>
+      <keyword>\*</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -103,11 +111,41 @@
       <keyword>string</keyword>
     </context>
 
+    <context id="enumskwds" style-ref="enum">
+        <keyword>LEFT</keyword>
+        <keyword>RIGHT</keyword>
+        <keyword>ANY</keyword>
+        <keyword>INCONGRUENT</keyword>
+        <keyword>CONGRUENT</keyword>
+    </context>
+
+    <context id="enumliterals" style-ref="type">
+      <start>\[</start>
+      <end>\]</end>
+      <include>
+        <context ref="enumliteral"/>
+      </include>
+    </context>
+
+    <context id="enumliteral" style-ref="type">
+      <match>L?[a-zA-Z0-9_]*</match>
+    </context>
+
 
     <!-- C99 booleans -->
     <context id="boolean" style-ref="boolean">
       <keyword>true</keyword>
       <keyword>false</keyword>
+    </context>
+
+    <context id="textcontent" style-ref="comment">
+      <start>content</start>
+      <end>endcontent</end>
+      <include>
+        <context sub-pattern="0" where="start" style-ref="keyword"/>
+        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context ref="rst:rst" />
+      </include>
     </context>
 
     <!--Main context-->
@@ -116,11 +154,14 @@
         <context ref="def:c-like-comment"/>
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
+        <context ref="textcontent"/>
         <context ref="string"/>
         <context ref="char"/>
         <context ref="float"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
+        <context ref="enumskwds"/>
+        <context ref="enumliterals"/>
         <context ref="operators"/>
         <context ref="types"/>
         <context ref="boolean"/>

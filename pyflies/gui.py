@@ -16,8 +16,11 @@ class PyFliesHandler(object):
         manager = GtkSource.LanguageManager.new()
         lang_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 'lang')
+
+        # Set search path so that our language description is found
         manager.set_search_path([lang_dir])
-        print(manager.get_language_ids())
+
+        # The buffer will contain pyflies models always.
         self.source_view.get_buffer().set_language(
             manager.get_language('pyflies'))
 

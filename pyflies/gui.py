@@ -3,22 +3,6 @@ import os
 from gi.repository import Gtk, GtkSource, GObject, Pango
 
 
-class PyFliesWindow(Gtk.Window):
-    def __init__(self):
-        Gtk.Window.__init__(self, title="PyFlies")
-
-    def language(self):
-        manager = GtkSource.LanguageManager.new()
-        lang_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                'lang')
-        manager.set_search_path([lang_dir])
-        print(manager.get_language_ids())
-        self.view = GtkSource.View.new()
-        self.view.get_buffer().set_language(manager.get_language('pyflies'))
-        self.view.set_auto_indent(True)
-        self.add(self.view)
-
-
 class PyFliesHandler(object):
 
     def __init__(self, builder):

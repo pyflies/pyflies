@@ -3,6 +3,7 @@ import os
 from gi.repository import Gtk, GtkSource, GObject, Pango
 
 from .viewer import ModelGraphViewer
+from .outline import Outline
 
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
@@ -56,9 +57,9 @@ class PyFliesApp(object):
         """
         Create new tab content.
         """
-        print("On new")
-        content = Gtk.Paned(expand=True, orientation=Gtk.Orientation.VERTICAL)
-        win_width, _ = self.main_win.get_size()
+        win_width, win_height = self.main_win.get_size()
+        content = Gtk.Paned(expand=True, position=win_height * 1./2,
+                            orientation=Gtk.Orientation.VERTICAL)
         paned_split_width = win_width * 3./4
         main_pane = Gtk.Paned(expand=True, position=paned_split_width)
         frame_left = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
@@ -67,13 +68,8 @@ class PyFliesApp(object):
         scroll = Gtk.ScrolledWindow(child=content.source_view)
         frame_left.add(scroll)
 
-        # TreeView
-        tv_content = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        content.search = Gtk.SearchEntry()
-        content.outline = Gtk.TreeView()
-        tv_content.add(content.search)
-        tv_content.add(content.outline)
-        frame_right.add(tv_content)
+        # TreeView outline
+        frame_right.add(Outline())
 
         main_pane.add1(frame_left)
         main_pane.add2(frame_right)
@@ -85,10 +81,10 @@ class PyFliesApp(object):
         content.add1(main_pane)
 
         # Graph visualization
-        expander = Gtk.Expander(label='Model visualization')
+        model_graph_frame = Gtk.Frame(label='Model visualization', expand=True)
         content.model_graph = ModelGraphViewer()
-        expander.add(content.model_graph)
-        content.add2(expander)
+        model_graph_frame.add(content.model_graph)
+        content.add2(model_graph_frame)
 
         # Notebook page title
         top = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)

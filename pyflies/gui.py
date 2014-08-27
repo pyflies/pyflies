@@ -2,6 +2,8 @@
 import os
 from gi.repository import Gtk, GtkSource, GObject, Pango
 
+from .viewer import ModelGraphViewer
+
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
 
@@ -84,10 +86,8 @@ class PyFliesApp(object):
 
         # Graph visualization
         expander = Gtk.Expander(label='Model visualization')
-        content.model_graph = Gtk.Image.new_from_file(
-                os.path.join(os.path.dirname(__file__),
-                '../examples/reference/ref_experiment.dot.png'))
-        expander.add(Gtk.ScrolledWindow(child=Gtk.Viewport(child=content.model_graph)))
+        content.model_graph = ModelGraphViewer()
+        expander.add(content.model_graph)
         content.add2(expander)
 
         # Notebook page title

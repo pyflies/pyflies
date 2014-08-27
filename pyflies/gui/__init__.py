@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 import os
-from gi.repository import Gtk, GtkSource, GObject, Pango
+from gi.repository import Gtk, GtkSource, GObject
 
-from .viewer import ModelGraphViewer
+from .modelviewer import ModelGraphViewer
 from .outline import Outline
+from .sourceview import PyFliesSourceView
 
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
 
 
-class PyFliesApp(object):
+class PyFliesGUI(object):
 
     def __init__(self):
 
-        self._init_language_manager()
         self._init_builder()
         self.main_win = self.builder.get_object('pyFliesWindow')
         self.main_win.set_property('default-width', INIT_WIN_WIDTH)
@@ -24,14 +24,6 @@ class PyFliesApp(object):
         self.main_win.show_all()
         settings = Gtk.Settings.get_default()
         settings.set_property('gtk-button-images', True)
-
-    def _init_language_manager(self):
-        self.language_manager = GtkSource.LanguageManager.new()
-        lang_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                'lang')
-
-        # Set search path so that our language description is found
-        self.language_manager.set_search_path([lang_dir])
 
     def _init_builder(self):
         self.builder = Gtk.Builder()
@@ -55,7 +47,7 @@ class PyFliesApp(object):
         main_pane = Gtk.Paned(expand=True, position=paned_split_width)
         frame_left = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
         frame_right = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
-        content.source_view = self.create_source_view()
+        content.source_view = PyFliesSourceView()
         scroll = Gtk.ScrolledWindow(child=content.source_view)
         frame_left.add(scroll)
 
@@ -116,16 +108,12 @@ class PyFliesApp(object):
             # Create new page
             self.on_new(None)
 
-            # Get current notebook page
-            page = self.notebook.get_nth_page(self.notebook.get_current_page())
-
-            # Get current buffer
-            buffer = page.source_view.get_buffer()
-
             with open(file_name, 'r') as f:
-                buffer.set_text(f.read())
+                self.current_buffer.set_text(f.read())
 
         dialog.destroy()
+
+        self.parse()
 
     def on_save(self, user_data):
         print("Save")
@@ -140,26 +128,8 @@ class PyFliesApp(object):
         #     with open(file_name, 'w') as f:
         #         f.write(buffer.get_text())
 
-
     def on_exit(self, *args):
         Gtk.main_quit(*args)
-
-
-    def create_source_view(self):
-        """
-        Creates new source view component
-        """
-        source_view = GtkSource.View()
-        # Set font to monospace
-        font = Pango.FontDescription()
-        font.set_family('monospace')
-        source_view.modify_font(font)
-
-        # Set this source view buffer language to pyflies
-        source_view.get_buffer().set_language(
-            self.language_manager.get_language('pyflies'))
-
-        return source_view
 
     @property
     def filter(self):
@@ -170,7 +140,7 @@ class PyFliesApp(object):
 
 
 def main():
-    PyFliesApp()
+    PyFliesGUI()
     return Gtk.main()
 
 

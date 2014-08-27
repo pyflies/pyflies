@@ -8,15 +8,6 @@ from .outline import Outline
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
 
-class PyFliesHandler(object):
-
-    def on_notebook_page_added(self, widget, page_num, user_data):
-        """
-        When the new tab is created fill it with the 
-        source view and tree view.
-        """
-        page = widget.get_ntx_page(page_num)
-
 
 class PyFliesApp(object):
 

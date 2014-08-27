@@ -1,7 +1,7 @@
 import os
 from gi.repository import GtkSource, Pango
 from textx.metamodel import metamodel_from_file
-from textx.exception import TextXSyntaxError
+from textx.exceptions import TextXSyntaxError
 
 _language_manager = None
 _metamodel = None
@@ -32,8 +32,8 @@ def get_metamodel():
 
     if not _metamodel:
         _metamodel = metamodel_from_file(
-            os.path.dirname(os.path.abspath(__file__)),
-            '..', 'lang', 'pyflies.tx')
+            os.path.join(os.path.dirname(__file__),
+                         '..', 'lang', 'pyflies.tx'))
 
     return _metamodel
 
@@ -57,7 +57,7 @@ class PyFliesSourceView(GtkSource.View):
         """
         start, end = self.get_buffer().get_bounds()
         try:
-            self.model = self.metamodel.model_from_str(
+            self.model = get_metamodel().model_from_str(
                 self.get_buffer().get_text(start, end, True))
         except TextXSyntaxError as e:
             pass

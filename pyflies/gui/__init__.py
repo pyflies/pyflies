@@ -109,11 +109,11 @@ class PyFliesGUI(object):
             self.on_new(None)
 
             with open(file_name, 'r') as f:
-                self.current_buffer.set_text(f.read())
+                self.current_source_view.get_buffer().set_text(f.read())
 
         dialog.destroy()
 
-        self.parse()
+        self.current_source_view.parse()
 
     def on_save(self, user_data):
         print("Save")
@@ -130,6 +130,14 @@ class PyFliesGUI(object):
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)
+
+    @property
+    def current_source_view(self):
+        # Get current notebook page
+        page = self.notebook.get_nth_page(self.notebook.get_current_page())
+
+        # Get current buffer
+        return page.source_view
 
     @property
     def filter(self):

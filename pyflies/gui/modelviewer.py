@@ -1,5 +1,5 @@
 import os
-from gi.repository import Gtk, Gdk, Rsvg, cairo
+from gi.repository import Gtk, Gdk, Rsvg
 
 
 class ModelGraphViewer(Gtk.DrawingArea):
@@ -21,7 +21,7 @@ class ModelGraphViewer(Gtk.DrawingArea):
         # Get rsvg handle for file
         self.handle = Rsvg.Handle.new_from_file(
             os.path.join(os.path.dirname(__file__),
-            '../examples/reference/ref_experiment.dot.svg'))
+                         '../../examples/reference/ref_experiment.dot.svg'))
 
     def on_draw(self, draw_area, cairo_context):
         # Remember current cairo context
@@ -94,9 +94,10 @@ class ModelGraphViewer(Gtk.DrawingArea):
 
         if self.in_drag:
             # Update translation vector by the scaled mouse move
-            self.translation = [self.drag_translation[0] +
-                                1/self.scaling_factor*(event.x - self.drag_start[0]),
-                                self.drag_translation[1] +
-                                1/self.scaling_factor*(event.y - self.drag_start[1])]
+            self.translation = [
+                self.drag_translation[0] +
+                1/self.scaling_factor * (event.x - self.drag_start[0]),
+                self.drag_translation[1] +
+                1/self.scaling_factor * (event.y - self.drag_start[1])]
 
             self.queue_draw()

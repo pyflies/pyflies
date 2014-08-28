@@ -33,8 +33,9 @@ def get_metamodel():
     if not _metamodel:
         _metamodel = metamodel_from_file(
             os.path.join(os.path.dirname(__file__),
-                         '..', 'lang', 'pyflies.tx'))
-
+                         '..', 'lang', 'pyflies.tx'),
+            builtins={'categorisation': 'categorisation',
+                      'visual': 'visual'})
     return _metamodel
 
 

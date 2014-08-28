@@ -1,6 +1,7 @@
 import os
-from gi.repository import GtkSource, Pango
+from gi.repository import GtkSource, Pango, Gdk
 from textx.metamodel import metamodel_from_file
+from textx.export import model_export
 from textx.exceptions import TextXSyntaxError
 
 _language_manager = None
@@ -47,6 +48,16 @@ class PyFliesSourceView(GtkSource.View):
         font.set_family('monospace')
         self.modify_font(font)
 
+        self.set_highlight_current_line(True)
+        self.set_show_line_marks(True)
+        self.set_show_line_numbers(True)
+
+        # Error mark attributes
+        attr = GtkSource.MarkAttributes(
+            icon_name="software-update-urgent",
+            background=Gdk.RGBA(230, 40, 40, 1))
+        self.set_mark_attributes("error", attr, 1)
+
         # Set this source view buffer language to pyflies
         self.get_buffer().set_language(
             get_manager().get_language('pyflies'))
@@ -60,6 +71,14 @@ class PyFliesSourceView(GtkSource.View):
         try:
             self.model = get_metamodel().model_from_str(
                 self.get_buffer().get_text(start, end, True))
+
         except TextXSyntaxError as e:
-            pass
+            print(str(e))
+            if e.line:
+                buf = self.get_buffer()
+                buf.remove_source_marks()
+                error_mark = buf.create_source_mark('prvi', 'error',
+                    buf.get_iter_at_line(e.line-1))
+                self.scroll_mark_onscreen(error_mark)
+
 

@@ -1,5 +1,9 @@
 import os
+import uuid
+from subprocess import call
 from gi.repository import Gtk, Gdk, Rsvg
+
+from textx.export import model_export
 
 
 class ModelGraphViewer(Gtk.DrawingArea):
@@ -18,10 +22,7 @@ class ModelGraphViewer(Gtk.DrawingArea):
         self.connect("button-release-event", self.on_button_release)
         self.connect("motion-notify-event", self.on_mouse_move)
 
-        # Get rsvg handle for file
-        self.handle = Rsvg.Handle.new_from_file(
-            os.path.join(os.path.dirname(__file__),
-                         '../../examples/reference/ref_experiment.dot.svg'))
+        self.handle = Rsvg.Handle()
 
     def on_draw(self, draw_area, cairo_context):
         # Remember current cairo context
@@ -101,3 +102,14 @@ class ModelGraphViewer(Gtk.DrawingArea):
                 1/self.scaling_factor * (event.y - self.drag_start[1])]
 
             self.queue_draw()
+
+    def update_model(self, model):
+        dot_file = str(uuid.uuid4())
+        model_export(model, dot_file)
+        svg_file = "%s.svg" % dot_file
+        call(["dot", "-Tsvg", "-O", dot_file])
+        # Get rsvg handle for file
+        self.handle = Rsvg.Handle.new_from_file(svg_file)
+        os.remove(svg_file)
+        os.remove(dot_file)
+

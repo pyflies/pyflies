@@ -112,8 +112,7 @@ class PyFliesGUI(object):
                 self.current_source_view.get_buffer().set_text(f.read())
 
         dialog.destroy()
-
-        self.current_source_view.parse()
+        self.update_model()
 
     def on_save(self, user_data):
         print("Save")
@@ -131,6 +130,16 @@ class PyFliesGUI(object):
     def on_exit(self, *args):
         Gtk.main_quit(*args)
 
+    def update_model(self, ):
+        error = self.current_source_view.parse()
+        if error:
+            # Update status line
+            pass
+        if error is None:
+            # Update model viewer
+            self.current_model_viewer.update_model(
+                self.current_source_view.model)
+
     @property
     def current_source_view(self):
         # Get current notebook page
@@ -138,6 +147,14 @@ class PyFliesGUI(object):
 
         # Get current buffer
         return page.source_view
+
+    @property
+    def current_model_viewer(self):
+        # Get current notebook page
+        page = self.notebook.get_nth_page(self.notebook.get_current_page())
+
+        # Get current buffer
+        return page.model_graph
 
     @property
     def filter(self):

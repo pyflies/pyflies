@@ -7,36 +7,76 @@
 */
 
 PyFliesModel:
+  ("basepath" basepath=STRING)?
   elements+=ModelElement
 ;
 
 ModelElement:
-  TestDef|Experiment
+  TestDef|Experiment|Text|Subject
 ;
 
 TestDef:
-  "test" name=ID (":" test_type=ID)? ( "<" inherits*={[TestDef] ","} )? "{"
-    params*=TestParam
+  "test" name=ID (":" inherits*={[TestDef] ","} )? "{"
+    ( ("tmin" "=" tmin=INT)|
+    ("tmax" "=" tmax=INT)|
+    ("twait" "=" twait=INT)|
+    (randomize?="randomize")|
+    (practice?="practice")|
+    ("trials" "=" trials=INT)|
+    ("stimuli" "=" "[" stimuli+={Stimulus ","} "]")|
+    ("correctResponses" "=" "[" correctResponses+={INT ","} "]")|
+    ("keyboard" "=" "[" keys +={Key ","} "]")|
+    ("mouse" "=" "[" mouse +={STRING ","} "]") )*
   "}"
 ;
 
-TestParam:
-  name=ID value=BASETYPE
+Stimulus:
+  file = STRING
+  (category = ID)?
+;
+
+Key:
+  "ANY"|"UP"|"DOWN"|"LEFT"|"RIGHT"
+;
+
+Mouse:
+  "ANY"|STRING
 ;
 
 Block:
-  Intro|Test|Sequence|Randomize|Subject
+  Sequence|Randomize
 ;
+
+TestReference:
+  'test' test=[TestDef]
+;
+
+TextReference:
+  'text' text=[Text]
+;
+
+SubjectReference:
+  'subject' subject=[Subject]
+;
+
+Reference:
+  TestReference|TextReference|SubjectReference
+;
+
+ExperimentElement:
+  Reference|Block
+;
+
 
 Experiment:
   'experiment' '{'
-    blocks*=Block
+    elements*=ExperimentElement
   '}'
 ;
 
 Sequence:
   'sequence' '{'
-    blocks*=Block
+    elements*=ExperimentElement
   '}'
 ;
 
@@ -46,24 +86,24 @@ Randomize:
   '}'
 ;
 
-Test:
-  'test' type=[TestDef] practice?="practice"
-;
-
-Intro:
-  /====*/
-  content=/([^=][^=]?[^=]?)*/
-  /====*/
+Text:
+  'text' name=ID "{"
+    ( ('content'
+      content=/(.|\n)*(?=endcontent)/
+    'endcontent')|
+    ("keyboard" "=" "[" keys +={Key ","} "]")|
+    ("mouse" "=" "[" mouse +={Mouse ","} "]") )*
+  '}'
 ;
 
 Subject:
-  'subject' '{'
+  'subject' name=ID '{'
     attribute+=SubjectAttribute
   '}'
 ;
 
 SubjectAttribute:
-  name=ID type=SubjectAttributeType (label=STRING)?
+  type=SubjectAttributeType name=ID (label=STRING)?
 ;
 
 SubjectAttributeType:
@@ -76,6 +116,6 @@ Enum:
 
 // Special rule for comments
 Comment:
-  /#.*$/
+  /\/\/.*$/
 ;
 

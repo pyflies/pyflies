@@ -1,28 +1,32 @@
 test timings{
-  tmin 3000
-  tmax 5000
-  twait 2000
+  tmin = 3000
+  tmax = 5000
+  twait = 2000
   randomize
 }
 
 test EriksenFlankerBase: categorisation, visual, timings {
-  images = ''                               // Presented visual will be recorded with the trial data
-  categories = incongruent*2, congruent*2   // Shorthand for specifying same category multiple times
-                                            // Category is optional. If given will be recorded with the trial data.
-  correctResponses = 1, 1, 2, 1            // Index in the response array of correct reponse
+            // filename  category(optional)
+  stimuli = ['file1.png' incongruent,
+             'file2.png' congurent,
+             'file3.png' congurent]
+
+  correctResponses = [1, 3]                   // Index in the stimuli array
                                             // this param is optional. If given experiment executor can register
                                             // weather response was right or wrong.
-  keyboard = LEFT, RIGHT
-  mouse = "left_arrow.png", "right_arrow.png"
+  keyboard = [LEFT, RIGHT]
+
+          // Button images or labels
+  mouse = ["left_arrow.png", "Right"]
 }
 
 test EriksenFlanker5: EriksenFlankerBase {
   practice
-  trials 5
+  trials = 5
 }
 
 test EriksenFlanker30: EriksenFlankerBase {
-  trials 30
+  trials = 30
 }
 
 text intro {
@@ -44,8 +48,8 @@ text intro {
     Press any key or touch/click the screen to continue
   endcontent
 
-  keyboard = ANY
-  mouse = ANY
+  keyboard = [ANY]
+  mouse = [ANY]
 }
 
 subject subject_data {
@@ -58,16 +62,16 @@ subject subject_data {
 experiment {
 
   // First collect information about subject
-  subject_data
+  subject subject_data
 
   // Show introduction
-  intro
+  text intro
 
   // Perform practice test serie
-  EriksenFlanker5
+  test EriksenFlanker5
 
   // Perform real test serie (collects data)
-  EriksenFlanker30
+  test EriksenFlanker30
 
 }
 

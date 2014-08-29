@@ -38,17 +38,28 @@ class PyFliesGUI(object):
 
     def on_new(self, user_data):
         """
-        Create new tab content.
+        Create new page for Notebook.
         """
         win_width, win_height = self.main_win.get_size()
+        # Page will contain the content paned and status bar
+        page = Gtk.VBox(homogeneous=False)
+
         content = Gtk.Paned(expand=True, position=win_height * 1./2,
                             orientation=Gtk.Orientation.VERTICAL)
+
+        # Each page has its own statusbar
+        page.add(content)
+        page.status_bar = Gtk.Statusbar()
+        page.add(page.status_bar)
+        page.child_set_property(content, "expand", True)
+        page.child_set_property(page.status_bar, "expand", False)
+
         paned_split_width = win_width * 3./4
         main_pane = Gtk.Paned(expand=True, position=paned_split_width)
         frame_left = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
         frame_right = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
-        content.source_view = PyFliesSourceView()
-        scroll = Gtk.ScrolledWindow(child=content.source_view)
+        page.source_view = PyFliesSourceView()
+        scroll = Gtk.ScrolledWindow(child=page.source_view)
         frame_left.add(scroll)
 
         # TreeView outline
@@ -64,25 +75,25 @@ class PyFliesGUI(object):
         content.add1(main_pane)
 
         # Graph visualization
-        model_graph_frame = Gtk.Frame(label='Model visualization', expand=True)
-        content.model_graph = ModelGraphViewer()
-        model_graph_frame.add(content.model_graph)
-        content.add2(model_graph_frame)
+        model_viewer_frame = Gtk.Frame(label='Model visualization')
+        page.model_viewer = ModelGraphViewer()
+        model_viewer_frame.add(page.model_viewer)
+        content.add2(model_viewer_frame)
 
         # Notebook page title
         top = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        content.file_name = Gtk.Label('Untitled')
-        top.add(content.file_name)
+        page.file_name = Gtk.Label('Untitled')
+        top.add(page.file_name)
 
         # Page close button
         image = Gtk.Image.new_from_file('./icons/close.png')
         btn_close = Gtk.Button(always_show_image=True, image=image)
         top.add(btn_close)
 
-        content.show_all()
+        page.show_all()
         top.show_all()
 
-        self.notebook.append_page(content, top)
+        self.notebook.append_page(page, top)
         self.notebook.set_current_page(-1)
 
     def on_open(self, user_data):
@@ -109,7 +120,7 @@ class PyFliesGUI(object):
             self.on_new(None)
 
             with open(file_name, 'r') as f:
-                self.current_source_view.get_buffer().set_text(f.read())
+                self.current_page.source_view.get_buffer().set_text(f.read())
 
         dialog.destroy()
         self.update_model()
@@ -131,30 +142,21 @@ class PyFliesGUI(object):
         Gtk.main_quit(*args)
 
     def update_model(self, ):
-        error = self.current_source_view.parse()
+        error = self.current_page.source_view.parse()
         if error:
-            # Update status line
-            pass
-        if error is None:
+            sbar = self.current_page.status_bar
+            context_id = sbar.get_context_id('error')
+            sbar.remove_all(context_id)
+            sbar.push(context_id, "Error: {}".format(error[0]))
+        else:
             # Update model viewer
-            self.current_model_viewer.update_model(
-                self.current_source_view.model)
+            self.current_page.model_viewer.update_model(
+                self.current_page.source_view.model)
 
     @property
-    def current_source_view(self):
+    def current_page(self):
         # Get current notebook page
-        page = self.notebook.get_nth_page(self.notebook.get_current_page())
-
-        # Get current buffer
-        return page.source_view
-
-    @property
-    def current_model_viewer(self):
-        # Get current notebook page
-        page = self.notebook.get_nth_page(self.notebook.get_current_page())
-
-        # Get current buffer
-        return page.model_graph
+        return self.notebook.get_nth_page(self.notebook.get_current_page())
 
     @property
     def filter(self):

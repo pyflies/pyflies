@@ -76,9 +76,10 @@ class PyFliesSourceView(GtkSource.View):
             print(str(e))
             if e.line:
                 buf = self.get_buffer()
-                buf.remove_source_marks()
-                error_mark = buf.create_source_mark('prvi', 'error',
-                    buf.get_iter_at_line(e.line-1))
+                buf.remove_source_marks(start, end, 'error')
+                error_mark = buf.create_source_mark(
+                    'error', 'error', buf.get_iter_at_line(e.line-1))
                 self.scroll_mark_onscreen(error_mark)
+            return (str(e), e.line, e.col)
 
 

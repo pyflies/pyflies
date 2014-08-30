@@ -8,6 +8,7 @@ from .sourceview import PyFliesSourceView
 
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
+UNTITLED = "Untitled"
 
 
 class PyFliesGUI(object):
@@ -82,8 +83,9 @@ class PyFliesGUI(object):
 
         # Notebook page title
         top = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-        page.file_name = Gtk.Label('Untitled')
-        top.add(page.file_name)
+        page.file_name_label = Gtk.Label(UNTITLED)
+        top.add(page.file_name_label)
+        page.file_name = UNTITLED
 
         # Page close button
         image = Gtk.Image.new_from_file('./icons/close.png')
@@ -122,21 +124,45 @@ class PyFliesGUI(object):
             with open(file_name, 'r') as f:
                 self.current_page.source_view.get_buffer().set_text(f.read())
 
+            # Update file_name
+            self.update_filename(file_name)
+
         dialog.destroy()
         self.update_model()
 
     def on_save(self, user_data):
         print("Save")
-        # file_choser = self.builder.get_object('fcdSave')
-        # response = file_choser.run()
-        # file_choser.hide()
-        #
-        # if response == 1:  # Ok
-        #     file_name = file_choser.get_filename()
-        #     buffer = self.source_view.get_buffer()
-        #
-        #     with open(file_name, 'w') as f:
-        #         f.write(buffer.get_text())
+        # If file is Untitled bring on a save dialog
+        # If the name is different save the file and
+        # run model update.
+        file_name = self.current_page.file_name
+        if file_name == UNTITLED:
+            save_dialog = Gtk.FileChooserDialog(
+                title="Enter a file name",
+                parent=self.main_win,
+                modal=True, action=Gtk.FileChooserAction.SAVE,
+                buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                         Gtk.STOCK_OPEN, Gtk.ResponseType.ACCEPT))
+            save_dialog.connect("response", self.save_response)
+            save_dialog.set_filter(self.filter)
+            save_dialog.show()
+
+        else:
+            self.save_current()
+
+    def save_response(self, dialog, response_id):
+
+        if response_id == Gtk.ResponseType.ACCEPT:
+            self.update_filename(dialog.get_filename())
+            self.save_current()
+
+        dialog.destroy()
+
+    def save_current(self):
+        file_name = self.current_page.file_name
+        with open(file_name, 'w') as f:
+            f.write(self.current_page.source_view.get_text())
+        self.update_model()
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)
@@ -152,6 +178,12 @@ class PyFliesGUI(object):
             # Update model viewer
             self.current_page.model_viewer.update_model(
                 self.current_page.source_view.model)
+            # TODO: Update outline view
+
+    def update_filename(self, file_name):
+        self.current_page.file_name = file_name
+        _, file_part = os.path.split(file_name)
+        self.current_page.file_name_label.set_text(file_part)
 
     @property
     def current_page(self):

@@ -1,7 +1,6 @@
 import os
 from gi.repository import GtkSource, Pango, Gdk
 from textx.metamodel import metamodel_from_file
-from textx.export import model_export
 from textx.exceptions import TextXSyntaxError
 
 _language_manager = None
@@ -62,20 +61,22 @@ class PyFliesSourceView(GtkSource.View):
         self.get_buffer().set_language(
             get_manager().get_language('pyflies'))
 
+    def get_text(self):
+        start, end = self.get_buffer().get_bounds()
+        return self.get_buffer().get_text(start, end, True)
+
     def parse(self):
         """
         Parses the content of the buffer, reports error and
         calls outline and graph-view update.
         """
-        start, end = self.get_buffer().get_bounds()
         try:
-            self.model = get_metamodel().model_from_str(
-                self.get_buffer().get_text(start, end, True))
-
+            self.model = get_metamodel().model_from_str(self.get_text())
         except TextXSyntaxError as e:
             print(str(e))
             if e.line:
                 buf = self.get_buffer()
+                start, end = self.get_buffer().get_bounds()
                 buf.remove_source_marks(start, end, 'error')
                 error_mark = buf.create_source_mark(
                     'error', 'error', buf.get_iter_at_line(e.line-1))

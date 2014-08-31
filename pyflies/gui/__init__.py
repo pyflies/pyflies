@@ -167,13 +167,16 @@ class PyFliesGUI(object):
     def on_exit(self, *args):
         Gtk.main_quit(*args)
 
-    def update_model(self, ):
+    def update_model(self):
+        # Clear status bar
+        sbar = self.current_page.status_bar
+        context_id = sbar.get_context_id('error')
+        sbar.remove_all(context_id)
+
         error = self.current_page.source_view.parse()
         if error:
-            sbar = self.current_page.status_bar
-            context_id = sbar.get_context_id('error')
-            sbar.remove_all(context_id)
-            sbar.push(context_id, "Error: {}".format(error[0]))
+            message = error[0].replace('\n', ' ').replace('\r', '')
+            sbar.push(context_id, "Error: {}".format(message))
         else:
             # Update model viewer
             self.current_page.model_viewer.update_model(

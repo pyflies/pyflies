@@ -113,3 +113,5 @@ class ModelGraphViewer(Gtk.DrawingArea):
         os.remove(svg_file)
         os.remove(dot_file)
 
+        self.queue_draw()
+

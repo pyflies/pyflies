@@ -71,14 +71,14 @@ class PyFliesSourceView(GtkSource.View):
         Parses the content of the buffer, reports error and
         calls outline and graph-view update.
         """
+        buf = self.get_buffer()
+        start = self.get_buffer().get_start_iter()
+        end = self.get_buffer().get_end_iter()
+        buf.remove_source_marks(start, end, 'error')
         try:
             self.model = get_metamodel().model_from_str(self.get_text())
         except (TextXSyntaxError, TextXSemanticError) as e:
             if e.line:
-                buf = self.get_buffer()
-                start = self.get_buffer().get_start_iter()
-                end = self.get_buffer().get_end_iter()
-                buf.remove_source_marks(start, end, 'error')
                 error_mark = buf.create_source_mark(
                     'error', 'error', buf.get_iter_at_line(e.line-1))
                 self.scroll_mark_onscreen(error_mark)

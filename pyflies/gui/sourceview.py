@@ -1,7 +1,7 @@
 import os
 from gi.repository import GtkSource, Pango, Gdk
 from textx.metamodel import metamodel_from_file
-from textx.exceptions import TextXSyntaxError
+from textx.exceptions import TextXSyntaxError, TextXSemanticError
 
 _language_manager = None
 _metamodel = None
@@ -62,7 +62,8 @@ class PyFliesSourceView(GtkSource.View):
             get_manager().get_language('pyflies'))
 
     def get_text(self):
-        start, end = self.get_buffer().get_bounds()
+        start = self.get_buffer().get_start_iter()
+        end = self.get_buffer().get_end_iter()
         return self.get_buffer().get_text(start, end, True)
 
     def parse(self):
@@ -72,11 +73,11 @@ class PyFliesSourceView(GtkSource.View):
         """
         try:
             self.model = get_metamodel().model_from_str(self.get_text())
-        except TextXSyntaxError as e:
-            print(str(e))
+        except (TextXSyntaxError, TextXSemanticError) as e:
             if e.line:
                 buf = self.get_buffer()
-                start, end = self.get_buffer().get_bounds()
+                start = self.get_buffer().get_start_iter()
+                end = self.get_buffer().get_end_iter()
                 buf.remove_source_marks(start, end, 'error')
                 error_mark = buf.create_source_mark(
                     'error', 'error', buf.get_iter_at_line(e.line-1))

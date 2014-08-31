@@ -78,6 +78,7 @@
     </context>
 
     <context id="keywords" style-ref="keyword">
+      <keyword>basepath</keyword>
       <keyword>test</keyword>
       <keyword>practice</keyword>
       <keyword>trials</keyword>

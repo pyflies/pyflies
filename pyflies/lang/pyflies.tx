@@ -89,7 +89,7 @@ Randomize:
 Text:
   'text' name=ID "{"
     ( ('content'
-      content=/(.|\n)*?endcontent/
+      content=/(.|\n)*?(?=endcontent)/
     'endcontent')|
     ("keyboard" "=" "[" keys +={Key ","} "]")|
     ("mouse" "=" "[" mouse +={Mouse ","} "]") )*

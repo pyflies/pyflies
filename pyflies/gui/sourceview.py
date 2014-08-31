@@ -50,6 +50,8 @@ class PyFliesSourceView(GtkSource.View):
         self.set_highlight_current_line(True)
         self.set_show_line_marks(True)
         self.set_show_line_numbers(True)
+        self.set_tab_width(4)
+        self.set_auto_indent(True)
 
         # Error mark attributes
         attr = GtkSource.MarkAttributes(

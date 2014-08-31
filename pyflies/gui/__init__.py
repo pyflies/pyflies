@@ -88,7 +88,12 @@ class PyFliesGUI(object):
         page.file_name = UNTITLED
 
         # Page close button
-        image = Gtk.Image.new_from_file('./icons/close.png')
+
+        self.glade_file = os.path.join(os.path.abspath(
+            os.path.dirname(__file__)), 'pyflies.glade')
+        image = Gtk.Image.new_from_file(os.path.join(
+                                        os.path.dirname(__file__),
+                                        'icons', 'close.png'))
         btn_close = Gtk.Button(always_show_image=True, image=image)
         top.add(btn_close)
 

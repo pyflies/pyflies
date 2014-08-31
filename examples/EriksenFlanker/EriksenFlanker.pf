@@ -1,3 +1,6 @@
+/*
+Eriksen flanker test.
+*/
 test timings{
   tmin = 3000
   tmax = 5000
@@ -11,7 +14,7 @@ test EriksenFlankerBase: categorisation, visual, timings {
              'file2.png' congurent,
              'file3.png' congurent]
 
-  correctResponses = [1, 3]                   // Index in the stimuli array
+  correctResponses = [1, 1, 2]               // Index in the response array
                                             // this param is optional. If given experiment executor can register
                                             // weather response was right or wrong.
   keyboard = [LEFT, RIGHT]

@@ -4,14 +4,23 @@ from subprocess import call
 from gi.repository import Gtk, Gdk, Rsvg
 
 from textx.export import model_export
+from pyflies.export import custom_export
 
 
 class ModelGraphViewer(Gtk.DrawingArea):
     def __init__(self):
         super(ModelGraphViewer, self).__init__()
+
+        # Affine transform params
         self.scaling_factor = 1
         self.translation = [0, 0]
+
         self.in_drag = False
+
+        # Default is generic visualization
+        self.vis_type_custom = False
+
+        # Events and handlers
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
         self.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
@@ -103,9 +112,17 @@ class ModelGraphViewer(Gtk.DrawingArea):
 
             self.queue_draw()
 
-    def update_model(self, model):
+    def set_vis_type(self, vis_type_custom):
+        self.vis_type_custom = vis_type_custom
+        self.update_image()
+
+    def update_image(self):
         dot_file = str(uuid.uuid4())
-        model_export(model, dot_file)
+        if self.vis_type_custom:
+            custom_export(self.model, dot_file)
+        else:
+            model_export(self.model, dot_file)
+
         svg_file = "%s.svg" % dot_file
         call(["dot", "-Tsvg", "-O", dot_file])
         # Get rsvg handle for file
@@ -114,4 +131,8 @@ class ModelGraphViewer(Gtk.DrawingArea):
         os.remove(dot_file)
 
         self.queue_draw()
+
+    def update_model(self, model):
+        self.model = model
+        self.update_image()
 

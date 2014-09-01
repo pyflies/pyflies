@@ -48,6 +48,7 @@
                     <property name="related_action">actionNew</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">New model</property>
                     <property name="label" translatable="yes">New</property>
                     <property name="use_underline">True</property>
                   </object>
@@ -62,6 +63,7 @@
                     <property name="related_action">actionOpen</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Open</property>
                     <property name="label" translatable="yes">Open</property>
                     <property name="use_underline">True</property>
                   </object>
@@ -71,11 +73,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkToolButton" id="btnSave">
+                  <object class="GtkToolButton" id="tbSave">
                     <property name="use_action_appearance">True</property>
                     <property name="related_action">actionSave</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Save</property>
                     <property name="label" translatable="yes">Save</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-save</property>
@@ -85,6 +88,46 @@
                   <packing>
                     <property name="expand">True</property>
                     <property name="homogeneous">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSeparatorToolItem" id="separatortoolitem1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToggleToolButton" id="tbVisType">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Visualization Type (Code/Experiment)</property>
+                    <property name="label" translatable="yes">Visualization Type</property>
+                    <property name="use_underline">True</property>
+                    <property name="stock_id">gtk-orientation-landscape</property>
+                    <signal name="toggled" handler="on_vistype_toggle" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolButton" id="tbBestFit">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Best Fit</property>
+                    <property name="label" translatable="yes">Best Fit</property>
+                    <property name="use_underline">True</property>
+                    <property name="stock_id">gtk-zoom-fit</property>
+                    <signal name="clicked" handler="on_bestfit" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
                   </packing>
                 </child>
               </object>
@@ -119,4 +162,5 @@
       </object>
     </child>
   </object>
+  <object class="GtkToggleAction" id="toggleaction1"/>
 </interface>

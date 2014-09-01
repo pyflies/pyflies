@@ -169,6 +169,14 @@ class PyFliesGUI(object):
             f.write(self.current_page.source_view.get_text())
         self.update_model()
 
+    def on_vistype_toggle(self, button):
+        active = button.get_active()
+        self.current_page.model_viewer.set_vis_type(active)
+
+    def on_bestfit(self, button):
+        print("Bestfit")
+        pass
+
     def on_exit(self, *args):
         Gtk.main_quit(*args)
 

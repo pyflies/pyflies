@@ -125,8 +125,10 @@ experiment {
     sequence {
 
       test mytest_3
-
-      text another_text
+		randomize {
+	      text another_text
+	      test mytest_30
+	    }
 
       test mytest_30
     }

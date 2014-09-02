@@ -182,13 +182,14 @@ class PyFliesGUI(object):
         print("On page change")
         # Enable actions
         self.builder.get_object("actiongroupPage").set_sensitive(True)
+
     def on_vistype_toggle(self, button):
         active = button.get_active()
         self.current_page.model_viewer.set_vis_type(active)
 
     def on_bestfit(self, button):
         print("Bestfit")
-        pass
+        self.current_page.model_viewer.best_fit()
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)

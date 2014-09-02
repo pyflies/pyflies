@@ -118,6 +118,34 @@ class ModelGraphViewer(Gtk.DrawingArea):
         self.vis_type_custom = vis_type_custom
         self.update_image()
 
+    def best_fit(self):
+        """
+        Sets scaling and translation such that the image
+        is visible and occupies as much available space as possible.
+        """
+        image_width = self.handle.props.width
+        image_height = self.handle.props.height
+        widget_width = self.get_allocation().width
+        widget_height = self.get_allocation().height
+
+        if float(image_height)/image_width > float(widget_height)/widget_width:
+            # Heights should be the same
+            self.scaling_factor = float(widget_height)/image_height
+            # Translate horizontaly
+            self.translation =\
+                [float(widget_width)/self.scaling_factor/2
+                 - float(image_width)/2, 0]
+
+        else:
+            # Widths should be the same
+            self.scaling_factor = float(widget_width)/image_width
+            # Translate verticaly
+            self.translation =\
+                [0, float(widget_height)/self.scaling_factor/2
+                 - float(image_height)/2]
+
+        self.queue_draw()
+
     def update_image(self):
 
         if not self.model:

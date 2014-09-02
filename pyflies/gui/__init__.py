@@ -21,6 +21,7 @@ class PyFliesGUI(object):
 
         self.notebook = Gtk.Notebook()
         self.main_win.get_child().get_children()[1].add(self.notebook)
+        self.notebook.connect("change-current-page", self.on_page_change)
 
         self.main_win.show_all()
         settings = Gtk.Settings.get_default()
@@ -33,6 +34,9 @@ class PyFliesGUI(object):
 
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file(self.glade_file)
+
+        # Disable some actions
+        self.builder.get_object("actiongroupPage").set_sensitive(False)
 
         # Connect signal handlers
         self.builder.connect_signals(self)
@@ -103,6 +107,9 @@ class PyFliesGUI(object):
         self.notebook.append_page(page, top)
         self.notebook.set_current_page(-1)
 
+        # Enable actions
+        self.builder.get_object("actiongroupPage").set_sensitive(True)
+
     def on_open(self, user_data):
         """
         Loads chosen file in the buffer.
@@ -134,6 +141,8 @@ class PyFliesGUI(object):
 
         dialog.destroy()
         self.update_model()
+        # Enable actions
+        self.builder.get_object("actiongroupPage").set_sensitive(True)
 
     def on_save(self, user_data):
         print("Save")
@@ -169,6 +178,10 @@ class PyFliesGUI(object):
             f.write(self.current_page.source_view.get_text())
         self.update_model()
 
+    def on_page_change(self, page, user_data):
+        print("On page change")
+        # Enable actions
+        self.builder.get_object("actiongroupPage").set_sensitive(True)
     def on_vistype_toggle(self, button):
         active = button.get_active()
         self.current_page.model_viewer.set_vis_type(active)

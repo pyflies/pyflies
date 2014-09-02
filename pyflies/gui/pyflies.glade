@@ -18,11 +18,31 @@
     <property name="icon_name">document-open</property>
     <signal name="activate" handler="on_open" swapped="no"/>
   </object>
-  <object class="GtkAction" id="actionSave">
-    <property name="label" translatable="yes">Save</property>
-    <property name="stock_id">gtk-save</property>
-    <property name="icon_name">document-save</property>
-    <signal name="activate" handler="on_save" swapped="no"/>
+  <object class="GtkActionGroup" id="actiongroupPage">
+    <child>
+      <object class="GtkAction" id="actionSave">
+        <property name="label" translatable="yes">Save</property>
+        <property name="tooltip" translatable="yes">Save</property>
+        <property name="stock_id">gtk-save</property>
+        <signal name="activate" handler="on_save" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleAction" id="actionVisType">
+        <property name="label" translatable="yes">Visualization type</property>
+        <property name="tooltip" translatable="yes">Visualization type (Code centric/Domain centric)</property>
+        <property name="stock_id">gtk-orientation-portrait</property>
+        <signal name="toggled" handler="on_vistype_toggle" swapped="no"/>
+      </object>
+    </child>
+    <child>
+      <object class="GtkAction" id="actionBestFit">
+        <property name="label" translatable="yes">Best fit</property>
+        <property name="tooltip" translatable="yes">Model viewer best fit</property>
+        <property name="stock_id">gtk-zoom-fit</property>
+        <signal name="activate" handler="on_bestfit" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkWindow" id="pyFliesWindow">
     <property name="can_focus">False</property>
@@ -102,13 +122,14 @@
                 </child>
                 <child>
                   <object class="GtkToggleToolButton" id="tbVisType">
+                    <property name="use_action_appearance">True</property>
+                    <property name="related_action">actionVisType</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">Visualization Type (Code/Experiment)</property>
                     <property name="label" translatable="yes">Visualization Type</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-orientation-landscape</property>
-                    <signal name="toggled" handler="on_vistype_toggle" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -117,13 +138,14 @@
                 </child>
                 <child>
                   <object class="GtkToolButton" id="tbBestFit">
+                    <property name="use_action_appearance">True</property>
+                    <property name="related_action">actionBestFit</property>
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="tooltip_text" translatable="yes">Best Fit</property>
                     <property name="label" translatable="yes">Best Fit</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-zoom-fit</property>
-                    <signal name="clicked" handler="on_bestfit" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -162,5 +184,4 @@
       </object>
     </child>
   </object>
-  <object class="GtkToggleAction" id="toggleaction1"/>
 </interface>

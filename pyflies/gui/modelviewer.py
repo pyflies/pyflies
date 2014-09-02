@@ -20,6 +20,8 @@ class ModelGraphViewer(Gtk.DrawingArea):
         # Default is generic visualization
         self.vis_type_custom = False
 
+        self.model = None
+
         # Events and handlers
         self.add_events(Gdk.EventMask.SCROLL_MASK)
         self.add_events(Gdk.EventMask.POINTER_MOTION_MASK)
@@ -117,6 +119,10 @@ class ModelGraphViewer(Gtk.DrawingArea):
         self.update_image()
 
     def update_image(self):
+
+        if not self.model:
+            return
+
         dot_file = str(uuid.uuid4())
         if self.vis_type_custom:
             custom_export(self.model, dot_file)

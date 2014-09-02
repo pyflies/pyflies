@@ -82,7 +82,7 @@ Sequence:
 
 Randomize:
   'randomize' '{'
-    blocks*=Block
+    elements*=ExperimentElement
   '}'
 ;
 

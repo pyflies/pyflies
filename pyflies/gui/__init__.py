@@ -19,6 +19,9 @@ class PyFliesGUI(object):
         self.main_win = self.builder.get_object('pyFliesWindow')
         self.main_win.set_property('default-width', INIT_WIN_WIDTH)
 
+        self.generate_dialog = self.builder.get_object("generateDialog")
+        self.generate_dialog.connect("response", self.generate_response)
+
         self.notebook = Gtk.Notebook()
         self.main_win.get_child().get_children()[1].add(self.notebook)
         self.notebook.connect("change-current-page", self.on_page_change)
@@ -29,11 +32,14 @@ class PyFliesGUI(object):
 
     def _init_builder(self):
         self.builder = Gtk.Builder()
-        self.glade_file = os.path.join(os.path.abspath(
+        main_glade_file = os.path.join(os.path.abspath(
             os.path.dirname(__file__)), 'pyflies.glade')
+        generate_glade_file = os.path.join(os.path.abspath(
+            os.path.dirname(__file__)), 'generate.glade')
 
         GObject.type_register(GtkSource.View)
-        self.builder.add_from_file(self.glade_file)
+        self.builder.add_from_file(main_glade_file)
+        self.builder.add_from_file(generate_glade_file)
 
         # Disable some actions
         self.builder.get_object("actiongroupPage").set_sensitive(False)
@@ -190,6 +196,15 @@ class PyFliesGUI(object):
     def on_bestfit(self, button):
         print("Bestfit")
         self.current_page.model_viewer.best_fit()
+
+    def on_generate(self, button):
+        print("Generate")
+        self.generate_dialog.show()
+
+    def generate_response(self, dialog, response_id):
+        print("Generate response:", response_id)
+        #dialog.destroy()
+        dialog.hide()
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)

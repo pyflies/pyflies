@@ -43,6 +43,14 @@
         <signal name="activate" handler="on_bestfit" swapped="no"/>
       </object>
     </child>
+    <child>
+      <object class="GtkAction" id="actionGenerate">
+        <property name="label" translatable="yes">Generate code</property>
+        <property name="tooltip" translatable="yes">Generate code for target platform</property>
+        <property name="stock_id">gtk-execute</property>
+        <signal name="activate" handler="on_generate" swapped="no"/>
+      </object>
+    </child>
   </object>
   <object class="GtkWindow" id="pyFliesWindow">
     <property name="can_focus">False</property>
@@ -146,6 +154,20 @@
                     <property name="label" translatable="yes">Best Fit</property>
                     <property name="use_underline">True</property>
                     <property name="stock_id">gtk-zoom-fit</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="homogeneous">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkToolButton" id="tbGenerate">
+                    <property name="use_action_appearance">True</property>
+                    <property name="related_action">actionGenerate</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Generate</property>
+                    <property name="use_underline">True</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>

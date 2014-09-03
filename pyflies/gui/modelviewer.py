@@ -123,6 +123,10 @@ class ModelGraphViewer(Gtk.DrawingArea):
         Sets scaling and translation such that the image
         is visible and occupies as much available space as possible.
         """
+
+        if not self.model:
+            return
+
         image_width = self.handle.props.width
         image_height = self.handle.props.height
         widget_width = self.get_allocation().width

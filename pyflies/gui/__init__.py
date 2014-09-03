@@ -5,7 +5,9 @@ from gi.repository import Gtk, GtkSource, GObject
 from .modelviewer import ModelGraphViewer
 from .outline import Outline
 from .sourceview import PyFliesSourceView
-from pyflies.generators import generator_names
+from pyflies.exceptions import PyFliesException
+from pyflies.gui.utils import show_error
+from pyflies.generators import generator_names, generate
 
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
@@ -217,7 +219,18 @@ class PyFliesGUI(object):
 
     def generate_response(self, dialog, response_id):
         print("Generate response:", response_id)
-        #dialog.destroy()
+        if response_id == 1:   # OK pressed
+            # If there is model run generator
+            if self.current_model:
+                gen_name = self.targets_combo.get_active_text()
+                target_folder = self.target_folder_combo.get_filename()
+                print("Generator: ", gen_name)
+                print("Output: ", target_folder)
+                try:
+                    generate(gen_name, self.current_model, target_folder)
+                except PyFliesException as e:
+                    show_error(str(e))
+
         dialog.hide()
 
     def on_exit(self, *args):

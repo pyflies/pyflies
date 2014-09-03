@@ -5,6 +5,7 @@ from gi.repository import Gtk, GtkSource, GObject
 from .modelviewer import ModelGraphViewer
 from .outline import Outline
 from .sourceview import PyFliesSourceView
+from pyflies.generators import generator_names
 
 INIT_WIN_WIDTH = 800
 INIT_PANED_SPLIT = 800 * 3./4
@@ -19,12 +20,27 @@ class PyFliesGUI(object):
         self.main_win = self.builder.get_object('pyFliesWindow')
         self.main_win.set_property('default-width', INIT_WIN_WIDTH)
 
+        # Action group for page
+        self.actiongroupPage = self.builder.get_object("actiongroupPage")
+        # Disable actions
+        self.actiongroupPage.set_sensitive(False)
+
+        # Visualization type
+        self.vistype_button = self.builder.get_object("tbVisType")
+        self.id_on_vistype_toggle = self.vistype_button.connect(
+            "toggled", self.on_vistype_toggle)
+
+        # Code generation
         self.generate_dialog = self.builder.get_object("generateDialog")
         self.generate_dialog.connect("response", self.generate_response)
+        self.targets_combo = self.builder.get_object("cmbTargets")
+        for gen_name in generator_names():
+            self.targets_combo.append_text(gen_name)
+        self.target_folder_combo = self.builder.get_object("fcOutput")
 
         self.notebook = Gtk.Notebook()
         self.main_win.get_child().get_children()[1].add(self.notebook)
-        self.notebook.connect("change-current-page", self.on_page_change)
+        self.notebook.connect("switch-page", self.on_page_change)
 
         self.main_win.show_all()
         settings = Gtk.Settings.get_default()
@@ -40,9 +56,6 @@ class PyFliesGUI(object):
         GObject.type_register(GtkSource.View)
         self.builder.add_from_file(main_glade_file)
         self.builder.add_from_file(generate_glade_file)
-
-        # Disable some actions
-        self.builder.get_object("actiongroupPage").set_sensitive(False)
 
         # Connect signal handlers
         self.builder.connect_signals(self)
@@ -113,9 +126,6 @@ class PyFliesGUI(object):
         self.notebook.append_page(page, top)
         self.notebook.set_current_page(-1)
 
-        # Enable actions
-        self.builder.get_object("actiongroupPage").set_sensitive(True)
-
     def on_open(self, user_data):
         """
         Loads chosen file in the buffer.
@@ -145,10 +155,9 @@ class PyFliesGUI(object):
             # Update file_name
             self.update_filename(file_name)
 
+            self.update_model()
+
         dialog.destroy()
-        self.update_model()
-        # Enable actions
-        self.builder.get_object("actiongroupPage").set_sensitive(True)
 
     def on_save(self, user_data):
         print("Save")
@@ -184,17 +193,22 @@ class PyFliesGUI(object):
             f.write(self.current_page.source_view.get_text())
         self.update_model()
 
-    def on_page_change(self, page, user_data):
-        print("On page change")
-        # Enable actions
-        self.builder.get_object("actiongroupPage").set_sensitive(True)
+    def on_page_change(self, notebook, page, user_data):
+        # Enable actions if there is model
+        self.actiongroupPage.set_sensitive(page.source_view.model is not None)
+
+        # Update visualization type button state without triggering
+        # toggle handler
+        self.vistype_button.handler_block(self.id_on_vistype_toggle)
+        self.vistype_button.set_active(page.model_viewer.get_vis_type())
+        self.vistype_button.handler_unblock(self.id_on_vistype_toggle)
 
     def on_vistype_toggle(self, button):
         active = button.get_active()
         self.current_page.model_viewer.set_vis_type(active)
+        self.current_page.model_viewer.best_fit()
 
     def on_bestfit(self, button):
-        print("Bestfit")
         self.current_page.model_viewer.best_fit()
 
     def on_generate(self, button):
@@ -225,6 +239,9 @@ class PyFliesGUI(object):
                 self.current_page.source_view.model)
             # TODO: Update outline view
 
+        # Update buttons
+        self.actiongroupPage.set_sensitive(self.current_model is not None)
+
     def update_filename(self, file_name):
         self.current_page.file_name = file_name
         _, file_part = os.path.split(file_name)
@@ -234,6 +251,12 @@ class PyFliesGUI(object):
     def current_page(self):
         # Get current notebook page
         return self.notebook.get_nth_page(self.notebook.get_current_page())
+
+    @property
+    def current_model(self):
+        cp = self.current_page
+        if cp:
+            return cp.source_view.model
 
     @property
     def filter(self):

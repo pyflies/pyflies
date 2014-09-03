@@ -18,21 +18,17 @@
     <property name="icon_name">document-open</property>
     <signal name="activate" handler="on_open" swapped="no"/>
   </object>
+  <object class="GtkAction" id="actionSave">
+    <property name="tooltip" translatable="yes">Save</property>
+    <property name="stock_id">gtk-save</property>
+    <signal name="activate" handler="on_save" swapped="no"/>
+  </object>
   <object class="GtkActionGroup" id="actiongroupPage">
-    <child>
-      <object class="GtkAction" id="actionSave">
-        <property name="label" translatable="yes">Save</property>
-        <property name="tooltip" translatable="yes">Save</property>
-        <property name="stock_id">gtk-save</property>
-        <signal name="activate" handler="on_save" swapped="no"/>
-      </object>
-    </child>
     <child>
       <object class="GtkToggleAction" id="actionVisType">
         <property name="label" translatable="yes">Visualization type</property>
         <property name="tooltip" translatable="yes">Visualization type (Code centric/Domain centric)</property>
         <property name="stock_id">gtk-orientation-portrait</property>
-        <signal name="toggled" handler="on_vistype_toggle" swapped="no"/>
       </object>
     </child>
     <child>

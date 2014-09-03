@@ -118,6 +118,9 @@ class ModelGraphViewer(Gtk.DrawingArea):
         self.vis_type_custom = vis_type_custom
         self.update_image()
 
+    def get_vis_type(self):
+        return self.vis_type_custom
+
     def best_fit(self):
         """
         Sets scaling and translation such that the image

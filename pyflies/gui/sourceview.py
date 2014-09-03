@@ -63,6 +63,8 @@ class PyFliesSourceView(GtkSource.View):
         self.get_buffer().set_language(
             get_manager().get_language('pyflies'))
 
+        self.model = None
+
     def get_text(self):
         start = self.get_buffer().get_start_iter()
         end = self.get_buffer().get_end_iter()

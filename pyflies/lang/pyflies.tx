@@ -69,7 +69,7 @@ ExperimentElement:
 
 
 Experiment:
-  'experiment' '{'
+  'experiment' (name=STRING)? '{'
     elements*=ExperimentElement
   '}'
 ;

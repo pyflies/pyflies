@@ -16,39 +16,135 @@ ModelElement:
 ;
 
 TestDef:
-  "test" name=ID (":" inherits*={[TestDef] ","} )? "{"
+  "test" name=ID "{"
+    (conditions = Conditions)?
+    (stimuli = Stimuli)?
+
     ( ("tmin" "=" tmin=INT)|
     ("tmax" "=" tmax=INT)|
-    ("twait" "=" twait=INT)|
-    (randomize?="randomize")|
-    (practice?="practice")|
-    ("trials" "=" trials=INT)|
-    ("stimuli" "=" "[" stimuli+={Stimulus ","} "]")|
-    ("correctResponses" "=" "[" correctResponses+={INT ","} "]")|
-    ("keyboard" "=" "[" keys +={Key ","} "]")|
-    ("mouse" "=" "[" mouse +={STRING ","} "]") )*
+    ("tduration" "=" tduration=INT))*
+
   "}"
 ;
 
+Conditions:
+  'conditions' '{'
+    // Parameter names are in the first line of condition specification
+    paramNames+=ID[eolterm]    // match param names until end of line
+    // The rest of the description are conditions, one per line
+    // The order of condition values match the param name positions.
+    conditions+=Condition
+  '}'
+;
+
+Condition:
+  condition+=ID[eolterm]  // match values until end of line
+;
+
+Stimuli:
+  'stimuli' '{'
+    stimuli+=Stimulus
+  '}'
+;
+
 Stimulus:
-  file = STRING
-  (category = ID)?
+  // Stimulus is given in the form of
+  // condition match expression : stimulus definition
+  conditionMatch=ConditionMatch ':' stimulusDef=StimulusDef
 ;
 
-Key:
-  "ANY"|"UP"|"DOWN"|"LEFT"|"RIGHT"
+ConditionMatch:
+  expression=ConditionMatchExpression
+;
+ConditionMatchExpression:
+  // TODO: INT|Expression
+  INT
 ;
 
-Mouse:
-  "ANY"|STRING
+/*
+Expression(
+  brackets=(),
+  infixBinary=[Addition +, Substraction -, Multiplication *, Division /],
+  unaryPrefix=[Negation -]
+  presendence=[^, [*, /], [+, -]]
+  assocRight=[^]
+  operands=ID|FLOAT|INT
+  )
+
+
+ConditionMatchExpression expression:
+    brackets=["(", ")"],
+    infixBinary=[And 'and', Or 'or', Equals '='],
+    prefixUnary=[Not 'not'],
+    presendence=[Equals, Not, And, Or],
+    operandMatch=ID
 ;
+*/
+
+
+StimulusDef:
+  Image|Shape|Sound|Audio
+;
+
+Image:
+  'image' '(' file=STRING
+   (',' (('position' position=Position)|
+      ('size' size=Size))*[','])?
+  ')'
+;
+
+Shape:
+  'shape' '(' shape=ShapeType
+   (',' (('position' position=Position)|
+      ('color' color=Color)|
+      ('size' size=Size))*[','])?
+  ')'
+;
+
+ShapeType:
+  "rectangle"|"circle"|"triangle"
+;
+
+Sound:
+  'sound' '(' frequency=INT ')'
+;
+
+Audio:
+  'audio' '(' file=STRING ')'
+;
+
+Color:
+  "red"|"green"|"blue"|"yellow"|"white"|"black"
+;
+
+Size:
+  ((descriptive=DescriptiveSize)|
+  (x=INT ',' y=INT)|
+  (both=INT))
+;
+
+DescriptiveSize:
+  "tiny"|"small"|"normal"|"large"|"huge"|"stratch"
+;
+
+Position:
+  ((descriptive=PositionDescriptive)|
+  (x=INT ',' y=INT))
+;
+
+PositionDescriptive:
+  "center"|"left"|"right"|"top"|"bottom"|"farLeft"|"farRight"|"farTop"|"farBottom"|
+  "topLeft"|"topRight"|"bottomLeft"|"bottomRight"|
+  "farTopLeft"|"farTopRight"|"farBottomLeft"|"farBottomRight"
+;
+
 
 Block:
   Sequence|Randomize
 ;
 
 TestReference:
-  'test' test=[TestDef]
+  'test' test=[TestDef] trials=INT practice?="practice"
 ;
 
 TextReference:
@@ -88,11 +184,12 @@ Randomize:
 
 Text:
   'text' name=ID "{"
-    ( ('content'
+    ('content'
       content=/(.|\n)*?(?=endcontent)/
-    'endcontent')|
-    ("keyboard" "=" "[" keys +={Key ","} "]")|
-    ("mouse" "=" "[" mouse +={Mouse ","} "]") )*
+    'endcontent')
+
+    ('response' '=' ID)?
+
   '}'
 ;
 
@@ -111,7 +208,7 @@ SubjectAttributeType:
 ;
 
 Enum:
-  '[' values+={ID ','} ']'
+  '[' values+=ID[','] ']'
 ;
 
 // Special rule for comments

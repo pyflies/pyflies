@@ -1,139 +1,90 @@
-// This is a reference example file that demonstrates all
-// features of pyflies language
+test simon {
 
+  conditions {
 
-/*
-base abstract test
-Used to specify timings for each test in the
-experiment 
-*/
-test base {
-  tmin = 3000
-  tmax = 5000
-  twait = 3000
-}
-/*
- test definition for simple visual
- this test is non-abstract (defines visual simple test type)
- but will not be used directly in experiment definition.
- It will be used as a base for all visual simple tests
- in this experiment.
-*/
-test mytest:visual {
-  tmin = 234
-  tmax = 1000
-}
+    color   position    reaction
 
-// Inheritance.
-// This test definition is non-abstract.
-// It inherits definition from base and mytest
-// therefore it does not need to specify test type or
-// timing settings.
-test mytest_3 : base, mytest {
-  practice
-  trials = 3
-}
-
-// This test is same as previous but defines
-// a 30 trials to run.
-test mytest_30: base, mytest {
-  trials = 30
-}
-
-text intro {
-  content
-      Welcome
-      -------
-      In the following test you will be presented with a blank screen
-      where a white square will appear after a few seconds.
-      You should react by pressing the space bar as fast as you can when
-      the square appears.
-
-      This is a practice test with 3 trials.
-      Afterwards the real test will run with 30 trials.
-
-      Press space bar
-  endcontent
-
-}
-
-text realtest_intro {
-  content
-      Real test with 30 trials
-      ------------------------
-      Press space bar
-  endcontent
-}
-
-text another_text {
-  content
-      This is heading
-      ---------------
-      This is just to show another introduction screen.
-  endcontent
-}
-
-// subject block will collect data about
-// the subject under experiment.
-// A user will be presented with the GUI form to
-// fill it. Experimenter may fill this on behalf of the subject.
-// The form of the each subject line is:
-// Variable_name, type, optional label
-// Type can be: str, int, float or enumerated list
-subject s_data {
-	string full_name "First and last name"
-	int age
-	[Male, Female] gender "Gender"
-}
-
-// Experiment consist of a sequence of blocks
-// (tests, introductions, sequences and randomize).
-experiment {
-
-  // This is here just to show that test may be
-  // put under experiment directly.
-  // If the tests run in sequence (without randomization)
-  // this is an easiest way to define it.
-  test mytest_3
-
-  randomize {
-    // Following two sequences will 
-    // be randomized.
-
-    // Sequence block will be performed in
-    // the order of definition.
-    sequence {
-      // This is an introduction to the following test.
-      // Introduction is text between ======== separators.
-      // Separator consist of at least 3 '=' characters.
-
-
-      // This test will run in practice mode.
-      // This mode tells experiment runner
-      // not to collect any sample data.
-      test mytest_3
-
-      text realtest_intro
-
-      // This is the real test run. Samples will be collected.
-      test mytest_30
-
-    }
-
-    // This is here just to show that randomize block should contain
-    // more than 1 block. Those block runs will be randomized.
-    sequence {
-
-      test mytest_3
-		randomize {
-	      text another_text
-	      test mytest_30
-	    }
-
-      test mytest_30
-    }
+    blue    left        right
+    blue    right       right
+    green   left        left
+    green   right       left
+    red     left        right
+    red     right       left
 
   }
 
 
+  stimuli {
+
+    // condition match: stimulus description
+
+    //position=right: shape(rectangle, position rightcenter, size small, color $color)
+    //position=left: shape(rectangle, position leftcenter, size small, color $color)
+    
+    // stimuli description are merged for condition match that matches
+    // more that one condition
+    // For example, this will play sound at condition 1 and display shape on the left side
+    1: sound(1000)
+
+    // To match any condition use keyword any
+    // any: sound(2000)
+
+    // Different possibilities
+    1: shape(rectangle, position left, size small, color blue)
+    2: image('someimage.jpg', size stratch)
+    3: sound(1000)
+    4: audio('audiofile.mp3')
+    // color=green and position=right: image('someimage.png', size big)
+    // color=red and position=right: image('someimage.png', position -25 -25, size 10 10)
+
+  }
+
+  // Timing
+  tmin = 2000
+  tmax = 3000
+  tduration = 2000
+
 }
+
+text Introduction {
+  content
+  endcontent
+
+  response = ANY  // special response type that matches any response possible on the platform
+}
+
+experiment "Simon Task" {
+
+  text Introduction
+
+  test simon 1 practice
+  test simon 10
+
+}
+
+/*
+target jsPsych {
+  output = 'some/directory/'
+
+  // jsPsych specific settings
+
+  responses {
+    // Mapping responses form conditions table to
+    // platform specific responses
+    left = 37
+    right = 39
+  }
+}
+
+target Expyriment {
+  output = 'some/directory/somefile.py'
+
+  // Expyriment specific settings
+  // Anything available here should be specified by generator
+  response_device = keyboard
+  responses {
+    left = 10
+    right = 11
+  }
+}
+*/

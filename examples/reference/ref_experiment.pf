@@ -6,7 +6,7 @@ test simon {
 
     blue    left        right
     blue    right       right
-    green   left        left
+    green   left 		left
     green   right       left
     red     left        right
     red     right       left
@@ -61,11 +61,17 @@ text Introduction {
 
 experiment "Simon Task" {
 
-  text Introduction
-
-  test simon 1 practice
-  test simon 10
-
+  randomize {
+	sequence {
+		text Introduction
+		test simon 3 practice
+	}
+	sequence {
+		// Just to show that blocks can be nested.
+		text Introduction
+		test simon 10 randomize
+	}
+  }
 }
 
 /*

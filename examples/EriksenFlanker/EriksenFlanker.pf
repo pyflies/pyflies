@@ -1,35 +1,28 @@
 /*
 Eriksen flanker test.
 */
-test timings{
-  tmin = 3000
-  tmax = 5000
-  twait = 2000
-  randomize
-}
 
-test EriksenFlankerBase: categorisation, visual, timings {
-            // filename  category(optional)
-  stimuli = ['file1.png' incongruent,
-             'file2.png' congurent,
-             'file3.png' congurent]
+test EriksenFlanker {
+	conditions {
+		direction	category		response
+		
+		left		incongruent		left
+		left		congurent		left
+		right		incongruent		right
+		right		incongruent		right	
+	}
+	
+	stimuli {
+		1: image("left-incongruent.jpg")
+		2: image("left-congruent.jpg")
+		3: image("right-incongruent.jpg")
+		4: image("right-congruent.jpg") 
+	}
+	// Timings
+  	tmin = 3000
+  	tmax = 5000
+	tduration = 2000
 
-  correctResponses = [1, 1, 2]               // Index in the response array
-                                            // this param is optional. If given experiment executor can register
-                                            // weather response was right or wrong.
-  keyboard = [LEFT, RIGHT]
-
-          // Button images or labels
-  mouse = ["left_arrow.png", "Right"]
-}
-
-test EriksenFlanker5: EriksenFlankerBase {
-  practice
-  trials = 5
-}
-
-test EriksenFlanker30: EriksenFlankerBase {
-  trials = 30
 }
 
 text intro {
@@ -39,7 +32,7 @@ text intro {
     In the following test you will be presented with a line of 5 arrow pointing
     left or right like in this picture:
 
-    .. image:: left_incongruent.png
+    .. image:: left-incongruent.png
 
     You should respond by the direction of the *middle arrow* as fast as possible
     by pressing left or right arrow on the keyboard or touching/clicking
@@ -51,8 +44,7 @@ text intro {
     Press any key or touch/click the screen to continue
   endcontent
 
-  keyboard = [ANY]
-  mouse = [ANY]
+  response = any
 }
 
 subject subject_data {
@@ -71,10 +63,10 @@ experiment {
   text intro
 
   // Perform practice test serie
-  test EriksenFlanker5
+  test EriksenFlanker 5 practice randomize
 
   // Perform real test serie (collects data)
-  test EriksenFlanker30
+  test EriksenFlanker 30 randomize
 
 }
 

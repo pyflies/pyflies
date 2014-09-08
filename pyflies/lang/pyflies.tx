@@ -12,10 +12,10 @@ PyFliesModel:
 ;
 
 ModelElement:
-  TestDef|Experiment|Text|Subject
+  TestType|Experiment|TextType|SubjectType
 ;
 
-TestDef:
+TestType:
   "test" name=ID "{"
     (conditions = Conditions)?
     (stimuli = Stimuli)?
@@ -143,20 +143,20 @@ Block:
   Sequence|Randomize
 ;
 
-TestReference:
-  'test' test=[TestDef] trials=INT (practice?="practice"|randomize?="randomize")*
+TestInstance:
+  'test' type=[TestType] trials=INT (practice?="practice"|randomize?="randomize")*
 ;
 
-TextReference:
-  'text' text=[Text]
+TextInstance:
+  'text' text=[TextType]
 ;
 
-SubjectReference:
-  'subject' subject=[Subject]
+SubjectInstance:
+  'subject' subject=[SubjectType]
 ;
 
 Reference:
-  TestReference|TextReference|SubjectReference
+  TestInstance|TextInstance|SubjectInstance
 ;
 
 ExperimentElement:
@@ -182,7 +182,7 @@ Randomize:
   '}'
 ;
 
-Text:
+TextType:
   'text' name=ID "{"
     ('content'
       content=/(.|\n)*?(?=endcontent)/
@@ -193,7 +193,7 @@ Text:
   '}'
 ;
 
-Subject:
+SubjectType:
   'subject' name=ID '{'
     attribute+=SubjectAttribute
   '}'

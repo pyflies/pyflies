@@ -45,11 +45,11 @@ def custom_export(model, file_name):
 
             clsname = e.__class__.__name__
 
-            if clsname == "TextReference":
+            if clsname == "TextInstance":
                 f.write('{} [shape=note, fillcolor=lawngreen, label="{}"];\n'
                         .format(node_num, e.text.content))
                 node_num += 1
-            elif clsname == "SubjectReference":
+            elif clsname == "SubjectInstance":
                 attr_str = ""
                 for attr in e.subject.attribute:
                     if attr.type.__class__.__name__ == "Enum":
@@ -62,7 +62,7 @@ def custom_export(model, file_name):
                 f.write('{} [shape=record, label="{{Subject|{}}}"];\n'
                         .format(node_num, attr_str))
                 node_num += 1
-            elif clsname == "TestReference":
+            elif clsname == "TestInstance":
                 color = "lawngreen" if e.practice else "red"
                 randomize = '<FONT POINT-SIZE="15">randomize</FONT><BR/>'\
                     if e.randomize else ""
@@ -74,8 +74,8 @@ def custom_export(model, file_name):
 <FONT POINT-SIZE="15">tduration:{}</FONT><BR/>
 {}
                         >];\n'''.format(
-                        node_num, color, e.test.name, e.test.tmin,
-                        e.test.tmax, e.test.tduration, randomize))
+                        node_num, color, e.type.name, e.type.tmin,
+                        e.type.tmax, e.type.tduration, randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
                     node_num, node_num, e.trials))
                 node_num += 1
@@ -100,7 +100,6 @@ def custom_export(model, file_name):
                     _render_dot(x)
                 f.write('}\n')
 
-
         with open(file_name, 'w') as f:
             f.write(HEADER)
 
@@ -113,6 +112,9 @@ def custom_export(model, file_name):
             for n in range(1, node_num-1):
                 f.write('{} -> {};\n'.format(n, n+1))
 
-            f.write("{} -> end;\n".format(n+1))
+            if node_num > 1:
+                f.write("{} -> end;\n".format(n+1))
+            else:
+                f.write("start -> end;\n")
             f.write('\n}\n')
 

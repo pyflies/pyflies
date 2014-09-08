@@ -31,11 +31,12 @@ test simon {
 
     // Different possibilities
     1: shape(rectangle, position left, size small, color blue)
-    2: image('someimage.jpg', size stratch)
+    2: image("someimage.jpg", size stratch)
     3: sound(1000)
-    4: audio('audiofile.mp3')
-    // color=green and position=right: image('someimage.png', size big)
-    // color=red and position=right: image('someimage.png', position -25 -25, size 10 10)
+    4: audio("audiofile.mp3")
+    any: image("someimage.png", size large)
+    color=green and position=right: image("someimage.png", size large)
+    color=red and position=right: image("someimage.png", position -25 -25, size 10 10)
 
   }
 
@@ -48,9 +49,14 @@ test simon {
 
 text Introduction {
   content
+  Simon test
+  ----------
+  
+  You will be presented with the square in different colors positioned left or right.
+  Press LEFT for GREEN square and RIGHT otherwise.
   endcontent
 
-  response = ANY  // special response type that matches any response possible on the platform
+  response = any  // special response type that matches any response possible on the platform
 }
 
 experiment "Simon Task" {

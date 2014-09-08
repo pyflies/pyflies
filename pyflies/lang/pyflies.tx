@@ -56,10 +56,31 @@ Stimulus:
 ConditionMatch:
   expression=ConditionMatchExpression
 ;
+
 ConditionMatchExpression:
-  // TODO: INT|Expression
-  INT
+  AnyCondition|OrdinalCondition|ExpressionCondition
 ;
+
+AnyCondition:
+  expression = "any"
+;
+
+OrdinalCondition:
+  expresssion = INT
+;
+
+ExpressionCondition:
+  expression = OrExpression
+;
+
+OrExpression: operand=AndExpression ('or' operand=AndExpression)*;
+AndExpression: operand=NotEqualsExpression ('and' operand=NotEqualsExpression)*;
+
+NotEqualsExpression:
+  NotExpression | EqualsExpression;
+
+NotExpression: 'not' operand=EqualsExpression;
+EqualsExpression: paramName=ID '=' paramValue=ID;
 
 /*
 Expression(
@@ -119,7 +140,7 @@ Color:
 
 Size:
   ((descriptive=DescriptiveSize)|
-  (x=INT ',' y=INT)|
+  (x=INT y=INT)|
   (both=INT))
 ;
 
@@ -129,7 +150,7 @@ DescriptiveSize:
 
 Position:
   ((descriptive=PositionDescriptive)|
-  (x=INT ',' y=INT))
+  (x=INT y=INT))
 ;
 
 PositionDescriptive:

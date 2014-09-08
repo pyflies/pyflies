@@ -80,6 +80,7 @@
     <context id="keywords" style-ref="keyword">
       <keyword>basepath</keyword>
       <keyword>test</keyword>
+      <keyword>conditions</keyword>
       <keyword>practice</keyword>
       <keyword>content</keyword>
       <keyword>endcontent</keyword>

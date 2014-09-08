@@ -63,21 +63,21 @@ def custom_export(model, file_name):
                         .format(node_num, attr_str))
                 node_num += 1
             elif clsname == "TestReference":
-                color = "lawngreen" if e.test.practice else "red"
+                color = "lawngreen" if e.practice else "red"
                 randomize = '<FONT POINT-SIZE="15">randomize</FONT><BR/>'\
-                    if e.test.randomize else ""
+                    if e.randomize else ""
 
                 f.write(''' {} [shape=doubleoctagon,fillcolor={}, label=<
 <FONT POINT-SIZE="20">{}</FONT><BR/>
 <FONT POINT-SIZE="15">tmin:{}</FONT><BR/>
 <FONT POINT-SIZE="15">tmax:{}</FONT><BR/>
-<FONT POINT-SIZE="15">twait:{}</FONT><BR/>
+<FONT POINT-SIZE="15">tduration:{}</FONT><BR/>
 {}
                         >];\n'''.format(
                         node_num, color, e.test.name, e.test.tmin,
-                        e.test.tmax, e.test.twait, randomize))
+                        e.test.tmax, e.test.tduration, randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
-                    node_num, node_num, e.test.trials))
+                    node_num, node_num, e.trials))
                 node_num += 1
             elif clsname == "Sequence":
                 f.write('''subgraph cluster{} {{

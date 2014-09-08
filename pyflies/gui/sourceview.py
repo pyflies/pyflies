@@ -3,6 +3,8 @@ from gi.repository import GtkSource, Pango, Gdk
 from textx.metamodel import metamodel_from_file
 from textx.exceptions import TextXSyntaxError, TextXSemanticError
 
+from pyflies.model_processor import pyflies_model_processor
+
 _language_manager = None
 _metamodel = None
 
@@ -33,9 +35,8 @@ def get_metamodel():
     if not _metamodel:
         _metamodel = metamodel_from_file(
             os.path.join(os.path.dirname(__file__),
-                         '..', 'lang', 'pyflies.tx'),
-            builtins={'categorisation': 'categorisation',
-                      'visual': 'visual'})
+                         '..', 'lang', 'pyflies.tx'))
+        _metamodel.register_model_processor(pyflies_model_processor)
     return _metamodel
 
 

@@ -4,9 +4,9 @@
  This is a pyflies syntax coloring definition for GtkSourceView component.
 
  Author: Igor R. Dejanovic <igor DOT dejanovic AT gmail DOT com>
- Copyright (C) 2005-2007 Emanuele Aina
+ Based on various style files from GtkSourceView component.
 -->
-<language id="pyflies" _name="pyFlies" version="2.0" _section="Source">
+<language id="pyflies" _name="pyFlies" version="2.0" _section="Scientific">
   <metadata>
     <property name="mimetypes">text/x-pyflies</property>
     <property name="globs">*.pf</property>
@@ -81,7 +81,6 @@
       <keyword>basepath</keyword>
       <keyword>test</keyword>
       <keyword>practice</keyword>
-      <keyword>trials</keyword>
       <keyword>content</keyword>
       <keyword>endcontent</keyword>
       <keyword>text</keyword>
@@ -89,18 +88,40 @@
       <keyword>experiment</keyword>
       <keyword>tmin</keyword>
       <keyword>tmax</keyword>
-      <keyword>twait</keyword>
+      <keyword>tduration</keyword>
       <keyword>randomize</keyword>
+      <keyword>response</keyword>
       <keyword>sequence</keyword>
       <keyword>stimuli</keyword>
-      <keyword>categories</keyword>
-      <keyword>correctResponses</keyword>
-      <keyword>keyboard</keyword>
-      <keyword>mouse</keyword>
     </context>
 
     <context id="operators" style-ref="operator">
       <keyword>\*</keyword>
+      <keyword>=</keyword>
+      <keyword>and</keyword>
+      <keyword>or</keyword>
+      <keyword>not</keyword>
+    </context>
+
+    <context id="stimuliParams">
+      <start>\(</start>
+      <end>\)</end>
+      <include>
+        <context id="paramKwds" style-ref="keyword">
+          <keyword>position</keyword>
+          <keyword>size</keyword>
+          <keyword>color</keyword>
+        </context>
+        <context ref="decimal"/>
+        <context ref="string"/>
+      </include>
+    </context>
+
+    <context id="stimuliTypes" style-ref="enum">
+      <keyword>shape</keyword>
+      <keyword>image</keyword>
+      <keyword>sound</keyword>
+      <keyword>audio</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -113,12 +134,8 @@
       <keyword>string</keyword>
     </context>
 
-    <context id="enumskwds" style-ref="enum">
-        <keyword>LEFT</keyword>
-        <keyword>RIGHT</keyword>
-        <keyword>ANY</keyword>
-        <keyword>INCONGRUENT</keyword>
-        <keyword>CONGRUENT</keyword>
+    <context id="enumkwds" style-ref="enum">
+      <keyword>any</keyword>
     </context>
 
     <context id="enumliterals" style-ref="type">
@@ -150,6 +167,23 @@
       </include>
     </context>
 
+    <context id="conditions" class-disabled="no-spell-check">
+      <start>(conditions)\s*{</start>
+      <end>}</end>
+      <include>
+        <context sub-pattern="1" where="start" style-ref="keyword" class="no-spell-check"/>
+        <context extend-parent="false" style-ref="keyword">
+          <!-- FIXME: No newlines in regex. Upstream bug.
+          <match>/([ \n\t]*[^\n]+\n)(.*)$/s</match> -->
+          <match>()(.*)</match>
+          <include>
+            <context sub-pattern="1" style-ref="keyword"/>
+            <context sub-pattern="2" style-ref="comment"/>
+          </include>
+        </context>
+      </include>
+    </context>
+
     <!--Main context-->
     <context id="pyflies" class="no-spell-check">
       <include>
@@ -157,13 +191,16 @@
         <context ref="def:c-like-comment-multiline"/>
         <context ref="def:c-like-close-comment-outside-comment"/>
         <context ref="textcontent"/>
+        <context ref="conditions"/>
         <context ref="string"/>
         <context ref="char"/>
         <context ref="float"/>
         <context ref="decimal"/>
         <context ref="keywords"/>
-        <context ref="enumskwds"/>
         <context ref="enumliterals"/>
+        <context ref="enumkwds"/>
+        <context ref="stimuliParams"/>
+        <context ref="stimuliTypes"/>
         <context ref="operators"/>
         <context ref="types"/>
         <context ref="boolean"/>

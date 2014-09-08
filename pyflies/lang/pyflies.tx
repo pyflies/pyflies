@@ -30,7 +30,7 @@ TestType:
 Conditions:
   'conditions' '{'
     // Parameter names are in the first line of condition specification
-    paramNames+=ID[eolterm]    // match param names until end of line
+    varNames+=ID[eolterm]    // match var names until end of line
     // The rest of the description are conditions, one per line
     // The order of condition values match the param name positions.
     conditions+=Condition
@@ -38,7 +38,7 @@ Conditions:
 ;
 
 Condition:
-  condition+=ID[eolterm]  // match values until end of line
+  conditionVars+=ID[eolterm]  // match values until end of line
 ;
 
 Stimuli:
@@ -66,7 +66,7 @@ AnyCondition:
 ;
 
 OrdinalCondition:
-  expresssion = INT
+  expression = INT
 ;
 
 ExpressionCondition:
@@ -80,7 +80,7 @@ NotEqualsExpression:
   NotExpression | EqualsExpression;
 
 NotExpression: 'not' operand=EqualsExpression;
-EqualsExpression: paramName=ID '=' paramValue=ID;
+EqualsExpression: varName=ID '=' varValue=ID;
 
 /*
 Expression(

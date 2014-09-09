@@ -1,0 +1,5 @@
+import os
+
+{% for elem in e.elements %}
+  {{ elem.__class__.__name__  }}
+{% endfor %}

@@ -19,9 +19,7 @@ test EriksenFlanker {
 		4: image("right-congruent.jpg") 
 	}
 	// Timings
-  	tmin = 3000
-  	tmax = 5000
-	tduration = 2000
+  	timing 500 1500
 
 }
 

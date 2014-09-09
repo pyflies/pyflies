@@ -96,7 +96,7 @@ target jsPsych {
 */
 target Expyriment {
   // Target folder where test should be generated
-  output = "some/directory/"
+  output = "/tmp/expyriment/"
 
   responses {
     left = 10

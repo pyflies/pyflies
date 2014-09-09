@@ -2,7 +2,7 @@ test simon {
 
   conditions {
 
-    color   position    reaction
+    color   position    response
 
     blue    left        right
     blue    right       right
@@ -93,16 +93,17 @@ target jsPsych {
     right = 39
   }
 }
-
+*/
 target Expyriment {
-  output = 'some/directory/somefile.py'
+  // Target folder where test should be generated
+  output = "some/directory/"
 
-  // Expyriment specific settings
-  // Anything available here should be specified by generator
-  response_device = keyboard
   responses {
     left = 10
     right = 11
   }
+  // Generator specific settings (e.g. Expyriment)
+  // Anything available here should be specified by generator
+  response_device = keyboard
+  
 }
-*/

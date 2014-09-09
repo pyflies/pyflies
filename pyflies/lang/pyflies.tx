@@ -12,7 +12,7 @@ PyFliesModel:
 ;
 
 ModelElement:
-  TestType|Experiment|TextType|SubjectType
+  TestType|Experiment|TextType|SubjectType|Target
 ;
 
 TestType:
@@ -232,6 +232,24 @@ SubjectAttributeType:
 
 Enum:
   '[' values+=ID[','] ']'
+;
+
+Target:
+  'target' name=ID '{'
+    'output' '=' output=STRING
+    'responses' '{'
+        responseMap*=ResponseMap
+    '}'
+    targetParam*=TargetParam
+  '}'
+;
+
+TargetParam:
+  name=ID '=' value=BASETYPE
+;
+
+ResponseMap:
+  name=ID '=' target=BASETYPE
 ;
 
 // Special rule for comments

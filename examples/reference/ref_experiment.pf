@@ -28,9 +28,17 @@ test simon {
 
     // To match any condition use keyword any
     // any: sound(2000)
+    
+    // Besides "any" there are several special conditions:
+    // fixation - used to specify fixation stimulus
+    // error - stimulus used to indicate error
+    // correct - stimulus used to indicate correct response
+    
+    fixation: shape(cross, size tiny, color white)
+    error: sound(2000, 100)
 
     // Different possibilities
-    1: shape(rectangle, position left, size small, color blue)
+    1: shape(rectangle, 1000, position left, size small, color blue)
     2: image("someimage.jpg", size stratch)
     3: sound(1000)
     4: audio("audiofile.mp3")
@@ -41,9 +49,7 @@ test simon {
   }
 
   // Timing
-  tmin = 2000
-  tmax = 3000
-  tduration = 2000
+  timing 2000 3000
 
 }
 

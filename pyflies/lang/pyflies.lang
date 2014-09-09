@@ -87,9 +87,7 @@
       <keyword>text</keyword>
       <keyword>subject</keyword>
       <keyword>experiment</keyword>
-      <keyword>tmin</keyword>
-      <keyword>tmax</keyword>
-      <keyword>tduration</keyword>
+      <keyword>timing</keyword>
       <keyword>randomize</keyword>
       <keyword>response</keyword>
       <keyword>sequence</keyword>
@@ -137,6 +135,9 @@
 
     <context id="enumkwds" style-ref="enum">
       <keyword>any</keyword>
+      <keyword>error</keyword>
+      <keyword>correct</keyword>
+      <keyword>fixation</keyword>
     </context>
 
     <context id="enumliterals" style-ref="type">

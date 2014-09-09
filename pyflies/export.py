@@ -69,13 +69,16 @@ def custom_export(model, file_name):
 
                 f.write(''' {} [shape=doubleoctagon,fillcolor={}, label=<
 <FONT POINT-SIZE="20">{}</FONT><BR/>
-<FONT POINT-SIZE="15">tmin:{}</FONT><BR/>
-<FONT POINT-SIZE="15">tmax:{}</FONT><BR/>
-<FONT POINT-SIZE="15">tduration:{}</FONT><BR/>
+<FONT POINT-SIZE="15">conditions: {}</FONT><BR/>
+<FONT POINT-SIZE="15">variables: {}</FONT><BR/>
+<FONT POINT-SIZE="15">tmin: {}</FONT><BR/>
+<FONT POINT-SIZE="15">tmax: {}</FONT><BR/>
 {}
                         >];\n'''.format(
-                        node_num, color, e.type.name, e.type.tmin,
-                        e.type.tmax, e.type.tduration, randomize))
+                        node_num, color, e.type.name,
+                        len(e.type.conditions.conditions),
+                        ", ".join(e.type.condition_map.keys()), e.type.tmin,
+                        e.type.tmax, randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
                     node_num, node_num, e.trials))
                 node_num += 1

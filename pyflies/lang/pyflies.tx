@@ -19,11 +19,7 @@ TestType:
   "test" name=ID "{"
     (conditions = Conditions)?
     (stimuli = Stimuli)?
-
-    ( ("tmin" "=" tmin=INT)|
-    ("tmax" "=" tmax=INT)|
-    ("tduration" "=" tduration=INT))*
-
+    ("timing" tmin=INT tmax=INT)?
   "}"
 ;
 
@@ -58,11 +54,15 @@ ConditionMatch:
 ;
 
 ConditionMatchExpression:
-  AnyCondition|OrdinalCondition|ExpressionCondition
+   FixedCondition|OrdinalCondition|ExpressionCondition
 ;
 
-AnyCondition:
-  expression = "any"
+FixedCondition:
+  expression = FixedConditionEnum
+;
+
+FixedConditionEnum:
+  "any"|"error"|"fixation"|"correct"
 ;
 
 OrdinalCondition:
@@ -110,6 +110,7 @@ StimulusDef:
 Image:
   'image' '(' file=STRING
    (',' (('position' position=Position)|
+      (duration=INT)|
       ('size' size=Size))*[','])?
   ')'
 ;
@@ -117,21 +118,22 @@ Image:
 Shape:
   'shape' '(' shape=ShapeType
    (',' (('position' position=Position)|
+      (duration=INT)|
       ('color' color=Color)|
       ('size' size=Size))*[','])?
   ')'
 ;
 
 ShapeType:
-  "rectangle"|"circle"|"triangle"
+  "rectangle"|"circle"|"triangle"|"cross"
 ;
 
 Sound:
-  'sound' '(' frequency=INT ')'
+  'sound' '(' frequency=INT (',' duration=INT)? ')'
 ;
 
 Audio:
-  'audio' '(' file=STRING ')'
+  'audio' '(' file=STRING (',' duration=INT)? ')'
 ;
 
 Color:

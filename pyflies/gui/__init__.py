@@ -6,7 +6,7 @@ from .modelviewer import ModelGraphViewer
 from .outline import Outline
 from .sourceview import PyFliesSourceView
 from pyflies.exceptions import PyFliesException
-from pyflies.gui.utils import show_error
+from pyflies.gui.utils import show_error, show_info
 from pyflies.generators import generator_names, generate
 
 INIT_WIN_WIDTH = 800
@@ -215,23 +215,49 @@ class PyFliesGUI(object):
 
     def on_generate(self, button):
         print("Generate")
-        self.generate_dialog.show()
 
-    def generate_response(self, dialog, response_id):
-        print("Generate response:", response_id)
-        if response_id == 1:   # OK pressed
-            # If there is model run generator
-            if self.current_model:
-                gen_name = self.targets_combo.get_active_text()
-                target_folder = self.target_folder_combo.get_filename()
-                print("Generator: ", gen_name)
-                print("Output: ", target_folder)
-                try:
-                    generate(gen_name, self.current_model, target_folder)
-                except PyFliesException as e:
-                    show_error(str(e))
+        gen_names = generator_names()
 
-        dialog.hide()
+        model = self.current_model
+        targets = model.targets
+
+        if len(targets) == 0:
+            show_error("No targets specified.\n" +
+                       "Define one or more target specification at " +
+                       "the end of file.\n" +
+                       "Installed targets are: {}"
+                       .format(", ".join(gen_names)))
+            return
+
+        # Check if there is generator for each target
+        for target in targets:
+            if target.name not in gen_names:
+                line, _ = \
+                    model.metamodel.parser.pos_to_linecol(target._position)
+                show_error("Unexisting target '{}' at line {}."
+                           .format(target.name, line))
+
+        for target in targets:
+            output = target.output
+
+            # Extract response map
+            responses = {}
+            for r in target.responseMap:
+                responses[r.name] = r.target
+
+            # Extract param values map
+            params = {}
+            for p in target.targetParam:
+                params[p.name] = p.value
+
+            # Call generator
+            try:
+                generate(target.name, output, model, responses, params)
+            except PyFliesException as e:
+                show_error(str(e))
+                return
+
+        show_info("Code generation", "Code for target platform(s) generated sucessfully.")
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)

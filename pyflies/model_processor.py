@@ -1,3 +1,4 @@
+from itertools import ifilter
 from textx.exceptions import TextXSemanticError
 
 
@@ -63,4 +64,14 @@ def pyflies_model_processor(model, metamodel):
                         (exp.__class__.__name__ == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
                         c.stimuli_for_cond.append(s)
+
+    # Extract experiment
+    model.experiment = next(ifilter(
+        lambda x: x.__class__.__name__ == "Experiment",
+        model.elements), None)
+
+    # Extract targets
+    model.targets = list(ifilter(
+        lambda x: x.__class__.__name__ == "Target",
+        model.elements))
 

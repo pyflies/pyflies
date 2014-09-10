@@ -1,6 +1,6 @@
 """
 Generator for `jsPsych`_ JavaScript library for behavioral experiments.
-""" 
+"""
 
 name = "jsPsych"
 description = "jsPsych - A JavaScript library of online behavioral experiments"
@@ -9,14 +9,15 @@ from jinja2 import Template
 from os.path import join, dirname
 
 
-def generate(model, target_folder):
+def generate(target_folder, model, responses, params):
     """
-    Generates a jsPsych experiment from the experiment model.
-
     Args:
-        model(pyFlies model): A graph of Python objects defining experiment.
         target_folder(str): A name of the folder where generated code should
         be placed.
+        model(pyFlies model):
+        responses(dict): A map of model responses to platform specific
+            responses.
+        params(dict): A map of platform specific parameters.
     """
 
     # Generate index template.

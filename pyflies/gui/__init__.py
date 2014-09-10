@@ -206,7 +206,6 @@ class PyFliesGUI(object):
         self.current_page.model_viewer.best_fit()
 
     def on_generate(self, button):
-        print("Generate")
 
         gen_names = generator_names()
 
@@ -214,10 +213,10 @@ class PyFliesGUI(object):
         targets = model.targets
 
         if len(targets) == 0:
-            show_error("No targets specified.\n" +
-                       "Define one or more target specification at " +
-                       "the end of file.\n" +
-                       "Installed targets are: {}"
+            show_error(("No targets specified.\n" +
+                        "Define one or more target specification at " +
+                        "the end of the file.\n" +
+                        "Installed targets are: {} \n")
                        .format(", ".join(gen_names)))
             return
 
@@ -249,7 +248,8 @@ class PyFliesGUI(object):
                 show_error(str(e))
                 return
 
-        show_info("Code generation", "Code for target platform(s) generated sucessfully.")
+        show_info("Code generation",
+                  "Code for target platform(s) generated sucessfully.")
 
     def on_exit(self, *args):
         Gtk.main_quit(*args)

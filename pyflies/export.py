@@ -47,11 +47,11 @@ def custom_export(model, file_name):
 
             if clsname == "TextInstance":
                 f.write('{} [shape=note, fillcolor=lawngreen, label="{}"];\n'
-                        .format(node_num, e.text.content))
+                        .format(node_num, e.type.content))
                 node_num += 1
             elif clsname == "SubjectInstance":
                 attr_str = ""
-                for attr in e.subject.attribute:
+                for attr in e.type.attribute:
                     if attr.type.__class__.__name__ == "Enum":
                         attr_type = "[{}]".format(
                             ", ".join(attr.type.values))

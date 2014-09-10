@@ -171,11 +171,11 @@ TestInstance:
 ;
 
 TextInstance:
-  'text' text=[TextType]
+  'text' type=[TextType]
 ;
 
 SubjectInstance:
-  'subject' subject=[SubjectType]
+  'subject' type=[SubjectType]
 ;
 
 Reference:

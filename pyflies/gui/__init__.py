@@ -32,14 +32,6 @@ class PyFliesGUI(object):
         self.id_on_vistype_toggle = self.vistype_button.connect(
             "toggled", self.on_vistype_toggle)
 
-        # Code generation
-        self.generate_dialog = self.builder.get_object("generateDialog")
-        self.generate_dialog.connect("response", self.generate_response)
-        self.targets_combo = self.builder.get_object("cmbTargets")
-        for gen_name in generator_names():
-            self.targets_combo.append_text(gen_name)
-        self.target_folder_combo = self.builder.get_object("fcOutput")
-
         self.notebook = Gtk.Notebook()
         self.main_win.get_child().get_children()[1].add(self.notebook)
         self.notebook.connect("switch-page", self.on_page_change)

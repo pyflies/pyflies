@@ -8,6 +8,8 @@ description = "Expyriment -A Python library for cognitive and neuroscientific ex
 from jinja2 import Template
 from os.path import join, dirname
 
+from pyflies.generators.util import flatten_experiment
+
 
 def generate(target_folder, model, responses, params):
     """
@@ -25,7 +27,8 @@ def generate(target_folder, model, responses, params):
                    'expyriment.py.template'), 'r') as f:
         index_template = f.read()
 
-    template = Template(index_template)
+    inst = flatten_experiment(model)
 
+    template = Template(index_template)
     with open(join(target_folder, 'test.py'), 'w') as f:
-        f.write(template.render(e=model.experiment))
+        f.write(template.render(m=model, inst=inst))

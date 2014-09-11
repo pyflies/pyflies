@@ -21,8 +21,8 @@ BlockType:
 
 TestType:
   "test" name=ID "{"
-    (conditions = Conditions)?
-    (stimuli = Stimuli)?
+    conditions = Conditions
+    stimuli = Stimuli
     ("timing" tmin=INT tmax=INT)?
   "}"
 ;

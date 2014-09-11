@@ -80,8 +80,12 @@ class PyFliesGUI(object):
         content.add1(main_frame)
 
         # Graph visualization
+        def on_sizeallocate(w, user_data):
+            self.on_bestfit(user_data)
+
         model_viewer_frame = Gtk.Frame(label='Model visualization')
         page.model_viewer = ModelGraphViewer()
+        page.model_viewer.connect('size-allocate', on_sizeallocate)
         model_viewer_frame.add(page.model_viewer)
         content.add2(model_viewer_frame)
 

@@ -85,6 +85,10 @@ class PyFliesGUI(object):
         model_viewer_frame.add(page.model_viewer)
         content.add2(model_viewer_frame)
 
+        # Keep proportions on resize
+        content.child_set_property(main_frame, 'resize', True)
+        content.child_set_property(model_viewer_frame, 'resize', True)
+
         # Notebook page title
         top = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         page.file_name_label = Gtk.Label(UNTITLED)

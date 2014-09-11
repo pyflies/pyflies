@@ -2,7 +2,7 @@ from itertools import ifilter
 
 HEADER = '''
 digraph pyflies {
-  rankdir=LR;
+  rankdir=TD;
   node[
       shape=record,
       style=filled,
@@ -29,12 +29,10 @@ def custom_export(model, file_name):
     node_num = 1
     last_node = 'start'
 
-    # Find experiment
-    experiment = next(ifilter(
-        lambda x: x.__class__.__name__ == "Experiment",
-        model.elements), None)
+    # Find structure
+    structure = model.structure
 
-    if experiment:
+    if structure:
 
         def _render_dot(e):
             """
@@ -43,7 +41,7 @@ def custom_export(model, file_name):
 
             global cluster, last_node, node_num
 
-            clsname = e.__class__.__name__
+            clsname = e._typename
 
             if clsname == "TextInstance":
                 f.write('{} [shape=note, fillcolor=lawngreen, label="{}"];\n'
@@ -80,7 +78,7 @@ def custom_export(model, file_name):
                         ", ".join(e.type.condition_map.keys()), e.type.tmin,
                         e.type.tmax, randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
-                    node_num, node_num, e.trials))
+                    node_num, node_num, e.trials*len(e.type.condition_map)))
                 node_num += 1
             elif clsname == "Sequence":
                 f.write('''subgraph cluster{} {{
@@ -106,7 +104,7 @@ def custom_export(model, file_name):
         with open(file_name, 'w') as f:
             f.write(HEADER)
 
-            for elem in experiment.elements:
+            for elem in structure.elements:
                 _render_dot(elem)
 
             # Connections

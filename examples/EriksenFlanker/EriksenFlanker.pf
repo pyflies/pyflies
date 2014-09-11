@@ -1,6 +1,7 @@
 /*
 Eriksen flanker test.
 */
+experiment "Eriksen Flanker"
 
 test EriksenFlanker {
 	conditions {
@@ -52,7 +53,7 @@ subject subject_data {
 }
 
 
-experiment {
+structure {
 
   // First collect information about subject
   subject subject_data
@@ -61,10 +62,10 @@ experiment {
   text intro
 
   // Perform practice test serie
-  test EriksenFlanker 5 practice randomize
+  test EriksenFlanker 1 practice randomize
 
   // Perform real test serie (collects data)
-  test EriksenFlanker 30 randomize
+  test EriksenFlanker 10 randomize
 
 }
 

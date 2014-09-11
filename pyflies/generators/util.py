@@ -10,7 +10,7 @@ def flatten_experiment(model):
         model(pyFlies model)
     """
 
-    elements = model.experiment.elements
+    elements = model.structure.elements
 
     def _flatten(elements):
         instances = []

@@ -1,3 +1,8 @@
+experiment "Simon Test"
+"
+This is an experiment description.
+"
+
 test simon {
 
   conditions {
@@ -65,7 +70,7 @@ text Introduction {
   response = any  // special response type that matches any response possible on the platform
 }
 
-experiment "Simon Task" {
+structure {
 
   randomize {
 	sequence {

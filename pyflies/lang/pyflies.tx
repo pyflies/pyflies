@@ -7,12 +7,16 @@
 */
 
 PyFliesModel:
+  "experiment" name=STRING
+  (description=STRING)?
   ("basepath" basepath=STRING)?
-  elements+=ModelElement
+  blocks+=BlockType
+  structure=Structure
+  targets*=Target
 ;
 
-ModelElement:
-  TestType|Experiment|TextType|SubjectType|Target
+BlockType:
+  TestType|TextType|SubjectType
 ;
 
 TestType:
@@ -182,26 +186,26 @@ Reference:
   TestInstance|TextInstance|SubjectInstance
 ;
 
-ExperimentElement:
+StructureElement:
   Reference|Block
 ;
 
 
-Experiment:
-  'experiment' (name=STRING)? '{'
-    elements*=ExperimentElement
+Structure:
+  'structure' '{'
+    elements*=StructureElement
   '}'
 ;
 
 Sequence:
   'sequence' '{'
-    elements*=ExperimentElement
+    elements*=StructureElement
   '}'
 ;
 
 Randomize:
   'randomize' '{'
-    elements*=ExperimentElement
+    elements*=StructureElement
   '}'
 ;
 

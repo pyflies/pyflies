@@ -42,7 +42,7 @@
     </define-regex>
 
 
-    <context id="string" style-ref="string" end-at-line-end="true" class="string" class-disabled="no-spell-check">
+    <context id="string" style-ref="string" class="string" class-disabled="no-spell-check">
       <start>L?"</start>
       <end>"</end>
       <include>
@@ -87,6 +87,7 @@
       <keyword>text</keyword>
       <keyword>subject</keyword>
       <keyword>experiment</keyword>
+      <keyword>structure</keyword>
       <keyword>timing</keyword>
       <keyword>randomize</keyword>
       <keyword>response</keyword>

@@ -69,4 +69,16 @@ structure {
 
 }
 
+target Expyriment {
+  // Target folder where test should be generated
+  output = "/home/igor/tmp/eriksen/"
 
+  responses {
+    left = 10
+    right = 11
+  }
+  // Generator specific settings (e.g. Expyriment)
+  // Anything available here should be specified by generator
+  response_device = keyboard
+  
+}

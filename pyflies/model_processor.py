@@ -1,23 +1,53 @@
 from textx.exceptions import TextXSemanticError
 
 
+sizes = {
+    'tiny': 10,
+    'small': 20,
+    'normal': 30,
+    'large': 50,
+    'huge': 100
+}
+
+positions = {
+    "center": (0, 0),
+    "left": (-50, 0),
+    "right": (50, 0),
+    "top": (0, 50),
+    "bottom": (0, -50),
+    "topLeft": (-50, 50),
+    "topRight": (50, 50),
+    "bottomLeft": (-50, -50),
+    "bottomRight": (50, -50),
+    "farLeft": (-100, 0),
+    "farRight": (100, 0),
+    "farTop": (0, 100),
+    "farBottom": (0, -100),
+    "farBottomLeft": (-100, -100),
+    "farBottomRight": (100, -100),
+    "farTopLeft": (-100, 100),
+    "farTopRigh": (100, 100)
+}
+
+
 def pyflies_model_processor(model, metamodel):
     """
-    Validates model, evaluates condition matches in stimuli definitions
-    and creates a map from each condition to a set of stimuli that matches.
+    Validates model, evaluates condition matches in stimuli definitions,
+    creates a map from each condition to a set of stimuli that matches and
+    sets default values.
     """
 
     # Post-processing is done for each test type
     for e in model.blocks:
         if e._typename == "TestType":
-            condition_map = {}
+            condvar_map = {}
             for var in e.conditions.varNames:
-                condition_map[var] = []
-                conds = len(condition_map)
+                condvar_map[var] = []
+                conds = len(condvar_map)
             for c in e.conditions.conditions:
 
                 # Check if proper number of condition variables is specified
-                if conds != len(c.conditionVars):
+                if conds != len(c.varValues):
                     line, col = \
                         metamodel.parser.pos_to_linecol(c._position)
                     raise TextXSemanticError(
@@ -25,16 +55,16 @@ def pyflies_model_processor(model, metamodel):
                             conds, (line, col)), line=line, col=col)
 
                 for idx, param_name in enumerate(e.conditions.varNames):
-                    condition_map[param_name].append(c.conditionVars[idx])
+                    condvar_map[param_name].append(c.varValues[idx])
 
-            e.condition_map = condition_map
+            e.condvar_map = condvar_map
 
             def cond_matches(idx, c, exp):
                 """
                 Evaluates condition match expression.
                 """
                 if exp._typename == "EqualsExpression":
-                    return condition_map[exp.varName][idx] == exp.varValue
+                    return condvar_map[exp.varName][idx] == exp.varValue
                 elif exp._typename == "AndExpression":
                     val = True
                     for op in exp.operand:
@@ -55,13 +85,47 @@ def pyflies_model_processor(model, metamodel):
             # for condition.
             for idx, c in enumerate(e.conditions.conditions):
                 c.stimuli_for_cond = []
-                for s in e.stimuli.stimuli:
+                for s in e.stimuli.condStimuli:
                     exp = s.conditionMatch.expression
                     if exp._typename == "AnyCondition" or\
                         (exp._typename == "OrdinalCondition" and
                          idx == exp.expression - 1) or\
                         (exp._typename == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
-                        c.stimuli_for_cond.append(s)
+                        c.stimuli_for_cond.append(s.stimulus)
+
+            # Default values for stimuli parameters
+            for c in e.conditions.conditions:
+                for s in e.stimuli.condStimuli:
+                    stimulus = s.stimulus
+                    if stimulus._typename in ["Shape", "Image"]:
+
+                        # Instantiate meta-classes if not given by the user
+                        if not stimulus.position:
+                            stimulus.position = metamodel['Position']()
+                        if not stimulus.size:
+                            stimulus.size = metamodel['Size']()
+
+                        if not stimulus.position.descriptive and \
+                                stimulus.position.x == 0 and \
+                                stimulus.position.y == 0:
+                            stimulus.position.descriptive = "center"
+                        if stimulus.position.descriptive:
+                            stimulus.position.x, stimulus.position.y = \
+                                positions[stimulus.position.descriptive]
+                        if not stimulus.size.descriptive and \
+                                stimulus.size.x == 0 and stimulus.size.y == 0:
+                            stimulus.size.descriptive = "normal"
+                        if stimulus.size.descriptive:
+                            stimulus.size.x = stimulus.size.y = \
+                                stimulus.size.both = \
+                                sizes[stimulus.size.descriptive]
+                    elif stimulus._typename in ["Audio", "Sound"]:
+                        stimulus.duration = 300
+
+                    if stimulus.duration == 0:
+                        stimulus.duration = 1000
+
+
 
 

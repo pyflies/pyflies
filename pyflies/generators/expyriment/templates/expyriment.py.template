@@ -1,5 +1,5 @@
 {# vim: filetype=django
-#}
+-#}
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -14,23 +14,108 @@ If you are going to regenerate this file from the pyFlies model again
 do not edit it manually or else your manual changed will be lost.
 """
 
+from random import shuffle
 from expyriment import design, control, stimuli, io, misc
 
-
-# Create and initialize an Experiment
+# Create experiment
 exp = design.Experiment("{{m.name}}")
+
+# Initialize an Experiment
 control.initialize(exp)
 
-{% for i in inst %}
-  {% if i.type._typename == "TextType" %}
-stimuli.TextScreen("Instructions", "Test").present()
-  {% elif i.type._typename == "SubjectType"%}
-  {% elif i.type._typename == "TestType" %}
-# Create block
-b = design.Block()
-# Preload stimuli
+{% for b in m.blocks -%}
+  {%- if b._typename == "TestType" %}
+# {{b.name}} test
+  {%- endif %}
+{{b.name}} = []
+  {%- if b._typename == "TextType" %}
+t = design.Trial()
+s = stimuli.TextScreen("Instructions", """{{b.content}}""")
+s.preload()
+t.add_stimulus(s)
+{{b.name}}.append(t)
+  {% elif b._typename == "TestType" %}
+    {%- for c in b.conditions.conditions %}
+# Create and preload simuli for condition {{loop.index}} of {{b.name}} test
+# {{c.varValues|join(", ")}}
+      {%- if c.stimuli_for_cond %}
+t = design.Trial()
+        {%- for s in c.stimuli_for_cond %}
+          {%- if s._typename == "Shape" %}
+            {%- if s.shape == "circle" %}
+s = stimuli.Circle(({{s.size.x}}, {{s.size.y}}), colour="{{s.color}}", position=({{s.position.x}},{{s.position.y}}))
+            {%- elif s.shape == "rectangle"%}
+s = stimuli.Rectangle(({{s.size.x}}, {{s.size.y}}), colour="{{s.color}}", position=({{s.position.x}},{{s.position.y}}))
+            {%- endif %}
+          {%- elif s._typename == "Image" %}
+s = stimuli.Picture("{{s.file}}")
+          {%- elif s._typename == "Sound" %}
+s = stimuli.Tone({{s.duration}}, {{s.frequency}})
+          {%- elif s._typename == "Audio" %}
+s = stimuli.Audio("{{s.file}}")
+          {%- endif %}
+s.preload()
+t.add_stimulus(s)
+        {%- endfor %}
+      {%- endif %}
+{{b.name}}.append(t)
+    {%- endfor %}
   {% endif %}
 {% endfor %}
+
+
+def create_instance(trials, repeat=1, practice=False, test=False):
+  block = design.Block()
+  block._practice = practice
+  block._test = test
+  for t in trials:
+    block.add_trial(t, copies=repeat)
+  block.shuffle_trials()
+  return block
+
+def build_experiment(exp, blocks, name):
+
+  def _randomize(blocks):
+    """
+    Recursively traverse experiment structure and randomize all
+    Randomize blocks (lists).
+    """
+    for b in blocks:
+      if type(b) is list:
+        shuffle(b)
+      if type(b) in (list, tuple):
+        _randomize(b)
+
+  def _flatten(blocks):
+    """
+    Flattens blocks nested structure.
+    """
+    flattened = []
+    for b in blocks:
+      if type(b) in (list, tuple):
+        flattened.extend(_flatten(b))
+      else:
+        flattened.append(b)
+    return flattened
+
+  _randomize(blocks)
+  for b in _flatten(blocks):
+    exp.add_block(b)
+
+# Experiment structure
+blocks = [
+{%- for e in m.structure.elements recursive -%}
+  {%- if e._typename == "Sequence" %}
+    ( {{ loop(e.elements) }} ),
+  {%- elif e._typename == "Randomize" %}
+    [ {{ loop(e.elements) }} ],
+  {%- else -%}
+    create_instance({{e.type.name}}{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
+  {%- endif -%}
+{%- endfor -%}
+]
+
+build_experiment(exp, blocks, "{{m.name}}")
 
 # Define and preload standard stimuli
 fixcross = stimuli.FixCross()
@@ -40,14 +125,16 @@ fixcross.preload()
 #response_device = io.EventButtonBox(io.SerialPort("/dev/ttyS1"))
 response_device = exp.keyboard
 
-{% for elem in m.structure.elements %}
-  {{ elem._typename }}
-{% endfor %}
+control.start(exp)
 
-{% for i in inst %}
-  {% if i.type.typename == "TestType" %}
-    {{i.type._typename }} {{ i.type.name  }} {{ i.trials }}
-  {% else %}
-    {{i.type._typename }} {{ i.type.name  }}
-  {% endif %}
-{% endfor %}
+for block in exp.blocks:
+  for trial in block.trials:
+    for stimulus in trial.stimuli:
+        stimulus.present()
+        button, rt = response_device.wait()
+
+        if not block._practice:
+          exp.data.add([trial.get_factor("Position"), button, rt])
+
+control.end()
+

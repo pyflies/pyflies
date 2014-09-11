@@ -14,7 +14,7 @@ test simon {
     green   left 		left
     green   right       left
     red     left        right
-    red     right       left
+    red     right       right
 
   }
 

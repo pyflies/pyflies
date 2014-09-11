@@ -44,7 +44,7 @@ test simon {
 
     // Different possibilities
     1: shape(rectangle, 1000, position left, size small, color blue)
-    2: image("someimage.jpg", size stratch)
+    2: image("someimage.jpg", size large)
     3: sound(1000)
     4: audio("audiofile.mp3")
     any: image("someimage.png", size large)
@@ -101,7 +101,7 @@ target jsPsych {
 */
 target Expyriment {
   // Target folder where test should be generated
-  output = "/tmp/expyriment/"
+  output = "/home/igor/tmp/expgen/"
 
   responses {
     left = 10

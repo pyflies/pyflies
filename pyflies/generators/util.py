@@ -1,7 +1,7 @@
 from random import sample
 
 
-def flatten_experiment(model):
+def flatten_structure(model):
     """
     Returns flatten list of experiment elements where randomize
     blocks are properly randomized.

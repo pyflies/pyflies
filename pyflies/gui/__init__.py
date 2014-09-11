@@ -62,8 +62,8 @@ class PyFliesGUI(object):
         # Page will contain the content paned and status bar
         page = Gtk.VBox(homogeneous=False)
 
-        content = Gtk.Paned(expand=True, position=win_height * 1./2,
-                            orientation=Gtk.Orientation.VERTICAL)
+        content = Gtk.Paned(expand=True, position=win_width * 1./2,
+                            orientation=Gtk.Orientation.HORIZONTAL)
 
         # Each page has its own statusbar
         page.add(content)
@@ -72,25 +72,12 @@ class PyFliesGUI(object):
         page.child_set_property(content, "expand", True)
         page.child_set_property(page.status_bar, "expand", False)
 
-        paned_split_width = win_width * 3./4
-        main_pane = Gtk.Paned(expand=True, position=paned_split_width)
-        frame_left = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
-        frame_right = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
+        main_frame = Gtk.Frame(shadow_type=Gtk.ShadowType.IN, expand=True)
         page.source_view = PyFliesSourceView()
         scroll = Gtk.ScrolledWindow(child=page.source_view)
-        frame_left.add(scroll)
+        main_frame.add(scroll)
 
-        # TreeView outline
-        frame_right.add(Outline())
-
-        main_pane.add1(frame_left)
-        main_pane.add2(frame_right)
-
-        # Keep panes proportion on resize
-        main_pane.child_set_property(frame_left, 'resize', True)
-        main_pane.child_set_property(frame_right, 'resize', True)
-
-        content.add1(main_pane)
+        content.add1(main_frame)
 
         # Graph visualization
         model_viewer_frame = Gtk.Frame(label='Model visualization')

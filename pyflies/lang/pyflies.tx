@@ -38,19 +38,19 @@ Conditions:
 ;
 
 Condition:
-  conditionVars+=ID[eolterm]  // match values until end of line
+  varValues+=ID[eolterm]  // match values until end of line
 ;
 
 Stimuli:
   'stimuli' '{'
-    stimuli+=Stimulus
+    condStimuli+=ConditionStimulus
   '}'
 ;
 
-Stimulus:
-  // Stimulus is given in the form of
+ConditionStimulus:
+  // Condition stimulus is given in the form of
   // condition match expression : stimulus definition
-  conditionMatch=ConditionMatch ':' stimulusDef=StimulusDef
+  conditionMatch=ConditionMatch ':' stimulus=Stimulus
 ;
 
 ConditionMatch:
@@ -107,7 +107,7 @@ ConditionMatchExpression expression:
 */
 
 
-StimulusDef:
+Stimulus:
   Image|Shape|Sound|Audio
 ;
 

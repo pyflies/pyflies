@@ -1,4 +1,4 @@
-{# vim: filetype=django
+{# vim: filetype=django tabstop=4 shiftwidth=4 expandtab
 -#}
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -15,7 +15,39 @@ do not edit it manually or else your manual changed will be lost.
 """
 
 from random import shuffle
+from collections import namedtuple
 from expyriment import design, control, stimuli, io, misc
+
+
+class Block(list):
+    def __init__(self):
+        super(list, self).__init__()
+        # Is this block a test
+        self._test = True
+        # Standard stimuli
+        self._fix = []
+        self._error = []
+        self._correct = []
+
+{%- macro stimulus(s) %}
+  {%- if s._typename == "Shape" %}
+    {%- if s.shape == "circle" %}
+s = stimuli.Circle(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+    {%- elif s.shape == "rectangle"%}
+s = stimuli.Rectangle(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+    {%- elif s.shape == "cross"%}
+s = stimuli.FixCross(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+    {%- endif %}
+  {%- elif s._typename == "Text" %}
+s = stimuli.TextLine("{{s.text}}", text_size={{s.size.x}}, text_colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+  {%- elif s._typename == "Image" %}
+s = stimuli.Picture("{{s.file}}")
+  {%- elif s._typename == "Sound" %}
+s = stimuli.Tone({{s.duration}}, {{s.frequency}})
+  {%- elif s._typename == "Audio" %}
+s = stimuli.Audio("{{s.file}}")
+  {%- endif -%}
+{%- endmacro %}
 
 # Create experiment
 exp = design.Experiment("{{m.name}}")
@@ -27,8 +59,8 @@ control.initialize(exp)
   {%- if b._typename == "TestType" %}
 # {{b.name}} test
   {%- endif %}
-{{b.name}} = []
-  {%- if b._typename == "TextType" %}
+{{b.name}} = Block()
+  {%- if b._typename == "ScreenType" %}
 t = design.Trial()
 s = stimuli.TextScreen("Instructions", """{{b.content}}""")
 s.preload()
@@ -36,71 +68,97 @@ t.add_stimulus(s)
 {{b.name}}.append(t)
   {% elif b._typename == "TestType" %}
     {%- for c in b.conditions.conditions %}
+      {%- if c.stimuli_for_cond %}
+
 # Create and preload simuli for condition {{loop.index}} of {{b.name}} test
 # {{c.varValues|join(", ")}}
-      {%- if c.stimuli_for_cond %}
 t = design.Trial()
+# Trial factors
+        {%- for factor in b.conditions.varNames %}
+t.set_factor("{{factor}}", "{{c.varValues[loop.index-1]}}")
+        {%- endfor %}
+# Stimuli
         {%- for s in c.stimuli_for_cond %}
-          {%- if s._typename == "Shape" %}
-            {%- if s.shape == "circle" %}
-s = stimuli.Circle(({{s.size.x}}, {{s.size.y}}), colour="{{s.color}}", position=({{s.position.x}},{{s.position.y}}))
-            {%- elif s.shape == "rectangle"%}
-s = stimuli.Rectangle(({{s.size.x}}, {{s.size.y}}), colour="{{s.color}}", position=({{s.position.x}},{{s.position.y}}))
-            {%- endif %}
-          {%- elif s._typename == "Image" %}
-s = stimuli.Picture("{{s.file}}")
-          {%- elif s._typename == "Sound" %}
-s = stimuli.Tone({{s.duration}}, {{s.frequency}})
-          {%- elif s._typename == "Audio" %}
-s = stimuli.Audio("{{s.file}}")
-          {%- endif %}
+        {{- stimulus(s) }}
 s.preload()
 t.add_stimulus(s)
         {%- endfor %}
-      {%- endif %}
 {{b.name}}.append(t)
+      {%- endif %}
     {%- endfor %}
-  {% endif %}
-{% endfor %}
+
+    {%- if b._error %}
+
+# Stimuli for signalizing erroneous response
+      {%- for s in b._error %}
+        {{- stimulus(s) }}
+s.preload()
+{{b.name}}._error.append(s)
+      {%- endfor %}
+    {%- endif %}
+    {%- if b._correct %}
+
+# Stimuli for signalizing correct response
+      {%- for s in b._correct %}
+        {{- stimulus(s) }}
+s.preload()
+{{b.name}}._correct.append(s)
+      {%- endfor %}
+    {%- endif %}
+    {%- if b._fix %}
+
+# Fixation stimuli
+      {%- for s in b._fix %}
+        {{- stimulus(s) }}
+s.preload()
+{{b.name}}._fix.append(s)
+      {%- endfor %}
+    {%- endif %}
+  {%- endif %}
+{%- endfor %}
+
+BlockParam = namedtuple('BlockParams', ['practice', 'test', 'fix', 'error', 'correct' ])
+block_param_map = {}
 
 
-def create_instance(trials, repeat=1, practice=False, test=False):
-  block = design.Block()
-  block._practice = practice
-  block._test = test
-  for t in trials:
-    block.add_trial(t, copies=repeat)
-  block.shuffle_trials()
-  return block
+def create_instance(b, name, repeat=1, practice=False, test=False):
+    block = design.Block()
+    block_param_map[block] = BlockParam(
+        practice=practice, test=test, fix=[], error=[], correct=[])
+    for t in b:
+        block.add_trial(t, copies=repeat)
+    block.shuffle_trials()
+    return block
+
 
 def build_experiment(exp, blocks, name):
 
-  def _randomize(blocks):
-    """
-    Recursively traverse experiment structure and randomize all
-    Randomize blocks (lists).
-    """
-    for b in blocks:
-      if type(b) is list:
-        shuffle(b)
-      if type(b) in (list, tuple):
-        _randomize(b)
+    def _randomize(blocks):
+        """
+        Recursively traverse experiment structure and randomize all
+        Randomize blocks (lists).
+        """
+        for b in blocks:
+            if type(b) is list:
+                shuffle(b)
+            if type(b) in (list, tuple):
+                _randomize(b)
 
-  def _flatten(blocks):
-    """
-    Flattens blocks nested structure.
-    """
-    flattened = []
-    for b in blocks:
-      if type(b) in (list, tuple):
-        flattened.extend(_flatten(b))
-      else:
-        flattened.append(b)
-    return flattened
+    def _flatten(blocks):
+        """
+        Flattens blocks nested structure.
+        """
+        flattened = []
+        for b in blocks:
+            if type(b) in (list, tuple):
+                flattened.extend(_flatten(b))
+            else:
+                flattened.append(b)
+        return flattened
 
-  _randomize(blocks)
-  for b in _flatten(blocks):
-    exp.add_block(b)
+    _randomize(blocks)
+    for b in _flatten(blocks):
+        exp.add_block(b)
 
 # Experiment structure
 blocks = [
@@ -110,31 +168,53 @@ blocks = [
   {%- elif e._typename == "Randomize" %}
     [ {{ loop(e.elements) }} ],
   {%- else -%}
-    create_instance({{e.type.name}}{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
+    create_instance({{e.type.name}}, "{{e.type.name}}"{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
   {%- endif -%}
 {%- endfor -%}
 ]
 
 build_experiment(exp, blocks, "{{m.name}}")
 
-# Define and preload standard stimuli
-fixcross = stimuli.FixCross()
-fixcross.preload()
-
 # Create IO
-#response_device = io.EventButtonBox(io.SerialPort("/dev/ttyS1"))
+# response_device = io.EventButtonBox(io.SerialPort("/dev/ttyS1"))
 response_device = exp.keyboard
 
 control.start(exp)
 
 for block in exp.blocks:
-  for trial in block.trials:
-    for stimulus in trial.stimuli:
-        stimulus.present()
+    bparam = block_param_map.get(block)
+    for trial in block.trials:
+        # Present fixation if defined
+        if bparam and bparam.fix:
+            for s in bparam.fix:
+                s.present()
+                # FIXME: Stimuli can't be presented concurrently in Expyriment
+                break
+            exp.clock.wait(1000)
+
+        for stimulus in trial.stimuli:
+            stimulus.present()
+            # FIXME: Stimuli can't be presented concurrently in Expyriment
+            break
         button, rt = response_device.wait()
 
-        if not block._practice:
-          exp.data.add([trial.get_factor("Position"), button, rt])
+        if bparam and (bparam.error or bparam.correct):
+            # Check if response is correct
+            if button == trial.correct_response:
+                if bparam.correct:
+                    for s in bparam.correct:
+                        s.present()
+                        # FIXME: Stimuli can't be presented concurrently in Expyriment
+                        break
+            else:
+                if bparam.error:
+                    for s in bparam.error:
+                        s.present()
+                        # FIXME: Stimuli can't be presented concurrently in Expyriment
+                        break
+
+        if bparam and not bparam.practice:
+            exp.data.add([trial.get_factor("Position"), button, rt])
 
 control.end()
 

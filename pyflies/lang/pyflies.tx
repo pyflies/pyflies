@@ -146,7 +146,7 @@ Text:
 ;
 
 TextType:
-  STRING|WORD
+  STRING|/\w*\b/
 ;
 
 WORD:

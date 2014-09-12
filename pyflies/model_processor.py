@@ -184,6 +184,12 @@ def pyflies_model_processor(model, metamodel):
                 for stimulus in c.stimuli_for_cond:
                     stimulus_default(stimulus, metamodel)
 
+            # Default timings
+            if e.tmin == 0:
+                e.tmin = 1500
+            if e.tmax == 0:
+                e.tmax = 3000
+
 
 
 

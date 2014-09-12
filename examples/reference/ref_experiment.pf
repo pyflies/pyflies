@@ -130,9 +130,14 @@ target Expyriment {
   responses {
     left = 10
     right = 11
+    // Special response 'next' is used
+    // on text screens
+    // By default maps to SPACE
+    next = K_ENTER
   }
   // Generator specific settings (e.g. Expyriment)
   // Anything available here should be specified by generator
   response_device = keyboard
+  
   
 }

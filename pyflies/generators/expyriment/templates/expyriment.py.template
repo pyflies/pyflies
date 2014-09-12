@@ -14,7 +14,7 @@ If you are going to regenerate this file from the pyFlies model again
 do not edit it manually or else your manual changed will be lost.
 """
 
-from random import shuffle
+from random import shuffle, randint
 from collections import namedtuple
 from expyriment import design, control, stimuli, io, misc
 
@@ -135,14 +135,14 @@ s.preload()
   {%- endif %}
 {%- endfor %}
 
-BlockParam = namedtuple('BlockParams', ['practice', 'test', 'fix', 'error', 'correct' ])
+BlockParam = namedtuple('BlockParams', ['practice', 'test', 'tmin', 'tmax', 'fix', 'error', 'correct' ])
 block_param_map = {}
 
 
-def create_instance(b, name, repeat=1, practice=False, test=False):
+def create_instance(b, name, tmin=None, tmax=None, repeat=1, practice=False, test=False):
     block = design.Block(name)
     block_param_map[name] = BlockParam(
-        practice=practice, test=test, fix=b._fix, error=b._error, correct=b._correct)
+        practice=practice, test=test, tmin=tmin, tmax=tmax, fix=b._fix, error=b._error, correct=b._correct)
     for t in b:
         block.add_trial(t, copies=repeat)
     block.shuffle_trials()
@@ -186,7 +186,7 @@ blocks = [
   {%- elif e._typename == "Randomize" %}
     [ {{ loop(e.elements) }} ],
   {%- else -%}
-    create_instance({{e.type.name}}, "{{e.type.name}}-{{e._position}}"{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
+    create_instance({{e.type.name}}, "{{e.type.name}}-{{e._position}}"{% if e._typename == "TestInstance"%}, {{e.type.tmin}}, {{e.type.tmax}}, {{e.trials}}, {{e.practice}}, True{% endif %}),
   {%- endif -%}
 {%- endfor -%}
 ]
@@ -196,11 +196,15 @@ build_experiment(exp, blocks, "{{m.name}}")
 response_device = exp.keyboard
 exp.data_variable_names = data_variable_names
 
+blank_screen = stimuli.BlankScreen()
+blank_screen.preload()
+
 # Start Experiment
 control.start(exp)
 
 for block in exp.blocks:
     bparam = block_param_map.get(block.name)
+    practice = 1 if bparam.practice else 0
     for trial in block.trials:
         # Present fixation if defined
         if bparam and bparam.fix:
@@ -208,7 +212,12 @@ for block in exp.blocks:
                 s.present()
                 # FIXME: Stimuli can't be presented concurrently in Expyriment
                 break
-            exp.clock.wait(1000)
+
+        if bparam and bparam.test and not bparam.fix:
+            blank_screen.present()
+
+        if bparam and bparam.test:
+            exp.clock.wait(randint(bparam.tmin, bparam.tmax))
 
         for stimulus in trial.stimuli:
             stimulus.present()
@@ -243,15 +252,14 @@ for block in exp.blocks:
                         data.append(response)
                     else:
                         data.append(trial.factor_dict[name])
-                data.extend([rt, error, bparam.practice])
+                data.extend([rt, error, practice])
                 exp.data.add(data)
         else:
             # If not a test
-            {% if 'next' in target.responseMap %}
-            button, rt = response_device.wait([response_map['next']])
-            {% else %}
-            button, rt = response_device.wait([misc.constants.K_SPACE])
-            {% endif %}
+            if 'next' in response_map:
+                button, rt = response_device.wait([response_map['next']])
+            else:
+                button, rt = response_device.wait([misc.constants.K_SPACE])
 
 control.end()
 

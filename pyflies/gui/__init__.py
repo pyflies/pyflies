@@ -224,21 +224,9 @@ class PyFliesGUI(object):
                            .format(target.name, line))
 
         for target in targets:
-            output = target.output
-
-            # Extract response map
-            responses = {}
-            for r in target.responseMap:
-                responses[r.name] = r.target
-
-            # Extract param values map
-            params = {}
-            for p in target.targetParam:
-                params[p.name] = p.value
-
             # Call generator
             try:
-                generate(target.name, output, model, responses, params)
+                generate(model, target)
             except PyFliesException as e:
                 show_error(str(e))
                 return

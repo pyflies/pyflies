@@ -9,15 +9,11 @@ from jinja2 import Template
 from os.path import join, dirname
 
 
-def generate(target_folder, model, responses, params):
+def generate(model, target):
     """
     Args:
-        target_folder(str): A name of the folder where generated code should
-        be placed.
         model(pyFlies model):
-        responses(dict): A map of model responses to platform specific
-            responses.
-        params(dict): A map of platform specific parameters.
+        target(Target): An object that describe target platform.
     """
 
     # Generate index template.
@@ -27,5 +23,5 @@ def generate(target_folder, model, responses, params):
 
     template = Template(index_template)
 
-    with open(join(target_folder, 'index.html'), 'w') as f:
+    with open(join(target.output, 'index.html'), 'w') as f:
         f.write(template.render(model=model))

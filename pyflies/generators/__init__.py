@@ -60,21 +60,18 @@ def generator_names():
     return _generators.keys()
 
 
-def generate(generator_name, target_folder, model, responses, params):
+def generate(model, target):
     """
     Do some sanity checks for target folder. Delete the content of
     target folder leaving manually written files, and calls generator.
 
     Args:
-        generator_name(src): A generator name as defined by the 'name'
-            attribute of the generator module.
-        target_folder(src): The name of the target folder where code should
-            be generated.
         model(pyFlies model):
-        responses(dict): A map of model responses to platform specific
-            responses.
-        params(dict): A map of platform specific parameters.
+        target(Target): An object that describe target platform.
     """
+
+    generator_name = target.name
+    target_folder = target.output
 
     # Sanity check. Target folder will be deleted only if it has
     # .pyflies.generated
@@ -112,5 +109,4 @@ def generate(generator_name, target_folder, model, responses, params):
              ignore=shutil.ignore_patterns('*.template'))
 
     # Run generator
-    _generators[generator_name][1].generate(target_folder, model,
-                                            responses, params)
+    _generators[generator_name][1].generate(model, target)

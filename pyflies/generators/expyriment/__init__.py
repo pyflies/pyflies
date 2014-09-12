@@ -8,6 +8,16 @@ description = "Expyriment -A Python library for cognitive and neuroscientific ex
 import jinja2
 from os.path import join, dirname
 
+color_map = {
+    "white": "C_WHITE",
+    "black": "C_BLACK",
+    "grey": "C_GREY",
+    "red":  "C_RED",
+    "green": "C_GREEN",
+    "blue": "C_BLUE",
+    "yellow": "C_YELLOW"
+}
+
 
 def generate(target_folder, model, responses, params):
     """
@@ -34,4 +44,4 @@ def generate(target_folder, model, responses, params):
     template = jinja_env.get_template('expyriment.py.template')
 
     with open(join(target_folder, 'test.py'), 'w') as f:
-        f.write(template.render(m=model))
+        f.write(template.render(m=model, color_map=color_map))

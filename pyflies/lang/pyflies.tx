@@ -16,7 +16,7 @@ PyFliesModel:
 ;
 
 BlockType:
-  TestType|TextType|SubjectType
+  TestType|ScreenType|SubjectType
 ;
 
 TestType:
@@ -30,7 +30,7 @@ TestType:
 Conditions:
   'conditions' '{'
     // Parameter names are in the first line of condition specification
-    varNames+=ID[eolterm]    // match var names until end of line
+    varNames+=WORD[eolterm]    // match var names until end of line
     // The rest of the description are conditions, one per line
     // The order of condition values match the param name positions.
     conditions+=Condition
@@ -38,7 +38,7 @@ Conditions:
 ;
 
 Condition:
-  varValues+=ID[eolterm]  // match values until end of line
+  varValues+=WORD[eolterm]  // match values until end of line
 ;
 
 Stimuli:
@@ -66,7 +66,7 @@ FixedCondition:
 ;
 
 FixedConditionEnum:
-  "any"|"error"|"fixation"|"correct"
+  "all"|"error"|"fixation"|"correct"
 ;
 
 OrdinalCondition:
@@ -84,7 +84,7 @@ NotEqualsExpression:
   NotExpression | EqualsExpression;
 
 NotExpression: 'not' operand=EqualsExpression;
-EqualsExpression: varName=ID '=' varValue=ID;
+EqualsExpression: varName=WORD '=' varValue=WORD;
 
 /*
 Expression(
@@ -108,7 +108,7 @@ ConditionMatchExpression expression:
 
 
 Stimulus:
-  Image|Shape|Sound|Audio
+  Image|Shape|Sound|Audio|Text
 ;
 
 Image:
@@ -132,16 +132,33 @@ ShapeType:
   "rectangle"|"circle"|"triangle"|"cross"
 ;
 
+Color:
+  "red"|"green"|"blue"|"yellow"|"white"|"black"|"gray"
+;
+
+Text:
+  'text' '(' text=TextType
+   (',' (('position' position=Position)|
+      (duration=INT)|
+      ('color' color=Color)|
+      ('size' size=Size))*[','])?
+  ')'
+;
+
+TextType:
+  STRING|WORD
+;
+
+WORD:
+  /\w*\b/
+;
+
 Sound:
   'sound' '(' frequency=INT (',' duration=INT)? ')'
 ;
 
 Audio:
   'audio' '(' file=STRING (',' duration=INT)? ')'
-;
-
-Color:
-  "red"|"green"|"blue"|"yellow"|"white"|"black"
 ;
 
 Size:
@@ -174,8 +191,8 @@ TestInstance:
   'test' type=[TestType] trials=INT (practice?="practice"|randomize?="randomize")*
 ;
 
-TextInstance:
-  'text' type=[TextType]
+ScreenInstance:
+  'screen' type=[ScreenType]
 ;
 
 SubjectInstance:
@@ -183,7 +200,7 @@ SubjectInstance:
 ;
 
 Reference:
-  TestInstance|TextInstance|SubjectInstance
+  TestInstance|ScreenInstance|SubjectInstance
 ;
 
 StructureElement:
@@ -209,8 +226,8 @@ Randomize:
   '}'
 ;
 
-TextType:
-  'text' name=ID "{"
+ScreenType:
+  'screen' name=ID "{"
     ('content'
       content=/(.|\n)*?(?=endcontent)/
     'endcontent')

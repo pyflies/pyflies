@@ -14,17 +14,21 @@ test EriksenFlanker {
 	}
 	
 	stimuli {
-		1: image("left-incongruent.jpg")
-		2: image("left-congruent.jpg")
+		1: image("left-incongruent.jpg", position farTopLeft)
+		2: image("left-congruent.jpg", position 20 -70, size tiny)
 		3: image("right-incongruent.jpg")
-		4: image("right-congruent.jpg") 
+		4: image("right-congruent.jpg")
+		all: sound(4000)
+		error: sound(500)
+		correct: sound(1000)
+		fixation: shape(cross) 
 	}
 	// Timings
   	timing 500 1500
 
 }
 
-text intro {
+screen intro {
   content
     Welcome
     -------
@@ -46,20 +50,14 @@ text intro {
   response = any
 }
 
-subject subject_data {
-  string full_name "First and last name"
-  int age
-  [Male, Female] gender "Gender"
-}
 
 
 structure {
 
-  // First collect information about subject
-  subject subject_data
+
 
   // Show introduction
-  text intro
+  screen intro
 
   // Perform practice test serie
   test EriksenFlanker 1 practice randomize

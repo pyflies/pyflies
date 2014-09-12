@@ -84,7 +84,7 @@
       <keyword>practice</keyword>
       <keyword>content</keyword>
       <keyword>endcontent</keyword>
-      <keyword>text</keyword>
+      <keyword>screen</keyword>
       <keyword>subject</keyword>
       <keyword>experiment</keyword>
       <keyword>structure</keyword>
@@ -125,6 +125,7 @@
       <keyword>image</keyword>
       <keyword>sound</keyword>
       <keyword>audio</keyword>
+      <keyword>text</keyword>
     </context>
 
     <context id="types" style-ref="type">
@@ -138,7 +139,7 @@
     </context>
 
     <context id="enumkwds" style-ref="enum">
-      <keyword>any</keyword>
+      <keyword>all</keyword>
       <keyword>error</keyword>
       <keyword>correct</keyword>
       <keyword>fixation</keyword>

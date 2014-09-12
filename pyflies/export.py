@@ -43,7 +43,7 @@ def custom_export(model, file_name):
 
             clsname = e._typename
 
-            if clsname == "TextInstance":
+            if clsname == "ScreenInstance":
                 f.write('{} [shape=note, fillcolor=lawngreen, label="{}"];\n'
                         .format(node_num, e.type.content))
                 node_num += 1
@@ -110,10 +110,10 @@ def custom_export(model, file_name):
             # Connections
             if node_num > 1:
                 f.write('start -> 1;\n')
-            for n in range(1, node_num-1):
-                f.write('{} -> {};\n'.format(n, n+1))
+                n = 0
+                for n in range(1, node_num-1):
+                    f.write('{} -> {};\n'.format(n, n+1))
 
-            if node_num > 1:
                 f.write("{} -> end;\n".format(n+1))
             else:
                 f.write("start -> end;\n")

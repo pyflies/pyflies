@@ -23,31 +23,35 @@ test simon {
 
     // condition match: stimulus description
 
-    //position=right: shape(rectangle, position rightcenter, size small, color $color)
-    //position=left: shape(rectangle, position leftcenter, size small, color $color)
+    position=right: shape(rectangle, position right, size small, color red)
+    position=left: shape(rectangle, position left, size small, color black)
     
     // stimuli description are merged for condition match that matches
     // more that one condition
     // For example, this will play sound at condition 1 and display shape on the left side
     1: sound(1000)
 
-    // To match any condition use keyword any
-    // any: sound(2000)
+    // To match all condition use special condition "all"
+    all: sound(2000)
     
-    // Besides "any" there are several special conditions:
+    // To put more than one stimuli on the same condition
+    // repeat that condition with another stimulus
+    all: image("someimage.png", size large)
+    
+    // Besides "all" there are several special conditions:
     // fixation - used to specify fixation stimulus
     // error - stimulus used to indicate error
     // correct - stimulus used to indicate correct response
     
     fixation: shape(cross, size tiny, color white)
     error: sound(2000, 100)
+    correct: sound(1000)
 
     // Different possibilities
     1: shape(rectangle, 1000, position left, size small, color blue)
     2: image("someimage.jpg", size large)
     3: sound(1000)
     4: audio("audiofile.mp3")
-    any: image("someimage.png", size large)
     color=green and position=right: image("someimage.png", size large)
     color=red and position=right: image("someimage.png", position -25 -25, size 10 10)
 
@@ -58,7 +62,7 @@ test simon {
 
 }
 
-text Introduction {
+screen Introduction {
   content
   Simon test
   ----------
@@ -70,16 +74,36 @@ text Introduction {
   response = any  // special response type that matches any response possible on the platform
 }
 
+// Subject information can be specified with subject block type
+subject subject_data {
+  string full_name "First and last name"
+  int age
+  [Male, Female] gender "Gender"
+}
+
+// The structure of the experiment is defined in "structure" block
 structure {
 
+  // At the start of the experiment collect subject data
+  subject subject_data
+
+  // Randomize block will randomize all its children
   randomize {
+  	
+  	// Introduction and practice are put in sequence to
+  	// preserve their order
 	sequence {
-		text Introduction
+		screen Introduction
+		
+		// Instantiate test type with the name of the type,
+		// number of trial sets, indicator if it is practice
+		// and optional randomization keyword
 		test simon 3 practice
 	}
+	
 	sequence {
 		// Just to show that blocks can be nested.
-		text Introduction
+		screen Introduction
 		test simon 10 randomize
 	}
   }

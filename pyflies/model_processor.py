@@ -30,6 +30,43 @@ positions = {
 }
 
 
+def stimulus_default(stimulus, metamodel):
+    """
+    Sets default value for stimulus.
+    """
+    # Default shape color
+    if stimulus._typename in ["Text", "Shape"]:
+        if stimulus.color is None:
+            stimulus.color = "white"
+
+    if stimulus._typename in ["Text", "Shape", "Image"]:
+
+        # Instantiate meta-classes if not given by the user
+        if not stimulus.position:
+            stimulus.position = metamodel['Position']()
+        if not stimulus.size:
+            stimulus.size = metamodel['Size']()
+
+        if not stimulus.position.descriptive and \
+                stimulus.position.x == 0 and \
+                stimulus.position.y == 0:
+            stimulus.position.descriptive = "center"
+        if stimulus.position.descriptive:
+            stimulus.position.x, stimulus.position.y = \
+                positions[stimulus.position.descriptive]
+        if not stimulus.size.descriptive and \
+                stimulus.size.x == 0 and stimulus.size.y == 0:
+            stimulus.size.descriptive = "normal"
+        if stimulus.size.descriptive:
+            stimulus.size.x = stimulus.size.y = \
+                stimulus.size.both = \
+                sizes[stimulus.size.descriptive]
+    elif stimulus._typename in ["Audio", "Sound"]:
+        stimulus.duration = 300
+
+    if stimulus.duration == 0:
+        stimulus.duration = 1000
+
 def pyflies_model_processor(model, metamodel):
     """
     Validates model, evaluates condition matches in stimuli definitions,
@@ -87,44 +124,57 @@ def pyflies_model_processor(model, metamodel):
                 c.stimuli_for_cond = []
                 for s in e.stimuli.condStimuli:
                     exp = s.conditionMatch.expression
-                    if exp._typename == "AnyCondition" or\
+                    stimulus = s.stimulus
+
+                    if (exp._typename == "FixedCondition" and
+                            exp.expression == "all") or\
                         (exp._typename == "OrdinalCondition" and
                          idx == exp.expression - 1) or\
                         (exp._typename == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
-                        c.stimuli_for_cond.append(s.stimulus)
+
+                        # For Text stimuli, if the name of the text
+                        # matches one of the condition params
+                        # create one stimuli for each condition
+                        if stimulus._typename == "Text":
+                            if stimulus.text in e.conditions.varNames:
+                                print("VVV", stimulus.text, c.varValues)
+                                new_stim = metamodel['Text']()
+                                new_stim.text = c.varValues[
+                                    e.conditions.varNames.index(stimulus.text)]
+                                new_stim.duration = stimulus.duration
+                                new_stim.size = stimulus.size
+                                new_stim.position = stimulus.position
+                                new_stim.color = stimulus.color
+                                stimulus = new_stim
+
+                        c.stimuli_for_cond.append(stimulus)
+
+            # Find special sitmuli if any (error, correct, fixation)
+            e._error = []
+            e._correct = []
+            e._fix = []
+            for s in e.stimuli.condStimuli:
+                exp = s.conditionMatch.expression
+                if exp._typename == "FixedCondition":
+                    stimulus = s.stimulus
+                    if exp.expression == "error":
+                        e._error.append(stimulus)
+                    elif exp.expression == "correct":
+                        e._correct.append(stimulus)
+                    elif exp.expression == "fixation":
+                        e._fix.append(stimulus)
 
             # Default values for stimuli parameters
             for c in e.conditions.conditions:
                 for s in e.stimuli.condStimuli:
                     stimulus = s.stimulus
-                    if stimulus._typename in ["Shape", "Image"]:
+                    stimulus_default(stimulus, metamodel)
 
-                        # Instantiate meta-classes if not given by the user
-                        if not stimulus.position:
-                            stimulus.position = metamodel['Position']()
-                        if not stimulus.size:
-                            stimulus.size = metamodel['Size']()
-
-                        if not stimulus.position.descriptive and \
-                                stimulus.position.x == 0 and \
-                                stimulus.position.y == 0:
-                            stimulus.position.descriptive = "center"
-                        if stimulus.position.descriptive:
-                            stimulus.position.x, stimulus.position.y = \
-                                positions[stimulus.position.descriptive]
-                        if not stimulus.size.descriptive and \
-                                stimulus.size.x == 0 and stimulus.size.y == 0:
-                            stimulus.size.descriptive = "normal"
-                        if stimulus.size.descriptive:
-                            stimulus.size.x = stimulus.size.y = \
-                                stimulus.size.both = \
-                                sizes[stimulus.size.descriptive]
-                    elif stimulus._typename in ["Audio", "Sound"]:
-                        stimulus.duration = 300
-
-                    if stimulus.duration == 0:
-                        stimulus.duration = 1000
+            # Default values for stimuli for conditions
+            for c in e.conditions.conditions:
+                for stimulus in c.stimuli_for_cond:
+                    stimulus_default(stimulus, metamodel)
 
 
 

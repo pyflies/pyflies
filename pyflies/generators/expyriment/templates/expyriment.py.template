@@ -29,6 +29,20 @@ class Block(list):
         self._error = []
         self._correct = []
 
+# Response map
+response_map = {
+    {% for r in target.responseMap -%}
+    "{{r.name}}": misc.constants.{{r.target}},
+    {% endfor %}
+}
+
+# Reverse map button->reponse. Used in data logging.
+button_response_map = {
+    {% for r in target.responseMap -%}
+    misc.constants.{{r.target}}: "{{r.name}}",
+    {% endfor %}
+}
+
 {%- macro stimulus(s) %}
   {%- if s._typename == "Shape" %}
     {%- if s.shape == "circle" %}
@@ -62,11 +76,15 @@ control.initialize(exp)
 {{b.name}} = Block()
   {%- if b._typename == "ScreenType" %}
 t = design.Trial()
-s = stimuli.TextScreen("Instructions", """{{b.content}}""")
+s = stimuli.TextScreen("Instructions", """{{b.content|striptabs}}""")
 s.preload()
 t.add_stimulus(s)
 {{b.name}}.append(t)
   {% elif b._typename == "TestType" %}
+# FIXME: This is per experiment. How to specify variable names per block?
+factor_names = [{% for v in b.conditions.varNames %}"{{v}}", {% endfor %}]
+data_variable_names = factor_names[:]
+data_variable_names.extend(["rt", "error", "practice"])
     {%- for c in b.conditions.conditions %}
       {%- if c.stimuli_for_cond %}
 
@@ -122,9 +140,9 @@ block_param_map = {}
 
 
 def create_instance(b, name, repeat=1, practice=False, test=False):
-    block = design.Block()
-    block_param_map[block] = BlockParam(
-        practice=practice, test=test, fix=[], error=[], correct=[])
+    block = design.Block(name)
+    block_param_map[name] = BlockParam(
+        practice=practice, test=test, fix=b._fix, error=b._error, correct=b._correct)
     for t in b:
         block.add_trial(t, copies=repeat)
     block.shuffle_trials()
@@ -168,21 +186,21 @@ blocks = [
   {%- elif e._typename == "Randomize" %}
     [ {{ loop(e.elements) }} ],
   {%- else -%}
-    create_instance({{e.type.name}}, "{{e.type.name}}"{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
+    create_instance({{e.type.name}}, "{{e.type.name}}-{{e._position}}"{% if e._typename == "TestInstance"%}, {{e.trials}}, {{e.practice}}, True{% endif %}),
   {%- endif -%}
 {%- endfor -%}
 ]
 
 build_experiment(exp, blocks, "{{m.name}}")
 
-# Create IO
-# response_device = io.EventButtonBox(io.SerialPort("/dev/ttyS1"))
 response_device = exp.keyboard
+exp.data_variable_names = data_variable_names
 
+# Start Experiment
 control.start(exp)
 
 for block in exp.blocks:
-    bparam = block_param_map.get(block)
+    bparam = block_param_map.get(block.name)
     for trial in block.trials:
         # Present fixation if defined
         if bparam and bparam.fix:
@@ -196,25 +214,44 @@ for block in exp.blocks:
             stimulus.present()
             # FIXME: Stimuli can't be presented concurrently in Expyriment
             break
-        button, rt = response_device.wait()
 
-        if bparam and (bparam.error or bparam.correct):
-            # Check if response is correct
-            if button == trial.correct_response:
-                if bparam.correct:
-                    for s in bparam.correct:
-                        s.present()
-                        # FIXME: Stimuli can't be presented concurrently in Expyriment
-                        break
-            else:
-                if bparam.error:
-                    for s in bparam.error:
-                        s.present()
-                        # FIXME: Stimuli can't be presented concurrently in Expyriment
-                        break
+        if bparam and bparam.test:
+            response_keys = [key for key in button_response_map if button_response_map[key]!='next']
+            button, rt = response_device.wait(response_keys)
+            error = 0
+            if bparam and (bparam.error or bparam.correct):
+                # Check if response is correct
+                if button == response_map[trial.get_factor("response")]:
+                    if bparam.correct:
+                        for s in bparam.correct:
+                            s.present()
+                            # FIXME: Stimuli can't be presented concurrently in Expyriment
+                            break
+                else:
+                    error = 1
+                    if bparam.error:
+                        for s in bparam.error:
+                            s.present()
+                            # FIXME: Stimuli can't be presented concurrently in Expyriment
+                            break
 
-        if bparam and not bparam.practice:
-            exp.data.add([trial.get_factor("Position"), button, rt])
+            if bparam:
+                response = button_response_map[button]
+                data = []
+                for name in factor_names:
+                    if name == "response":
+                        data.append(response)
+                    else:
+                        data.append(trial.factor_dict[name])
+                data.extend([rt, error, bparam.practice])
+                exp.data.add(data)
+        else:
+            # If not a test
+            {% if 'next' in target.responseMap %}
+            button, rt = response_device.wait([response_map['next']])
+            {% else %}
+            button, rt = response_device.wait([misc.constants.K_SPACE])
+            {% endif %}
 
 control.end()
 

@@ -1,5 +1,3 @@
-from itertools import ifilter
-
 HEADER = '''
 digraph pyflies {
   rankdir=TD;

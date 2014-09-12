@@ -27,7 +27,6 @@ test EriksenFlanker {
 }
 
 screen intro {
-  content
     Welcome
     -------
     In the following test you will be presented with a line of 5 arrow pointing
@@ -42,9 +41,7 @@ screen intro {
     You will first do a practice run with 5 trials. After that a real run with
     30 trial will be performed.
 
-    Press any key or touch/click the screen to continue
-  endcontent
-
+    Press SPACE or touch/click the screen to continue
 }
 
 

@@ -63,15 +63,11 @@ test simon {
 }
 
 screen Introduction {
-  content
   Simon test
   ----------
   
   You will be presented with the square in different colors positioned left or right.
   Press LEFT for GREEN square and RIGHT otherwise.
-  endcontent
-
-  response = any  // special response type that matches any response possible on the platform
 }
 
 // Subject information can be specified with subject block type

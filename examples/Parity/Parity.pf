@@ -31,29 +31,27 @@ test Parity {
 }
 
 screen Intro {
-	content
-	SNARC
-	-----
+	Parity classification
+	---------------------
+	
+	This is a practice block.
 	
 	You will be presented with a digit.
 	Press LEFT for odd and RIGHT for even digit.
 	
-	Press any key for practice block.
-	endcontent
+	Press ENTER key for the start.
 }
 
 screen Real {
-	content
-	SNARC
-	-----
+	Parity classification
+	---------------------
 	
 	Now a REAL testing will be performed.
 	
 	You will be presented with a digit.
 	Press LEFT for odd and RIGHT for even digit.
 	
-	Press any key for real block.
-	endcontent
+	Press ENTER key for the start.
 }
 
 structure {

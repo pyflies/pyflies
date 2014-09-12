@@ -228,12 +228,8 @@ Randomize:
 
 ScreenType:
   'screen' name=ID "{"
-    ('content'
-      content=/(.|\n)*?(?=endcontent)/
-    'endcontent')
-
-    ('response' '=' ID)?
-
+  /*    content=/(.|\n)*?(?=})/  */
+      content=/[^}]*/
   '}'
 ;
 

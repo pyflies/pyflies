@@ -28,7 +28,6 @@ test Simon {
 }
 
 screen Practice {
-	content
 	Simon
 	-----
 	
@@ -36,13 +35,11 @@ screen Practice {
 	left or righ.
 	Press LEFT for the GREEN square and right for the blue.
 	
-	Press any key for practice block.
-	endcontent
+	Press SPACE for practice block.
 }
 
 screen Real {
-	content
-	SNARC
+	Simon
 	-----
 	
 	Now a REAL testing will be performed.
@@ -51,8 +48,7 @@ screen Real {
 	left or righ.
 	Press LEFT for the GREEN square and right for the blue.
 	
-	Press any key for real block.
-	endcontent
+	Press SPACE for real block.
 }
 
 structure {

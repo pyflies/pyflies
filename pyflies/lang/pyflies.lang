@@ -165,11 +165,10 @@
     </context>
 
     <context id="textcontent" style-ref="comment">
-      <start>content</start>
-      <end>endcontent</end>
+      <start>(screen)\s*[a-zA-Z0-9_]+\s*{</start>
+      <end>}</end>
       <include>
-        <context sub-pattern="0" where="start" style-ref="keyword"/>
-        <context sub-pattern="0" where="end" style-ref="keyword"/>
+        <context sub-pattern="1" where="start" style-ref="keyword"/>
         <context ref="rst:rst" />
       </include>
     </context>

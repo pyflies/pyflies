@@ -77,6 +77,15 @@ def pyflies_model_processor(model, metamodel):
     # Post-processing is done for each test type
     for e in model.blocks:
         if e._typename == "TestType":
+
+            # Check that there is a condition variable named "response"
+            if not "response" in e.conditions.varNames:
+                line, col = \
+                    metamodel.parser.pos_to_linecol(e.conditions._position)
+                raise TextXSemanticError(
+                    "There must be condition variable named 'response' at {}".format(
+                        (line, col)), line=line, col=col)
+
             condvar_map = {}
             for var in e.conditions.varNames:
                 condvar_map[var] = []
@@ -88,7 +97,7 @@ def pyflies_model_processor(model, metamodel):
                     line, col = \
                         metamodel.parser.pos_to_linecol(c._position)
                     raise TextXSemanticError(
-                        "There should be {} condition variables at {}".format(
+                        "There must be {} condition variables at {}".format(
                             conds, (line, col)), line=line, col=col)
 
                 for idx, param_name in enumerate(e.conditions.varNames):
@@ -138,7 +147,6 @@ def pyflies_model_processor(model, metamodel):
                         # create one stimuli for each condition
                         if stimulus._typename == "Text":
                             if stimulus.text in e.conditions.varNames:
-                                print("VVV", stimulus.text, c.varValues)
                                 new_stim = metamodel['Text']()
                                 new_stim.text = c.varValues[
                                     e.conditions.varNames.index(stimulus.text)]

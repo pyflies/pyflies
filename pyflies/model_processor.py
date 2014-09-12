@@ -29,6 +29,14 @@ positions = {
     "farTopRigh": (100, 100)
 }
 
+# A map of stimuli attributes
+# which can use a reference to condition variables
+stim_attrib_ref = {
+    "Text": ["text", "position", "size", "color"],
+    "Shape": ["shape", "position", "size", "color"],
+    "Image": ["position"],
+}
+
 
 def stimulus_default(stimulus, metamodel):
     """
@@ -125,6 +133,29 @@ def pyflies_model_processor(model, metamodel):
                 # This should not happen
                 assert False
 
+            def has_reference(stimulus):
+                """
+                Finds if stimulus has a reference to condition
+                variable values.
+                """
+                hasref = False
+                for attr_name in stim_attrib_ref.get(stimulus._typename, []):
+                    if getattr(stimulus, attr_name) in e.conditions.varNames:
+                        hasref = True
+                        break
+                return hasref
+
+            def var_value_or_stim_value(stimulus, attribute_name):
+                """
+                Returns a condition variable value or stimulus defined
+                value if not a reference.
+                """
+                stim_value = getattr(stimulus, attribute_name)
+                if attribute_name in e.conditions.varNames:
+                    return c.varValues[
+                        e.conditions.varNames.index(stim_value)]
+                return stim_value
+
             # For each condition we iterate trough all stimuli
             # definitions and evaluate condition match. If the
             # condition evaluates to True stimulus is included
@@ -142,19 +173,19 @@ def pyflies_model_processor(model, metamodel):
                         (exp._typename == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
 
-                        # For Text stimuli, if the name of the text
-                        # matches one of the condition params
-                        # create one stimuli for each condition
-                        if stimulus._typename == "Text":
-                            if stimulus.text in e.conditions.varNames:
-                                new_stim = metamodel['Text']()
-                                new_stim.text = c.varValues[
-                                    e.conditions.varNames.index(stimulus.text)]
-                                new_stim.duration = stimulus.duration
-                                new_stim.size = stimulus.size
-                                new_stim.position = stimulus.position
-                                new_stim.color = stimulus.color
-                                stimulus = new_stim
+                        # Check if some of the stimuli parameters
+                        # match one of the condition variable names
+                        # and create stimuli with the param set to
+                        # the current values of condition variables
+                        if has_reference(stimulus):
+                            # Instantiate new stimulus
+                            new_stim = metamodel[stimulus._typename]()
+                            for attr_name in stim_attrib.get(
+                                    stimulus._typename, []):
+                                setattr(new_stim,
+                                        var_value_or_stim_value(stimulus,
+                                                                attr_name))
+                            stimulus = new_stim
 
                         c.stimuli_for_cond.append(stimulus)
 

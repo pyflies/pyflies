@@ -6,6 +6,8 @@ name = "Expyriment"
 description = "Expyriment -A Python library for cognitive and neuroscientific experiments"
 
 import jinja2
+import re
+from itertools import ifilter
 from os.path import join, dirname
 
 color_map = {
@@ -39,9 +41,16 @@ def generate(target_folder, model, responses, params):
                     # TODO: Transform coordinates and sizes
                     pass
 
+    def striptabs(s):
+        return re.sub(r'^[ \t]+', '', s, flags=re.M)
+
+    # Find this target
+    target = next(ifilter(lambda t: t.name == "Expyriment", model.targets))
+
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(join(dirname(__file__), 'templates')))
+    jinja_env.filters['striptabs'] = striptabs
     template = jinja_env.get_template('expyriment.py.template')
 
     with open(join(target_folder, 'test.py'), 'w') as f:
-        f.write(template.render(m=model, color_map=color_map))
+        f.write(template.render(m=model, target=target, color_map=color_map))

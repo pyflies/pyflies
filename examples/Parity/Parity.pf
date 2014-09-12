@@ -1,0 +1,74 @@
+experiment "Parity"
+"
+A parity judgment task to assess the SNARC effect.
+
+See e.g.:
+Gevers, W., Reynvoet, B., & Fias, W. (2003). The mental representation of
+ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
+"
+
+test Parity {
+	conditions {
+		number	parity	response
+		
+		1		odd		odd
+		2		even	even
+		3		odd		odd
+		4		even	even
+		5		odd		odd
+		6		even	even
+		7		odd		odd
+		8		even	even
+		9		odd		odd
+	}
+	
+	stimuli{
+		all: text(number)
+		error: sound(1000)
+		//correct: sound(500)
+		//fixation: shape(cross)
+	}
+}
+
+screen Intro {
+	content
+	SNARC
+	-----
+	
+	You will be presented with a digit.
+	Press LEFT for odd and RIGHT for even digit.
+	
+	Press any key for practice block.
+	endcontent
+}
+
+screen Real {
+	content
+	SNARC
+	-----
+	
+	Now a REAL testing will be performed.
+	
+	You will be presented with a digit.
+	Press LEFT for odd and RIGHT for even digit.
+	
+	Press any key for real block.
+	endcontent
+}
+
+structure {
+	screen Intro
+	test Parity 1 practice randomize
+	screen Real
+	test Parity 1 randomize
+}
+
+target Expyriment {
+  output = "/home/igor/tmp/Parity/"
+  responses {
+  	// see expyriment/misc/constants.py
+    odd = K_LEFT
+    even = K_RIGHT
+    next = K_RETURN
+  }
+}

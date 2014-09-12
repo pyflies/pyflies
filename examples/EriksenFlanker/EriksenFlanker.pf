@@ -14,17 +14,15 @@ test EriksenFlanker {
 	}
 	
 	stimuli {
-		1: image("left-incongruent.jpg", position farTopLeft)
-		2: image("left-congruent.jpg", position 20 -70, size tiny)
+		1: image("left-incongruent.jpg")
+		2: image("left-congruent.jpg")
 		3: image("right-incongruent.jpg")
 		4: image("right-congruent.jpg")
-		all: sound(4000)
-		error: sound(500)
-		correct: sound(1000)
+		error: sound(1000)
 		fixation: shape(cross) 
 	}
 	// Timings
-  	timing 500 1500
+  	timing 1000 3000
 
 }
 
@@ -47,14 +45,11 @@ screen intro {
     Press any key or touch/click the screen to continue
   endcontent
 
-  response = any
 }
 
 
 
 structure {
-
-
 
   // Show introduction
   screen intro
@@ -72,11 +67,7 @@ target Expyriment {
   output = "/home/igor/tmp/eriksen/"
 
   responses {
-    left = 10
-    right = 11
-  }
-  // Generator specific settings (e.g. Expyriment)
-  // Anything available here should be specified by generator
-  response_device = keyboard
-  
+    left = K_LEFT
+    right = K_RIGHT
+  }  
 }

@@ -128,8 +128,10 @@ target Expyriment {
   output = "/home/igor/tmp/expgen/"
 
   responses {
-    left = 10
-    right = 11
+  	// Target specific response mappings
+  	// For Expyriment see expyriment/misc/constants.py
+    left = K_LEFT
+    right = K_RIGHT
     // Special response 'next' is used
     // on text screens
     // By default maps to SPACE

@@ -31,10 +31,10 @@ def generate(model, target):
     for b in model.blocks:
         if b._typename == "TestType":
             for cs in b.stimuli.condStimuli:
-                s = cs.stimulus
-                if s._typename in ['Shape', 'Image']:
-                    # TODO: Transform coordinates and sizes
-                    pass
+                for s in cs.stimuli:
+                    if s._typename in ['Shape', 'Image']:
+                        # TODO: Transform coordinates and sizes
+                        pass
 
     def striptabs(s):
         return re.sub(r'^[ \t]+', '', s, flags=re.M)

@@ -44,22 +44,21 @@ test simon {
     // correct - stimulus used to indicate correct response
     
     fixation: shape(cross, size tiny, color white)
-    error: sound(2000, 100)
+    error: sound(2000, duration 100)
     correct: sound(1000)
 
     // Different possibilities
-    1: shape(rectangle, 1000, position left, size small, color blue)
+    1: shape(rectangle, duration 1000, position left, size small, color blue)
     2: image("someimage.jpg", size large)
     3: sound(1000)
     4: audio("audiofile.mp3")
     color=green and position=right: image("someimage.png", size large)
     color=red and position=right: image("someimage.png", position -25 -25, size 10 10)
+    
+   	// Timing
+  	duration 2000 3000   
 
   }
-
-  // Timing
-  timing 2000 3000
-
 }
 
 screen Introduction {

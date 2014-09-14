@@ -18,12 +18,11 @@ test EriksenFlanker {
 		2: image("images/left-congruent.png")
 		3: image("images/right-incongruent.png")
 		4: image("images/right-congruent.png")
-		error: sound(1000)
-		fixation: shape(cross) 
-	}
-	// Timings
-  	timing 1000 3000
+		error: sound(1000, duration 300)
+		fixation: shape(cross, duration 1000 3000) 
 
+  		duration 5000		
+	}
 }
 
 screen intro {

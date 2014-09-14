@@ -42,8 +42,7 @@ Condition:
 
 Stimuli:
   'stimuli' '{'
-    (('after' amin=INT (amax=INT)?)|
-      ('duration' dmin=INT (dmax=INT)?)|
+    ( ('duration' dmin=INT (dmax=INT)?)|
       (condStimuli+=ConditionStimuli))*
   '}'
 ;
@@ -97,7 +96,6 @@ Image:
    (','
         ( ('position' x=WORD (y=INT)?)
           |('duration' dmin=WORD (dmax=INT)?)
-          |('after' amin=WORD (amax=INT)?)
           |('keep')
           |('size' width=WORD (height=INT)?)
         )*[','])?
@@ -109,7 +107,6 @@ Shape:
    (','
         ( ('position' x=WORD (y=INT)?)
           |('duration' dmin=WORD (dmax=INT)?)
-          |('after' amin=WORD (amax=INT)?)
           |('keep')
           |('size' width=WORD (height=INT)?)
           |('color' color=WORD)
@@ -128,7 +125,6 @@ Text:
    (','
         ( ('position' x=WORD (y=INT)?)
           |('duration' dmin=WORD (dmax=INT)?)
-          |('after' amin=WORD (amax=INT)?)
           |('keep')
           |('size' width=WORD (height=INT)?)
           |('color' color=WORD)
@@ -146,19 +142,13 @@ WORD:
 
 Sound:
   'sound' '(' frequency=INT
-   (','
-        ( ('duration' dmin=WORD (dmax=INT)?)
-          |('after' amin=WORD (amax=INT)?)
-        )*[','])?
+   (',' ('duration' dmin=WORD (dmax=INT)?))?
   ')'
 ;
 
 Audio:
   'audio' '(' file=STRING
-   (','
-        ( ('duration' dmin=WORD (dmax=INT)?)
-          |('after' amin=WORD (amax=INT)?)
-        )*[','])?
+   (',' ('duration' dmin=WORD (dmax=INT)?))?
   ')'
 ;
 

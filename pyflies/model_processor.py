@@ -36,7 +36,6 @@ positions = {
 
 # Stimuli params that can reference condition variable value
 resolvable = {
-    'amin': int,
     'dmin': int,
     'color': str,
     'fillcolor': str,
@@ -52,7 +51,7 @@ defaults = {
     'width': "normal",
     'x': "center",
     'lineWidth': 1
-    # amin, amax, dmin, dmax inherits from testtype
+    # dmin, dmax inherits from testtype
 }
 
 
@@ -89,7 +88,7 @@ def resolve(stimulus, test_type, condition, metamodel):
             else:
                 # Special case
                 # Inherit from stimuli definition
-                if attr in ['dmin', 'dmax', 'amin', 'amax']:
+                if attr in ['dmin', 'dmax']:
                     def_val = getattr(test_type.stimuli, attr)
                 elif attr not in ['height', 'y']:
                     # This should not happen

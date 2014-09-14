@@ -42,8 +42,8 @@ Condition:
 
 Stimuli:
   'stimuli' '{'
-    ( ('duration' dmin=INT (dmax=INT)?)|
-      (condStimuli+=ConditionStimuli))*
+      condStimuli+=ConditionStimuli
+      ('duration' dmin=INT (dmax=INT)?)?
   '}'
 ;
 
@@ -137,7 +137,7 @@ TextType:
 ;
 
 WORD:
-  /\w*\b/
+  /[-\w]*\b/
 ;
 
 Sound:

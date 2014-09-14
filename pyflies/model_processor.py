@@ -83,6 +83,7 @@ def resolve(stimulus, test_type, condition, metamodel):
     for attr in s.__class__._attrs:
         attr_val = getattr(s, attr)
         if not attr_val:
+            def_val = None
             if attr in defaults:
                 def_val = defaults[attr]
             else:
@@ -94,7 +95,8 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # This should not happen
                     assert 0, "No default for attribute '{}' test type '{}'"\
                         .format(attr, test_type.name)
-            setattr(s, attr, def_val)
+            if def_val is not None:
+                setattr(s, attr, def_val)
 
     # Convert resolvable to a proper type and descriptive value
     for p, t in resolvable.items():

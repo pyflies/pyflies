@@ -1,6 +1,7 @@
 from textx.exceptions import TextXSemanticError
 
 
+# Values for descriptive sizes
 sizes = {
     'tiny': 10,
     'small': 20,
@@ -9,6 +10,10 @@ sizes = {
     'huge': 100
 }
 
+# Possible colors
+colors = ["white", "black", "red", "yellow", "green", "blue", "grey"]
+
+# Values for descriptive positions
 positions = {
     "center": (0, 0),
     "left": (-50, 0),
@@ -29,43 +34,115 @@ positions = {
     "farTopRigh": (100, 100)
 }
 
+# Stimuli params that can reference condition variable value
+resolvable = {
+    'amin': int,
+    'dmin': int,
+    'color': str,
+    'fillcolor': str,
+    'text': str,
+    'width': int,
+    'x': int,
+    'lineWidth': int
+}
 
-def stimulus_default(stimulus, metamodel):
+defaults = {
+    'color': "white",
+    'fillcolor': "white",
+    'width': "normal",
+    'x': "center",
+    'lineWidth': 1
+    # amin, amax, dmin, dmax inherits from testtype
+}
+
+
+def resolve(stimulus, test_type, condition, metamodel):
     """
-    Sets default value for stimulus.
+    Create a new stimulus with all parameter references resolved for
+    current conditions, and defaults set.
     """
-    # Default shape color
-    if stimulus._typename in ["Text", "Shape"]:
-        if stimulus.color is None:
-            stimulus.color = "white"
+    # Instantiate stimuli meta-class
+    s = metamodel[stimulus._typename]()
 
-    if stimulus._typename in ["Text", "Shape", "Image"]:
+    # Copy all attributes
+    for attr in s.__class__._attrs:
+        setattr(s, attr, getattr(stimulus, attr))
+    s._position = stimulus._position
 
-        # Instantiate meta-classes if not given by the user
-        if not stimulus.position:
-            stimulus.position = metamodel['Position']()
-        if not stimulus.size:
-            stimulus.size = metamodel['Size']()
+    # Try to resolve all resolvable stimuli parameters
+    for p in resolvable:
+        if hasattr(s, p):
+            param_value = getattr(s, p)
+            # If value is equal to some of
+            # condition variable names use
+            # the current value of that variable
+            if param_value in test_type.conditions.varNames:
+                setattr(s, p, condition.varValues[
+                    test_type.conditions.varNames.index(param_value)])
 
-        if not stimulus.position.descriptive and \
-                stimulus.position.x == 0 and \
-                stimulus.position.y == 0:
-            stimulus.position.descriptive = "center"
-        if stimulus.position.descriptive:
-            stimulus.position.x, stimulus.position.y = \
-                positions[stimulus.position.descriptive]
-        if not stimulus.size.descriptive and \
-                stimulus.size.x == 0 and stimulus.size.y == 0:
-            stimulus.size.descriptive = "normal"
-        if stimulus.size.descriptive:
-            stimulus.size.x = stimulus.size.y = \
-                stimulus.size.both = \
-                sizes[stimulus.size.descriptive]
-    elif stimulus._typename in ["Audio", "Sound"]:
-        stimulus.duration = 300
+    # Set defaults
+    for attr in s.__class__._attrs:
+        attr_val = getattr(s, attr)
+        if not attr_val:
+            if attr in defaults:
+                def_val = defaults[attr]
+            else:
+                # Special case
+                # Inherit from stimuli definition
+                if attr in ['dmin', 'dmax', 'amin', 'amax']:
+                    def_val = getattr(test_type.stimuli, attr)
+                elif attr not in ['height', 'y']:
+                    # This should not happen
+                    assert 0, "No default for attribute '{}' test type '{}'"\
+                        .format(attr, test_type.name)
+            setattr(s, attr, def_val)
 
-    if stimulus.duration == 0:
-        stimulus.duration = 1000
+    # Convert resolvable to a proper type and descriptive value
+    for p, t in resolvable.items():
+        if hasattr(s, p):
+            val = getattr(s, p)
+            try:
+                val = t(val)
+            except ValueError:
+                if p not in ['x', 'width']:
+                    line, col = \
+                        metamodel.parser.pos_to_linecol(stimulus._position)
+                    raise TextXSemanticError(
+                        "Parameter {} is not of type '{}' at {}".format(
+                            p, t.__name__, (line, col)), line=line, col=col)
+                else:
+                    # Check if descriptive name is given
+                    if p == 'x':
+                        pos = getattr(s, 'x')
+                        if pos in positions:
+                            x, y = positions[pos]
+                            s.x = x
+                            s.y = y
+                        else:
+                            line, col = \
+                                metamodel.parser.pos_to_linecol(
+                                    stimulus._position)
+                            raise TextXSemanticError(
+                                "Invalid position '{}' at {}".format(
+                                    pos, (line, col)), line=line, col=col)
+                    elif p == 'width':
+                        width = getattr(s, 'width')
+                        if width in sizes:
+                            size = sizes[width]
+                            s.width = size
+                            s.height = size
+                        else:
+                            line, col = \
+                                metamodel.parser.pos_to_linecol(
+                                    stimulus._position)
+                            raise TextXSemanticError(
+                                "Invalid size '{}' at {}"
+                                .format(width, (line, col)),
+                                line=line, col=col)
+                    else:
+                        # This should not happen
+                        assert 0, "Unknown param {}".format(p)
+
 
 def pyflies_model_processor(model, metamodel):
     """
@@ -79,12 +156,16 @@ def pyflies_model_processor(model, metamodel):
         if e._typename == "TestType":
 
             # Check that there is a condition variable named "response"
-            if not "response" in e.conditions.varNames:
+            if "response" not in e.conditions.varNames:
                 line, col = \
                     metamodel.parser.pos_to_linecol(e.conditions._position)
                 raise TextXSemanticError(
-                    "There must be condition variable named 'response' at {}".format(
-                        (line, col)), line=line, col=col)
+                    "There must be condition variable named 'response' at {}"
+                    .format((line, col)), line=line, col=col)
+
+            # Default for timings
+            if e.stimuli.dmin == 0:
+                e.stimuli.dmin = 1000
 
             condvar_map = {}
             for var in e.conditions.varNames:
@@ -133,7 +214,7 @@ def pyflies_model_processor(model, metamodel):
                 c.stimuli_for_cond = []
                 for s in e.stimuli.condStimuli:
                     exp = s.conditionMatch.expression
-                    stimulus = s.stimulus
+                    stimuli = s.stimuli
 
                     if (exp._typename == "FixedCondition" and
                             exp.expression == "all") or\
@@ -142,21 +223,14 @@ def pyflies_model_processor(model, metamodel):
                         (exp._typename == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
 
-                        # For Text stimuli, if the name of the text
-                        # matches one of the condition params
-                        # create one stimuli for each condition
-                        if stimulus._typename == "Text":
-                            if stimulus.text in e.conditions.varNames:
-                                new_stim = metamodel['Text']()
-                                new_stim.text = c.varValues[
-                                    e.conditions.varNames.index(stimulus.text)]
-                                new_stim.duration = stimulus.duration
-                                new_stim.size = stimulus.size
-                                new_stim.position = stimulus.position
-                                new_stim.color = stimulus.color
-                                stimulus = new_stim
+                        # For each stimuli create a new instance
+                        # with all params resolved
+                        stimuli_for_match = []
+                        for stimulus in stimuli:
+                            stimuli_for_match.append(
+                                resolve(stimulus, e, c, metamodel))
 
-                        c.stimuli_for_cond.append(stimulus)
+                        c.stimuli_for_cond.append(stimuli_for_match)
 
             # Find special sitmuli if any (error, correct, fixation)
             e._error = []
@@ -165,31 +239,13 @@ def pyflies_model_processor(model, metamodel):
             for s in e.stimuli.condStimuli:
                 exp = s.conditionMatch.expression
                 if exp._typename == "FixedCondition":
-                    stimulus = s.stimulus
+                    stimuli = s.stimuli
                     if exp.expression == "error":
-                        e._error.append(stimulus)
+                        e._error.append(stimuli)
                     elif exp.expression == "correct":
-                        e._correct.append(stimulus)
+                        e._correct.append(stimuli)
                     elif exp.expression == "fixation":
-                        e._fix.append(stimulus)
-
-            # Default values for stimuli parameters
-            for c in e.conditions.conditions:
-                for s in e.stimuli.condStimuli:
-                    stimulus = s.stimulus
-                    stimulus_default(stimulus, metamodel)
-
-            # Default values for stimuli for conditions
-            for c in e.conditions.conditions:
-                for stimulus in c.stimuli_for_cond:
-                    stimulus_default(stimulus, metamodel)
-
-            # Default timings
-            if e.tmin == 0:
-                e.tmin = 1500
-            if e.tmax == 0:
-                e.tmax = 3000
-
+                        e._fix.append(stimuli)
 
 
 

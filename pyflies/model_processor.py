@@ -69,15 +69,16 @@ def resolve(stimulus, test_type, condition, metamodel):
     s._position = stimulus._position
 
     # Try to resolve all resolvable stimuli parameters
-    for p in resolvable:
-        if hasattr(s, p):
-            param_value = getattr(s, p)
-            # If value is equal to some of
-            # condition variable names use
-            # the current value of that variable
-            if param_value in test_type.conditions.varNames:
-                setattr(s, p, condition.varValues[
-                    test_type.conditions.varNames.index(param_value)])
+    if condition:
+        for p in resolvable:
+            if hasattr(s, p):
+                param_value = getattr(s, p)
+                # If value is equal to some of
+                # condition variable names use
+                # the current value of that variable
+                if param_value in test_type.conditions.varNames:
+                    setattr(s, p, condition.varValues[
+                        test_type.conditions.varNames.index(param_value)])
 
     # Set defaults
     for attr in s.__class__._attrs:
@@ -89,8 +90,15 @@ def resolve(stimulus, test_type, condition, metamodel):
             else:
                 # Special case
                 # Inherit from stimuli definition
-                if attr in ['dmin', 'dmax']:
-                    def_val = getattr(test_type.stimuli, attr)
+                if attr == 'dmin':
+                    def_val = test_type.stimuli.dmin
+                elif attr == 'dmax':
+                    if s.dmin:
+                        def_val = s.dmin
+                    elif test_type.stimuli.dmax:
+                        def_val = test_type.stimuli.dmax
+                    else:
+                        def_val = test_type.stimuli.dmin
                 elif attr not in ['height', 'y']:
                     # This should not happen
                     assert 0, "No default for attribute '{}' test type '{}'"\
@@ -105,6 +113,7 @@ def resolve(stimulus, test_type, condition, metamodel):
             try:
                 val = t(val)
             except ValueError:
+                # Only size and position may be given descriptively
                 if p not in ['x', 'width']:
                     line, col = \
                         metamodel.parser.pos_to_linecol(stimulus._position)
@@ -169,6 +178,8 @@ def pyflies_model_processor(model, metamodel):
             # Default for timings
             if e.stimuli.dmin == 0:
                 e.stimuli.dmin = 1000
+            if e.stimuli.dmax == 0:
+                e.stimuli.dmax = e.stimuli.dmin
 
             condvar_map = {}
             for var in e.conditions.varNames:
@@ -235,18 +246,19 @@ def pyflies_model_processor(model, metamodel):
 
                         c.stimuli_for_cond.append(stimuli_for_match)
 
-            # Find special sitmuli if any (error, correct, fixation)
+            # Find special stimuli if any (error, correct, fixation)
             e._error = []
             e._correct = []
             e._fix = []
             for s in e.stimuli.condStimuli:
                 exp = s.conditionMatch.expression
                 if exp._typename == "FixedCondition":
-                    stimuli = s.stimuli
+                    stimuli = [resolve(st, e, None, metamodel)
+                               for st in s.stimuli]
                     if exp.expression == "error":
-                        e._error.append(stimuli)
+                        e._error = stimuli
                     elif exp.expression == "correct":
-                        e._correct.append(stimuli)
+                        e._correct = stimuli
                     elif exp.expression == "fixation":
-                        e._fix.append(stimuli)
+                        e._fix = stimuli
 

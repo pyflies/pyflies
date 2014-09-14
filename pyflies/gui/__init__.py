@@ -248,9 +248,10 @@ class PyFliesGUI(object):
             message = error[0].replace('\n', ' ').replace('\r', '')
             sbar.push(context_id, "Error: {}".format(message))
         else:
+            # Update filename on model
+            self.current_model._filename = self.current_page.file_name
             # Update model viewer
-            self.current_page.model_viewer.update_model(
-                self.current_page.source_view.model)
+            self.current_page.model_viewer.update_model(self.current_model)
             # TODO: Update outline view
 
         # Update buttons

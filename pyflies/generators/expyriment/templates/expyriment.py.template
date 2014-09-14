@@ -4,7 +4,7 @@
 # -*- coding: utf-8 -*-
 
 """
-{{m.name}}
+d{m.name}}
 ---------------------
 
 {{m.description}}
@@ -46,21 +46,23 @@ button_response_map = {
 {%- macro stimulus(s) %}
   {%- if s._typename == "Shape" %}
     {%- if s.shape == "circle" %}
-s = stimuli.Circle(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+s = stimuli.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- elif s.shape == "rectangle"%}
-s = stimuli.Rectangle(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+s = stimuli.Rectangle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- elif s.shape == "cross"%}
-s = stimuli.FixCross(size=({{s.size.x}}, {{s.size.y}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+s = stimuli.FixCross(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- endif %}
   {%- elif s._typename == "Text" %}
-s = stimuli.TextLine("{{s.text}}", text_size={{s.size.x}}, text_colour=misc.constants.{{color_map[s.color]}}, position=({{s.position.x}}, {{s.position.y}}))
+s = stimuli.TextLine("{{s.text}}", text_size={{s.width}}, text_colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
   {%- elif s._typename == "Image" %}
 s = stimuli.Picture("{{s.file}}")
   {%- elif s._typename == "Sound" %}
-s = stimuli.Tone({{s.duration}}, {{s.frequency}})
+s = stimuli.Tone({{s.dmin}}, {{s.frequency}})
   {%- elif s._typename == "Audio" %}
 s = stimuli.Audio("{{s.file}}")
-  {%- endif -%}
+  {%- endif %}
+s.dmin = {{s.dmin}}
+s.dmax = {{s.dmax}}
 {%- endmacro %}
 
 # Create experiment
@@ -96,7 +98,7 @@ t = design.Trial()
 t.set_factor("{{factor}}", "{{c.varValues[loop.index-1]}}")
         {%- endfor %}
 # Stimuli
-        {%- for s in c.stimuli_for_cond %}
+        {%- for s in c.stimuli_for_cond[0] %}
         {{- stimulus(s) }}
 s.preload()
 t.add_stimulus(s)
@@ -135,14 +137,14 @@ s.preload()
   {%- endif %}
 {%- endfor %}
 
-BlockParam = namedtuple('BlockParams', ['practice', 'test', 'tmin', 'tmax', 'fix', 'error', 'correct' ])
+BlockParam = namedtuple('BlockParams', ['practice', 'test', 'dmin', 'dmax', 'fix', 'error', 'correct' ])
 block_param_map = {}
 
 
-def create_instance(b, name, tmin=None, tmax=None, repeat=1, practice=False, test=False):
+def create_instance(b, name, dmin=None, dmax=None, repeat=1, practice=False, test=False):
     block = design.Block(name)
     block_param_map[name] = BlockParam(
-        practice=practice, test=test, tmin=tmin, tmax=tmax, fix=b._fix, error=b._error, correct=b._correct)
+        practice=practice, test=test, dmin=dmin, dmax=dmax, fix=b._fix, error=b._error, correct=b._correct)
     for t in b:
         block.add_trial(t, copies=repeat)
     block.shuffle_trials()
@@ -186,7 +188,7 @@ blocks = [
   {%- elif e._typename == "Randomize" %}
     [ {{ loop(e.elements) }} ],
   {%- else -%}
-    create_instance({{e.type.name}}, "{{e.type.name}}-{{e._position}}"{% if e._typename == "TestInstance"%}, {{e.type.tmin}}, {{e.type.tmax}}, {{e.trials}}, {{e.practice}}, True{% endif %}),
+    create_instance({{e.type.name}}, "{{e.type.name}}-{{e._position}}"{% if e._typename == "TestInstance"%}, {{e.type.stimuli.dmin}}, {{e.type.stimuli.dmax}}, {{e.trials}}, {{e.practice}}, True{% endif %}),
   {%- endif -%}
 {%- endfor -%}
 ]
@@ -210,17 +212,16 @@ for block in exp.blocks:
         if bparam and bparam.fix:
             for s in bparam.fix:
                 s.present()
+                exp.clock.wait(randint(s.dmin, s.dmax))
                 # FIXME: Stimuli can't be presented concurrently in Expyriment
                 break
 
         if bparam and bparam.test and not bparam.fix:
             blank_screen.present()
 
-        if bparam and bparam.test:
-            exp.clock.wait(randint(bparam.tmin, bparam.tmax))
-
         for stimulus in trial.stimuli:
             stimulus.present()
+            #exp.clock.wait(randint(stimulus.dmin, stimulus.dmax))
             # FIXME: Stimuli can't be presented concurrently in Expyriment
             break
 
@@ -234,6 +235,7 @@ for block in exp.blocks:
                     if bparam.correct:
                         for s in bparam.correct:
                             s.present()
+                            exp.clock.wait(randint(s.dmin, s.dmax))
                             # FIXME: Stimuli can't be presented concurrently in Expyriment
                             break
                 else:
@@ -241,6 +243,7 @@ for block in exp.blocks:
                     if bparam.error:
                         for s in bparam.error:
                             s.present()
+                            exp.clock.wait(randint(s.dmin, s.dmax))
                             # FIXME: Stimuli can't be presented concurrently in Expyriment
                             break
 

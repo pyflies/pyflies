@@ -67,16 +67,21 @@ def custom_export(model, file_name):
 <FONT POINT-SIZE="20">{}</FONT><BR/>
 <FONT POINT-SIZE="15">conditions: {}</FONT><BR/>
 <FONT POINT-SIZE="15">variables: {}</FONT><BR/>
-<FONT POINT-SIZE="15">tmin: {}</FONT><BR/>
-<FONT POINT-SIZE="15">tmax: {}</FONT><BR/>
+<FONT POINT-SIZE="15">duration: {} {}</FONT><BR/>
+<FONT POINT-SIZE="15">after: {} {}</FONT><BR/>
 {}
                         >];\n'''.format(
                         node_num, color, e.type.name,
                         len(e.type.conditions.conditions),
-                        ", ".join(e.type.condvar_map.keys()), e.type.tmin,
-                        e.type.tmax, randomize))
+                        ", ".join(e.type.condvar_map.keys()),
+                        e.type.stimuli.dmin,
+                        e.type.stimuli.dmax,
+                        e.type.stimuli.amin,
+                        e.type.stimuli.amax,
+                        randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
-                    node_num, node_num, e.trials*len(e.type.conditions.conditions)))
+                    node_num, node_num,
+                    e.trials*len(e.type.conditions.conditions)))
                 node_num += 1
             elif clsname == "Sequence":
                 f.write('''subgraph cluster{} {{

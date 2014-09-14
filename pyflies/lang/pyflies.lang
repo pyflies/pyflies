@@ -81,6 +81,8 @@
       <keyword>basepath</keyword>
       <keyword>test</keyword>
       <keyword>conditions</keyword>
+      <keyword>after</keyword>
+      <keyword>duration</keyword>
       <keyword>practice</keyword>
       <keyword>content</keyword>
       <keyword>endcontent</keyword>
@@ -113,7 +115,12 @@
         <context id="paramKwds" style-ref="keyword">
           <keyword>position</keyword>
           <keyword>size</keyword>
+          <keyword>after</keyword>
+          <keyword>duration</keyword>
+          <keyword>keep</keyword>
           <keyword>color</keyword>
+          <keyword>fillcolor</keyword>
+          <keyword>linewidth</keyword>
         </context>
         <context ref="decimal"/>
         <context ref="string"/>

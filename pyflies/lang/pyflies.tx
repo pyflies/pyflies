@@ -23,7 +23,6 @@ TestType:
   "test" name=ID "{"
     conditions = Conditions
     stimuli = Stimuli
-    ("timing" tmin=INT tmax=INT)?
   "}"
 ;
 
@@ -43,14 +42,16 @@ Condition:
 
 Stimuli:
   'stimuli' '{'
-    condStimuli+=ConditionStimulus
+    (('after' amin=INT (amax=INT)?)|
+      ('duration' dmin=INT (dmax=INT)?)|
+      (condStimuli+=ConditionStimuli))*
   '}'
 ;
 
-ConditionStimulus:
-  // Condition stimulus is given in the form of
-  // condition match expression : stimulus definition
-  conditionMatch=ConditionMatch ':' stimulus=Stimulus
+ConditionStimuli:
+  // Condition stimuli is given in the form of
+  // condition match expression : stimuli definitions
+  conditionMatch=ConditionMatch ':' stimuli+=Stimulus
 ;
 
 ConditionMatch:
@@ -86,26 +87,6 @@ NotEqualsExpression:
 NotExpression: 'not' operand=EqualsExpression;
 EqualsExpression: varName=WORD '=' varValue=WORD;
 
-/*
-Expression(
-  brackets=(),
-  infixBinary=[Addition +, Substraction -, Multiplication *, Division /],
-  unaryPrefix=[Negation -]
-  presendence=[^, [*, /], [+, -]]
-  assocRight=[^]
-  operands=ID|FLOAT|INT
-  )
-
-
-ConditionMatchExpression expression:
-    brackets=["(", ")"],
-    infixBinary=[And 'and', Or 'or', Equals '='],
-    prefixUnary=[Not 'not'],
-    presendence=[Equals, Not, And, Or],
-    operandMatch=ID
-;
-*/
-
 
 Stimulus:
   Image|Shape|Sound|Audio|Text
@@ -113,18 +94,28 @@ Stimulus:
 
 Image:
   'image' '(' file=STRING
-   (',' (('position' position=Position)|
-      (duration=INT)|
-      ('size' size=Size))*[','])?
+   (','
+        ( ('position' x=WORD (y=INT)?)
+          |('duration' dmin=WORD (dmax=INT)?)
+          |('after' amin=WORD (amax=INT)?)
+          |('keep')
+          |('size' width=WORD (height=INT)?)
+        )*[','])?
   ')'
 ;
 
 Shape:
   'shape' '(' shape=ShapeType
-   (',' (('position' position=Position)|
-      (duration=INT)|
-      ('color' color=Color)|
-      ('size' size=Size))*[','])?
+   (','
+        ( ('position' x=WORD (y=INT)?)
+          |('duration' dmin=WORD (dmax=INT)?)
+          |('after' amin=WORD (amax=INT)?)
+          |('keep')
+          |('size' width=WORD (height=INT)?)
+          |('color' color=WORD)
+          |('fillcolor' fillcolor=WORD)
+          |('linewidth' lineWidth=WORD)
+        )*[','])?
   ')'
 ;
 
@@ -132,16 +123,16 @@ ShapeType:
   "rectangle"|"circle"|"triangle"|"cross"
 ;
 
-Color:
-  "red"|"green"|"blue"|"yellow"|"white"|"black"|"gray"
-;
-
 Text:
   'text' '(' text=TextType
-   (',' (('position' position=Position)|
-      (duration=INT)|
-      ('color' color=Color)|
-      ('size' size=Size))*[','])?
+   (','
+        ( ('position' x=WORD (y=INT)?)
+          |('duration' dmin=WORD (dmax=INT)?)
+          |('after' amin=WORD (amax=INT)?)
+          |('keep')
+          |('size' width=WORD (height=INT)?)
+          |('color' color=WORD)
+        )*[','])?
   ')'
 ;
 
@@ -154,32 +145,21 @@ WORD:
 ;
 
 Sound:
-  'sound' '(' frequency=INT (',' duration=INT)? ')'
+  'sound' '(' frequency=INT
+   (','
+        ( ('duration' dmin=WORD (dmax=INT)?)
+          |('after' amin=WORD (amax=INT)?)
+        )*[','])?
+  ')'
 ;
 
 Audio:
-  'audio' '(' file=STRING (',' duration=INT)? ')'
-;
-
-Size:
-  ((descriptive=DescriptiveSize)|
-  (x=INT y=INT)|
-  (both=INT))
-;
-
-DescriptiveSize:
-  "tiny"|"small"|"normal"|"large"|"huge"|"stratch"
-;
-
-Position:
-  ((descriptive=PositionDescriptive)|
-  (x=INT y=INT))
-;
-
-PositionDescriptive:
-  "center"|"left"|"right"|"top"|"bottom"|"farLeft"|"farRight"|"farTop"|"farBottom"|
-  "topLeft"|"topRight"|"bottomLeft"|"bottomRight"|
-  "farTopLeft"|"farTopRight"|"farBottomLeft"|"farBottomRight"
+  'audio' '(' file=STRING
+   (','
+        ( ('duration' dmin=WORD (dmax=INT)?)
+          |('after' amin=WORD (amax=INT)?)
+        )*[','])?
+  ')'
 ;
 
 

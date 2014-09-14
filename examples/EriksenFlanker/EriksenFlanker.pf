@@ -14,10 +14,10 @@ test EriksenFlanker {
 	}
 	
 	stimuli {
-		1: image("left-incongruent.jpg")
-		2: image("left-congruent.jpg")
-		3: image("right-incongruent.jpg")
-		4: image("right-congruent.jpg")
+		1: image("images/left-incongruent.png")
+		2: image("images/left-congruent.png")
+		3: image("images/right-incongruent.png")
+		4: image("images/right-congruent.png")
 		error: sound(1000)
 		fixation: shape(cross) 
 	}
@@ -38,8 +38,17 @@ screen intro {
     by pressing left or right arrow on the keyboard or touching/clicking
     on appropriate button on the screen.
 
-    You will first do a practice run with 5 trials. After that a real run with
-    30 trial will be performed.
+    You will first do a practice run with 4 trials. After that a real run with
+    20 trial will be performed.
+
+    Press SPACE or touch/click the screen to continue
+}
+
+screen real {
+    Real block
+    ----------
+    
+    Now a real block of trials will be performed.
 
     Press SPACE or touch/click the screen to continue
 }
@@ -54,8 +63,10 @@ structure {
   // Perform practice test serie
   test EriksenFlanker 1 practice randomize
 
+  screen real 
+  
   // Perform real test serie (collects data)
-  test EriksenFlanker 10 randomize
+  test EriksenFlanker 5 randomize
 
 }
 

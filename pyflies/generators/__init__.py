@@ -108,5 +108,23 @@ def generate(model, target):
              target_folder,
              ignore=shutil.ignore_patterns('*.template'))
 
+    # Copy all files referenced from model
+    for b in model.blocks:
+        if b._typename == "TestType":
+            for s in b.stimuli.condStimuli:
+                stimulus = s.stimulus
+                if stimulus._typename in ["Audio", "Image"]:
+                    if stimulus.file:
+                        dir_part = dirname(stimulus.file)
+                        file_target_dir = join(target_folder, dir_part)
+                        if not os.path.exists(file_target_dir):
+                            os.makedirs(file_target_dir)
+
+                        # Source files are relative to model file
+                        model_dir = dirname(model._filename)
+                        src_file = join(model_dir, stimulus.file)
+                        dst_file = join(target_folder, stimulus.file)
+                        shutil.copyfile(src_file, dst_file)
+
     # Run generator
     _generators[generator_name][1].generate(model, target)

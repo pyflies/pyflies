@@ -144,6 +144,8 @@ def resolve(stimulus, test_type, condition, metamodel):
                         # This should not happen
                         assert 0, "Unknown param {}".format(p)
 
+    return s
+
 
 def pyflies_model_processor(model, metamodel):
     """
@@ -247,6 +249,4 @@ def pyflies_model_processor(model, metamodel):
                         e._correct.append(stimuli)
                     elif exp.expression == "fixation":
                         e._fix.append(stimuli)
-
-
 

@@ -252,7 +252,8 @@ def pyflies_model_processor(model, metamodel):
             e._fix = []
             for s in e.stimuli.condStimuli:
                 exp = s.conditionMatch.expression
-                if exp._typename == "FixedCondition":
+                if exp._typename == "FixedCondition" and\
+                        exp.expression in ["error", "correct", "fixation"]:
                     stimuli = [resolve(st, e, None, metamodel)
                                for st in s.stimuli]
                     if exp.expression == "error":

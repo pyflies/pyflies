@@ -9,7 +9,7 @@
 ###############################################################################
 
 __author__ = "Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>"
-__version__ = "0.1-dev"
+__version__ = "0.1"
 
 import os
 from setuptools import setup
@@ -52,7 +52,11 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         ],
-
+    install_requires=[
+        'textX',
+        'Jinja2'
+        ],
+    zip_safe=False,
     entry_points={
         'gui_scripts': [
             'pyflies = pyflies.gui:main',

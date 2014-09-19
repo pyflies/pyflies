@@ -43,8 +43,8 @@ Code structure visualization
 
 |pyFliesGUICodeCentric|
 
-.. |pyFliesGUI| image:: https://github.com/igordejanovic/pyFlies/tree/master/docs/images/pyFliesGUI.png
-.. |pyFliesGUICodeCentric| image:: https://github.com/igordejanovic/pyFlies/tree/master/docs/images/pyFliesGUICodeCentric.png
+.. |pyFliesGUI| image:: https://raw.githubusercontent.com/igordejanovic/pyFlies/master/docs/images/pyFliesGUI.png
+.. |pyFliesGUICodeCentric| image:: https://raw.githubusercontent.com/igordejanovic/pyFlies/master/docs/images/pyFliesGUICodeCentric.png
 
 
 

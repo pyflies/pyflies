@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 ###############################################################################
 # Name: pyFlies
-# Purpose: A language for behaviour experiment modeling
+# Purpose: A DSL for modeling cognitive psychology experiments
 # Author: Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
 # Copyright: (c) 2014 Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
 # License: MIT License
@@ -16,7 +16,7 @@ from setuptools import setup
 
 NAME = 'pyFlies'
 VERSION = __version__
-DESC = 'Behaviour modeling textual language'
+DESC = 'A DSL for modeling cognitive psychology experiments'
 AUTHOR = 'Igor R. Dejanovic'
 AUTHOR_EMAIL = 'igor DOT dejanovic AT gmail DOT com'
 LICENSE = 'MIT'

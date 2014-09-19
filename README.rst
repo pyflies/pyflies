@@ -33,4 +33,18 @@ After installation run pyFlies GUI with::
     pyflies
 
 
+Screenshots
+-----------
+pyFlies GUI with experiment model and experiment structure visualization.
+
+|pyFliesGUI|
+
+Code structure visualization
+
+|pyFliesGUICodeCentric|
+
+.. |pyFliesGUI| image:: https://github.com/igordejanovic/pyFlies/docs/images/pyFliesGUI.png
+.. |pyFliesGUICodeCentric| image:: https://github.com/igordejanovic/pyFlies/docs/images/pyFliesGUICodeCentric.png
+
+
 

@@ -21,7 +21,15 @@ Dependencies
 Installation
 ------------
 
-Clone git repository or download and unpack archive.
+First, be sure that all dependencies are in place.
+If you are installing from pypi with pip jinja2 and textX will be automatically installed.
+
+To install from pypi run::
+
+  pip install pyFlies
+
+To install from source clone git repository or download and unpack source from https://github.com/igordejanovic/pyFlies/archive/master.zip
+
 Run setup.
 
 ::

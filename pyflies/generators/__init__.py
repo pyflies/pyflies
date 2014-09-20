@@ -45,7 +45,8 @@ def load_generators():
         # particular platform. The name of the generator is defined in
         # the generator __init__ module
         dir_names = [f for f in os.listdir(generators_dir)
-                     if isdir(join(dirname(__file__), f))]
+                     if f != '__pycache__' and
+                     isdir(join(dirname(__file__), f))]
         for gen in dir_names:
             gen_module = __import__('pyflies.generators.{}'.format(gen),
                                     fromlist=["*"])

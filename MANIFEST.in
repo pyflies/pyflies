@@ -1,5 +1,4 @@
 include README.rst
-include CHANGELOG.rst
 include LICENSE
 recursive-include pyflies *.glade
 recursive-include pyflies *.rng

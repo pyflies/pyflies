@@ -14,6 +14,7 @@ Dependencies
 * Python - https://www.python.org/
 * textX - https://github.com/igordejanovic/textX
 * GTK+3 with SourceView - http://www.gtk.org/
+* pyGObject - binding for GTK+ - https://wiki.gnome.org/Projects/PyGObject
 * dot (Graphviz) - http://www.graphviz.org/ - dot must be on your PATH for model visualization
 * jinja2 - http://jinja.pocoo.org/ - for code generation
 

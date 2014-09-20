@@ -12,7 +12,7 @@ __author__ = "Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>"
 __version__ = "0.1"
 
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 NAME = 'pyFlies'
 VERSION = __version__
@@ -37,7 +37,13 @@ setup(
     license=LICENSE,
     url=URL,
     download_url=DOWNLOAD_URL,
-    packages=["pyflies"],
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+        'textX',
+        'Jinja2'
+        ],
+
     keywords="language behaviour experiment",
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -51,10 +57,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        ],
-    install_requires=[
-        'textX',
-        'Jinja2'
         ],
     zip_safe=False,
     entry_points={

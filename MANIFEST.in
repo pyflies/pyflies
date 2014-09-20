@@ -1,2 +1,13 @@
- include pyflies/pyflies.tx
- recursive-include pyflies/generators *.*
+include README.rst
+include CHANGELOG.rst
+include LICENSE
+recursive-include pyflies *.glade
+recursive-include pyflies *.rng
+recursive-include pyflies *.lang
+recursive-include pyflies/generators *
+include pyflies/gui/icons/close.png
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+
+

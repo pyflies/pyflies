@@ -78,7 +78,7 @@ def custom_export(model, file_name):
                         randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
                     node_num, node_num,
-                    e.trials*len(e.type.conditions.conditions)))
+                    e.trials * len(e.type.conditions.conditions)))
                 node_num += 1
             elif clsname == "Sequence":
                 f.write('''subgraph cluster{} {{
@@ -111,11 +111,10 @@ def custom_export(model, file_name):
             if node_num > 1:
                 f.write('start -> 1;\n')
                 n = 0
-                for n in range(1, node_num-1):
-                    f.write('{} -> {};\n'.format(n, n+1))
+                for n in range(1, node_num - 1):
+                    f.write('{} -> {};\n'.format(n, n + 1))
 
-                f.write("{} -> end;\n".format(n+1))
+                f.write("{} -> end;\n".format(n + 1))
             else:
                 f.write("start -> end;\n")
             f.write('\n}\n')
-

@@ -29,7 +29,7 @@ TestType:
 Conditions:
   'conditions' '{'
     // Strip all whitespaces before next WORD
-    // becouse next rule is eolterm and
+    // because next rule is eolterm and
     // terminates on newlines.
     /\s*/
 

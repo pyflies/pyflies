@@ -1,6 +1,6 @@
 experiment "Simon"
 "
-A simple behavioural task to asses a Simon effect.
+A simple behavioural task to assess a Simon effect.
 
 See also:
 http://en.wikipedia.org/wiki/Simon_effect
@@ -11,9 +11,9 @@ test Simon {
 		position 	color	congruency		response
 
 		left		green	congruent		left
-		left		blue	incongruent		right
+		left		red		incongruent		right
 		right		green	incongruent		left
-		right		blue	congruent		right
+		right		red		congruent		right
 	}
 	
 	stimuli{
@@ -31,34 +31,30 @@ test Simon {
 }
 
 screen Practice {
-	Simon
-	-----
+	Simon test
+	----------
 	
-	You will be presented with a colored square position
-	left or righ.
-	Press LEFT for the GREEN square and right for the blue.
+	You will be presented with a colored rectangle positioned
+	left or right.
+	Press LEFT for the GREEN rectangle and right for the red.
 	
-	Press SPACE for practice block.
+	Press SPACE for the practice block.
 }
 
 screen Real {
-	Simon
-	-----
+	Simon test
+	----------
 	
 	Now a REAL testing will be performed.
 	
-	You will be presented with a colored square position
-	left or righ.
-	Press LEFT for the GREEN square and right for the blue.
-	
-	Press SPACE for real block.
+	Press SPACE for the real block.
 }
 
 structure {
 	screen Practice
 	test Simon 1 practice randomize
 	screen Real
-	test Simon 1 randomize
+	test Simon 10 randomize
 }
 
 target Expyriment {

@@ -37,6 +37,13 @@ def custom_export(model, file_name):
             Renders experiment element.
             """
 
+            def duration_to_str(duration):
+                if type(duration).__name__ == 'Duration' \
+                        and not duration.value:
+                    return "[%d, %d]" % (duration.first, duration.second)
+                else:
+                    return str(duration.value)
+
             global cluster, last_node, node_num
 
             clsname = e._typename
@@ -67,14 +74,13 @@ def custom_export(model, file_name):
 <FONT POINT-SIZE="20">{}</FONT><BR/>
 <FONT POINT-SIZE="15">conditions: {}</FONT><BR/>
 <FONT POINT-SIZE="15">variables: {}</FONT><BR/>
-<FONT POINT-SIZE="15">duration: {} {}</FONT><BR/>
+<FONT POINT-SIZE="15">duration: {}</FONT><BR/>
 {}
                         >];\n'''.format(
                         node_num, color, e.type.name,
                         len(e.type.conditions.conditions),
-                        ", ".join(e.type.condvar_map.keys()),
-                        e.type.stimuli.dmin,
-                        e.type.stimuli.dmax,
+                        ", ".join(e.type.condvar_values.keys()),
+                        duration_to_str(e.type.stimuli.duration),
                         randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
                     node_num, node_num,

@@ -111,9 +111,13 @@
       <end>\)</end>
       <include>
         <context id="paramKwds" style-ref="keyword">
+          <keyword>start</keyword>
+          <keyword>duration</keyword>
           <keyword>position</keyword>
           <keyword>size</keyword>
-          <keyword>duration</keyword>
+          <keyword>radius</keyword>
+          <keyword>from</keyword>
+          <keyword>to</keyword>
           <keyword>keep</keyword>
           <keyword>color</keyword>
           <keyword>fillcolor</keyword>

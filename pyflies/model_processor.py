@@ -36,7 +36,8 @@ positions = {
 
 # Stimuli params that can reference condition variable value
 resolvable = {
-    'dmin': int,
+    'duration': int,
+    'start': int,
     'color': str,
     'fillcolor': str,
     'text': str,
@@ -46,12 +47,15 @@ resolvable = {
 }
 
 defaults = {
+    'start': 0,
+    'duration': 3000,
     'color': "white",
     'fillcolor': "white",
     'width': "normal",
+    'radius': "normal",
     'x': "center",
+    'size': 15,     # Default font size
     'lineWidth': 1
-    # dmin, dmax inherits from testtype
 }
 
 
@@ -60,7 +64,8 @@ def resolve(stimulus, test_type, condition, metamodel):
     Create a new stimulus with all parameter references resolved for
     current conditions, and defaults set.
     """
-    # Instantiate stimuli meta-class
+
+    # Instantiate stimulus meta-class
     s = metamodel[stimulus._typename]()
 
     # Copy all attributes
@@ -77,8 +82,15 @@ def resolve(stimulus, test_type, condition, metamodel):
                 # condition variable names use
                 # the current value of that variable
                 if param_value in test_type.conditions.varNames:
-                    setattr(s, p, condition.varValues[
-                        test_type.conditions.varNames.index(param_value)])
+                    new_value = condition.varValues[
+                        test_type.conditions.varNames.index(param_value)]
+
+                    # Duration and Start are complex types
+                    if param_value.__class__.__name__ in ['Duration', 'Start']:
+                        param_value.value = new_value
+                    else:
+                        setattr(s, p, condition.varValues[
+                            test_type.conditions.varNames.index(param_value)])
 
     # Set defaults
     for attr in s.__class__._attrs:
@@ -88,17 +100,20 @@ def resolve(stimulus, test_type, condition, metamodel):
             if attr in defaults:
                 def_val = defaults[attr]
             else:
-                # Special case
-                # Inherit from stimuli definition
-                if attr == 'dmin':
-                    def_val = test_type.stimuli.dmin
-                elif attr == 'dmax':
-                    if s.dmin:
-                        def_val = s.dmin
-                    elif test_type.stimuli.dmax:
-                        def_val = test_type.stimuli.dmax
+                if attr == 'duration':
+                    # Special case
+                    # Inherit from stimuli definition if exists or
+                    # create new Duration object with default value.
+                    if test_type.stimuli.duration:
+                        def_val = test_type.stimuli.duration
                     else:
-                        def_val = test_type.stimuli.dmin
+                        def_val = metamodel['Duration']()
+                        def_val.value = defaults['duration']
+                elif attr == 'start':
+                    # Special case
+                    # Complex type. Create instance
+                    def_val = metamodel['Start']()
+                    def_val.value = defaults['start']
                 elif attr not in ['height', 'y']:
                     # This should not happen
                     assert 0, "No default for attribute '{}' test type '{}'"\
@@ -175,37 +190,44 @@ def pyflies_model_processor(model, metamodel):
                     "There must be condition variable named 'response' at {}"
                     .format((line, col)), line=line, col=col)
 
-            # Default for timings
-            if e.stimuli.dmin == 0:
-                e.stimuli.dmin = 1000
-            if e.stimuli.dmax == 0:
-                e.stimuli.dmax = e.stimuli.dmin
+            # Default duration
+            if e.stimuli.duration is None:
+                default_duration = metamodel['Duration']()
+                default_duration.value = 3000
+                e.stimuli.duration = default_duration
 
-            condvar_map = {}
+            # Create map of condition variables to collect their values.
+            condvar_values = {}
             for var in e.conditions.varNames:
-                condvar_map[var] = []
-                conds = len(condvar_map)
+                condvar_values[var] = []
+
             for c in e.conditions.conditions:
 
-                # Check if proper number of condition variables is specified
-                if conds != len(c.varValues):
+                # Check if proper number of condition variable values is
+                # specified
+                if len(condvar_values) != len(c.varValues):
                     line, col = \
                         metamodel.parser.pos_to_linecol(c._position)
                     raise TextXSemanticError(
-                        "There must be {} condition variables at {}".format(
-                            conds, (line, col)), line=line, col=col)
+                        "There must be {} condition variable values at {}"
+                        .format(len(condvar_values), (line, col)),
+                        line=line, col=col)
 
+                # Fill the map of condition variable values for this condition.
                 for idx, param_name in enumerate(e.conditions.varNames):
-                    condvar_map[param_name].append(c.varValues[idx])
+                    condvar_values[param_name].append(c.varValues[idx])
 
-            e.condvar_map = condvar_map
+            # Attach the map of values to the test to be used in
+            # condition match expression evaluation and in generator
+            # templates.
+            e.condvar_values = condvar_values
 
             def cond_matches(idx, c, exp):
                 """
-                Evaluates condition match expression.
+                Recursively evaluates condition match expression.
                 """
                 if exp._typename == "EqualsExpression":
-                    return condvar_map[exp.varName][idx] == exp.varValue
+                    return condvar_values[exp.varName][idx] == exp.varValue
                 elif exp._typename == "AndExpression":
                     val = True
                     for op in exp.operand:
@@ -220,6 +242,10 @@ def pyflies_model_processor(model, metamodel):
                 # This should not happen
                 assert False
 
+            # We create, for each condition, a list
+            # of stimuli that should be presented in the condition.
+            # This list is stimuli_for_cond accessible on each
+            # Condition object.
             # For each condition we iterate trough all stimuli
             # definitions and evaluate condition match. If the
             # condition evaluates to True stimulus is included
@@ -247,9 +273,9 @@ def pyflies_model_processor(model, metamodel):
                         c.stimuli_for_cond.append(stimuli_for_match)
 
             # Find special stimuli if any (error, correct, fixation)
-            e._error = []
-            e._correct = []
-            e._fix = []
+            e.error = []
+            e.correct = []
+            e.fix = []
             for s in e.stimuli.condStimuli:
                 exp = s.conditionMatch.expression
                 if exp._typename == "FixedCondition" and\
@@ -257,9 +283,8 @@ def pyflies_model_processor(model, metamodel):
                     stimuli = [resolve(st, e, None, metamodel)
                                for st in s.stimuli]
                     if exp.expression == "error":
-                        e._error = stimuli
+                        e.error = stimuli
                     elif exp.expression == "correct":
-                        e._correct = stimuli
+                        e.correct = stimuli
                     elif exp.expression == "fixation":
-                        e._fix = stimuli
-
+                        e.fix = stimuli

@@ -1,5 +1,5 @@
 /*
-  This is a textX specification of pyFlies DSL for Reaction Time test
+  This is a textX specification of pyFlies DSL for cognitive test
   experiments definition.
   Author: Igor R. Dejanovic <igor DOT dejanovic AT gmail DOT com>
   Copyright: (c) 2014 Igor R. Dejanovic <igor DOT dejanovic AT gmail DOT com>
@@ -16,7 +16,7 @@ PyFliesModel:
 ;
 
 BlockType:
-  TestType|ScreenType|SubjectType
+  TestType | ScreenType | SubjectType
 ;
 
 TestType:
@@ -50,7 +50,7 @@ Condition:
 Stimuli:
   'stimuli' '{'
       condStimuli+=ConditionStimuli
-      ('duration' dmin=INT (dmax=INT)?)?
+      ('duration' duration=Duration)?
   '}'
 ;
 
@@ -65,7 +65,7 @@ ConditionMatch:
 ;
 
 ConditionMatchExpression:
-   FixedCondition|OrdinalCondition|ExpressionCondition
+   FixedCondition | OrdinalCondition | ExpressionCondition
 ;
 
 FixedCondition:
@@ -73,7 +73,7 @@ FixedCondition:
 ;
 
 FixedConditionEnum:
-  "all"|"error"|"fixation"|"correct"
+  "all" | "error" | "fixation" | "correct"
 ;
 
 OrdinalCondition:
@@ -95,16 +95,17 @@ EqualsExpression: varName=WORD '=' varValue=WORD;
 
 
 Stimulus:
-  Image|Shape|Sound|Audio|Text
+  Image | Shape | Sound | Audio | Text
 ;
 
 Image:
   'image' '(' file=STRING
    (','
         ( ('position' x=WORD (y=INT)?)
-          |('duration' dmin=WORD (dmax=INT)?)
+          |('start' start=Start)
+          |('duration' duration=Duration)
           |('keep')
-          |('size' width=WORD (height=INT)?)
+          |('size' width=WORD (height=INT)?) // size - used for rectangle
         )*[','])?
   ')'
 ;
@@ -112,10 +113,14 @@ Image:
 Shape:
   'shape' '(' shape=ShapeType
    (','
-        ( ('position' x=WORD (y=INT)?)
-          |('duration' dmin=WORD (dmax=INT)?)
+        ( ('position' x=WORD (y=INT)?)  // center of the shape
+          |('start' start=Start)
+          |('duration' duration=Duration)
           |('keep')
-          |('size' width=WORD (height=INT)?)
+          |('radius' radius=INT)  // radius - used for circle
+          |('from' from=Point)     // from, to - used for line
+          |('to' to=Point)
+          |('size' width=WORD (height=INT)?)  // size - for rectangle and cross
           |('color' color=WORD)
           |('fillcolor' fillcolor=WORD)
           |('linewidth' lineWidth=WORD)
@@ -124,48 +129,75 @@ Shape:
 ;
 
 ShapeType:
-  "rectangle"|"circle"|"triangle"|"cross"
+  "rectangle" | "circle" | "line" | "cross"
 ;
 
 Text:
   'text' '(' text=TextType
    (','
         ( ('position' x=WORD (y=INT)?)
-          |('duration' dmin=WORD (dmax=INT)?)
+          |('start' start=Start)
+          |('duration' duration=Duration)
           |('keep')
-          |('size' width=WORD (height=INT)?)
+          |('size' size=INT)
           |('color' color=WORD)
         )*[','])?
   ')'
 ;
 
+Sound:
+  'sound' '(' frequency=INT
+   (',' (('start' start=Start) | ('duration' duration=Duration))*[','])?
+  ')'
+;
+
+Audio:
+  'audio' '(' file=STRING
+   (',' (('start' start=Start) | ('duration' duration=Duration))*[','])?
+  ')'
+;
+
+
 TextType:
-  STRING|/\w*\b/
+  STRING | /\w*\b/
 ;
 
 WORD:
   /[-\w]*\b/
 ;
 
-Sound:
-  'sound' '(' frequency=INT
-   (',' ('duration' dmin=WORD (dmax=INT)?))?
-  ')'
+Start:
+  /*
+    next - Start this stimulus after previous finishes.
+    first, second - Start will be randomly choosen from the given interval.
+    INT - Start is fixed.
+  */
+  ('[' first=INT ',' second=INT ']') | value = IntOrNext
 ;
 
-Audio:
-  'audio' '(' file=STRING
-   (',' ('duration' dmin=WORD (dmax=INT)?))?
-  ')'
+Duration:
+  /*
+    next - present the stimulus until the next one is presented.
+    first, second - duration will be randomly choosen from the given interval.
+    INT - duration is fixed.
+  */
+  ('[' first=INT ',' second=INT ']') | value = IntOrNext
 ;
 
+IntOrNext:
+  INT | "next"
+;
+
+Point:
+  '[' x=INT ',' y=INT ']'
+;
 
 Block:
-  Sequence|Randomize
+  Sequence | Randomize
 ;
 
 TestInstance:
-  'test' type=[TestType] trials=INT (practice?="practice"|randomize?="randomize")*
+  'test' type=[TestType] trials=INT (practice?="practice" | randomize?="randomize")*
 ;
 
 ScreenInstance:
@@ -177,11 +209,11 @@ SubjectInstance:
 ;
 
 Reference:
-  TestInstance|ScreenInstance|SubjectInstance
+  TestInstance | ScreenInstance | SubjectInstance
 ;
 
 StructureElement:
-  Reference|Block
+  Reference | Block
 ;
 
 

@@ -50,7 +50,7 @@ sound.Audio("{{s.file}}")
 screen_{{b.name}} = [visual.TextStim(
     win,
     text="""
-{{b.content}}
+{{b.content|striptabs}}
     """,
     alignHoriz='center')]
   {% elif b._typename == "TestType" %}

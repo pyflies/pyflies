@@ -120,7 +120,7 @@ Shape:
           |(keep?='keep')           // Keep stimuli presented after duration elapses
           |(target?='target')      // Target stimuli, measure time from its presentation.
           |('radius' radius=INT)  // radius - used for circle
-          |('from' from=Point)     // from, to - used for line
+          |('from' _from=Point)     // from, to - used for line
           |('to' to=Point)
           |('size' width=WORD (height=INT)?)  // size - for rectangle and cross
           |('color' color=WORD)
@@ -194,7 +194,7 @@ Duration:
     first, second - duration will be randomly choosen from the given interval.
     INT - duration is fixed.
   */
-  ('[' first=INT ',' second=INT ']') | value = IntOrNext
+  ('[' _from=INT ',' to=INT ']') | value = IntOrNext
 ;
 
 IntOrNext:

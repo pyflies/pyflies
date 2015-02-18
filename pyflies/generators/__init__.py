@@ -39,7 +39,7 @@ def load_generators():
     Search for and loads all generators.
     """
     if not _generators:
-        generators_dir = join(dirname(__file__))
+        generators_dir = dirname(__file__)
 
         # Each dir in generators folder is considered to be a generator for
         # particular platform. The name of the generator is defined in

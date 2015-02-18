@@ -57,7 +57,7 @@ docs/_build/
 *.bak
 
 # Local stuff
-psychopy
-expyriment
+/psychopy
+/expyriment
 *.dot
 .directory

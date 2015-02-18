@@ -26,7 +26,8 @@ win = visual.Window(color="black", fullscr=True)
     {%- if s.shape == "circle" -%}
 visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- elif s.shape == "rectangle" -%}
-visual.Rect(win, pos=({{s.x/100}},{{s.y/100}}), fillColor="{{s.color}}")
+visual.Rect(win, pos=({{s.x/100}},{{s.y/100}}), lineColor="{{s.color}}",
+            fillColor="{{s.fillColor}}", lineWidth={{s.lineWidth}})
     {%- elif s.shape == "cross" -%}
 visual.Line(win, start=({{s.x/100-0.1}},{{s.y/100}}), end=({{s.x/100+0.1}}, {{s.y/100}}), lineColor="{{s.color}}"),
 visual.Line(win, start=({{s.x/100}},{{s.y/100-0.1}}), end=({{s.x/100}}, {{s.y/100+0.1}}), lineColor="{{s.color}}")

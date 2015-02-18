@@ -119,9 +119,10 @@
           <keyword>from</keyword>
           <keyword>to</keyword>
           <keyword>keep</keyword>
+          <keyword>target</keyword>
           <keyword>color</keyword>
-          <keyword>fillcolor</keyword>
-          <keyword>linewidth</keyword>
+          <keyword>fillColor</keyword>
+          <keyword>lineWidth</keyword>
         </context>
         <context ref="decimal"/>
         <context ref="string"/>

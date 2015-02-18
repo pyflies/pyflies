@@ -104,7 +104,8 @@ Image:
         ( ('position' x=WORD (y=INT)?)
           |('start' start=Start)
           |('duration' duration=Duration)
-          |('keep')
+          |(keep?='keep')           // Keep stimuli presented after duration elapses
+          |(target?='target')      // Target stimuli, measure time from its presentation.
           |('size' width=WORD (height=INT)?) // size - used for rectangle
         )*[','])?
   ')'
@@ -116,14 +117,15 @@ Shape:
         ( ('position' x=WORD (y=INT)?)  // center of the shape
           |('start' start=Start)
           |('duration' duration=Duration)
-          |('keep')
+          |(keep?='keep')           // Keep stimuli presented after duration elapses
+          |(target?='target')      // Target stimuli, measure time from its presentation.
           |('radius' radius=INT)  // radius - used for circle
           |('from' from=Point)     // from, to - used for line
           |('to' to=Point)
           |('size' width=WORD (height=INT)?)  // size - for rectangle and cross
           |('color' color=WORD)
-          |('fillcolor' fillcolor=WORD)
-          |('linewidth' lineWidth=WORD)
+          |('fillColor' fillColor=WORD)
+          |('lineWidth' lineWidth=WORD)
         )*[','])?
   ')'
 ;
@@ -138,7 +140,8 @@ Text:
         ( ('position' x=WORD (y=INT)?)
           |('start' start=Start)
           |('duration' duration=Duration)
-          |('keep')
+          |(keep?='keep')           // Keep stimuli presented after duration elapses
+          |(target?='target')      // Target stimuli, measure time from its presentation.
           |('size' size=INT)
           |('color' color=WORD)
         )*[','])?
@@ -147,13 +150,23 @@ Text:
 
 Sound:
   'sound' '(' frequency=INT
-   (',' (('start' start=Start) | ('duration' duration=Duration))*[','])?
+    (',' (
+           ('start' start=Start)
+           |('duration' duration=Duration)
+           |(target?='target')
+         )*[',']
+    )?
   ')'
 ;
 
 Audio:
   'audio' '(' file=STRING
-   (',' (('start' start=Start) | ('duration' duration=Duration))*[','])?
+    (',' (
+           ('start' start=Start)
+           |('duration' duration=Duration)
+           |(target?='target')
+         )*[',']
+    )?
   ')'
 ;
 

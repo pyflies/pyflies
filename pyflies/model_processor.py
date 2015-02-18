@@ -69,6 +69,134 @@ def resolve(stimulus, test_type, condition, metamodel):
     current conditions, and defaults set.
     """
 
+    def resolve_condition_var_references(s):
+        # Try to resolve all resolvable stimuli parameters
+        # using values from conditions table.
+        if condition:
+            for p in resolvable:
+                if hasattr(s, p):
+                    param_value = getattr(s, p)
+                    # If value is equal to some of
+                    # condition variable names use
+                    # the current value of that variable
+                    if param_value in test_type.conditions.varNames:
+                        new_value = condition.varValues[
+                            test_type.conditions.varNames.index(param_value)]
+
+                        # Duration and Start are complex types
+                        if param_value.__class__.__name__ in \
+                                ['Duration', 'Start']:
+                            param_value.value = new_value
+                        else:
+                            setattr(
+                                s, p, condition.varValues[
+                                    test_type.conditions.varNames.index(
+                                        param_value)])
+
+    def set_default_values(s):
+        """
+        Set default values for all stimuli parameters not defined in the model.
+        """
+        for attr in s.__class__._attrs:
+            attr_val = getattr(s, attr)
+            if not attr_val:
+                def_val = None
+                if attr in defaults:
+                    def_val = defaults[attr]
+                else:
+                    if attr == 'duration':
+                        # Special case
+                        # Inherit from stimuli definition if exists or
+                        # create new Duration object with default value.
+                        if test_type.stimuli.duration:
+                            def_val = test_type.stimuli.duration
+                        else:
+                            def_val = metamodel['Duration']()
+                            def_val.value = defaults['duration']
+                    elif attr == 'start':
+                        # Special case
+                        # Complex type. Create instance
+                        def_val = metamodel['Start']()
+                        def_val.value = defaults['start']
+                    elif attr in ['from', 'to']:
+                        # Line parameters
+                        def_val = metamodel['Point']()
+                        def_val.x = 0
+                        def_val.y = 0
+                    elif attr not in ['height', 'y']:
+                        # This should not happen
+                        assert 0, "No default for attribute '{}' " \
+                                  "test type '{}'" \
+                                  .format(attr, test_type.name)
+                if def_val is not None:
+                    setattr(s, attr, def_val)
+
+    def convert_descriptive_values(s):
+        """
+        Convert from descriptive to real values.
+        """
+        # Convert resolvable from descriptive values to real values.
+        for p, t in resolvable.items():
+            if hasattr(s, p):
+                val = getattr(s, p)
+                try:
+                    val = t(val)
+                except TypeError:
+                    # If not string or a number than it is some complex type
+                    pass
+                except ValueError:
+                    # Only size and position may be given descriptively
+                    if p not in ['x', 'width', 'radius']:
+                        line, col = \
+                            metamodel.parser.pos_to_linecol(stimulus._position)
+                        raise TextXSemanticError(
+                            "Parameter {} is not of type '{}' at {}".format(
+                              p, t.__name__, (line, col)), line=line, col=col)
+                    else:
+                        # Check if descriptive name is given
+                        if p == 'x':
+                            pos = getattr(s, 'x')
+                            if pos in positions:
+                                x, y = positions[pos]
+                                s.x = x
+                                s.y = y
+                            else:
+                                line, col = \
+                                    metamodel.parser.pos_to_linecol(
+                                        stimulus._position)
+                                raise TextXSemanticError(
+                                    "Invalid position '{}' at {}".format(
+                                        pos, (line, col)), line=line, col=col)
+                        elif p == 'width':
+                            width = getattr(s, 'width')
+                            if width in sizes:
+                                size = sizes[width]
+                                s.width = size
+                                s.height = size
+                            else:
+                                line, col = \
+                                    metamodel.parser.pos_to_linecol(
+                                        stimulus._position)
+                                raise TextXSemanticError(
+                                    "Invalid size '{}' at {}"
+                                    .format(width, (line, col)),
+                                    line=line, col=col)
+                        elif p == 'radius':
+                            radius = getattr(s, 'radius')
+                            if radius in sizes:
+                                s.radius = sizes[radius]
+                            else:
+                                line, col = \
+                                    metamodel.parser.pos_to_linecol(
+                                        stimulus._position)
+                                raise TextXSemanticError(
+                                    "Invalid radius '{}' at {}"
+                                    .format(radius, (line, col)),
+                                    line=line, col=col)
+                        else:
+                            # This should not happen
+                            assert 0, "Unknown param {}".format(p)
+
     # Instantiate stimulus meta-class
     s = metamodel[stimulus._typename]()
 
@@ -77,117 +205,9 @@ def resolve(stimulus, test_type, condition, metamodel):
         setattr(s, attr, getattr(stimulus, attr))
     s._position = stimulus._position
 
-    # Try to resolve all resolvable stimuli parameters
-    if condition:
-        for p in resolvable:
-            if hasattr(s, p):
-                param_value = getattr(s, p)
-                # If value is equal to some of
-                # condition variable names use
-                # the current value of that variable
-                if param_value in test_type.conditions.varNames:
-                    new_value = condition.varValues[
-                        test_type.conditions.varNames.index(param_value)]
-
-                    # Duration and Start are complex types
-                    if param_value.__class__.__name__ in ['Duration', 'Start']:
-                        param_value.value = new_value
-                    else:
-                        setattr(s, p, condition.varValues[
-                            test_type.conditions.varNames.index(param_value)])
-
-    # Set defaults
-    for attr in s.__class__._attrs:
-        attr_val = getattr(s, attr)
-        if not attr_val:
-            def_val = None
-            if attr in defaults:
-                def_val = defaults[attr]
-            else:
-                if attr == 'duration':
-                    # Special case
-                    # Inherit from stimuli definition if exists or
-                    # create new Duration object with default value.
-                    if test_type.stimuli.duration:
-                        def_val = test_type.stimuli.duration
-                    else:
-                        def_val = metamodel['Duration']()
-                        def_val.value = defaults['duration']
-                elif attr == 'start':
-                    # Special case
-                    # Complex type. Create instance
-                    def_val = metamodel['Start']()
-                    def_val.value = defaults['start']
-                elif attr in ['from', 'to']:
-                    # Line parameters
-                    def_val = metamodel['Point']()
-                    def_val.x = 0
-                    def_val.y = 0
-                elif attr not in ['height', 'y']:
-                    # This should not happen
-                    assert 0, "No default for attribute '{}' test type '{}'"\
-                        .format(attr, test_type.name)
-            if def_val is not None:
-                setattr(s, attr, def_val)
-
-    # Convert resolvable to a proper type and descriptive value
-    for p, t in resolvable.items():
-        if hasattr(s, p):
-            val = getattr(s, p)
-            try:
-                val = t(val)
-            except ValueError:
-                # Only size and position may be given descriptively
-                if p not in ['x', 'width', 'radius']:
-                    line, col = \
-                        metamodel.parser.pos_to_linecol(stimulus._position)
-                    raise TextXSemanticError(
-                        "Parameter {} is not of type '{}' at {}".format(
-                            p, t.__name__, (line, col)), line=line, col=col)
-                else:
-                    # Check if descriptive name is given
-                    if p == 'x':
-                        pos = getattr(s, 'x')
-                        if pos in positions:
-                            x, y = positions[pos]
-                            s.x = x
-                            s.y = y
-                        else:
-                            line, col = \
-                                metamodel.parser.pos_to_linecol(
-                                    stimulus._position)
-                            raise TextXSemanticError(
-                                "Invalid position '{}' at {}".format(
-                                    pos, (line, col)), line=line, col=col)
-                    elif p == 'width':
-                        width = getattr(s, 'width')
-                        if width in sizes:
-                            size = sizes[width]
-                            s.width = size
-                            s.height = size
-                        else:
-                            line, col = \
-                                metamodel.parser.pos_to_linecol(
-                                    stimulus._position)
-                            raise TextXSemanticError(
-                                "Invalid size '{}' at {}"
-                                .format(width, (line, col)),
-                                line=line, col=col)
-                    elif p == 'radius':
-                        radius = getattr(s, 'radius')
-                        if radius in sizes:
-                            s.radius = sizes[radius]
-                        else:
-                            line, col = \
-                                metamodel.parser.pos_to_linecol(
-                                    stimulus._position)
-                            raise TextXSemanticError(
-                                "Invalid radius '{}' at {}"
-                                .format(radius, (line, col)),
-                                line=line, col=col)
-                    else:
-                        # This should not happen
-                        assert 0, "Unknown param {}".format(p)
+    resolve_condition_var_references(s)
+    set_default_values(s)
+    convert_descriptive_values(s)
 
     return s
 
@@ -319,4 +339,3 @@ def pyflies_model_processor(model, metamodel):
                 "Unknown target '{}' at {}. Valid targets are {}"
                 .format(target.name, (line, col), list(generator_names())),
                 line=line, col=col)
-

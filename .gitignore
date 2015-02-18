@@ -55,3 +55,9 @@ docs/_build/
 # Backup files
 *~
 *.bak
+
+# Local stuff
+psychopy
+expyriment
+*.dot
+.directory

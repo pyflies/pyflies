@@ -32,7 +32,7 @@ visual.Line(win, start=({{s.x/100-0.1}},{{s.y/100}}), end=({{s.x/100+0.1}}, {{s.
 visual.Line(win, start=({{s.x/100}},{{s.y/100-0.1}}), end=({{s.x/100}}, {{s.y/100+0.1}}), lineColor="{{s.color}}")
     {%- endif %}
   {%- elif s._typename == "Text" -%}
-visual.TextLine("{{s.text}}", text_size={{s.width}}, text_colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
+visual.TextStim(win, text="{{s.text}}", height={{s.size/100}}, color="{{s.color}}", pos=({{s.x}}, {{s.y}}))
   {%- elif s._typename == "Image" %}
 visual.Picture("{{s.file}}")
   {%- elif s._typename == "Sound" %}
@@ -45,6 +45,7 @@ sound.Audio("{{s.file}}")
 
 {% for b in m.blocks -%}
   {%- if b._typename == "ScreenType" %}
+
 # Screen {{b.name}}
 screen_{{b.name}} = [visual.TextStim(
     win,
@@ -142,7 +143,7 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
         trials.extend(cond_blk)
 
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    fileName = '%s-%s.csv' % (test_name, timestr)
+    fileName = '%s-%s%s.csv' % (test_name, "practice-" if practice else "",timestr)
     csvfile = open(os.path.join(folder, fileName), 'wt')
     try:
         writer = csv.writer(csvfile)
@@ -183,7 +184,6 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
                 present_stimuli(correct)
     finally:
         csvfile.close()
-        win.close()
 
 # Run experiment
 # Create folder for experiment results.
@@ -206,3 +206,4 @@ run_block(exp_folder, "{{e.type.name}}", {{e.type.name}}_varNames,
     {%- endif %}
 {%- endfor %}
 
+win.close()

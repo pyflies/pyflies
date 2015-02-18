@@ -17,14 +17,11 @@ test Posner {
 	}
 	
 	stimuli{
-		all:  		shape(rectangle, keep, position cue, linewidth 5)
-		      		shape(cross, position position)
-		      		
-		fixation: 	shape(cross, duration 1, keep)
-              		shape(rectangle, duration 1, position left, keep)
-              		shape(rectangle, duration 1, position right, keep)
-
-		duration 1000 1500		
+		all:  	shape(cross, duration 1, keep)
+				shape(rectangle, duration 1, position left, keep)
+				shape(rectangle, duration [1000, 1500], position right, keep)
+				shape(rectangle, duration [1000, 1500], position cue, fillColor black, lineWidth 20, keep)
+				shape(cross, target, position position)
 	}
 }
 
@@ -58,11 +55,21 @@ structure {
 	test Posner 1 randomize
 }
 
+/*
 target Expyriment {
   output = "/home/igor/tmp/Simon/"
   responses {
   	// see expyriment/misc/constants.py
     left = K_LEFT
     right = K_RIGHT
+  }
+}
+*/
+
+target PsychoPy {
+  output = "/home/igor/tmp/PosnerPsycho/"
+  responses {
+    left = left
+    right = right
   }
 }

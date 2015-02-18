@@ -37,8 +37,6 @@ positions = {
 
 # Stimuli params that can reference condition variable value
 resolvable = {
-    'duration': int,
-    'start': int,
     'radius': int,
     'color': str,
     'fillColor': str,
@@ -80,18 +78,9 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # condition variable names use
                     # the current value of that variable
                     if param_value in test_type.conditions.varNames:
-                        new_value = condition.varValues[
-                            test_type.conditions.varNames.index(param_value)]
-
-                        # Duration and Start are complex types
-                        if param_value.__class__.__name__ in \
-                                ['Duration', 'Start']:
-                            param_value.value = new_value
-                        else:
-                            setattr(
-                                s, p, condition.varValues[
-                                    test_type.conditions.varNames.index(
-                                        param_value)])
+                        setattr(s, p, condition.varValues[
+                                test_type.conditions.varNames.index(
+                                    param_value)])
 
     def set_default_values(s):
         """
@@ -101,33 +90,35 @@ def resolve(stimulus, test_type, condition, metamodel):
             attr_val = getattr(s, attr)
             if not attr_val:
                 def_val = None
-                if attr in defaults:
+                if attr == 'duration':
+                    # Special case
+                    # Inherit from stimuli definition if exists or
+                    # create new Duration object with default value.
+                    if test_type.stimuli.duration:
+                        def_val = test_type.stimuli.duration
+                    else:
+                        def_val = metamodel['Duration']()
+                        def_val.value = defaults['duration']
+                elif attr == 'start':
+                    # Special case
+                    # Complex type. Create instance
+                    def_val = metamodel['Start']()
+                    def_val.value = defaults['start']
+                elif attr in ['_from', 'to'] and \
+                        s.__class__.__name__ == 'Point':
+                    # Line parameters
+                    def_val = metamodel['Point']()
+                    def_val.x = 0
+                    def_val.y = 0
+                elif attr in defaults:
                     def_val = defaults[attr]
-                else:
-                    if attr == 'duration':
-                        # Special case
-                        # Inherit from stimuli definition if exists or
-                        # create new Duration object with default value.
-                        if test_type.stimuli.duration:
-                            def_val = test_type.stimuli.duration
-                        else:
-                            def_val = metamodel['Duration']()
-                            def_val.value = defaults['duration']
-                    elif attr == 'start':
-                        # Special case
-                        # Complex type. Create instance
-                        def_val = metamodel['Start']()
-                        def_val.value = defaults['start']
-                    elif attr in ['from', 'to']:
-                        # Line parameters
-                        def_val = metamodel['Point']()
-                        def_val.x = 0
-                        def_val.y = 0
-                    elif attr not in ['height', 'y']:
-                        # This should not happen
-                        assert 0, "No default for attribute '{}' " \
-                                  "test type '{}'" \
-                                  .format(attr, test_type.name)
+                elif attr not in ['_from', 'to', 'value', 'height', 'y']:
+                    # This should not happen
+                    assert 0, "No default for attribute '{}' " \
+                            ", stimulus type  '{}'" \
+                            "test type '{}'" \
+                            .format(attr, s.__class__.__name__,
+                                    test_type.name)
                 if def_val is not None:
                     setattr(s, attr, def_val)
 

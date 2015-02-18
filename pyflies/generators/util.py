@@ -1,4 +1,5 @@
 from random import sample
+import re
 
 
 def flatten_structure(model):
@@ -27,3 +28,15 @@ def flatten_structure(model):
         return instances
 
     return _flatten(elements)
+
+
+def python_module_name(name):
+    """
+    Converts given name str to a valid python module file name.
+    Used to transform model name to valid model file in test
+    code generators.
+
+    Args:
+        name(str)
+    """
+    return "%s.py" % re.sub(r'[^\w\.-]', '_', name.lower())

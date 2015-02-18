@@ -57,11 +57,21 @@ structure {
 	test Simon 10 randomize
 }
 
+/*
 target Expyriment {
   output = "/home/igor/tmp/Simon/"
   responses {
   	// see expyriment/misc/constants.py
     left = K_LEFT
     right = K_RIGHT
+  }
+}
+*/
+
+target PsychoPy {
+  output = "/home/igor/tmp/SimonPsycho/"
+  responses {
+    left = left
+    right = right
   }
 }

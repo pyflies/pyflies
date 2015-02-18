@@ -33,17 +33,11 @@ Contents:
 
    getting_started
    conditions
-   stimuli_definition
+   stimuli
+   coordinate_system
    screens
    test_structure
    generator_config
    contribute
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 

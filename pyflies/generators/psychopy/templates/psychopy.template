@@ -61,7 +61,11 @@ screen_{{b.name}} = [visual.TextStim(
     {
         'condidx': {{loop.index}},
         {%- for varValue in cond.varValues %}
+         {%- if b.conditions.varNames[loop.index0] == 'response' %}
+        'response': '{{response_map[varValue]}}',
+         {%- else %}
         '{{b.conditions.varNames[loop.index0]}}': '{{varValue}}',
+         {%- endif %}
         {%- endfor %}
     },
     {%- endfor %}

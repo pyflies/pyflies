@@ -10,17 +10,6 @@ name = "PsychoPy"
 description = "PsychoPy - Psychology software in Python"
 
 
-color_map = {
-    "white": "C_WHITE",
-    "black": "C_BLACK",
-    "grey": "C_GREY",
-    "red":  "C_RED",
-    "green": "C_GREEN",
-    "blue": "C_BLUE",
-    "yellow": "C_YELLOW"
-}
-
-
 def generate(model, target):
     """
     Args:
@@ -37,6 +26,11 @@ def generate(model, target):
                         # TODO: Transform coordinates and sizes
                         pass
 
+    # Create a map of response mapping for this target.
+    response_map = {}
+    for resp in target.responseMap:
+        response_map[resp.name] = resp.target
+
     def striptabs(s):
         return re.sub(r'^[ \t]+', '', s, flags=re.M)
 
@@ -46,4 +40,5 @@ def generate(model, target):
     template = jinja_env.get_template('psychopy.template')
 
     with open(join(target.output, python_module_name(model.name)), 'w') as f:
-        f.write(template.render(m=model, target=target, color_map=color_map))
+        f.write(template.render(m=model, target=target,
+                response_map=response_map))

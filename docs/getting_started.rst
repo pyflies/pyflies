@@ -99,65 +99,48 @@ Quick start
     Press SPACE for the real block.
   }
 
-Description consists of a set of parsing rules which at the same time
-describe Python classes that will be used to instantiate object of your model.
+Screen definitions are instructions which are presented to the subject
+in between trial series.
 
-2. Create meta-model from textX language description:
+4. Define the structure of the experiment::
 
-.. code:: python
+  structure {
+    screen Practice
+    test Simon 1 practice randomize
+    screen Real
+    test Simon 10 randomize
+  }
 
-  from textx.metamodel import metamodel_from_file
-  hello_meta = metamodel_from_file('hello.tx')
+The structure gives the order and structure of execution. In its most basic
+form, shown here, it instantiates screens and tests in the right order. In this
+experiment, first a Practice screen will be displayed. After the user press
+ENTER key a test execution will be performed for 1 set of trials (a set consists
+of application of all possible conditions). In this example, there is 4 possible
+conditions thus this serie will have 4 trials. This trial serie will be of
+practice type which means that it should be removed from the results. A set of
+conditions will be randomized.
 
-3. Optionally export meta-model to dot (visualize your language abstract syntax):
+At this point an experiment is fully described but to be usable we have to
+generate the code for the target platform.
 
-.. code:: python
+5. Configure target generator::
 
-  from textx.export import metamodel_export
-  metamodel_export(hello_meta, 'hello_meta.dot')
+  target Expyriment {
+    output = "/home/igor/tmp/Simon/"
+    responses {
+      // see expyriment/misc/constants.py
+      left = K_LEFT
+      right = K_RIGHT
+    }
 
-|hello_meta.dot|
+This specification defines that `Expyriment` target library is used. The output
+folder where code should be generated is set. `responses` section maps abstract
+responses keywords (from the `conditions` section) to the platform specific
+responses (e.g. keys, buttons).
 
-You can see that for each rule from language description an appropriate
-Python class has been created. A BASETYPE hierarchy is built-in. Each
-meta-model has it.
+Multiple target configuration can be specified.
 
-4. Create some content (i.e. model) in your new language (``example.hello``):
-
-::
-
-  hello World, Solar System, Universe
-
-Your language syntax is also described by language rules from step 1.
-
-5. Use meta-model to create models from textual description:
-
-.. code:: python
-
-  example_hello_model = hello_meta.model_from_file('example.hello')
-
-Textual model ‘example.hello’ will be parsed and transformed to a plain
-Python object graph. Object classes are those defined by the meta-model.
-
-6. Optionally export model to dot to visualize it:
-
-.. code:: python
-
-  from textx.export import model_export
-  model_export(example_hello_model, 'example.dot')
-
-|example.dot|
-
-This is an object graph automatically constructed from ‘example.hello’
-file.
-
-7. Use your model: interpret it, generate code … It is a plain Python
-   graph of objects with plain attributes!
-
-.. _Arpeggio: https://github.com/igordejanovic/Arpeggio
-.. _Xtext: http://www.eclipse.org/Xtext/
-
-.. |hello_meta.dot| image:: https://raw.githubusercontent.com/igordejanovic/textX/master/examples/hello_world/hello_meta.dot.png
-.. |example.dot| image:: https://raw.githubusercontent.com/igordejanovic/textX/master/examples/hello_world/example.dot.png
+6. From the GUI choose `Generate code` action. The generator will produce code
+   for you experiment and the configured target platform.
 
 

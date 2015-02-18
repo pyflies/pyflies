@@ -1,4 +1,5 @@
 from textx.exceptions import TextXSemanticError
+from pyflies.generators import generator_names
 
 
 # Values for descriptive sizes
@@ -306,3 +307,14 @@ def pyflies_model_processor(model, metamodel):
                         e.correct = stimuli
                     elif exp.expression == "fixation":
                         e.fix = stimuli
+
+    # Check targets
+    for target in model.targets:
+        if target.name not in generator_names():
+            line, col = \
+                metamodel.parser.pos_to_linecol(target._position)
+            raise TextXSemanticError(
+                "Unknown target '{}' at {}. Valid targets are {}"
+                .format(target.name, (line, col), list(generator_names())),
+                line=line, col=col)
+

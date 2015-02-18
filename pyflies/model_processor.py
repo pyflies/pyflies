@@ -38,6 +38,7 @@ positions = {
 resolvable = {
     'duration': int,
     'start': int,
+    'radius': int,
     'color': str,
     'fillcolor': str,
     'text': str,
@@ -114,6 +115,11 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # Complex type. Create instance
                     def_val = metamodel['Start']()
                     def_val.value = defaults['start']
+                elif attr in ['from', 'to']:
+                    # Line parameters
+                    def_val = metamodel['Point']()
+                    def_val.x = 0
+                    def_val.y = 0
                 elif attr not in ['height', 'y']:
                     # This should not happen
                     assert 0, "No default for attribute '{}' test type '{}'"\
@@ -129,7 +135,7 @@ def resolve(stimulus, test_type, condition, metamodel):
                 val = t(val)
             except ValueError:
                 # Only size and position may be given descriptively
-                if p not in ['x', 'width']:
+                if p not in ['x', 'width', 'radius']:
                     line, col = \
                         metamodel.parser.pos_to_linecol(stimulus._position)
                     raise TextXSemanticError(
@@ -163,6 +169,18 @@ def resolve(stimulus, test_type, condition, metamodel):
                             raise TextXSemanticError(
                                 "Invalid size '{}' at {}"
                                 .format(width, (line, col)),
+                                line=line, col=col)
+                    elif p == 'radius':
+                        radius = getattr(s, 'radius')
+                        if radius in sizes:
+                            s.radius = sizes[radius]
+                        else:
+                            line, col = \
+                                metamodel.parser.pos_to_linecol(
+                                    stimulus._position)
+                            raise TextXSemanticError(
+                                "Invalid radius '{}' at {}"
+                                .format(radius, (line, col)),
                                 line=line, col=col)
                     else:
                         # This should not happen

@@ -169,6 +169,10 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
             # Wait for response for predefined period of time
             key, rt = event.waitKeys(timeStamped=clock)[0]
 
+            if key in ['escape', 'q']:
+                csvfile.close()
+                core.quit()
+
             # Write data
             data_row = [order]
             for var in header[1:-3]:

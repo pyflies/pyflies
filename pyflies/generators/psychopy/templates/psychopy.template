@@ -26,18 +26,34 @@ win = visual.Window(color="black", fullscr=True)
     {%- if s.shape == "circle" -%}
 visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- elif s.shape == "rectangle" -%}
-visual.Rect(win, pos=({{s.x/100}},{{s.y/100}}), lineColor="{{s.color}}",
-            fillColor="{{s.fillColor}}", lineWidth={{s.lineWidth}})
+([visual.Rect(win,
+             pos=({{s.x/100}},{{s.y/100}}),
+             lineColor="{{s.color}}",
+             fillColor="{{s.fillColor}}",
+             lineWidth={{s.lineWidth}})],
+ {{s|duration}}, {{s.keep}}, {{s.target}})
     {%- elif s.shape == "cross" -%}
-visual.Line(win, start=({{s.x/100-0.1}},{{s.y/100}}), end=({{s.x/100+0.1}}, {{s.y/100}}), lineColor="{{s.color}}"),
-visual.Line(win, start=({{s.x/100}},{{s.y/100-0.1}}), end=({{s.x/100}}, {{s.y/100+0.1}}), lineColor="{{s.color}}")
+([visual.Line(win,
+              start=({{s.x/100-0.1}},{{s.y/100}}),
+              end=({{s.x/100+0.1}}, {{s.y/100}}),
+              lineColor="{{s.color}}"), 
+  visual.Line(win,
+              start=({{s.x/100}},{{s.y/100-0.1}}),
+              end=({{s.x/100}}, {{s.y/100+0.1}}),
+              lineColor="{{s.color}}")],
+ {{s|duration}}, {{s.keep}}, {{s.target}})
     {%- endif %}
   {%- elif s._typename == "Text" -%}
-visual.TextStim(win, text="{{s.text}}", height={{s.size/100}}, color="{{s.color}}", pos=({{s.x}}, {{s.y}}))
+([visual.TextStim(win,
+                  text="{{s.text}}",
+                  height={{s.size/100}},
+                  color="{{s.color}}",
+                  pos=({{s.x}}, {{s.y}}))],
+ {{s|duration}}, {{s.keep}}, {{s.target}})
   {%- elif s._typename == "Image" %}
 visual.Picture("{{s.file}}")
   {%- elif s._typename == "Sound" %}
-sound.Sound({{s.frequency}})
+([sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}})
   {%- elif s._typename == "Audio" %}
 sound.Audio("{{s.file}}")
   {%- endif %}
@@ -48,12 +64,12 @@ sound.Audio("{{s.file}}")
   {%- if b._typename == "ScreenType" %}
 
 # Screen {{b.name}}
-screen_{{b.name}} = [visual.TextStim(
+screen_{{b.name}} = [([visual.TextStim(
     win,
     text="""
 {{b.content|striptabs}}
     """,
-    alignHoriz='center')]
+    alignHoriz='center')], 0, False, False )]
   {% elif b._typename == "TestType" %}
 
 # {{b.name}} test
@@ -122,15 +138,57 @@ def present_stimuli(stimuli):
     """
     Presents stimuli given in 'stimuli' list.
     """
-    for s in stimuli:
-        if isinstance(s, visual.ShapeStim) or isinstance(s, visual.TextStim):
-            s.draw()
-        elif isinstance(s, sound.Sound):
-            s.play()
-        else:
-            Exception('Unknown stimulus type - {}'.format(str(s)))
 
-    win.flip()
+    def get_duration(dur):
+        if isinstance(dur, tuple):
+            return random.randint(*dur)/1000
+        else:
+            if dur == 0:
+                return float('inf')
+            else:
+                return dur/1000
+
+    keep_list = []
+    clock = True
+    target_presented = False
+    for stims, duration, keep, target  in stimuli:
+        duration = get_duration(duration)
+        keep_list.append(stims)
+
+        for sgroup in keep_list:
+            for s in sgroup:
+                if isinstance(s, visual.ShapeStim) or isinstance(s, visual.TextStim):
+                    s.draw()
+                elif isinstance(s, sound.Sound):
+                    s.play()
+                else:
+                    Exception('Unknown stimulus type - {}'.format(str(s)))
+
+        if not keep:
+            keep_list.pop()
+
+        # If duration is less than 20ms continue.
+        if duration < 20:
+            continue
+
+        if target:
+            target_presented = True
+            clock = core.Clock()
+
+        # Show stimuli
+        win.flip()
+
+        # Wait for the duration. During wait check for key presses.
+        keypresses = event.waitKeys(maxWait=duration,
+                                   timeStamped=clock)
+        if keypresses:
+            # Currently we support only one keypress at the time.
+            key, time = keypresses[0]
+            if key in ['escape', 'q']:
+                core.quit()
+            return key, time
+
+    return None, None, None
 
 def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
               repeat, practice, randomize,
@@ -163,20 +221,11 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
             order += 1
             condidx = trial['condidx'] - 1
 
-            # Draw fixation first
+            # Present fixation first
             present_stimuli(fixation)
-            core.wait(1)
 
-            # Draw condition stimuli
-            present_stimuli(condition_stimuli[condidx])
-            clock = core.Clock()
-
-            # Wait for response for predefined period of time
-            key, rt = event.waitKeys(timeStamped=clock)[0]
-
-            if key in ['escape', 'q']:
-                csvfile.close()
-                core.quit()
+            # Present condition stimuli
+            key, rt = present_stimuli(condition_stimuli[condidx])
 
             # Write data
             data_row = [order]
@@ -209,8 +258,7 @@ event.waitKeys()
 
 run_block(exp_folder, "{{e.type.name}}", {{e.type.name}}_varNames,
           {{e.type.name}}_conditions, {{e.type.name}}_condition_stimuli,\
-          {{e.trials}}, {% if e.practice %}True{% else %}False{% endif %},
-          {% if e.randomize %}True{% else %}False{% endif %},
+          {{e.trials}}, {{e.practice}}, {{e.randomize}},
           {{e.type.name}}_fixation, {{e.type.name}}_error, {{e.type.name}}_correct)
     {%- endif %}
 {%- endfor %}

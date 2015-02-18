@@ -34,9 +34,19 @@ def generate(model, target):
     def striptabs(s):
         return re.sub(r'^[ \t]+', '', s, flags=re.M)
 
+    def duration(s):
+        if type(s.duration) is int:
+            print(s.__class__.__name__)
+            print(s.shape)
+        if s.duration.value:
+            return str(s.duration.value)
+        else:
+            return "(%d, %d)" % (s.duration._from, s.duration.to)
+
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(join(dirname(__file__), 'templates')))
     jinja_env.filters['striptabs'] = striptabs
+    jinja_env.filters['duration'] = duration
     template = jinja_env.get_template('psychopy.template')
 
     with open(join(target.output, python_module_name(model.name)), 'w') as f:

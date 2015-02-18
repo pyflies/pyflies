@@ -42,7 +42,7 @@ def generate(model, target):
     jinja_env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(join(dirname(__file__), 'templates')))
     jinja_env.filters['striptabs'] = striptabs
-    template = jinja_env.get_template('expyriment.py.template')
+    template = jinja_env.get_template('expyriment.template')
 
     with open(join(target.output, 'test.py'), 'w') as f:
         f.write(template.render(m=model, target=target, color_map=color_map))

@@ -132,6 +132,8 @@ def resolve(stimulus, test_type, condition, metamodel):
                 val = getattr(s, p)
                 try:
                     val = t(val)
+                    # Convert value to proper type.
+                    setattr(s, p, val)
                 except TypeError:
                     # If not string or a number than it is some complex type
                     pass

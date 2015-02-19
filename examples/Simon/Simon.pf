@@ -17,15 +17,15 @@ test Simon {
 	}
 	
 	stimuli{
-		all: shape(rectangle, position position, color color)
+		all: shape(rectangle, position position, color color, fillColor color)
 		/* Or in extended form
 		1: shape(rectangle, position left, color green)
 		2: shape(rectangle, position left, color blue)
 		3: shape(rectangle, position right, color green)
 		4: shape(rectangle, position right, color blue)
 		*/
-		error: sound(1000)
-		//correct: sound(500)
+		error: sound(1000, duration 300)
+		correct: sound(500, duration 300)
 		fixation: shape(cross)
 	}
 }

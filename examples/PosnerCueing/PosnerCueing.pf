@@ -22,6 +22,7 @@ test Posner {
 				shape(rectangle, duration [1000, 1500], position right, keep)
 				shape(rectangle, duration [1000, 1500], position cue, fillColor black, lineWidth 20, keep)
 				shape(cross, target, position position)
+		error: sound(1000, duration 300)
 	}
 }
 

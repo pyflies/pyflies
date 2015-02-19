@@ -19,7 +19,7 @@ test EriksenFlanker {
 		3: image("images/right-incongruent.png")
 		4: image("images/right-congruent.png")
 		error: sound(1000, duration 300)
-		fixation: shape(cross, duration 1000 3000) 
+		fixation: shape(cross, duration [1000, 3000]) 
 
   		duration 5000		
 	}
@@ -69,6 +69,7 @@ structure {
 
 }
 
+/*
 target Expyriment {
   // Target folder where test should be generated
   output = "/home/igor/tmp/eriksen/"
@@ -76,5 +77,16 @@ target Expyriment {
   responses {
     left = K_LEFT
     right = K_RIGHT
+  }  
+}
+*/
+
+target PsychoPy {
+  // Target folder where test should be generated
+  output = "/home/igor/tmp/eriksenPsycho/"
+
+  responses {
+    left = left
+    right = right
   }  
 }

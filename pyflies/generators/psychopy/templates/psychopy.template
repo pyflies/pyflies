@@ -51,7 +51,10 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
                   pos=({{s.x}}, {{s.y}}))],
  {{s|duration}}, {{s.keep}}, {{s.target}}]
   {%- elif s._typename == "Image" %}
-visual.Picture("{{s.file}}")
+[[visual.ImageStim(win,
+                 image="{{s.file}}",
+                 pos=({{s.x}}, {{s.y}}))],
+ {{s|duration}}, {{s.keep}}, {{s.target}}]
   {%- elif s._typename == "Sound" %}
 [[sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}}]
   {%- elif s._typename == "Audio" %}
@@ -169,7 +172,8 @@ def present_stimuli(stimuli):
         for sgroup in keep_list:
             for s in sgroup:
                 if isinstance(s, visual.ShapeStim) \
-                        or isinstance(s, visual.TextStim):
+                        or isinstance(s, visual.TextStim) \
+                        or isinstance(s, visual.ImageStim):
                     s.draw()
                 elif isinstance(s, sound.Sound):
                     s.secs = duration

@@ -26,14 +26,14 @@ win = visual.Window(color="black", fullscr=True)
     {%- if s.shape == "circle" -%}
 visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_map[s.color]}}, position=({{s.x}}, {{s.y}}))
     {%- elif s.shape == "rectangle" -%}
-([visual.Rect(win,
+[[visual.Rect(win,
              pos=({{s.x/100}},{{s.y/100}}),
              lineColor="{{s.color}}",
              fillColor="{{s.fillColor}}",
-             lineWidth={{s.lineWidth}})],
- {{s|duration}}, {{s.keep}}, {{s.target}})
+             lineWidth={{s.lineWidth+3}})],
+ {{s|duration}}, {{s.keep}}, {{s.target}}]
     {%- elif s.shape == "cross" -%}
-([visual.Line(win,
+[[visual.Line(win,
               start=({{s.x/100-0.1}},{{s.y/100}}),
               end=({{s.x/100+0.1}}, {{s.y/100}}),
               lineColor="{{s.color}}"), 
@@ -41,19 +41,19 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
               start=({{s.x/100}},{{s.y/100-0.1}}),
               end=({{s.x/100}}, {{s.y/100+0.1}}),
               lineColor="{{s.color}}")],
- {{s|duration}}, {{s.keep}}, {{s.target}})
+ {{s|duration}}, {{s.keep}}, {{s.target}}]
     {%- endif %}
   {%- elif s._typename == "Text" -%}
-([visual.TextStim(win,
+[[visual.TextStim(win,
                   text="{{s.text}}",
                   height={{s.size/100}},
                   color="{{s.color}}",
                   pos=({{s.x}}, {{s.y}}))],
- {{s|duration}}, {{s.keep}}, {{s.target}})
+ {{s|duration}}, {{s.keep}}, {{s.target}}]
   {%- elif s._typename == "Image" %}
 visual.Picture("{{s.file}}")
   {%- elif s._typename == "Sound" %}
-([sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}})
+[[sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}}]
   {%- elif s._typename == "Audio" %}
 sound.Audio("{{s.file}}")
   {%- endif %}
@@ -64,12 +64,12 @@ sound.Audio("{{s.file}}")
   {%- if b._typename == "ScreenType" %}
 
 # Screen {{b.name}}
-screen_{{b.name}} = [([visual.TextStim(
+screen_{{b.name}} = [[[visual.TextStim(
     win,
     text="""
 {{b.content|striptabs}}
     """,
-    alignHoriz='center')], 0, False, False )]
+    alignHoriz='center')], 0, False, False ]]
   {% elif b._typename == "TestType" %}
 
 # {{b.name}} test
@@ -139,6 +139,9 @@ def present_stimuli(stimuli):
     Presents stimuli given in 'stimuli' list.
     """
 
+    if not stimuli:
+        return None, 0, False
+
     def get_duration(dur):
         if isinstance(dur, tuple):
             return random.randint(*dur)/1000
@@ -148,18 +151,28 @@ def present_stimuli(stimuli):
             else:
                 return dur/1000
 
+    # Check if there is target stimuli. If not mark the first one as
+    # target
+    for stims, duration, keep, target in stimuli:
+        if target:
+            break
+    else:
+        stimuli[0][3] = True
+
     keep_list = []
-    clock = True
     target_presented = False
+    clock = core.Clock()
     for stims, duration, keep, target  in stimuli:
         duration = get_duration(duration)
         keep_list.append(stims)
 
         for sgroup in keep_list:
             for s in sgroup:
-                if isinstance(s, visual.ShapeStim) or isinstance(s, visual.TextStim):
+                if isinstance(s, visual.ShapeStim) \
+                        or isinstance(s, visual.TextStim):
                     s.draw()
                 elif isinstance(s, sound.Sound):
+                    s.secs = duration
                     s.play()
                 else:
                     Exception('Unknown stimulus type - {}'.format(str(s)))
@@ -168,15 +181,17 @@ def present_stimuli(stimuli):
             keep_list.pop()
 
         # If duration is less than 20ms continue.
-        if duration < 20:
+        if duration < 0.02:
             continue
-
-        if target:
-            target_presented = True
-            clock = core.Clock()
 
         # Show stimuli
         win.flip()
+
+        # If this stimulus is marked as target create
+        # clock instance to measure time from the presentation of this stimulus.
+        if target:
+            target_presented = True
+            clock = core.Clock()
 
         # Wait for the duration. During wait check for key presses.
         keypresses = event.waitKeys(maxWait=duration,
@@ -186,13 +201,14 @@ def present_stimuli(stimuli):
             key, time = keypresses[0]
             if key in ['escape', 'q']:
                 core.quit()
-            return key, time
+            return key, time if target_presented else 0, not target_presented
 
-    return None, None, None
+    return None, 0, True
+
 
 def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
               repeat, practice, randomize,
-              fixation, error, correct):
+              fixation_stim, error_stim, correct_stim):
     """
     Runs one block of trials for the given parameters.
     """
@@ -206,7 +222,8 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
         trials.extend(cond_blk)
 
     timestr = time.strftime("%Y%m%d-%H%M%S")
-    fileName = '%s-%s%s.csv' % (test_name, "practice-" if practice else "",timestr)
+    fileName = '%s-%s%s.csv' % (test_name, "practice-"
+                                if practice else "", timestr)
     csvfile = open(os.path.join(folder, fileName), 'wt')
     try:
         writer = csv.writer(csvfile)
@@ -222,24 +239,31 @@ def run_block(folder, test_name, cond_vars, conditions, condition_stimuli,
             condidx = trial['condidx'] - 1
 
             # Present fixation first
-            present_stimuli(fixation)
+            key, rt, error = present_stimuli(fixation_stim)
 
-            # Present condition stimuli
-            key, rt = present_stimuli(condition_stimuli[condidx])
+            # If key is pressed during fixation it is an error condition.
+            if key:
+                error = True
+                rt = 0
+            else:
+                # Present condition stimuli
+                key, rt, error = present_stimuli(condition_stimuli[condidx])
+
+                error = error or (key != trial['response'])
 
             # Write data
             data_row = [order]
             for var in header[1:-3]:
                 data_row.append(trial[var])
-            data_row.extend([key, rt * 1000, int(key != trial['response'])])
+            data_row.extend([key, rt * 1000, int(error)])
             writer.writerow(data_row)
             print('key:', key, rt)
 
             # If error response present error stimuli
-            if key != trial['response']:
-                present_stimuli(error)
+            if error:
+                present_stimuli(error_stim)
             else:
-                present_stimuli(correct)
+                present_stimuli(correct_stim)
     finally:
         csvfile.close()
 
@@ -253,12 +277,11 @@ os.mkdir(exp_folder)
     {%- if e._typename == "ScreenInstance" %}
 
 present_stimuli(screen_{{e.type.name}})
-event.waitKeys()
     {%- elif e._typename == "TestInstance" %}
 
 run_block(exp_folder, "{{e.type.name}}", {{e.type.name}}_varNames,
-          {{e.type.name}}_conditions, {{e.type.name}}_condition_stimuli,\
-          {{e.trials}}, {{e.practice}}, {{e.randomize}},
+          {{e.type.name}}_conditions, {{e.type.name}}_condition_stimuli,
+          {{e.trials}}, {{e.practice}}, {{e.randomize}},  # trials, practice, randomize
           {{e.type.name}}_fixation, {{e.type.name}}_error, {{e.type.name}}_correct)
     {%- endif %}
 {%- endfor %}

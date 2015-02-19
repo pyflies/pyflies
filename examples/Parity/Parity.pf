@@ -24,9 +24,10 @@ test Parity {
 	
 	stimuli{
 		all: text(number)
-		error: sound(1000)
-		//correct: sound(500)
-		//fixation: shape(cross)
+		error: sound(1000, duration 300)
+		correct: sound(500, duration 300)
+		fixation: shape(cross)
+		
 	}
 }
 
@@ -58,9 +59,10 @@ structure {
 	screen Intro
 	test Parity 1 practice randomize
 	screen Real
-	test Parity 1 randomize
+	test Parity 2 randomize
 }
 
+/*
 target Expyriment {
   output = "/home/igor/tmp/Parity/"
   responses {
@@ -68,5 +70,14 @@ target Expyriment {
     odd = K_LEFT
     even = K_RIGHT
     next = K_RETURN
+  }
+}
+*/
+
+target PsychoPy {
+  output = "/home/igor/tmp/ParityPsycho/"
+  responses {
+    odd = left
+    even = right
   }
 }

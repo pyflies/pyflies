@@ -31,7 +31,7 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
              lineColor="{{s.color}}",
              fillColor="{{s.fillColor}}",
              lineWidth={{s.lineWidth+3}})],
- {{s|duration}}, {{s.keep}}, {{s.target}}]
+ {{s|duration}}, {{s.keep}}, {{s.target}}]  # duration, keep, target
     {%- elif s.shape == "cross" -%}
 [[visual.Line(win,
               start=({{s.x/100-0.1}},{{s.y/100}}),
@@ -41,7 +41,7 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
               start=({{s.x/100}},{{s.y/100-0.1}}),
               end=({{s.x/100}}, {{s.y/100+0.1}}),
               lineColor="{{s.color}}")],
- {{s|duration}}, {{s.keep}}, {{s.target}}]
+ {{s|duration}}, {{s.keep}}, {{s.target}}]  # duration, keep, target
     {%- endif %}
   {%- elif s._typename == "Text" -%}
 [[visual.TextStim(win,
@@ -49,14 +49,14 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
                   height={{s.size/100}},
                   color="{{s.color}}",
                   pos=({{s.x}}, {{s.y}}))],
- {{s|duration}}, {{s.keep}}, {{s.target}}]
+ {{s|duration}}, {{s.keep}}, {{s.target}}]  # duration, keep, target
   {%- elif s._typename == "Image" %}
 [[visual.ImageStim(win,
                  image="{{s.file}}",
                  pos=({{s.x}}, {{s.y}}))],
- {{s|duration}}, {{s.keep}}, {{s.target}}]
+ {{s|duration}}, {{s.keep}}, {{s.target}}]  # duration, keep, target
   {%- elif s._typename == "Sound" %}
-[[sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}}]
+[[sound.Sound({{s.frequency}})], {{s|duration}}, False, {{s.target}}]  # duration, keep, target
   {%- elif s._typename == "Audio" %}
 sound.Audio("{{s.file}}")
   {%- endif %}
@@ -99,6 +99,7 @@ screen_{{b.name}} = [[[visual.TextStim(
 # Stimuli for each condition of {{b.name}} test
 {{b.name}}_condition_stimuli = [
     {%- for cond in b.conditions.conditions %}
+        # Condition {{loop.index}}
         [
         {% for stimuli in cond.stimuli_for_cond -%}
             {%- for s in stimuli -%}

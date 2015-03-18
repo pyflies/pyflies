@@ -19,15 +19,43 @@ from collections import namedtuple
 from expyriment import design, control, stimuli, io, misc
 
 
-class Block(list):
-    def __init__(self):
-        super(list, self).__init__()
-        # Is this block a test
-        self._test = True
-        # Standard stimuli
-        self._fix = []
-        self._error = []
-        self._correct = []
+def get_duration(dur):
+    if isinstance(dur, tuple):
+        return randint(*dur)/1000
+    else:
+        if dur == 0:
+            return float('inf')
+        else:
+            return dur/1000
+
+
+class StimModel(object):
+    """
+    Models a pyFlies stimulus. One pyFlies stimulus may be mapped
+    to one or more target stimuli.
+    """
+    def __init__(self, stimuli=None, duration=3000, keep=False, target=True):
+        self.stimuli = stimuli if stimuli else []
+        self.keep = keep
+        self.target = target
+        self.duration = duration
+
+
+class BlockType(object):
+    """
+    Models a block type from the pyFlies model (either Test or Screen).
+    """
+    def __init__(self, conditions, stimuli_for_cond, fix, error, correct):
+        self.conditions = conditions
+
+        # A list of list of StimModel objects.
+        # Paired index wise with the self.conditions list
+        self.stimuli_for_cond = stimuli_for_cond
+
+        self.fix = fix
+        self.error = error
+        self.correct = correct
+
 
 # Response map
 response_map = {
@@ -61,15 +89,117 @@ s = stimuli.Tone({{s.dmin}}, {{s.frequency}})
   {%- elif s._typename == "Audio" %}
 s = stimuli.Audio("{{s.file}}")
   {%- endif %}
-s.dmin = {{s.dmin}}
-s.dmax = {{s.dmax}}
+s.duration = {{s|duration}}
+s.keep = {{s.keep}}
+s.target = {{s.target}}
 {%- endmacro %}
+
+
+{% for b in m.blocks -%}
+  {%- if b._typename == "ScreenType" %}
+
+# Screen {{b.name}}
+screen_{{b.name}} = [[[
+    stimuli.TextScreen("Instructions", """{{b.content|striptabs}}"""),
+    0, False, False ]]
+  {% elif b._typename == "TestType" %}
+
+# {{b.name}} test
+{{b.name}}_conditions = [
+    {%- for cond in b.conditions.conditions %}
+    {
+        'condidx': {{loop.index}},
+        {%- for varValue in cond.varValues %}
+         {%- if b.conditions.varNames[loop.index0] == 'response' %}
+        'response': misc.constants.{{response_map[varValue]}},
+         {%- else %}
+        '{{b.conditions.varNames[loop.index0]}}': '{{varValue}}',
+         {%- endif %}
+        {%- endfor %}
+    },
+    {%- endfor %}
+]
+
+{{b.name}}_varNames = [
+    {% for var in b.conditions.varNames %}'{{var}}'{% if not loop.last %}, {% endif %}
+    {%- endfor %}
+]
+
+# Stimuli for each condition of {{b.name}} test
+{{b.name}}_condition_stimuli = [
+    {%- for cond in b.conditions.conditions %}
+        # Stimuli for condtition {{loop.index}}
+        [
+        {%- for stimuli in cond.stimuli_for_cond -%}
+            {%- for s in stimuli -%}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+            {%- endfor -%}
+        {% endfor %}
+        ]{% if not loop.last %},
+        {%- endif -%}
+    {%- endfor %}
+    ]
+
+# Fixation stimuli for {{b.name}}
+{{b.name}}_fixation = [
+        {%- for s in b.fix %}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+        {%- endfor %}
+]
+
+# Error stimuli for {{b.name}}
+{{b.name}}_error = [
+        {%- for s in b.error %}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+        {%- endfor %}
+]
+
+# Correct stimuli for {{b.name}}
+{{b.name}}_correct = [
+        {%- for s in b.correct %}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+        {%- endfor %}
+]
+  {%- endif %}
+{%- endfor %}
+
+
+
 
 # Create experiment
 exp = design.Experiment("{{m.name}}")
 
 # Initialize an Experiment
 control.initialize(exp)
+
+        {%- for stimuli in cond.stimuli_for_cond -%}
+            {%- for s in stimuli -%}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+            {%- endfor -%}
+        {% endfor %}
+
+{%- for t in m.structure %}
+block = Block()
+    {%- if t.type._typename == "ScreenType" %}
+trial = design.Trial()
+s = stimuli.TextScreen("Instructions", """{{b.content|striptabs}}""")
+s.preload()
+trial.add_stimulus(s)
+block.add_block(trial)
+    {%- elif t.type._typename == "TestType" %}
+        {%- for stimuli in cond.stimuli_for_cond -%}
+            {%- for s in stimuli -%}
+            {{ stimulus (s) }}{% if not loop.last %},
+            {% endif %}
+            {%- endfor -%}
+        {% endfor %}
+    {%- endif %}
+{% endfor %}
 
 {% for b in m.blocks -%}
   {%- if b._typename == "TestType" %}
@@ -107,31 +237,31 @@ t.add_stimulus(s)
       {%- endif %}
     {%- endfor %}
 
-    {%- if b._error %}
+    {%- if b.error %}
 
 # Stimuli for signalizing erroneous response
-      {%- for s in b._error %}
+      {%- for s in b.error %}
         {{- stimulus(s) }}
 s.preload()
-{{b.name}}._error.append(s)
+{{b.name}}.error.append(s)
       {%- endfor %}
     {%- endif %}
-    {%- if b._correct %}
+    {%- if b.correct %}
 
 # Stimuli for signalizing correct response
-      {%- for s in b._correct %}
+      {%- for s in b.correct %}
         {{- stimulus(s) }}
 s.preload()
-{{b.name}}._correct.append(s)
+{{b.name}}.correct.append(s)
       {%- endfor %}
     {%- endif %}
-    {%- if b._fix %}
+    {%- if b.fix %}
 
 # Fixation stimuli
-      {%- for s in b._fix %}
+      {%- for s in b.fix %}
         {{- stimulus(s) }}
 s.preload()
-{{b.name}}._fix.append(s)
+{{b.name}}.fix.append(s)
       {%- endfor %}
     {%- endif %}
   {%- endif %}
@@ -144,7 +274,7 @@ block_param_map = {}
 def create_instance(b, name, dmin=None, dmax=None, repeat=1, practice=False, test=False):
     block = design.Block(name)
     block_param_map[name] = BlockParam(
-        practice=practice, test=test, dmin=dmin, dmax=dmax, fix=b._fix, error=b._error, correct=b._correct)
+        practice=practice, test=test, dmin=dmin, dmax=dmax, fix=b.fix, error=b.error, correct=b.correct)
     for t in b:
         block.add_trial(t, copies=repeat)
     block.shuffle_trials()
@@ -212,7 +342,7 @@ for block in exp.blocks:
         if bparam and bparam.fix:
             for s in bparam.fix:
                 s.present()
-                exp.clock.wait(randint(s.dmin, s.dmax))
+                exp.clock.wait(get_duration(s.duration))
                 # FIXME: Stimuli can't be presented concurrently in Expyriment
                 break
 
@@ -221,7 +351,7 @@ for block in exp.blocks:
 
         for stimulus in trial.stimuli:
             stimulus.present()
-            #exp.clock.wait(randint(stimulus.dmin, stimulus.dmax))
+            #exp.clock.wait(get_duration(stimulus.duration))
             # FIXME: Stimuli can't be presented concurrently in Expyriment
             break
 

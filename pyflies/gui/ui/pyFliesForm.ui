@@ -101,6 +101,9 @@
    </property>
   </action>
   <action name="actionVisalizationMode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="icon">
     <iconset resource="resources.qrc">
      <normaloff>:/icons/icons/vizmode.png</normaloff>:/icons/icons/vizmode.png</iconset>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'pyflies/gui/ui/pyFliesForm.ui'
 #
-# Created: Thu Mar 19 11:09:53 2015
+# Created: Thu Mar 19 22:10:33 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -60,6 +60,7 @@ class Ui_pyFliesWindow(object):
         self.actionSave.setIcon(icon2)
         self.actionSave.setObjectName(_fromUtf8("actionSave"))
         self.actionVisalizationMode = QtGui.QAction(pyFliesWindow)
+        self.actionVisalizationMode.setCheckable(True)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/vizmode.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionVisalizationMode.setIcon(icon3)

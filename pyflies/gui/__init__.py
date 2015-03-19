@@ -9,7 +9,7 @@ from textx.exceptions import TextXError
 from pyflies.lang.pyflies import pyflies_mm
 from .ui.pyFliesForm import Ui_pyFliesWindow
 from .modelviewer import ModelGraphView, ModelGraphScene
-from .sourceview import PyFliesSourceView
+from .codeeditor import CodeEditor
 from pyflies.exceptions import PyFliesException
 from pyflies.gui.utils import show_error, show_info
 from pyflies.generators import generator_names, generate
@@ -41,7 +41,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         splitter = QtGui.QSplitter()
 
         # Create code editor
-        editor = QtGui.QPlainTextEdit()
+        editor = CodeEditor()
         editor.setTabStopWidth(40)
 
         splitter.addWidget(editor)

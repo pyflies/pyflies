@@ -1,5 +1,6 @@
 HEADER = '''
 digraph pyflies {
+  graph  [ dpi = 300 ];
   rankdir=TD;
   node[
       shape=record,

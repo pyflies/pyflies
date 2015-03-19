@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 import os
 import sys
+import uuid
+from subprocess import call
 from PyQt4 import QtGui, QtCore
 from textx.exceptions import TextXError
+from textx.export import model_export
 
 # from gi.repository import Gtk, GtkSource, GObject
 
@@ -10,6 +13,7 @@ from pyflies.lang.pyflies import pyflies_mm
 from .ui.pyFliesForm import Ui_pyFliesWindow
 from .modelviewer import ModelGraphView, ModelGraphScene
 from .codeeditor import CodeEditor
+from pyflies.export import custom_export
 from pyflies.exceptions import PyFliesException
 from pyflies.gui.utils import show_error, show_info
 from pyflies.generators import generator_names, generate
@@ -23,6 +27,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     def __init__(self):
         super(PyFliesWindow, self).__init__()
         self.setupUi(self)
+        self.resize(1000, 600)
 
     @QtCore.pyqtSlot()
     def on_actionNew_triggered(self):
@@ -47,6 +52,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         splitter.addWidget(editor)
         splitter.addWidget(view)
 
+        splitter.setSizes([200, 150])
+
         self.tabWidget.addTab(splitter, filename)
         self.tabWidget.setCurrentWidget(splitter)
 
@@ -70,16 +77,15 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionOpen_triggered(self):
-        print('Open')
         filename = QtGui.QFileDialog.getOpenFileName(
             self, 'Open Experiment', '', 'pyFlies experiments (*.pf)')
-        print(filename)
 
         # Parse input
         if filename:
             self.new_tab(os.path.basename(filename))
             self.current_editor().setPlainText(open(filename).read())
-            self.update_graph()
+            self.update_model()
+            self.current_graphview().fit_in_view()
 
     def update_model(self):
         """
@@ -87,9 +93,25 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         update statusbar.
         """
         try:
-            model = pyflies_mm.model_from_str(self.current_editor().plainText)
+            model = pyflies_mm.model_from_str(
+                self.current_editor().toPlainText())
+            self.current_tab().model = model
+
+            dot_file = str(uuid.uuid4())
+            # if self.vis_type_custom:
+            custom_export(model, dot_file)
+            # else:
+                # model_export(model, dot_file)
+
+            svg_file = "%s.jpg" % dot_file
+            call(["dot", "-Tjpg", "-O", dot_file])
+            self.current_graphview().scene().load_svg(svg_file)
+            # os.remove(svg_file)
+            # os.remove(dot_file)
+
         except TextXError as e:
             self.current_editor().highlight_error(e.line)
+            # TODO: Write error in statusbar
 
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
@@ -102,6 +124,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     @QtCore.pyqtSlot()
     def on_actionZoomFit_triggered(self):
         print('Zoom Fit')
+        self.current_graphview().fit_in_view()
 
     @QtCore.pyqtSlot()
     def on_actionGenerateCode_triggered(self):

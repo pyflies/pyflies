@@ -11,8 +11,10 @@ from pyflies.export import custom_export
 class ModelGraphScene(QtGui.QGraphicsScene):
 
     def load_svg(self, svg_file):
-        item = QtSvg.QGraphicsSvgItem(svg_file)
-        self.addItem(item)
+        # item = QtSvg.QGraphicsSvgItem(svg_file)
+        self.clear()
+        item = QtGui.QPixmap(svg_file)
+        self.addPixmap(item)
 
 
 class ModelGraphView(QtGui.QGraphicsView):
@@ -50,7 +52,9 @@ class ModelGraphView(QtGui.QGraphicsView):
         """
         Fit in view
         """
+        self.ensureVisible(self.scene().itemsBoundingRect())
         self.fitInView(self.scene().itemsBoundingRect(), Qt.KeepAspectRatio)
+
 
 
 # class ModelGraphViewer(Gtk.DrawingArea):

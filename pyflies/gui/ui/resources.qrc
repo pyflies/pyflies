@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/close.png</file>
+    <file>icons/Generate.png</file>
+    <file>icons/new.png</file>
+    <file>icons/open.png</file>
+    <file>icons/save.png</file>
+    <file>icons/vizmode.png</file>
+    <file>icons/zoomfit.png</file>
+  </qresource>
+</RCC>

@@ -106,8 +106,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             svg_file = "%s.jpg" % dot_file
             call(["dot", "-Tjpg", "-O", dot_file])
             self.current_graphview().scene().load_svg(svg_file)
-            # os.remove(svg_file)
-            # os.remove(dot_file)
+            os.remove(svg_file)
+            os.remove(dot_file)
 
         except TextXError as e:
             self.current_editor().highlight_error(e.line)

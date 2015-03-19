@@ -20,25 +20,18 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
     """
     # Python keywords
     keywords = [
-        'and', 'assert', 'break', 'class', 'continue', 'def',
-        'del', 'elif', 'else', 'except', 'exec', 'finally',
-        'for', 'from', 'global', 'if', 'import', 'in',
-        'is', 'lambda', 'not', 'or', 'pass', 'print',
-        'raise', 'return', 'try', 'while', 'yield',
-        'None', 'True', 'False',
+        'and', 'or',
+        'experiment', 'test', 'conditions', 'stimuli', 'screen', 'target',
+        'output', 'responses',
+        'all', 'fixation', 'error',
+        'shape', 'sound', 'image',
+        'duration', 'position', 'keep', 'fillColor', 'lineWidth',
+        'practice', 'randomize'
     ]
 
     # Python operators
     operators = [
-        '=',
-        # Comparison
-        '==', '!=', '<', '<=', '>', '>=',
-        # Arithmetic
-        '\+', '-', '\*', '/', '//', '\%', '\*\*',
-        # In-place
-        '\+=', '-=', '\*=', '/=', '\%=',
-        # Bitwise
-        '\^', '\|', '\&', '\~', '>>', '<<',
+            '='
     ]
 
     # Python braces
@@ -67,21 +60,21 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
 
         # All other rules
         rules += [
-            # 'self'
-            (r'\bself\b', 0, STYLES['self']),
-
             # Double-quoted string, possibly containing escape sequences
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES['string']),
             # Single-quoted string, possibly containing escape sequences
             (r"'[^'\\]*(\\.[^'\\]*)*'", 0, STYLES['string']),
 
-            # 'def' followed by an identifier
-            (r'\bdef\b\s*(\w+)', 1, STYLES['defclass']),
+            # 'test' followed by an identifier
+            (r'\btest\b\s*(\w+)', 1, STYLES['def']),
             # 'class' followed by an identifier
-            (r'\bclass\b\s*(\w+)', 1, STYLES['defclass']),
+            (r'\bscreen\b\s*(\w+)', 1, STYLES['def']),
 
-            # From '#' until a newline
-            (r'#[^\n]*', 0, STYLES['comment']),
+            # From '//' until a newline
+            (r'\/\/[^\n]*', 0, STYLES['comment']),
+
+            # From '/*' until '*/'
+            (r'\/\*.*\*\/', 0, STYLES['comment']),
 
             # Numeric literals
             (r'\b[+-]?[0-9]+[lL]?\b', 0, STYLES['numbers']),
@@ -177,7 +170,7 @@ STYLES = {
     'keyword': format('blue'),
     'operator': format('red'),
     'brace': format('darkGray'),
-    'defclass': format('black', 'bold'),
+    'def': format('black', 'bold'),
     'string': format('magenta'),
     'string2': format('darkMagenta'),
     'comment': format('darkGreen', 'italic'),

@@ -1,3 +1,4 @@
+import re
 from PyQt4 import QtGui, QtCore
 
 
@@ -22,6 +23,7 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
     keywords = [
         'and', 'or',
         'experiment', 'test', 'conditions', 'stimuli', 'screen', 'target',
+        'structure',
         'output', 'responses',
         'all', 'fixation', 'error',
         'shape', 'sound', 'image',
@@ -43,10 +45,11 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
         QtGui.QSyntaxHighlighter.__init__(self, document)
 
         # Multi-line strings (expression, flag, style)
-        # FIXME: The triple-quotes in these two lines will mess up the
-        # syntax highlighting from this point onward
-        self.tri_single = (QtCore.QRegExp("'''"), 1, STYLES['string2'])
-        self.tri_double = (QtCore.QRegExp('"""'), 2, STYLES['string2'])
+        self. multi_line_rules = [
+            (QtCore.QRegExp("'''"), QtCore.QRegExp("'''"), 1,
+             STYLES['string2']),
+            (QtCore.QRegExp('"""'), QtCore.QRegExp('"""'), 2,
+             STYLES['string2'])]
 
         rules = []
 
@@ -60,6 +63,10 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
 
         # All other rules
         rules += [
+            # Tripple quoted strings
+            (r"'''(.|\n)*'''", 0, STYLES['string']),
+            (r'"""(.|\n)*"""', 0, STYLES['string']),
+
             # Double-quoted string, possibly containing escape sequences
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES['string']),
             # Single-quoted string, possibly containing escape sequences
@@ -67,14 +74,16 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
 
             # 'test' followed by an identifier
             (r'\btest\b\s*(\w+)', 1, STYLES['def']),
-            # 'class' followed by an identifier
+            # 'screen' followed by an identifier
             (r'\bscreen\b\s*(\w+)', 1, STYLES['def']),
+            # 'target' followed by an identifier
+            (r'\btarget\b\s*(\w+)', 1, STYLES['def']),
 
             # From '//' until a newline
             (r'\/\/[^\n]*', 0, STYLES['comment']),
 
             # From '/*' until '*/'
-            (r'\/\*.*\*\/', 0, STYLES['comment']),
+            (r'\/\*(.|\n)*?\*\/', 0, STYLES['comment']),
 
             # Numeric literals
             (r'\b[+-]?[0-9]+[lL]?\b', 0, STYLES['numbers']),
@@ -83,32 +92,28 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
              STYLES['numbers']),
         ]
 
-        # Build a QRegExp for each pattern
-        self.rules = [(QtCore.QRegExp(pat), index, fmt)
+        # Build a regex object for each pattern
+        self.rules = [(re.compile(pat, re.DOTALL), index, fmt)
                       for (pat, index, fmt) in rules]
 
     def highlightBlock(self, text):
         """Apply syntax highlighting to the given block of text.
         """
+        print('Formating:', text)
         # Do other syntax formatting
-        for expression, nth, format in self.rules:
-            index = expression.indexIn(text, 0)
+        for regex, nth, format in self.rules:
+            for match in regex.finditer(text):
+                length = len(match.group(nth))
+                self.setFormat(match.start(nth), length, format)
 
-            while index >= 0:
-                # We actually want the index of the nth match
-                index = expression.pos(nth)
-                length = len(expression.cap(nth))
-                self.setFormat(index, length, format)
-                index = expression.indexIn(text, index + length)
+        # Do multi-line rules
+        for multi_line_rule in self.multi_line_rules:
+            in_multiline = self.match_multiline(text, *multi_line_rule)
+            if in_multiline:
+                break
 
-        self.setCurrentBlockState(0)
-
-        # Do multi-line strings
-        in_multiline = self.match_multiline(text, *self.tri_single)
-        if not in_multiline:
-            in_multiline = self.match_multiline(text, *self.tri_double)
-
-    def match_multiline(self, text, delimiter, in_state, style):
+    def match_multiline(self, text, start_delimiter, end_delimiter,
+                        in_state, style):
         """Do highlighting of multi-line strings. ``delimiter`` should be a
         ``QRegExp`` for triple-single-quotes or triple-double-quotes, and
         ``in_state`` should be a unique integer to represent the corresponding
@@ -121,32 +126,29 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
             add = 0
         # Otherwise, look for the delimiter on this line
         else:
-            start = delimiter.indexIn(text)
+            start = start_delimiter.indexIn(text)
             # Move past this match
-            add = delimiter.matchedLength()
+            add = start_delimiter.matchedLength()
 
         # As long as there's a delimiter match on this line...
         while start >= 0:
             # Look for the ending delimiter
-            end = delimiter.indexIn(text, start + add)
+            end = end_delimiter.indexIn(text, start + add)
             # Ending delimiter on this line?
             if end >= add:
-                length = end - start + add + delimiter.matchedLength()
+                length = end - start + add + end_delimiter.matchedLength()
                 self.setCurrentBlockState(0)
             # No; multi-line string
             else:
                 self.setCurrentBlockState(in_state)
-                length = text.length() - start + add
+                length = len(text) - start + add
             # Apply formatting
             self.setFormat(start, length, style)
             # Look for the next match
-            start = delimiter.indexIn(text, start + length)
+            start = start_delimiter.indexIn(text, start + length)
 
         # Return True if still inside a multi-line string, False otherwise
-        if self.currentBlockState() == in_state:
-            return True
-        else:
-            return False
+        return self.currentBlockState() == in_state
 
 
 def format(color, style=''):

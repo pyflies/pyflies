@@ -1,5 +1,5 @@
 import re
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui
 
 
 class CodeEditor(QtGui.QPlainTextEdit):
@@ -16,27 +16,28 @@ class CodeEditor(QtGui.QPlainTextEdit):
 class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
     """
     Syntax highlighter for the pyFlies language.
-    Based on Python syntax highlighter from
-    https://wiki.python.org/moin/PyQt/Python%20syntax%20highlighting
     """
-    # Python keywords
     keywords = [
         'and', 'or',
         'experiment', 'test', 'conditions', 'stimuli', 'screen', 'target',
         'structure',
         'output', 'responses',
-        'all', 'fixation', 'error',
-        'shape', 'sound', 'image',
-        'duration', 'position', 'keep', 'fillColor', 'lineWidth',
+        'all', 'fixation', 'error', 'correct',
         'practice', 'randomize'
     ]
 
-    # Python operators
+    stimuli_types = [
+        'shape', 'sound', 'image', 'text'
+    ]
+
+    stimuli_params = [
+        'duration', 'position', 'keep', 'fillColor', 'lineWidth'
+    ]
+
     operators = [
             '='
     ]
 
-    # Python braces
     braces = [
         '\{', '\}', '\(', '\)', '\[', '\]',
     ]
@@ -44,18 +45,23 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
     def __init__(self, document):
         QtGui.QSyntaxHighlighter.__init__(self, document)
 
-        # Multi-line strings (expression, flag, style)
-        self. multi_line_rules = [
-            (QtCore.QRegExp("'''"), QtCore.QRegExp("'''"), 1,
-             STYLES['string2']),
-            (QtCore.QRegExp('"""'), QtCore.QRegExp('"""'), 2,
-             STYLES['string2'])]
+        # Multi-line rules (start expr., end expr., state,
+        #                   style, style delimiters)
+        multi_line_rules = [
+            ("/\*", "\*/", 1, STYLES['string2'], True),
+            ('"', '"', 2, STYLES['string2'], True),
+            (r'\bscreen\b\s*(\w+)\s*{', '}', 3, STYLES['screen'], False),
+        ]
 
         rules = []
 
         # Keyword, operator, and brace rules
         rules += [(r'\b%s\b' % w, 0, STYLES['keyword'])
                   for w in PyFliesHighlighter.keywords]
+        rules += [(r'\b%s\b' % w, 0, STYLES['stimuli_types'])
+                  for w in PyFliesHighlighter.stimuli_types]
+        rules += [(r'\b%s\b' % w, 0, STYLES['stimuli_params'])
+                  for w in PyFliesHighlighter.stimuli_params]
         rules += [(r'%s' % o, 0, STYLES['operator'])
                   for o in PyFliesHighlighter.operators]
         rules += [(r'%s' % b, 0, STYLES['brace'])
@@ -63,10 +69,6 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
 
         # All other rules
         rules += [
-            # Tripple quoted strings
-            (r"'''(.|\n)*'''", 0, STYLES['string']),
-            (r'"""(.|\n)*"""', 0, STYLES['string']),
-
             # Double-quoted string, possibly containing escape sequences
             (r'"[^"\\]*(\\.[^"\\]*)*"', 0, STYLES['string']),
             # Single-quoted string, possibly containing escape sequences
@@ -82,9 +84,6 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
             # From '//' until a newline
             (r'\/\/[^\n]*', 0, STYLES['comment']),
 
-            # From '/*' until '*/'
-            (r'\/\*(.|\n)*?\*\/', 0, STYLES['comment']),
-
             # Numeric literals
             (r'\b[+-]?[0-9]+[lL]?\b', 0, STYLES['numbers']),
             (r'\b[+-]?0[xX][0-9A-Fa-f]+[lL]?\b', 0, STYLES['numbers']),
@@ -93,62 +92,92 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
         ]
 
         # Build a regex object for each pattern
-        self.rules = [(re.compile(pat, re.DOTALL), index, fmt)
+        self.rules = [(re.compile(pat), index, fmt)
                       for (pat, index, fmt) in rules]
+        self.multiline_rules = [
+            (re.compile(pat_start), re.compile(pat_end), state, style,
+             style_delimiters)
+            for (pat_start, pat_end, state, style,
+                 style_delimiters) in multi_line_rules]
 
     def highlightBlock(self, text):
         """Apply syntax highlighting to the given block of text.
         """
-        print('Formating:', text)
         # Do other syntax formatting
         for regex, nth, format in self.rules:
             for match in regex.finditer(text):
                 length = len(match.group(nth))
                 self.setFormat(match.start(nth), length, format)
 
+        self.setCurrentBlockState(0)
+
         # Do multi-line rules
-        for multi_line_rule in self.multi_line_rules:
-            in_multiline = self.match_multiline(text, *multi_line_rule)
+        for multi_line_rule in self.multiline_rules:
+            in_multiline = self.highlight_multiline(text, *multi_line_rule)
             if in_multiline:
                 break
 
-    def match_multiline(self, text, start_delimiter, end_delimiter,
-                        in_state, style):
-        """Do highlighting of multi-line strings. ``delimiter`` should be a
-        ``QRegExp`` for triple-single-quotes or triple-double-quotes, and
-        ``in_state`` should be a unique integer to represent the corresponding
-        state changes when inside those strings. Returns True if we're still
-        inside a multi-line string when this function is finished.
-        """
-        # If inside triple-single quotes, start at 0
-        if self.previousBlockState() == in_state:
-            start = 0
-            add = 0
-        # Otherwise, look for the delimiter on this line
-        else:
-            start = start_delimiter.indexIn(text)
-            # Move past this match
-            add = start_delimiter.matchedLength()
+    def highlight_multiline(self, text, start_delimiter, end_delimiter,
+                            in_state, style, style_delimiters):
+        prev_state = self.previousBlockState()
 
-        # As long as there's a delimiter match on this line...
-        while start >= 0:
-            # Look for the ending delimiter
-            end = end_delimiter.indexIn(text, start + add)
-            # Ending delimiter on this line?
-            if end >= add:
-                length = end - start + add + end_delimiter.matchedLength()
-                self.setCurrentBlockState(0)
-            # No; multi-line string
-            else:
+        if prev_state > 0 and prev_state != in_state:
+            # If there is multiline state but not for current in_state return
+            # and continue to the next multiline highlight.
+            return False
+
+        curr_index = 0
+        if prev_state > 0:
+            # If in multiline try first to find end delimiter.
+            end_match = end_delimiter.search(text)
+
+            # If not found we style whole line and change the state of
+            # the line to notify higlighter that we are still in multiline
+            # state.
+            if not end_match:
+                self.setFormat(0, len(text), style)
                 self.setCurrentBlockState(in_state)
-                length = len(text) - start + add
-            # Apply formatting
-            self.setFormat(start, length, style)
-            # Look for the next match
-            start = start_delimiter.indexIn(text, start + length)
+                return True
+            else:
+                # If found style to end delimiter, change current position
+                # index and continue.
+                end_match_index = end_match.start()
+                if style_delimiters:
+                    text_len = end_match_index + len(end_match.group())
+                else:
+                    text_len = end_match_index
+                self.setFormat(0, text_len, style)
+                curr_index = text_len
 
-        # Return True if still inside a multi-line string, False otherwise
-        return self.currentBlockState() == in_state
+        start_match = start_delimiter.search(text, curr_index)
+        while start_match:
+            start_index = start_match.start()
+            end_match = end_delimiter.search(text, start_index +
+                                             len(start_match.group()))
+
+            if not end_match:
+                self.setCurrentBlockState(in_state)
+                if style_delimiters:
+                    text_len = len(text) - start_index
+                    self.setFormat(start_index, text_len, style)
+                else:
+                    text_len = len(text) - start_index - \
+                                len(start_match.group())
+                    self.setFormat(start_index + len(start_match.group()),
+                                   text_len, style)
+                return True
+            else:
+                if style_delimiters:
+                    text_len = end_match.start() - start_index + \
+                                len(end_match.group())
+                    self.setFormat(start_index, text_len, style)
+                else:
+                    text_len = end_match.start() - start_index
+                    self.setFormat(start_index + len(start_index.group()),
+                                   text_len, style)
+
+                start_match = start_delimiter.search(text,
+                                                     start_index + text_len)
 
 
 def format(color, style=''):
@@ -176,6 +205,8 @@ STYLES = {
     'string': format('magenta'),
     'string2': format('darkMagenta'),
     'comment': format('darkGreen', 'italic'),
-    'self': format('black', 'italic'),
     'numbers': format('brown'),
+    'screen': format('darkGreen'),
+    'stimuli_types': format('darkRed'),
+    'stimuli_params': format('darkGray'),
 }

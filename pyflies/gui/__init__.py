@@ -66,10 +66,6 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         scene = ModelGraphScene()
         view = ModelGraphView(scene)
 
-        # Load dummy svg file
-        scene.load_svg('/home/igor/camera.svg')
-        view.fit_in_view()
-
         splitter = QtGui.QSplitter()
 
         # Create code editor

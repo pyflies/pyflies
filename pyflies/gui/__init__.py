@@ -29,10 +29,26 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         self.setupUi(self)
         self.resize(1000, 600)
 
-    @QtCore.pyqtSlot()
-    def on_actionNew_triggered(self):
-        print('New')
-        self.new_tab('Untitled')
+    @property
+    def current_editor(self):
+        """
+        Returns a textual editor component of the current tab.
+        """
+        return self.tabWidget.currentWidget().widget(0)
+
+    @property
+    def current_graphview(self):
+        """
+        Returns a graph view widget of the current tab.
+        """
+        return self.tabWidget.currentWidget().widget(1)
+
+    @property
+    def current_tab(self):
+        """
+        Returns current tab widget (in this case QSplitter).
+        """
+        return self.tabWidget.currentWidget()
 
     def new_tab(self, filename):
         # Create new scene and view
@@ -57,36 +73,44 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         self.tabWidget.addTab(splitter, filename)
         self.tabWidget.setCurrentWidget(splitter)
 
-    def current_editor(self):
-        """
-        Returns a textual editor component of the current tab.
-        """
-        return self.tabWidget.currentWidget().widget(0)
+        editor.filename = filename
 
-    def current_graphview(self):
-        """
-        Returns a graph view widget of the current tab.
-        """
-        return self.tabWidget.currentWidget().widget(1)
+        # Dirty flag support
+        editor.dirty = False
+        editor.open = False
 
-    def current_tab(self):
-        """
-        Returns current tab widget (in this case QSplitter).
-        """
-        return self.tabWidget.currentWidget()
+        def on_text_changed():
+            """
+            Sets dirty flag on document contents change.
+            """
+            editor.dirty = True
 
-    @QtCore.pyqtSlot()
-    def on_actionOpen_triggered(self):
-        filename = QtGui.QFileDialog.getOpenFileName(
-            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)')
+            # On first change during open we do not want to update title.
+            if editor.open:
+                editor.open = False
+                return
 
-        # Parse input
-        if filename:
-            self.new_tab(os.path.basename(filename))
-            self.current_editor().setPlainText(open(filename).read())
-            self.update_model()
-            self.current_graphview().fit_in_view()
-            self.current_tab().filename = filename
+            # Find index of root splitter widget for this editor
+            editor_tab_index = self.tabWidget.indexOf(editor.parent())
+
+            if editor_tab_index >= 0:
+                tab_text = self.tabWidget.tabText(editor_tab_index)
+                if not tab_text.endswith('*'):
+                    self.tabWidget.setTabText(editor_tab_index,
+                                              '%s*' % tab_text)
+
+        editor.textChanged.connect(on_text_changed)
+
+    def save_current(self, filename=None):
+        """
+        Save file at current tab.
+        """
+
+        if not filename:
+            filename = self.current_editor.filename
+
+        with open(filename, 'w') as f:
+            f.write(self.current_editor.toPlainText())
 
     def update_model(self):
         """
@@ -95,8 +119,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         """
         try:
             model = pyflies_mm.model_from_str(
-                self.current_editor().toPlainText())
-            self.current_tab().model = model
+                self.current_editor.toPlainText())
+            self.current_tab.model = model
 
             dot_file = str(uuid.uuid4())
             # if self.vis_type_custom:
@@ -106,7 +130,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
             svg_file = "%s.jpg" % dot_file
             call(["dot", "-Tjpg", "-O", dot_file])
-            self.current_graphview().scene().load_svg(svg_file)
+            self.current_graphview.scene().load_svg(svg_file)
             os.remove(svg_file)
             os.remove(dot_file)
 
@@ -115,31 +139,43 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             # TODO: Write error in statusbar
 
     @QtCore.pyqtSlot()
+    def on_actionNew_triggered(self):
+        print('New')
+        self.new_tab(UNTITLED)
+
+    @QtCore.pyqtSlot()
+    def on_actionOpen_triggered(self):
+        filename = QtGui.QFileDialog.getOpenFileName(
+            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)')
+
+        # Parse input
+        if filename:
+            self.new_tab(os.path.basename(filename))
+            self.current_editor.open = True
+            self.current_editor.setPlainText(open(filename).read())
+            self.update_model()
+            self.current_graphview.fit_in_view()
+            self.current_tab.filename = filename
+
+    @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
         print('Save')
 
-        if not hasattr(self.current_tab(), 'filename'):
+        if self.current_tab.filename == UNTITLED:
             filename = QtGui.QFileDialog.getSaveFileName(
                 self, 'Save Experiment', '', 'pyFlies experiments (*.pf)')
 
             if not filename:
                 return
 
-            self.current_tab().filename = filename
+            self.current_tab.filename = filename
 
         else:
-            filename = self.current_tab().filename
+            filename = self.current_tab.filename
 
         self.save_current(filename)
         self.tabWidget.setTabText(self.tabWidget.currentIndex(),
                                   os.path.basename(filename))
-
-    def save_current(self, filename):
-        """
-        Save file at current tab.
-        """
-        with open(filename, 'w') as f:
-            f.write(self.current_editor().toPlainText())
 
     @QtCore.pyqtSlot()
     def on_actionVisalizationMode_triggered(self):

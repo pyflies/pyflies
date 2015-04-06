@@ -28,6 +28,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         super(PyFliesWindow, self).__init__()
         self.setupUi(self)
         self.resize(1000, 600)
+        self.update_action_states()
 
     @property
     def current_editor(self):
@@ -49,6 +50,16 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         Returns current tab widget (in this case QSplitter).
         """
         return self.tabWidget.currentWidget()
+
+    def update_action_states(self):
+        """
+        Enable/disable actions.
+        """
+        enabled = self.tabWidget.count() > 0
+        self.actionSave.setEnabled(enabled)
+        self.actionVisalizationMode.setEnabled(enabled)
+        self.actionZoomFit.setEnabled(enabled)
+        self.actionGenerateCode.setEnabled(enabled)
 
     def new_tab(self, filename):
         # Create new scene and view
@@ -78,6 +89,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         # Dirty flag support
         editor.dirty = False
         editor.open = False
+
+        self.update_action_states()
 
         def on_text_changed():
             """
@@ -233,6 +246,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     def on_tabWidget_tabCloseRequested(self, index):
         print("Close", index)
         self.tabWidget.removeTab(index)
+        self.update_action_states()
 
 # class PyFliesGUI(object):
 #

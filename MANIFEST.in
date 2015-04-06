@@ -1,11 +1,11 @@
 include README.rst
 include LICENSE
-recursive-include pyflies *.glade
-recursive-include pyflies *.rng
+recursive-include pyflies *.ui
+recursive-include pyflies *.qrc
 recursive-include pyflies *.lang
 recursive-include pyflies *.tx
+recursive-include pyflies/gui/ui/icons *.png
 recursive-include pyflies/generators *
-include pyflies/gui/icons/close.png
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 

@@ -56,7 +56,7 @@ test simon {
     color=red and position=right: image("someimage.png", position -25 -25, size 10 10)
     
    	// Timing
-  	duration 2000 3000   
+  	duration 2000
 
   }
 }

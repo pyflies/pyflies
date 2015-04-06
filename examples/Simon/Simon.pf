@@ -8,11 +8,11 @@ http://en.wikipedia.org/wiki/Simon_effect
 
 test Simon {
 	conditions {
-		position 	color	congruency		response
+		position 	color		congruency		response
 
-		left		green	congruent		left
+		left		green		congruent		left
 		left		red		incongruent		right
-		right		green	incongruent		left
+		right		green		incongruent		left
 		right		red		congruent		right
 	}
 	

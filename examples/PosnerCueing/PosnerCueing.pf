@@ -8,12 +8,12 @@ http://en.wikipedia.org/wiki/Posner_cueing_task
 
 test Posner {
 	conditions {
-		cue     position 	congruency		response
+		cue     position	congruency		response
 
-		left	left      		congruent		left
-		left	right     	incongruent		right
-		right	left      		incongruent		left
-		right	right     	congruent		right
+		left	left		congruent		left
+		left	right		incongruent		right
+		right	left		incongruent		left
+		right	right		congruent		right
 	}
 	
 	stimuli{

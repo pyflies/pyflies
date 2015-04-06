@@ -86,6 +86,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             self.current_editor().setPlainText(open(filename).read())
             self.update_model()
             self.current_graphview().fit_in_view()
+            self.current_tab().filename = filename
 
     def update_model(self):
         """
@@ -116,6 +117,29 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
         print('Save')
+
+        if not hasattr(self.current_tab(), 'filename'):
+            filename = QtGui.QFileDialog.getSaveFileName(
+                self, 'Save Experiment', '', 'pyFlies experiments (*.pf)')
+
+            if not filename:
+                return
+
+            self.current_tab().filename = filename
+
+        else:
+            filename = self.current_tab().filename
+
+        self.save_current(filename)
+        self.tabWidget.setTabText(self.tabWidget.currentIndex(),
+                                  os.path.basename(filename))
+
+    def save_current(self, filename):
+        """
+        Save file at current tab.
+        """
+        with open(filename, 'w') as f:
+            f.write(self.current_editor().toPlainText())
 
     @QtCore.pyqtSlot()
     def on_actionVisalizationMode_triggered(self):

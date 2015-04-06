@@ -70,7 +70,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
         splitter.setSizes([200, 150])
 
-        self.tabWidget.addTab(splitter, filename)
+        self.tabWidget.addTab(splitter, os.path.basename(filename))
         self.tabWidget.setCurrentWidget(splitter)
 
         editor.filename = filename
@@ -112,6 +112,12 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         with open(filename, 'w') as f:
             f.write(self.current_editor.toPlainText())
 
+        self.tabWidget.setTabText(self.tabWidget.currentIndex(),
+                                  os.path.basename(filename))
+        self.current_editor.filename = filename
+
+        self.update_model()
+
     def update_model(self):
         """
         Parses code, updates model. If error is raised, highlight line and
@@ -120,7 +126,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         try:
             model = pyflies_mm.model_from_str(
                 self.current_editor.toPlainText())
-            self.current_tab.model = model
+            model._filename = self.current_editor.filename
+            self.current_editor.model = model
 
             dot_file = str(uuid.uuid4())
             # if self.vis_type_custom:
@@ -133,10 +140,11 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             self.current_graphview.scene().load_svg(svg_file)
             os.remove(svg_file)
             os.remove(dot_file)
+            self.statusbar.clearMessage()
 
         except TextXError as e:
-            self.current_editor().highlight_error(e.line)
-            # TODO: Write error in statusbar
+            self.current_editor.highlight_error(e.line, e.col)
+            self.statusbar.showMessage(str(e))
 
     @QtCore.pyqtSlot()
     def on_actionNew_triggered(self):
@@ -150,32 +158,27 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
         # Parse input
         if filename:
-            self.new_tab(os.path.basename(filename))
+            self.new_tab(filename)
             self.current_editor.open = True
             self.current_editor.setPlainText(open(filename).read())
             self.update_model()
             self.current_graphview.fit_in_view()
-            self.current_tab.filename = filename
 
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
         print('Save')
 
-        if self.current_tab.filename == UNTITLED:
+        if self.current_editor.filename == UNTITLED:
             filename = QtGui.QFileDialog.getSaveFileName(
                 self, 'Save Experiment', '', 'pyFlies experiments (*.pf)')
 
             if not filename:
                 return
 
-            self.current_tab.filename = filename
-
         else:
-            filename = self.current_tab.filename
+            filename = self.current_editor.filename
 
         self.save_current(filename)
-        self.tabWidget.setTabText(self.tabWidget.currentIndex(),
-                                  os.path.basename(filename))
 
     @QtCore.pyqtSlot()
     def on_actionVisalizationMode_triggered(self):
@@ -184,14 +187,19 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     @QtCore.pyqtSlot()
     def on_actionZoomFit_triggered(self):
         print('Zoom Fit')
-        self.current_graphview().fit_in_view()
+        self.current_graphview.fit_in_view()
 
     @QtCore.pyqtSlot()
     def on_actionGenerateCode_triggered(self):
-        print('Generate Code')
         gen_names = generator_names()
 
-        model = self.current_model
+        if not hasattr(self.current_editor, 'model'):
+            show_error("There is no model in the editor."
+                       "Type in experiment model and save it before running"
+                       " code generation.")
+            return
+
+        model = self.current_editor.model
         targets = model.targets
 
         if len(targets) == 0:

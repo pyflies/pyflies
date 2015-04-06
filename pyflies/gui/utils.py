@@ -1,17 +1,9 @@
-from gi.repository import Gtk
+from PyQt4 import QtGui
 
 
 def show_error(message):
-    dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.ERROR,
-                               Gtk.ButtonsType.OK, "Error")
-    dialog.format_secondary_text(message)
-    dialog.run()
-    dialog.destroy()
+    QtGui.QMessageBox.critical(None, "PyFlies error", message)
 
 
 def show_info(title, message):
-    dialog = Gtk.MessageDialog(None, 0, Gtk.MessageType.INFO,
-                               Gtk.ButtonsType.OK, title)
-    dialog.format_secondary_text(message)
-    dialog.run()
-    dialog.destroy()
+    QtGui.QMessageBox.information(None, "Information", message)

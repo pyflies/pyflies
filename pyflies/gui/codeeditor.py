@@ -8,9 +8,14 @@ class CodeEditor(QtGui.QPlainTextEdit):
         super(CodeEditor, self).__init__(*args, **kwargs)
         self.highlighter = PyFliesHighlighter(self.document())
 
-    def highlight_error(self, line):
-        # TODO: Line highlight
-        pass
+    def highlight_error(self, line, col):
+        cursor = self.textCursor()
+        cursor.movePosition(QtGui.QTextCursor.Start)
+        cursor.movePosition(QtGui.QTextCursor.NextBlock,
+                            QtGui.QTextCursor.MoveAnchor, line-1)
+        cursor.movePosition(QtGui.QTextCursor.NextCharacter,
+                            QtGui.QTextCursor.MoveAnchor, col-1)
+        self.setTextCursor(cursor)
 
 
 class PyFliesHighlighter(QtGui.QSyntaxHighlighter):

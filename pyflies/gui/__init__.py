@@ -139,10 +139,10 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             self.current_editor.model = model
 
             dot_file = str(uuid.uuid4())
-            # if self.vis_type_custom:
-            custom_export(model, dot_file)
-            # else:
-                # model_export(model, dot_file)
+            if self.actionVisalizationMode.isChecked():
+                model_export(model, dot_file)
+            else:
+                custom_export(model, dot_file)
 
             svg_file = "%s.jpg" % dot_file
             call(["dot", "-Tjpg", "-O", dot_file])
@@ -157,7 +157,6 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionNew_triggered(self):
-        print('New')
         self.new_tab(UNTITLED)
 
     @QtCore.pyqtSlot()
@@ -175,7 +174,6 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
-        print('Save')
 
         if self.current_editor.filename == UNTITLED:
             filename = QtGui.QFileDialog.getSaveFileName(
@@ -191,11 +189,11 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionVisalizationMode_triggered(self):
-        print('Viz mode')
+        self.update_model()
+        self.current_graphview.fit_in_view()
 
     @QtCore.pyqtSlot()
     def on_actionZoomFit_triggered(self):
-        print('Zoom Fit')
         self.current_graphview.fit_in_view()
 
     @QtCore.pyqtSlot()

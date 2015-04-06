@@ -21,7 +21,7 @@ Features:
  * Declarative language. Specify `what` needs to be done and leave `how` part to the pyFlies.
  * GUI editor with syntax highlighting and experiment structure visualization.
  * Writen in Python programming language. Easy to extend.
- * Fully open source. MIT license. Hosted on github. Easy to contribute to.
+ * Fully open source. GPL license. Hosted on github. Easy to contribute to.
 
 
 .. _pyFlies: https://github.com/igordejanovic/pyFlies/

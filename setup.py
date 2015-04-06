@@ -4,12 +4,12 @@
 # Name: pyFlies
 # Purpose: A DSL for modeling cognitive psychology experiments
 # Author: Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
-# Copyright: (c) 2014 Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
-# License: MIT License
+# Copyright: (c) 2015 Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
+# License: GPLv3 License
 ###############################################################################
 
 __author__ = "Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>"
-__version__ = "0.2-dev"
+__version__ = "0.2"
 
 import os
 from setuptools import setup, find_packages
@@ -19,9 +19,9 @@ VERSION = __version__
 DESC = 'A DSL for modeling cognitive psychology experiments'
 AUTHOR = 'Igor R. Dejanovic'
 AUTHOR_EMAIL = 'igor DOT dejanovic AT gmail DOT com'
-LICENSE = 'MIT'
+LICENSE = 'GPLv3'
 URL = 'https://github.com/igordejanovic/pyFlies'
-DOWNLOAD_URL = 'https://github.com/igordejanovic/textX/archive/v%s.tar.gz'\
+DOWNLOAD_URL = 'https://github.com/igordejanovic/pyFlies/archive/v%s.tar.gz'\
     % VERSION
 README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
@@ -54,7 +54,7 @@ setup(
         'Topic :: Software Development :: Interpreters',
         'Topic :: Software Development :: Code Generators',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         ],

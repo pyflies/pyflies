@@ -7,6 +7,7 @@ class CodeEditor(QtGui.QPlainTextEdit):
     def __init__(self, *args, **kwargs):
         super(CodeEditor, self).__init__(*args, **kwargs)
         self.highlighter = PyFliesHighlighter(self.document())
+        self.setLineWrapMode(self.NoWrap)
 
     def highlight_error(self, line, col):
         cursor = self.textCursor()

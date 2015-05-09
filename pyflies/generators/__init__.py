@@ -110,11 +110,11 @@ def generate(model, target):
 
     # Copy all files referenced from model
     for b in model.blocks:
-        if b._typename == "TestType":
+        if b.__class__.__name__ == "TestType":
             for cs in b.stimuli.condStimuli:
                 stimuli = cs.stimuli
                 for stimulus in stimuli:
-                    if stimulus._typename in ["Audio", "Image"]:
+                    if stimulus.__class__.__name__ in ["Audio", "Image"]:
                         if stimulus.file:
                             dir_part = dirname(stimulus.file)
                             file_target_dir = join(target_folder, dir_part)

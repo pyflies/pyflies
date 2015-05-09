@@ -86,7 +86,7 @@ def resolve(stimulus, test_type, condition, metamodel):
         """
         Set default values for all stimuli parameters not defined in the model.
         """
-        for attr in s.__class__._attrs:
+        for attr in s.__class__._tx_attrs:
             attr_val = getattr(s, attr)
             if not attr_val:
                 def_val = None
@@ -141,7 +141,8 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # Only size and position may be given descriptively
                     if p not in ['x', 'width', 'radius']:
                         line, col = \
-                            metamodel.parser.pos_to_linecol(stimulus._position)
+                            metamodel.parser.pos_to_linecol(
+                                stimulus._tx_position)
                         raise TextXSemanticError(
                             "Parameter {} is not of type '{}' at {}".format(
                               p, t.__name__, (line, col)), line=line, col=col)
@@ -156,7 +157,7 @@ def resolve(stimulus, test_type, condition, metamodel):
                             else:
                                 line, col = \
                                     metamodel.parser.pos_to_linecol(
-                                        stimulus._position)
+                                        stimulus._tx_position)
                                 raise TextXSemanticError(
                                     "Invalid position '{}' at {}".format(
                                         pos, (line, col)), line=line, col=col)
@@ -169,7 +170,7 @@ def resolve(stimulus, test_type, condition, metamodel):
                             else:
                                 line, col = \
                                     metamodel.parser.pos_to_linecol(
-                                        stimulus._position)
+                                        stimulus._tx_position)
                                 raise TextXSemanticError(
                                     "Invalid size '{}' at {}"
                                     .format(width, (line, col)),
@@ -181,7 +182,7 @@ def resolve(stimulus, test_type, condition, metamodel):
                             else:
                                 line, col = \
                                     metamodel.parser.pos_to_linecol(
-                                        stimulus._position)
+                                        stimulus._tx_position)
                                 raise TextXSemanticError(
                                     "Invalid radius '{}' at {}"
                                     .format(radius, (line, col)),
@@ -191,12 +192,12 @@ def resolve(stimulus, test_type, condition, metamodel):
                             assert 0, "Unknown param {}".format(p)
 
     # Instantiate stimulus meta-class
-    s = metamodel[stimulus._typename]()
+    s = metamodel[stimulus.__class__.__name__]()
 
     # Copy all attributes
-    for attr in s.__class__._attrs:
+    for attr in s.__class__._tx_attrs:
         setattr(s, attr, getattr(stimulus, attr))
-    s._position = stimulus._position
+    s._tx_position = stimulus._tx_position
 
     resolve_condition_var_references(s)
     set_default_values(s)
@@ -214,12 +215,12 @@ def pyflies_model_processor(model, metamodel):
 
     # Post-processing is done for each test type
     for e in model.blocks:
-        if e._typename == "TestType":
+        if e.__class__.__name__ == "TestType":
 
             # Check that there is a condition variable named "response"
             if "response" not in e.conditions.varNames:
                 line, col = \
-                    metamodel.parser.pos_to_linecol(e.conditions._position)
+                    metamodel.parser.pos_to_linecol(e.conditions._tx_position)
                 raise TextXSemanticError(
                     "There must be condition variable named 'response' at {}"
                     .format((line, col)), line=line, col=col)
@@ -241,7 +242,7 @@ def pyflies_model_processor(model, metamodel):
                 # specified
                 if len(condvar_values) != len(c.varValues):
                     line, col = \
-                        metamodel.parser.pos_to_linecol(c._position)
+                        metamodel.parser.pos_to_linecol(c._tx_position)
                     raise TextXSemanticError(
                         "There must be {} condition variable values at {}"
                         .format(len(condvar_values), (line, col)),
@@ -260,14 +261,14 @@ def pyflies_model_processor(model, metamodel):
                 """
                 Recursively evaluates condition match expression.
                 """
-                if exp._typename == "EqualsExpression":
+                if exp.__class__.__name__ == "EqualsExpression":
                     return condvar_values[exp.varName][idx] == exp.varValue
-                elif exp._typename == "AndExpression":
+                elif exp.__class__.__name__ == "AndExpression":
                     val = True
                     for op in exp.operand:
                         val = val and cond_matches(idx, c, op)
                     return val
-                elif exp._typename == "OrExpression":
+                elif exp.__class__.__name__ == "OrExpression":
                     val = False
                     for op in exp.operand:
                         val = val or cond_matches(idx, c, op)
@@ -290,11 +291,11 @@ def pyflies_model_processor(model, metamodel):
                     exp = s.conditionMatch.expression
                     stimuli = s.stimuli
 
-                    if (exp._typename == "FixedCondition" and
+                    if (exp.__class__.__name__ == "FixedCondition" and
                             exp.expression == "all") or\
-                        (exp._typename == "OrdinalCondition" and
+                        (exp.__class__.__name__ == "OrdinalCondition" and
                          idx == exp.expression - 1) or\
-                        (exp._typename == "ExpressionCondition" and
+                        (exp.__class__.__name__ == "ExpressionCondition" and
                             cond_matches(idx, c, exp.expression)):
 
                         # For each stimuli create a new instance
@@ -312,7 +313,7 @@ def pyflies_model_processor(model, metamodel):
             e.fix = []
             for s in e.stimuli.condStimuli:
                 exp = s.conditionMatch.expression
-                if exp._typename == "FixedCondition" and\
+                if exp.__class__.__name__ == "FixedCondition" and\
                         exp.expression in ["error", "correct", "fixation"]:
                     stimuli = [resolve(st, e, None, metamodel)
                                for st in s.stimuli]
@@ -327,7 +328,7 @@ def pyflies_model_processor(model, metamodel):
     for target in model.targets:
         if target.name not in generator_names():
             line, col = \
-                metamodel.parser.pos_to_linecol(target._position)
+                metamodel.parser.pos_to_linecol(target._tx_position)
             raise TextXSemanticError(
                 "Unknown target '{}' at {}. Valid targets are {}"
                 .format(target.name, (line, col), list(generator_names())),

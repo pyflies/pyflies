@@ -47,7 +47,7 @@ def custom_export(model, file_name):
 
             global cluster, last_node, node_num
 
-            clsname = e._typename
+            clsname = e.__class__.__name__
 
             if clsname == "ScreenInstance":
                 f.write('{} [shape=note, fillcolor=lawngreen, label="{}"];\n'

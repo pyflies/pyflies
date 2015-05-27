@@ -1,5 +1,5 @@
 """
-Generator for Expyriment library.
+Generator for PsychoPy software.
 """
 import jinja2
 import re

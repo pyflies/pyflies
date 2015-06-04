@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from textx.exceptions import TextXSemanticError
 from pyflies.generators import generator_names
 

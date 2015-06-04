@@ -9,7 +9,7 @@ from textx.export import model_export
 
 # from gi.repository import Gtk, GtkSource, GObject
 
-from pyflies.lang.pyflies import pyflies_mm
+from pyflies.lang.pflang import pyflies_mm
 from .ui.pyFliesForm import Ui_pyFliesWindow
 from .modelviewer import ModelGraphView, ModelGraphScene
 from .codeeditor import CodeEditor

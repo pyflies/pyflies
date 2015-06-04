@@ -1,7 +1,7 @@
 import os
 from textx.metamodel import metamodel_from_file
 from textx.export import metamodel_export
-from .model_processor import pyflies_model_processor
+from pyflies.lang.model_processor import pyflies_model_processor
 
 pyflies_mm = metamodel_from_file(
     os.path.join(os.path.dirname(__file__), 'pyflies.tx'))

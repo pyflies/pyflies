@@ -134,7 +134,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         """
         try:
             model = pyflies_mm.model_from_str(
-                self.current_editor.toPlainText())
+                str(self.current_editor.toPlainText()))
             model._filename = self.current_editor.filename
             self.current_editor.model = model
 
@@ -161,8 +161,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionOpen_triggered(self):
-        filename = QtGui.QFileDialog.getOpenFileName(
-            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)')
+        filename = str(QtGui.QFileDialog.getOpenFileName(
+            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)'))
 
         # Parse input
         if filename:

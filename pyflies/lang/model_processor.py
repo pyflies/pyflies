@@ -48,7 +48,8 @@ resolvable = {
 
 defaults = {
     'start': 0,
-    'duration': 3000,
+    'duration_from': 2000,
+    'duration_to': 4000,
     'target': False,
     'keep': False,
     'color': "white",
@@ -98,12 +99,16 @@ def resolve(stimulus, test_type, condition, metamodel):
                         def_val = test_type.stimuli.duration
                     else:
                         def_val = metamodel['Duration']()
-                        def_val.value = defaults['duration']
+                        def_val.value = 0
+                        def_val._from = defaults['duration_from']
+                        def_val.to = defaults['duration_to']
                 elif attr == 'start':
                     # Special case
                     # Complex type. Create instance
                     def_val = metamodel['Start']()
                     def_val.value = defaults['start']
+                    def_val.first = 0
+                    def_val.second = 0
                 elif attr in ['_from', 'to'] and \
                         s.__class__.__name__ == 'Point':
                     # Line parameters
@@ -228,7 +233,9 @@ def pyflies_model_processor(model, metamodel):
             # Default duration
             if e.stimuli.duration is None:
                 default_duration = metamodel['Duration']()
-                default_duration.value = 3000
+                default_duration.value = 0
+                default_duration._from = defaults['duration_from']
+                default_duration.to = defaults['duration_to']
                 e.stimuli.duration = default_duration
 
             # Create map of condition variables to collect their values.

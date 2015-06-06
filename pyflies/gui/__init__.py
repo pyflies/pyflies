@@ -104,7 +104,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
             if editor_tab_index >= 0:
                 tab_text = self.tabWidget.tabText(editor_tab_index)
-                if not tab_text.endswith('*'):
+                if not tab_text.endsWith('*'):
                     self.tabWidget.setTabText(editor_tab_index,
                                               '%s*' % tab_text)
 
@@ -176,8 +176,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     def on_actionSave_triggered(self):
 
         if self.current_editor.filename == UNTITLED:
-            filename = QtGui.QFileDialog.getSaveFileName(
-                self, 'Save Experiment', '', 'pyFlies experiments (*.pf)')
+            filename = str(QtGui.QFileDialog.getSaveFileName(
+                self, 'Save Experiment', '', 'pyFlies experiments (*.pf)'))
 
             if not filename:
                 return

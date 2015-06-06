@@ -181,24 +181,18 @@ WORD:
 
 Start:
   /*
-    next - Start this stimulus after previous finishes.
     first, second - Start will be randomly choosen from the given interval.
-    INT - Start is fixed.
+    value - Start is fixed.
   */
-  ('[' first=INT ',' second=INT ']') | value = IntOrNext
+  ('[' first=INT ',' second=INT ']') | value = INT
 ;
 
 Duration:
   /*
-    next - present the stimulus until the next one is presented.
-    first, second - duration will be randomly choosen from the given interval.
-    INT - duration is fixed.
+    _from , to - duration will be randomly choosen from the given interval.
+    value - duration is fixed.
   */
-  ('[' _from=INT ',' to=INT ']') | value = IntOrNext
-;
-
-IntOrNext:
-  INT | "next"
+  ('[' _from=INT ',' to=INT ']') | value = INT
 ;
 
 Point:

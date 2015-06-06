@@ -41,7 +41,7 @@ def custom_export(model, file_name):
             def duration_to_str(duration):
                 if type(duration).__name__ == 'Duration' \
                         and not duration.value:
-                    return "[%d, %d]" % (duration.first, duration.second)
+                    return "[%d, %d]" % (duration._from, duration.to)
                 else:
                     return str(duration.value)
 

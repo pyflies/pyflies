@@ -127,10 +127,13 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
         self.update_model()
 
-    def update_model(self):
+    def update_model(self, fit=False):
         """
         Parses code, updates model. If error is raised, highlight line and
         update statusbar.
+
+        Args:
+            fit(bool): If fit_in_view should be called
         """
         try:
             model = pyflies_mm.model_from_str(
@@ -147,6 +150,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             svg_file = "%s.jpg" % dot_file
             call(["dot", "-Tjpg", "-O", dot_file])
             self.current_graphview.scene().load_svg(svg_file)
+            if fit:
+                self.current_graphview.fit_in_view()
             os.remove(svg_file)
             os.remove(dot_file)
             self.statusbar.clearMessage()
@@ -169,8 +174,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
             self.new_tab(filename)
             self.current_editor.open = True
             self.current_editor.setPlainText(open(filename).read())
-            self.update_model()
-            self.current_graphview.fit_in_view()
+            self.update_model(fit=True)
 
     @QtCore.pyqtSlot()
     def on_actionSave_triggered(self):
@@ -189,8 +193,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionVisalizationMode_triggered(self):
-        self.update_model()
-        self.current_graphview.fit_in_view()
+        self.update_model(fit=True)
 
     @QtCore.pyqtSlot()
     def on_actionZoomFit_triggered(self):

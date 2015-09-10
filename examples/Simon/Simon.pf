@@ -10,10 +10,10 @@ test Simon {
 	conditions {
 		position 	color		congruency		response
 
-		left		green		congruent		left
-		left		red		incongruent		right
+		left			green		congruent		left
+		left			red			incongruent		right
 		right		green		incongruent		left
-		right		red		congruent		right
+		right		red			congruent		right
 	}
 	
 	stimuli{

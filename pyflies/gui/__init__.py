@@ -104,7 +104,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
             if editor_tab_index >= 0:
                 tab_text = self.tabWidget.tabText(editor_tab_index)
-                if not tab_text.endsWith('*'):
+                if not tab_text.endswith('*'):
                     self.tabWidget.setTabText(editor_tab_index,
                                               '%s*' % tab_text)
 

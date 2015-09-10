@@ -9,6 +9,10 @@ class CodeEditor(QtGui.QPlainTextEdit):
         self.highlighter = PyFliesHighlighter(self.document())
         self.setLineWrapMode(self.NoWrap)
 
+        font = QtGui.QFont("")
+        font.setStyleHint(QtGui.QFont.TypeWriter)
+        self.setFont(font)
+
     def highlight_error(self, line, col):
         cursor = self.textCursor()
         cursor.movePosition(QtGui.QTextCursor.Start)

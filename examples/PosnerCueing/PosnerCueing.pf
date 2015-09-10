@@ -10,20 +10,20 @@ test Posner {
 	conditions {
 		cue     position	congruency		response
 
-		left	left		congruent		left
-		left	right		incongruent		right
+		left		left		congruent		left
+		left		right	incongruent		right
 		right	left		incongruent		left
-		right	right		congruent		right
+		right	right	congruent		right
 	}
 	
 	stimuli{
-		all:  	shape(cross, duration 1, keep)
-			shape(rectangle, duration 1, position left, keep)
-			shape(rectangle, duration [1000, 1500], position right, keep)
-			shape(rectangle, duration [1000, 1500], position cue, 
-				fillColor black, lineWidth 20, keep)
-			shape(cross, target, position position)
-		error: sound(1000, duration 300)
+		all: 	shape(cross, duration 1, keep)
+				shape(rectangle, duration 1, position left, keep)
+				shape(rectangle, duration [1000, 1500], position right, keep)
+				shape(rectangle, duration [1000, 1500], position cue, 
+					  fillColor black, lineWidth 20, keep)
+				shape(cross, target, position position)
+		error: 	sound(1000, duration 300)
 	}
 }
 

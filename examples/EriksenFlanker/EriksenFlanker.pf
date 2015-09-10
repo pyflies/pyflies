@@ -5,10 +5,10 @@ experiment "Eriksen Flanker"
 
 test EriksenFlanker {
 	conditions {
-		direction	category		response
+		direction	category			response
 		
-		left		incongruent		left
-		left		congurent		left
+		left			incongruent		left
+		left			congurent		left
 		right		incongruent		right
 		right		incongruent		right	
 	}

@@ -1,5 +1,6 @@
-Conditions
-##########
+# Conditions
+
+--- 
 
 pyFlies is based on the condition-stimuli-response paradigm. Each test
 description must specify a fixed set of conditions given in `conditions`
@@ -12,16 +13,16 @@ The name of the variables are arbitrary but one of them should be `response`.
 There is no constraint on how many condition variable can be specified or how
 many values for each variable can be given.
 
-For example::
+For example:
 
-  conditions {
-      position    color   congruency    response
+    conditions {
+        position    color   congruency    response
 
-      left        green   congruent     left
-      left        red     incongruent   right
-      right       green   incongruent   left
-      right       red     congruent     right
-  }
+        left        green   congruent     left
+        left        red     incongruent   right
+        right       green   incongruent   left
+        right       red     congruent     right
+    }
 
 In this example there is two independent condition variables (`position` and
 `color`) with two possible value each, forming in total 4 conditions. Third

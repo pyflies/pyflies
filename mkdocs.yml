@@ -1,0 +1,24 @@
+site_name: pyFlies
+
+site_description: A Domain-Specific Language (DSL) for cognitive experiments modeling
+site_author: Igor Dejanović
+
+repo_url: https://github.com/igordejanovic/pyflies
+
+pages:
+- Home: index.md
+- User Guide:
+    - Conditions: user_guide/conditions.md
+    - Stimuli: user_guide/stimuli.md
+    - Coordinate system: user_guide/coordinate_system.md
+    - Screens: user_guide/screens.md
+    - Test structure: user_guide/test_structure.md
+    - Generator configuration: user_guide/generator_config.md
+- About:
+    - Release Notes: about/release_notes.md
+    - Contributing: about/contributing.md
+    - License: about/license.md
+
+markdown_extensions:
+    - admonition:
+

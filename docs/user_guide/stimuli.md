@@ -1,22 +1,23 @@
-Stimuli
-#######
+# Stimuli
+
+---
 
 Each test description must specify a `stimuli` section.
 
-For example::
+For example:
 
-  stimuli{
-    all: shape(rectangle, position position, color color)
-    error: sound(1000)
-    correct: sound(500)
-    fixation: shape(cross)
-  }
+    stimuli{
+      all: shape(rectangle, position position, color color)
+      error: sound(1000)
+      correct: sound(500)
+      fixation: shape(cross)
+    }
 
 
 `stimuli` section contains a list of stimuli definition statements.
-Each statement is given in the form::
+Each statement is given in the form:
 
-  <condition match expr.>: <stimuli definition>
+      <condition match expr.>: <stimuli definition>
 
 Where `condition match expr.` is either an expression that will match one or
 more condition from the condition section or a special expression that will match
@@ -27,8 +28,7 @@ Stimuli defined after colon in stimuli definition statement are given in the
 form of list of stimulus definition. Stimuli are presented to the user in the
 order they are defined.
 
-Stimuli types
-=============
+## Stimuli types
 
 At the moment pyFlies recognizes following stimulus types:
 
@@ -46,20 +46,15 @@ position will be the value of `position` condition variable for the current
 condition and its color will be the value of `color` condition variable for the
 current condition.
 
-shape
------
+### shape
 
-image
------
+### image
 
-text
-----
+### text
 
-sound
------
+### sound
 
-audio
------
+### audio
 
 
 

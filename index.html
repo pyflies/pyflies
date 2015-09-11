@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A Domain-Specific Language (DSL) for cognitive experiments modeling">
+        <meta name="author" content="Igor Dejanović">
+        
+        <link rel="shortcut icon" href="./img/favicon.ico">
+
+	<title>pyFlies</title>
+
+        <link href="./css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="./css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="./css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="./css/highlight.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body class="homepage">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <a class="navbar-brand" href=".">pyFlies</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="active">
+                        <a href=".">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="user_guide/conditions/">Conditions</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="user_guide/stimuli/">Stimuli</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="user_guide/coordinate_system/">Coordinate system</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="user_guide/screens/">Screens</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="user_guide/test_structure/">Test structure</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="user_guide/generator_config/">Generator configuration</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="about/release_notes/">Release Notes</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="about/contributing/">Contributing</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="about/license/">License</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li class="disabled">
+                        <a rel="next" >
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="user_guide/conditions/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a href="https://github.com/igordejanovic/pyflies">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#pyflies">pyFlies</a></li>
+        
+            <li><a href="#getting-started">Getting started</a></li>
+        
+            <li><a href="#screenshots">Screenshots</a></li>
+        
+    
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="pyflies">pyFlies</h1>
+<p>A Domain-Specific Language (DSL) for cognitive experiments modeling.</p>
+<hr />
+<p><a href="https://github.com/igordejanovic/pyFlies/">pyFlies</a> is a Domain-Specific
+Language (DSL) for cognitive experiments modeling. It is meant to be simple to
+learn and readable. It is designed to be highly readable and easy to write.</p>
+<p>A code for various run-time platforms can be generated from the experiment
+description. Futhermore, model can be directly interpreted if the run-time
+supports pyFlies.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Based on the condition-stimuli-response paradigm.</li>
+<li>High-level. Easy to write and read. Experiments can be defined in minutes!</li>
+<li>From experiment description a source code for various platforms can be
+   automatically generated. Check out generators. If you don't find one you need
+   consider writing one.</li>
+<li>Declarative language. Specify <code>what</code> needs to be done and leave <code>how</code> part to the pyFlies.</li>
+<li>GUI editor with syntax highlighting and experiment structure visualization.</li>
+<li>Written in Python programming language. Easy to extend.</li>
+<li>Fully open source. GPL license. Hosted on github. Easy to contribute to.</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="prerequsites">Prerequsites</h3>
+<p>To install pyFlies you will need to install following dependencies:</p>
+<ul>
+<li><a href="https://www.python.org/">Python</a></li>
+<li><a href="https://github.com/igordejanovic/textX">textX</a> - will be installed
+   automatically if <code>pip</code> is used.</li>
+<li><a href="http://www.qt.io/developers/">Qt 4.8</a> - GUI library.</li>
+<li><a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">pyQt4</a> - Python
+   binding for Qt.</li>
+<li><code>dot</code> (part of <a href="http://www.graphviz.org/">GraphViz</a>) - <code>dot</code> must be on your
+   <code>PATH</code> for model visualization.</li>
+<li><a href="http://jinja.pocoo.org/">jinja2</a> - for generating source code. Will be
+   installed automatically if <code>pip</code> is used.</li>
+</ul>
+<p>It is planed to make installers for different platforms available in the future.
+If you want to contribute installer for some platform please se section
+<code>Contributions</code>.</p>
+<h3 id="installation">Installation</h3>
+<p>pyFlies can be installed using <code>pip</code> installer:</p>
+<pre><code>pip install pyFlies
+</code></pre>
+<p>or from source:</p>
+<pre><code>git clone https://github.com/igordejanovic/pyFlies.git
+cd pyFlies
+python setup.py install
+</code></pre>
+<h3 id="quick-start">Quick start</h3>
+<ol>
+<li>
+<p>Start pyFlies GUI.</p>
+<pre><code>pyflies
+</code></pre>
+</li>
+<li>
+<p>Open new file and write your test description:</p>
+<pre><code>experiment "Simon"
+"
+A simple behavioural task to assess a Simon effect.
+
+See also:
+http://en.wikipedia.org/wiki/Simon_effect
+"
+
+test Simon {
+  conditions {
+    position  color   congruency    response
+
+    left      green   congruent     left
+    left      red     incongruent   right
+    right     green   incongruent   left
+    right     red     congruent     right
+  }
+
+  stimuli{
+    all: shape(rectangle, position position, color color)
+    error: sound(1000)
+    fixation: shape(cross)
+  }
+}
+</code></pre>
+</li>
+<li>
+<p>Add screen definitions:</p>
+<pre><code>screen Practice {
+  Simon test
+  ----------
+
+  You will be presented with a colored rectangle positioned
+  left or right.
+  Press LEFT for the GREEN rectangle and right for the red.
+
+  Press SPACE for the practice block.
+}
+
+screen Real {
+  Simon test
+  ----------
+
+  Now a REAL testing will be performed.
+
+  Press SPACE for the real block.
+}
+</code></pre>
+<p>Screen definitions are instructions which are presented to the subject
+in between trial series.</p>
+</li>
+<li>
+<p>Define the structure of the experiment:</p>
+<pre><code>structure {
+  screen Practice
+  test Simon 1 practice randomize
+  screen Real
+  test Simon 10 randomize
+}
+</code></pre>
+<p>The structure gives the order and structure of experiment elements
+execution. In its most basic form, shown here, it instantiates screens and
+tests in the right order. In this experiment, first a <code>Practice</code> screen will
+be displayed. After the user press <em>ENTER</em> key a test execution will be
+performed for <code>1</code> set of trials (a set consists of application of all
+possible conditions). In this example, there is <code>4</code> possible conditions thus
+this serie will have <code>4</code> trials. This trial serie will be of practice type
+which means that it should be removed from the results. A set of conditions
+will be <code>randomized</code>. After the <code>Practice</code> screen and serie a <code>Real</code> screen
+will be displayed and after the <em>ENTER</em> key press a real serie will be
+performed by a <code>10</code> complete repetition of all <code>4</code> condition (i.e. a <code>40</code>
+trials). The trials will be <code>randomized</code>.</p>
+<p>At this point an experiment is fully described but to be usable we have to
+generate the code for the target platform.</p>
+</li>
+<li>
+<p>Configure target generator:</p>
+<pre><code>target Expyriment {
+  output = "/home/igor/experiments/Simon/"
+  responses {
+    // see expyriment/misc/constants.py
+    left = K_LEFT
+    right = K_RIGHT
+  }
+</code></pre>
+<p>This specification defines that <code>Expyriment</code> target library is used. The
+output folder where code should be generated is set. <code>responses</code> section
+maps abstract responses keywords (from the <code>conditions</code> section) to the
+platform specific responses (e.g. keys, buttons).</p>
+<p>Multiple target configurations can be specified.</p>
+</li>
+<li>
+<p>From the GUI choose <code>Generate code</code> action. The generator will produce code
+   for you experiment and the configured target platform.</p>
+</li>
+<li>
+<p>Run the experiment and gather data.</p>
+</li>
+</ol>
+<h3 id="discuss-ask-questions">Discuss, ask questions</h3>
+<p>Please use <a href="https://groups.google.com/forum/?hl=en#!forum/pyflies">discussion
+forum</a> for general
+discussions, suggestions etc.</p>
+<p>If you have some specific question on textX usage please use
+<a href="http://stackoverflow.com/">stackoverflow</a>.  Just make sure to tag your question
+with <code>pyflies</code>.</p>
+<h2 id="screenshots">Screenshots</h2>
+<p><img alt="PyFlies GUI" src="./../images/pyFliesGUI.png" /></p>
+<p><img alt="PyFlies GUI Codecentric" src="./../images/pyFliesGUICodeCentric.png" /></p></div>
+            
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+
+        <script src="./js/jquery-1.10.2.min.js"></script>
+        <script src="./js/bootstrap-3.0.3.min.js"></script>
+        <script src="./js/highlight.pack.js"></script>
+        <script>var base_url = '.';</script>
+        <script data-main="./mkdocs/js/search.js" src="./mkdocs/js/require.js"></script>
+        <script src="./js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 0.14.0
+Build Date UTC : 2015-09-11 21:47:03.251284
+-->

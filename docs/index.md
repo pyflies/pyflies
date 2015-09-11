@@ -177,7 +177,7 @@ with `pyflies`.
 
 ## Screenshots
 
-![PyFlies GUI](../images/pyFliesGUI.png)
+![PyFlies GUI](images/pyFliesGUI.png)
 
-![PyFlies GUI Codecentric](../images/pyFliesGUICodeCentric.png)
+![PyFlies GUI Codecentric](images/pyFliesGUICodeCentric.png)
 

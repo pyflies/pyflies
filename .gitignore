@@ -59,3 +59,4 @@ docs/_build/
 # Local stuff
 *.dot
 .directory
+site

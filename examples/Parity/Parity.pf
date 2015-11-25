@@ -11,15 +11,15 @@ test Parity {
 	conditions {
 		number	parity		response
 		
-		1		odd		odd
+		1		odd			odd
 		2		even		even
-		3		odd		odd
+		3		odd			odd
 		4		even		even
-		5		odd		odd
+		5		odd			odd
 		6		even		even
-		7		odd		odd
+		7		odd			odd
 		8		even		even
-		9		odd		odd
+		9		odd			odd
 	}
 	
 	stimuli{

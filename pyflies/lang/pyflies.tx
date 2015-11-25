@@ -21,37 +21,30 @@ BlockType:
 
 TestType:
   "test" name=ID "{"
-    conditions = Conditions
-    stimuli = Stimuli
+    'conditions' '{'
+      // Strip all whitespaces before next WORD
+      // because next rule is eolterm and
+      // terminates on newlines.
+      /\s*/
+
+      // Parameter names are in the first line of condition specification
+      condVarNames+=WORD[eolterm]    // match var names until end of line
+
+      // The rest of the description are conditions, one per line
+      // The order of condition values match the param name positions.
+      conditions+=Condition
+    '}'
+
+    'stimuli' '{'
+        condStimuli+=ConditionStimuli
+        ('duration' duration=Duration)?
+    '}'
   "}"
-;
-
-Conditions:
-  'conditions' '{'
-    // Strip all whitespaces before next WORD
-    // because next rule is eolterm and
-    // terminates on newlines.
-    /\s*/
-
-    // Parameter names are in the first line of condition specification
-    varNames+=WORD[eolterm]    // match var names until end of line
-
-    // The rest of the description are conditions, one per line
-    // The order of condition values match the param name positions.
-    conditions+=Condition
-  '}'
 ;
 
 Condition:
   /\s*/
   varValues+=WORD[eolterm]  // match values until end of line
-;
-
-Stimuli:
-  'stimuli' '{'
-      condStimuli+=ConditionStimuli
-      ('duration' duration=Duration)?
-  '}'
 ;
 
 ConditionStimuli:

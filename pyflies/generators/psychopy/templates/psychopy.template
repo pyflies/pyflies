@@ -77,14 +77,14 @@ screen_{{b.name}} = [[[visual.TextStim(
 
 # {{b.name}} test
 {{b.name}}_conditions = [
-    {%- for cond in b.conditions.conditions %}
+    {%- for cond in b.conditions %}
     {
         'condidx': {{loop.index}},
         {%- for varValue in cond.varValues %}
-         {%- if b.conditions.varNames[loop.index0] == 'response' %}
+         {%- if b.condVarNames[loop.index0] == 'response' %}
         'response': '{{response_map[varValue]}}',
          {%- else %}
-        '{{b.conditions.varNames[loop.index0]}}': '{{varValue}}',
+        '{{b.condVarNames[loop.index0]}}': '{{varValue}}',
          {%- endif %}
         {%- endfor %}
     },
@@ -92,13 +92,13 @@ screen_{{b.name}} = [[[visual.TextStim(
 ]
 
 {{b.name}}_varNames = [
-    {% for var in b.conditions.varNames %}'{{var}}'{% if not loop.last %}, {% endif %}
+    {% for var in b.condVarNames %}'{{var}}'{% if not loop.last %}, {% endif %}
     {%- endfor %}
 ]
 
 # Stimuli for each condition of {{b.name}} test
 {{b.name}}_condition_stimuli = [
-    {%- for cond in b.conditions.conditions %}
+    {%- for cond in b.conditions %}
         # Condition {{loop.index}}
         [
         {% for stimuli in cond.stimuli_for_cond -%}

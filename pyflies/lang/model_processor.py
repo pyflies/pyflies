@@ -78,9 +78,9 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # If value is equal to some of
                     # condition variable names use
                     # the current value of that variable
-                    if param_value in test_type.conditions.varNames:
+                    if param_value in test_type.condVarNames:
                         setattr(s, p, condition.varValues[
-                                test_type.conditions.varNames.index(
+                                test_type.condVarNames.index(
                                     param_value)])
 
     def set_default_values(s):
@@ -95,8 +95,8 @@ def resolve(stimulus, test_type, condition, metamodel):
                     # Special case
                     # Inherit from stimuli definition if exists or
                     # create new Duration object with default value.
-                    if test_type.stimuli.duration:
-                        def_val = test_type.stimuli.duration
+                    if test_type.duration:
+                        def_val = test_type.duration
                     else:
                         def_val = metamodel['Duration']()
                         def_val.value = 0
@@ -223,27 +223,27 @@ def pyflies_model_processor(model, metamodel):
         if e.__class__.__name__ == "TestType":
 
             # Check that there is a condition variable named "response"
-            if "response" not in e.conditions.varNames:
+            if "response" not in e.condVarNames:
                 line, col = \
-                    metamodel.parser.pos_to_linecol(e.conditions._tx_position)
+                    metamodel.parser.pos_to_linecol(e.condVarNames[0]._tx_position)
                 raise TextXSemanticError(
                     "There must be condition variable named 'response' at {}"
                     .format((line, col)), line=line, col=col)
 
             # Default duration
-            if e.stimuli.duration is None:
+            if e.duration is None:
                 default_duration = metamodel['Duration']()
                 default_duration.value = 0
                 default_duration._from = defaults['duration_from']
                 default_duration.to = defaults['duration_to']
-                e.stimuli.duration = default_duration
+                e.duration = default_duration
 
             # Create map of condition variables to collect their values.
             condvar_values = {}
-            for var in e.conditions.varNames:
+            for var in e.condVarNames:
                 condvar_values[var] = []
 
-            for c in e.conditions.conditions:
+            for c in e.conditions:
 
                 # Check if proper number of condition variable values is
                 # specified
@@ -256,7 +256,7 @@ def pyflies_model_processor(model, metamodel):
                         line=line, col=col)
 
                 # Fill the map of condition variable values for this condition.
-                for idx, param_name in enumerate(e.conditions.varNames):
+                for idx, param_name in enumerate(e.condVarNames):
                     condvar_values[param_name].append(c.varValues[idx])
 
             # Attach the map of values to the test to be used in
@@ -292,9 +292,9 @@ def pyflies_model_processor(model, metamodel):
             # definitions and evaluate condition match. If the
             # condition evaluates to True stimulus is included
             # for condition.
-            for idx, c in enumerate(e.conditions.conditions):
+            for idx, c in enumerate(e.conditions):
                 c.stimuli_for_cond = []
-                for s in e.stimuli.condStimuli:
+                for s in e.condStimuli:
                     exp = s.conditionMatch.expression
                     stimuli = s.stimuli
 
@@ -318,7 +318,7 @@ def pyflies_model_processor(model, metamodel):
             e.error = []
             e.correct = []
             e.fix = []
-            for s in e.stimuli.condStimuli:
+            for s in e.condStimuli:
                 exp = s.conditionMatch.expression
                 if exp.__class__.__name__ == "FixedCondition" and\
                         exp.expression in ["error", "correct", "fixation"]:

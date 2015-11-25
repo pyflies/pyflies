@@ -30,7 +30,7 @@ def generate(model, target):
     # Transform stimuli sizes and positions
     for b in model.blocks:
         if b.__class__.__name__ == "TestType":
-            for cs in b.stimuli.condStimuli:
+            for cs in b.condStimuli:
                 for s in cs.stimuli:
                     if s.__class__.__name__ in ['Shape', 'Image']:
                         # TODO: Transform coordinates and sizes

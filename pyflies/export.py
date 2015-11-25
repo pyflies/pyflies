@@ -79,13 +79,13 @@ def custom_export(model, file_name):
 {}
                         >];\n'''.format(
                         node_num, color, e.type.name,
-                        len(e.type.conditions.conditions),
+                        len(e.type.conditions),
                         ", ".join(e.type.condvar_values.keys()),
-                        duration_to_str(e.type.stimuli.duration),
+                        duration_to_str(e.type.duration),
                         randomize))
                 f.write('{} -> {} [dir=back, label="{}"];\n'.format(
                     node_num, node_num,
-                    e.trials * len(e.type.conditions.conditions)))
+                    e.trials * len(e.type.conditions)))
                 node_num += 1
             elif clsname == "Sequence":
                 f.write('''subgraph cluster{} {{

@@ -10,10 +10,10 @@ test Posner {
 	conditions {
 		cue     position	congruency		response
 
-		left		left		congruent		left
-		left		right	incongruent		right
+		left	left		congruent		left
+		left	right		incongruent		right
 		right	left		incongruent		left
-		right	right	congruent		right
+		right	right		congruent		right
 	}
 	
 	stimuli{

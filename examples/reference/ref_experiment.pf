@@ -11,7 +11,7 @@ test simon {
 
     blue    left        right
     blue    right       right
-    green   left 		left
+    green   left        left
     green   right       left
     red     left        right
     red     right       right
@@ -25,24 +25,26 @@ test simon {
 
     position=right: shape(rectangle, position right, size small, color red)
     position=left: shape(rectangle, position left, size small, color black)
-    
+
     // stimuli description are merged for condition match that matches
     // more that one condition
-    // For example, this will play sound at condition 1 and display shape on the left side
+    // For example, this will play sound at condition 1 and display shape on 
+    // the left side because condition 1 is selected with both condition match
+    // below and the condition match above (position=left).
     1: sound(1000)
 
     // To match all condition use special condition "all"
     all: sound(2000)
-    
+
     // To put more than one stimuli on the same condition
     // repeat that condition with another stimulus
     all: image("someimage.png", size large)
-    
+
     // Besides "all" there are several special conditions:
     // fixation - used to specify fixation stimulus
     // error - stimulus used to indicate error
     // correct - stimulus used to indicate correct response
-    
+
     fixation: shape(cross, size tiny, color white)
     error: sound(2000, duration 100)
     correct: sound(1000)
@@ -54,9 +56,9 @@ test simon {
     4: audio("audiofile.mp3")
     color=green and position=right: image("someimage.png", size large)
     color=red and position=right: image("someimage.png", position -25 -25, size 10 10)
-    
-   	// Timing
-  	duration 2000
+
+    // Timing
+    duration 2000
 
   }
 }
@@ -84,23 +86,23 @@ structure {
 
   // Randomize block will randomize all its children
   randomize {
-  	
-  	// Introduction and practice are put in sequence to
-  	// preserve their order
-	sequence {
-		screen Introduction
-		
-		// Instantiate test type with the name of the type,
-		// number of trial sets, indicator if it is practice
-		// and optional randomization keyword
-		test simon 3 practice
-	}
-	
-	sequence {
-		// Just to show that blocks can be nested.
-		screen Introduction
-		test simon 10 randomize
-	}
+
+    // Introduction and practice are put in sequence to
+    // preserve their order
+  sequence {
+    screen Introduction
+
+    // Instantiate test type with the name of the type,
+    // number of trial sets, indicator if it is practice
+    // and optional randomization keyword
+    test simon 3 practice
+  }
+
+  sequence {
+    // Just to show that blocks can be nested.
+    screen Introduction
+    test simon 10 randomize
+  }
   }
 }
 
@@ -118,13 +120,14 @@ target jsPsych {
   }
 }
 */
+
 target Expyriment {
   // Target folder where test should be generated
   output = "/home/igor/tmp/expgen/"
 
   responses {
-  	// Target specific response mappings
-  	// For Expyriment see expyriment/misc/constants.py
+    // Target specific response mappings
+    // For Expyriment see expyriment/misc/constants.py
     left = K_LEFT
     right = K_RIGHT
     // Special response 'next' is used
@@ -133,8 +136,8 @@ target Expyriment {
     next = K_ENTER
   }
   // Generator specific settings (e.g. Expyriment)
-  // Anything available here should be specified by generator
+  // Anything available here should be specified by the generator
   response_device = keyboard
-  
-  
+
+
 }

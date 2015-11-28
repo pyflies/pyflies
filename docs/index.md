@@ -6,8 +6,8 @@ A Domain-Specific Language (DSL) for cognitive experiments modeling.
 
 
 [pyFlies](https://github.com/igordejanovic/pyFlies/) is a Domain-Specific
-Language (DSL) for cognitive experiments modeling. It is meant to be simple to
-learn and readable. It is designed to be highly readable and easy to write.
+Language (DSL) for cognitive experiments modeling. It is meant to be highly
+readable and simple to learn.
 
 A code for various run-time platforms can be generated from the experiment
 description. Futhermore, model can be directly interpreted if the run-time
@@ -49,15 +49,17 @@ If you want to contribute installer for some platform please se section
 
 ### Installation
 
-pyFlies can be installed using `pip` installer:
+Download and install pyQt4 and GraphViz for your platform.
+
+Install `Python` and `pip` tool.
+
+Current stable version of pyFlies can be installed using `pip` installer:
 
     pip install pyFlies
 
-or from source:
+The development version can be installed with:
 
-    git clone https://github.com/igordejanovic/pyFlies.git
-    cd pyFlies
-    python setup.py install
+    pip install https://github.com/igordejanovic/pyFlies/archive/master.zip
 
 ### Quick start
 
@@ -133,8 +135,8 @@ or from source:
     performed for `1` set of trials (a set consists of application of all
     possible conditions). In this example, there is `4` possible conditions thus
     this serie will have `4` trials. This trial serie will be of practice type
-    which means that it should be removed from the results. A set of conditions
-    will be `randomized`. After the `Practice` screen and serie a `Real` screen
+    which means that it will be removed from the results. A set of conditions
+    will be `randomized`. After the `Practice` serie a `Real` screen
     will be displayed and after the *ENTER* key press a real serie will be
     performed by a `10` complete repetition of all `4` condition (i.e. a `40`
     trials). The trials will be `randomized`.
@@ -144,25 +146,26 @@ or from source:
 
 5. Configure target generator:
 
-        target Expyriment {
-          output = "/home/igor/experiments/Simon/"
+        target PsychoPy {
+          output = "/home/igor/tmp/SimonPsycho/"
           responses {
-            // see expyriment/misc/constants.py
-            left = K_LEFT
-            right = K_RIGHT
+            left = left
+            right = right
           }
 
-    This specification defines that `Expyriment` target library is used. The
+    This specification defines that `PsychoPy` target library is used. The
     output folder where code should be generated is set. `responses` section
     maps abstract responses keywords (from the `conditions` section) to the
     platform specific responses (e.g. keys, buttons).
 
-    Multiple target configurations can be specified.
+    Multiple target configurations can be specified. At the time of this writing
+    only `PsychoPy` is completed but work is under way to support other
+    platforms (e.g. Expyriment, jsPsych...).
 
 6. From the GUI choose `Generate code` action. The generator will produce code
    for you experiment and the configured target platform.
 
-7. Run the experiment and gather data.
+7. Run the experiment using target platform and gather data.
 
 
 ### Discuss, ask questions

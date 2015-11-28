@@ -2,8 +2,8 @@ pyFlies
 =======
 
 `pyFlies <http://igordejanovic.github.io/pyFlies/>`_ is a Domain-Specific
-Language (DSL) for cognitive experiments modeling.  It is meant to be simple to
-learn and readable.
+Language (DSL) for reaction time experiments modeling. It is meant to be highly
+readable and simple to learn.
 
 A code for various run-time platforms can be generated from the experiment
 description.  Futhermore, model can be directly interpreted if the run-time

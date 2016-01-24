@@ -3,6 +3,7 @@ Generator for PsychoPy software.
 """
 import jinja2
 import re
+from datetime import datetime
 from os.path import join, dirname
 from pyflies.generators.util import python_module_name
 
@@ -50,5 +51,5 @@ def generate(model, target):
     template = jinja_env.get_template('psychopy.template')
 
     with open(join(target.output, python_module_name(model.name)), 'w') as f:
-        f.write(template.render(m=model, target=target,
+        f.write(template.render(m=model, target=target, datetime=datetime.now(),
                 response_map=response_map))

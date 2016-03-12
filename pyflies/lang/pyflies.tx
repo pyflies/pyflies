@@ -100,7 +100,7 @@ Image:
           |(keep?='keep')           // Keep stimuli presented after duration elapses
           |(target?='target')      // Target stimuli, measure time from its presentation.
           |('size' width=WORD (height=INT)?) // size - used for rectangle
-        )*[','])?
+        )+[','])?
   ')'
 ;
 
@@ -119,7 +119,7 @@ Shape:
           |('color' color=WORD)
           |('fillColor' fillColor=WORD)
           |('lineWidth' lineWidth=WORD)
-        )*[','])?
+        )+[','])?
   ')'
 ;
 
@@ -137,7 +137,7 @@ Text:
           |(target?='target')      // Target stimuli, measure time from its presentation.
           |('size' size=INT)
           |('color' color=WORD)
-        )*[','])?
+        )+[','])?
   ')'
 ;
 
@@ -147,7 +147,7 @@ Sound:
            ('start' start=Start)
            |('duration' duration=Duration)
            |(target?='target')
-         )*[',']
+         )+[',']
     )?
   ')'
 ;
@@ -158,7 +158,7 @@ Audio:
            ('start' start=Start)
            |('duration' duration=Duration)
            |(target?='target')
-         )*[',']
+         )+[',']
     )?
   ')'
 ;

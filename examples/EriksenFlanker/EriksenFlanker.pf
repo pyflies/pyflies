@@ -29,12 +29,8 @@ screen intro {
     Welcome
     -------
     In the following test you will be presented with a line of 5 arrow pointing
-    left or right like in this picture:
-
-    .. image:: left-incongruent.png
-
-    You should respond by the direction of the *middle arrow* as fast as possible
-    by pressing left or right arrow on the keyboard or touching/clicking
+    left or right. You should respond by the direction of the *middle arrow* as 
+	fast as possible by pressing left or right arrow on the keyboard or touching/clicking
     on appropriate button on the screen.
 
     You will first do a practice run with 4 trials. After that a real run with

@@ -65,7 +65,14 @@ defaults = {
 def resolve(stimulus, test_type, condition, metamodel):
     """
     Create a new stimulus with all parameter references resolved for
-    current conditions, and defaults set.
+    given condition, and defaults set.
+
+    Args:
+        stimulus (Stimulus metaclass instance): A stimulus to create/resolve.
+        test_type (TestType metaclass instance): Test type block instance.
+        condition (Condition metaclass instance): Current condition.
+            May be None.
+        metamodel: textX metamodel
     """
 
     def resolve_condition_var_references(s):

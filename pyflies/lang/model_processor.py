@@ -219,35 +219,38 @@ def pyflies_model_processor(model, metamodel):
     """
 
     # Post-processing is done for each test type
-    for e in model.blocks:
-        if e.__class__.__name__ == "TestType":
+    for block in model.blocks:
+        if block.__class__.__name__ == "TestType":
 
             # Check that there is a condition variable named "response"
-            if "response" not in e.condVarNames:
+            if "response" not in block.condVarNames:
                 line, col = \
-                    metamodel.parser.pos_to_linecol(e.condVarNames[0]._tx_position)
+                    metamodel.parser.pos_to_linecol(
+                        block.condVarNames[0]._tx_position)
                 raise TextXSemanticError(
                     "There must be condition variable named 'response' at {}"
                     .format((line, col)), line=line, col=col)
 
-            # Default duration
-            if e.duration is None:
+            # Create default duration if not given.
+            if block.duration is None:
                 default_duration = metamodel['Duration']()
                 default_duration.value = 0
                 default_duration._from = defaults['duration_from']
                 default_duration.to = defaults['duration_to']
-                e.duration = default_duration
+                block.duration = default_duration
 
             # Create map of condition variables to collect their values.
+            # For each variable name a list of values will be created
+            # indexed by the condition ordinal number.
             condvar_values = {}
-            for var in e.condVarNames:
+            for var in block.condVarNames:
                 condvar_values[var] = []
 
-            for c in e.conditions:
+            for c in block.conditions:
 
                 # Check if proper number of condition variable values is
-                # specified
-                if len(condvar_values) != len(c.varValues):
+                # specified in the current condition.
+                if len(block.condVarNames) != len(c.varValues):
                     line, col = \
                         metamodel.parser.pos_to_linecol(c._tx_position)
                     raise TextXSemanticError(
@@ -256,13 +259,13 @@ def pyflies_model_processor(model, metamodel):
                         line=line, col=col)
 
                 # Fill the map of condition variable values for this condition.
-                for idx, param_name in enumerate(e.condVarNames):
-                    condvar_values[param_name].append(c.varValues[idx])
+                for idx, var_name in enumerate(block.condVarNames):
+                    condvar_values[var_name].append(c.varValues[idx])
 
             # Attach the map of values to the test to be used in
             # condition match expression evaluation and in generator
             # templates.
-            e.condvar_values = condvar_values
+            block.condvar_values = condvar_values
 
             def cond_matches(idx, c, exp):
                 """
@@ -292,9 +295,9 @@ def pyflies_model_processor(model, metamodel):
             # definitions and evaluate condition match. If the
             # condition evaluates to True stimulus is included
             # for condition.
-            for idx, c in enumerate(e.conditions):
+            for idx, c in enumerate(block.conditions):
                 c.stimuli_for_cond = []
-                for s in e.condStimuli:
+                for s in block.condStimuli:
                     exp = s.conditionMatch.expression
                     stimuli = s.stimuli
 
@@ -310,26 +313,26 @@ def pyflies_model_processor(model, metamodel):
                         stimuli_for_match = []
                         for stimulus in stimuli:
                             stimuli_for_match.append(
-                                resolve(stimulus, e, c, metamodel))
+                                resolve(stimulus, block, c, metamodel))
 
                         c.stimuli_for_cond.append(stimuli_for_match)
 
             # Find special stimuli if any (error, correct, fixation)
-            e.error = []
-            e.correct = []
-            e.fix = []
-            for s in e.condStimuli:
+            block.error = []
+            block.correct = []
+            block.fix = []
+            for s in block.condStimuli:
                 exp = s.conditionMatch.expression
                 if exp.__class__.__name__ == "FixedCondition" and\
                         exp.expression in ["error", "correct", "fixation"]:
-                    stimuli = [resolve(st, e, None, metamodel)
+                    stimuli = [resolve(st, block, None, metamodel)
                                for st in s.stimuli]
                     if exp.expression == "error":
-                        e.error = stimuli
+                        block.error = stimuli
                     elif exp.expression == "correct":
-                        e.correct = stimuli
+                        block.correct = stimuli
                     elif exp.expression == "fixation":
-                        e.fix = stimuli
+                        block.fix = stimuli
 
     # Check targets
     for target in model.targets:

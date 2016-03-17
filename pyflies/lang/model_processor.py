@@ -71,17 +71,16 @@ def resolve(stimulus, test_type, condition, metamodel):
     def resolve_condition_var_references(s):
         # Try to resolve all resolvable stimuli parameters
         # using values from conditions table.
-        if condition:
-            for p in resolvable:
-                if hasattr(s, p):
-                    param_value = getattr(s, p)
-                    # If value is equal to some of
-                    # condition variable names use
-                    # the current value of that variable
-                    if param_value in test_type.condVarNames:
-                        setattr(s, p, condition.varValues[
-                                test_type.condVarNames.index(
-                                    param_value)])
+        for p in resolvable:
+            if hasattr(s, p):
+                param_value = getattr(s, p)
+                # If value is equal to some of
+                # condition variable names use
+                # the current value of that variable
+                if param_value in test_type.condVarNames:
+                    setattr(s, p, condition.varValues[
+                            test_type.condVarNames.index(
+                                param_value)])
 
     def set_default_values(s):
         """
@@ -204,7 +203,8 @@ def resolve(stimulus, test_type, condition, metamodel):
         setattr(s, attr, getattr(stimulus, attr))
     s._tx_position = stimulus._tx_position
 
-    resolve_condition_var_references(s)
+    if condition:
+        resolve_condition_var_references(s)
     set_default_values(s)
     convert_descriptive_values(s)
 

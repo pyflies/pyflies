@@ -62,7 +62,7 @@ defaults = {
 }
 
 
-def resolve(stimulus, test_type, condition, metamodel):
+def create_resolve_stimulus(stimulus, test_type, condition, metamodel):
     """
     Create a new stimulus with all parameter references resolved for
     given condition, and defaults set.
@@ -320,7 +320,8 @@ def pyflies_model_processor(model, metamodel):
                         stimuli_for_match = []
                         for stimulus in stimuli:
                             stimuli_for_match.append(
-                                resolve(stimulus, block, c, metamodel))
+                                create_resolve_stimulus(stimulus,
+                                                        block, c, metamodel))
 
                         c.stimuli_for_cond.append(stimuli_for_match)
 
@@ -332,7 +333,8 @@ def pyflies_model_processor(model, metamodel):
                 exp = s.conditionMatch.expression
                 if exp.__class__.__name__ == "FixedCondition" and\
                         exp.expression in ["error", "correct", "fixation"]:
-                    stimuli = [resolve(st, block, None, metamodel)
+                    stimuli = [create_resolve_stimulus(st, block,
+                                                       None, metamodel)
                                for st in s.stimuli]
                     if exp.expression == "error":
                         block.error = stimuli

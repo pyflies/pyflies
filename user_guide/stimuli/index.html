@@ -175,6 +175,8 @@
         
             <li><a href="#stimuli-types">Stimuli types</a></li>
         
+            <li><a href="#stimuli-match-expression">Stimuli match expression</a></li>
+        
     
     </ul>
 </div></div>
@@ -196,32 +198,43 @@ Each statement is given in the form:</p>
 <pre><code>  &lt;condition match expr.&gt;: &lt;stimuli definition&gt;
 </code></pre>
 <p>Where <code>condition match expr.</code> is either an expression that will match one or
-more condition from the condition section or a special expression that will match
-some specific event during the experiment execution.</p>
+more conditions from the condition section or a special expression that will
+match some specific event during the experiment execution.</p>
 <p>Stimuli defined after colon in stimuli definition statement are given in the
 form of list of stimulus definition. Stimuli are presented to the user in the
 order they are defined.</p>
 <h2 id="stimuli-types">Stimuli types</h2>
 <p>At the moment pyFlies recognizes following stimulus types:</p>
 <ul>
-<li><strong>shape</strong> - displays a shape defined in first parameter with the given color and location,</li>
+<li><strong>shape</strong> - displays a shape defined in first parameter with the given color
+  and location,</li>
 <li><strong>image</strong> - displays an image from file</li>
 <li><strong>text</strong> - displays given text at a specific location,</li>
 <li><strong>sound</strong> - produces a tone of the given frequency and duration,</li>
 <li><strong>audio</strong> - plays given audio file</li>
 </ul>
 <p>Each stimuli type has at least one mandatory parameter and may have additional
-optional parameters.  Optional parameters always start with the keywords which
-names them, thus their order is arbitrary. In the previous example for <code>all</code>
-condition a shape stimuli will be presented. Shape type is <code>rectangle</code>, its
-position will be the value of <code>position</code> condition variable for the current
+optional parameters.  Optional parameters always start with the keyword which
+identifies them, thus their order may be arbitrary. In the previous example, for
+<code>all</code> condition a shape stimuli will be presented. Shape type is <code>rectangle</code>,
+its position will be the value of <code>position</code> condition variable for the current
 condition and its color will be the value of <code>color</code> condition variable for the
 current condition.</p>
 <h3 id="shape">shape</h3>
 <h3 id="image">image</h3>
 <h3 id="text">text</h3>
 <h3 id="sound">sound</h3>
-<h3 id="audio">audio</h3></div>
+<h3 id="audio">audio</h3>
+<h2 id="stimuli-match-expression">Stimuli match expression</h2>
+<p>Stimuli match expression is a logical expression that is used to connect stimuli
+definitions with the condition in which they should be presented. It is
+evaluated for each condition. If the expression value is true for the current
+condition than the stimuli are presented to the user in the order defined.</p>
+<p>Currently, <code>and</code>, <code>or</code> and <code>=</code> operators can be used. There are plans for some
+arithmetic and comparison operators to be added in future versions.</p>
+<p>For example:</p>
+<pre><code>parity=odd and position=left: image('red_square.png', position position)
+</code></pre></div>
             
         </div>
 

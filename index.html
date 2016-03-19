@@ -186,8 +186,8 @@
 <p>A Domain-Specific Language (DSL) for cognitive experiments modeling.</p>
 <hr />
 <p><a href="https://github.com/igordejanovic/pyFlies/">pyFlies</a> is a Domain-Specific
-Language (DSL) for cognitive experiments modeling. It is meant to be simple to
-learn and readable. It is designed to be highly readable and easy to write.</p>
+Language (DSL) for cognitive experiments modeling. It is meant to be highly
+readable and simple to learn.</p>
 <p>A code for various run-time platforms can be generated from the experiment
 description. Futhermore, model can be directly interpreted if the run-time
 supports pyFlies.</p>
@@ -222,13 +222,13 @@ supports pyFlies.</p>
 If you want to contribute installer for some platform please se section
 <code>Contributions</code>.</p>
 <h3 id="installation">Installation</h3>
-<p>pyFlies can be installed using <code>pip</code> installer:</p>
+<p>Download and install pyQt4 and GraphViz for your platform.</p>
+<p>Install <code>Python</code> and <code>pip</code> tool.</p>
+<p>Current stable version of pyFlies can be installed using <code>pip</code> installer:</p>
 <pre><code>pip install pyFlies
 </code></pre>
-<p>or from source:</p>
-<pre><code>git clone https://github.com/igordejanovic/pyFlies.git
-cd pyFlies
-python setup.py install
+<p>The development version can be installed with:</p>
+<pre><code>pip install https://github.com/igordejanovic/pyFlies/archive/master.zip
 </code></pre>
 <h3 id="quick-start">Quick start</h3>
 <ol>
@@ -306,8 +306,8 @@ be displayed. After the user press <em>ENTER</em> key a test execution will be
 performed for <code>1</code> set of trials (a set consists of application of all
 possible conditions). In this example, there is <code>4</code> possible conditions thus
 this serie will have <code>4</code> trials. This trial serie will be of practice type
-which means that it should be removed from the results. A set of conditions
-will be <code>randomized</code>. After the <code>Practice</code> screen and serie a <code>Real</code> screen
+which means that it will be removed from the results. A set of conditions
+will be <code>randomized</code>. After the <code>Practice</code> serie a <code>Real</code> screen
 will be displayed and after the <em>ENTER</em> key press a real serie will be
 performed by a <code>10</code> complete repetition of all <code>4</code> condition (i.e. a <code>40</code>
 trials). The trials will be <code>randomized</code>.</p>
@@ -316,26 +316,27 @@ generate the code for the target platform.</p>
 </li>
 <li>
 <p>Configure target generator:</p>
-<pre><code>target Expyriment {
-  output = "/home/igor/experiments/Simon/"
+<pre><code>target PsychoPy {
+  output = "/home/igor/tmp/SimonPsycho/"
   responses {
-    // see expyriment/misc/constants.py
-    left = K_LEFT
-    right = K_RIGHT
+    left = left
+    right = right
   }
 </code></pre>
-<p>This specification defines that <code>Expyriment</code> target library is used. The
+<p>This specification defines that <code>PsychoPy</code> target library is used. The
 output folder where code should be generated is set. <code>responses</code> section
 maps abstract responses keywords (from the <code>conditions</code> section) to the
 platform specific responses (e.g. keys, buttons).</p>
-<p>Multiple target configurations can be specified.</p>
+<p>Multiple target configurations can be specified. At the time of this writing
+only <code>PsychoPy</code> is completed but work is under way to support other
+platforms (e.g. Expyriment, jsPsych...).</p>
 </li>
 <li>
 <p>From the GUI choose <code>Generate code</code> action. The generator will produce code
    for you experiment and the configured target platform.</p>
 </li>
 <li>
-<p>Run the experiment and gather data.</p>
+<p>Run the experiment using target platform and gather data.</p>
 </li>
 </ol>
 <h3 id="discuss-ask-questions">Discuss, ask questions</h3>
@@ -394,5 +395,5 @@ with <code>pyflies</code>.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2015-09-11 21:55:03.696193
+Build Date UTC : 2016-03-19 14:40:01.664906
 -->

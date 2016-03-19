@@ -18,12 +18,6 @@ test Simon {
     
     stimuli{
         all: shape(rectangle, position position, color color, fillColor color)
-        /* Or in extended form
-        1: shape(rectangle, position left, color green, fillColor green)
-        2: shape(rectangle, position left, color red, fillColor red)
-        3: shape(rectangle, position right, color green, fillColor green)
-        4: shape(rectangle, position right, color red, fillColor red)
-        */
         error: sound(1000, duration 300)
         correct: sound(500, duration 300)
         fixation: shape(cross)

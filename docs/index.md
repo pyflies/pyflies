@@ -25,7 +25,7 @@ supports pyFlies.
  * Written in Python programming language. Easy to extend.
  * Fully open source. GPL license. Hosted on github. Easy to contribute to.
 
-<a href="../images/Architecture.png" target="_blank"><img src="../images/Architecture.png"/></a>
+<a href="images/Architecture.png" target="_blank"><img src="images/Architecture.png"/></a>
 
 ## Getting started
 
@@ -181,8 +181,8 @@ with `pyflies`.
 
 ## Screenshots
 
-<a href="../images/pyFliesGUI.png" target="_blank"><img src="../images/pyFliesGUI.png"/></a>
-<a href="../images/pyFliesSimonScreenShot.png" target="_blank"><img src="../images/pyFliesSimonScreenShot.png"/></a>
+<a href="images/pyFliesGUI.png" target="_blank"><img src="images/pyFliesGUI.png"/></a>
+<a href="images/pyFliesSimonScreenShot.png" target="_blank"><img src="images/pyFliesSimonScreenShot.png"/></a>
 
 
 

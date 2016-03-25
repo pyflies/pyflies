@@ -9,7 +9,7 @@
 ###############################################################################
 
 __author__ = "Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>"
-__version__ = "0.2.post1"
+__version__ = "0.3"
 
 import os
 from setuptools import setup, find_packages

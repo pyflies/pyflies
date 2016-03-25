@@ -23,7 +23,8 @@ supports pyFlies.
  * Declarative language. Specify `what` needs to be done and leave `how` part to the pyFlies.
  * GUI editor with syntax highlighting and experiment structure visualization.
  * Written in Python programming language. Easy to extend.
- * Fully open source. GPL license. Hosted on github. Easy to contribute to.
+ * Fully open source. GPL license.
+   [Hosted on github](https://github.com/igordejanovic/pyflies). Easy to contribute to.
 
 <a href="images/Architecture.png" target="_blank"><img src="images/Architecture.png"/></a>
 
@@ -33,24 +34,28 @@ supports pyFlies.
 
 To install pyFlies you will need to install following dependencies:
 
- * [Python](https://www.python.org/)
- * [textX](https://github.com/igordejanovic/textX) - will be installed
-   automatically if `pip` is used.
- * [Qt 4.8](http://www.qt.io/developers/) - GUI library.
- * [pyQt4](http://www.riverbankcomputing.co.uk/software/pyqt/intro) - Python
-   binding for Qt.
- * `dot` (part of [GraphViz](http://www.graphviz.org/)) - `dot` must be on your
-   `PATH` for model visualization.
- * [jinja2](http://jinja.pocoo.org/) - for generating source code. Will be
-   installed automatically if `pip` is used.
+- Mandatory:
+
+    * [Python](https://www.python.org/)
+    * [textX](https://github.com/igordejanovic/textX) - will be installed
+      automatically if `pip` is used.
+    * [jinja2](http://jinja.pocoo.org/) - for generating source code. Will be
+      installed automatically if `pip` is used.
+
+- Optional. Needed if GUI is used:
+
+    * [Qt 4.8](http://www.qt.io/developers/) - GUI library.
+    * [pyQt4](http://www.riverbankcomputing.co.uk/software/pyqt/intro) - Python
+      binding for Qt.
+    * `dot` (part of [GraphViz](http://www.graphviz.org/)) - `dot` must be on your
+      `PATH` for model visualization.
 
 It is planed to make installers for different platforms available in the future.
 If you want to contribute installer for some platform please se section
 `Contributions`.
 
-### Installation
 
-Download and install pyQt4 and GraphViz for your platform.
+### Installation
 
 Install `Python` and `pip` tool.
 
@@ -62,13 +67,17 @@ The development version can be installed with:
 
     pip install https://github.com/igordejanovic/pyFlies/archive/master.zip
 
+For GUI use download and install optional dependencies.
+
+
 ### Quick start
 
-1. Start pyFlies GUI.
+1. Start pyFlies GUI. GUI doesn't need to be used. You can also use any text
+   editor to write your models.
 
-        pyflies
+        pyfliesgui
 
-2. Open new file and write your test description:
+2. Open new file (e.g. simon.pf) and write your test description:
 
         experiment "Simon"
         "
@@ -148,7 +157,7 @@ The development version can be installed with:
 5. Configure target generator:
 
         target PsychoPy {
-          output = "/home/igor/tmp/SimonPsycho/"
+          output = "/home/igor/Simon/"
           responses {
             left = left
             right = right
@@ -163,10 +172,33 @@ The development version can be installed with:
     only `PsychoPy` is completed but work is under way to support other
     platforms (e.g. Expyriment, jsPsych...).
 
-6. From the GUI choose `Generate code` action. The generator will produce code
-   for you experiment and the configured target platform.
+6. Generate source code for the target platform. This can be done from the
+   command line using `pyflies` tool.
+
+        $ pyflies simon.pf
+        Generating code for target PsychoPy(out=/home/igor/Simon/)...Done
+        Code for target platform(s) generated sucessfully.
+
+   Code generation can also be done from the pyFlies GUI using `Generate code`
+   button.
+   
+   The generator will produce code for you experiment and the configured target
+   platform.
 
 7. Run the experiment using target platform and gather data.
+
+        $ cd ~/Simon/
+        $ python2 simon.py
+
+   Note that PsychoPy, which is used in this introduction, must be installed.
+
+
+### Try examples
+
+Clone or [download](https://github.com/igordejanovic/pyFlies/archive/master.zip)
+pyFlies repo. Unpack and load examples from `examples` folder in the editor or
+pyFlies GUI. Update experiment definition to your taste (at least update
+`target` output specification). Generate and run experiment.
 
 
 ### Discuss, ask questions
@@ -176,7 +208,7 @@ forum](https://groups.google.com/forum/?hl=en#!forum/pyflies) for general
 discussions, suggestions etc.
 
 If you have some specific question on textX usage please use
-[stackoverflow](http://stackoverflow.com/).  Just make sure to tag your question
+[stackoverflow](http://stackoverflow.com/). Just make sure to tag your question
 with `pyflies`.
 
 ## Screenshots

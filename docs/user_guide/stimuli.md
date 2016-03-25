@@ -48,6 +48,7 @@ condition and its color will be the value of `color` condition variable for the
 current condition.
 
 Common stimuli parameters are:
+
 - **duration** - is the duration in ms for which the stimuli will be presented. It
   can be a single number or the interval in the form `[ from, to ]`. If interval
   is given a random number of ms from the interval will be chosen.
@@ -65,6 +66,7 @@ First parameter is mandatory and represent the shape kind. It can be
 `rectangle`, `circle`, `line` or `cross`.
 
 Additional parameters are:
+
 - **radius** - for `circle` shape type.
 - **from, to** - for `line` shape type. Coordinates are given in the form `[x,y]`.
 - **size** - for `rectangle` and `cross` shape types. Size is given as an integer

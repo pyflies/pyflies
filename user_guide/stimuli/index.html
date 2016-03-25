@@ -220,11 +220,55 @@ identifies them, thus their order may be arbitrary. In the previous example, for
 its position will be the value of <code>position</code> condition variable for the current
 condition and its color will be the value of <code>color</code> condition variable for the
 current condition.</p>
+<p>Common stimuli parameters are:</p>
+<ul>
+<li><strong>duration</strong> - is the duration in ms for which the stimuli will be presented. It
+  can be a single number or the interval in the form <code>[ from, to ]</code>. If interval
+  is given a random number of ms from the interval will be chosen.</li>
+<li><strong>target</strong> - if the stimulus is marked as a target than the time should be
+  measured from the presentation of this stimulus. If not given the time is
+  measured from the last stimulus presented in the trial.</li>
+</ul>
+<p>All visual types of stimuli has <code>keep</code> parameter which if given means that the
+stimulus is not cleared when the new stimulus in the current trial is presented
+(in case when there are more stimuli to show).</p>
 <h3 id="shape">shape</h3>
+<p>First parameter is mandatory and represent the shape kind. It can be
+<code>rectangle</code>, <code>circle</code>, <code>line</code> or <code>cross</code>.</p>
+<p>Additional parameters are:</p>
+<ul>
+<li><strong>radius</strong> - for <code>circle</code> shape type.</li>
+<li><strong>from, to</strong> - for <code>line</code> shape type. Coordinates are given in the form <code>[x,y]</code>.</li>
+<li><strong>size</strong> - for <code>rectangle</code> and <code>cross</code> shape types. Size is given as an integer
+  or as two integers (width, height).</li>
+<li><strong>color</strong> - the color of the shape.</li>
+<li><strong>fillColor</strong> - the interior color of the shape.</li>
+<li><strong>lineWidth</strong> - the width of the shape outline.</li>
+</ul>
+<p>Sizes and positions are specified in the <a href="../coordinate_system/">pyFlies coordinate
+space</a>.  Color is currently one of predefined values:
+white, black, red, yellow, green, blue, grey.</p>
 <h3 id="image">image</h3>
+<p>This stimuli type is used to present image from file. The mandatory parameter
+is a path to the file relative to the pyFlies model (see <a href="https://github.com/igordejanovic/pyFlies/blob/master/examples/EriksenFlanker/EriksenFlanker.pf#L16">Eriksen Flanker
+example</a>.
+All common parameters can be used. In addition <code>size</code> parameter can be used as
+well.</p>
 <h3 id="text">text</h3>
+<p>This stimuli type is used to present text to the user. The mandatory parameter
+is the string to be presented. In addition to all common visual parameters
+<code>size</code> and <code>color</code> can be given also (see <a href="https://github.com/igordejanovic/pyFlies/blob/master/examples/Parity/Parity.pf#L25">Parity
+example</a>).</p>
 <h3 id="sound">sound</h3>
+<p>This stimuli type is used to generate sound of the given frequency and duration.
+Mandatory parameter is a frequency in Hz. Additionally, a duration in ms and
+<code>target</code> param can be given.</p>
+<p>This stimuli is used most often with <code>error</code> and <code>correct</code> match expressions
+(see below).</p>
 <h3 id="audio">audio</h3>
+<p>This stimuli type is used to play sound from the file. Mandatory parameter is
+audio file path relative to the pyFlies model.
+In addition <code>duration</code> and <code>target</code> parameters can be given.</p>
 <h2 id="stimuli-match-expression">Stimuli match expression</h2>
 <p>Stimuli match expression is a logical expression that is used to connect stimuli
 definitions with the condition in which they should be presented. It is
@@ -234,7 +278,20 @@ condition than the stimuli are presented to the user in the order defined.</p>
 arithmetic and comparison operators to be added in future versions.</p>
 <p>For example:</p>
 <pre><code>parity=odd and position=left: image('red_square.png', position position)
-</code></pre></div>
+</code></pre>
+<h3 id="special-match-expression">Special match expression</h3>
+<p>There are several special match expression:</p>
+<ul>
+<li><strong>all</strong> - this will match every condition thus the stimuli defined here will be
+  presented for each condition from the condition table.</li>
+<li><strong>fixation</strong> - this condition is satisfied at the beginning of the trial before
+  first stimuli is presented.</li>
+<li><strong>error</strong> - this condition is satisfied when the user response doesn't match the
+  response specified in the current condition or if the time specified by the
+  <code>duration</code> parameter in the <code>stimuli</code> section has lapsed.</li>
+<li><strong>correct</strong> - this condition is satisfied if the user response match the response
+  defined for the current condition.</li>
+</ul></div>
             
         </div>
 

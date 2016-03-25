@@ -201,29 +201,39 @@ supports pyFlies.</p>
 <li>Declarative language. Specify <code>what</code> needs to be done and leave <code>how</code> part to the pyFlies.</li>
 <li>GUI editor with syntax highlighting and experiment structure visualization.</li>
 <li>Written in Python programming language. Easy to extend.</li>
-<li>Fully open source. GPL license. Hosted on github. Easy to contribute to.</li>
+<li>Fully open source. GPL license.
+   <a href="https://github.com/igordejanovic/pyflies">Hosted on github</a>. Easy to contribute to.</li>
 </ul>
 <p><a href="images/Architecture.png" target="_blank"><img src="images/Architecture.png"/></a></p>
 <h2 id="getting-started">Getting started</h2>
 <h3 id="prerequsites">Prerequsites</h3>
 <p>To install pyFlies you will need to install following dependencies:</p>
 <ul>
+<li>
+<p>Mandatory:</p>
+<ul>
 <li><a href="https://www.python.org/">Python</a></li>
 <li><a href="https://github.com/igordejanovic/textX">textX</a> - will be installed
-   automatically if <code>pip</code> is used.</li>
+  automatically if <code>pip</code> is used.</li>
+<li><a href="http://jinja.pocoo.org/">jinja2</a> - for generating source code. Will be
+  installed automatically if <code>pip</code> is used.</li>
+</ul>
+</li>
+<li>
+<p>Optional. Needed if GUI is used:</p>
+<ul>
 <li><a href="http://www.qt.io/developers/">Qt 4.8</a> - GUI library.</li>
 <li><a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">pyQt4</a> - Python
-   binding for Qt.</li>
+  binding for Qt.</li>
 <li><code>dot</code> (part of <a href="http://www.graphviz.org/">GraphViz</a>) - <code>dot</code> must be on your
-   <code>PATH</code> for model visualization.</li>
-<li><a href="http://jinja.pocoo.org/">jinja2</a> - for generating source code. Will be
-   installed automatically if <code>pip</code> is used.</li>
+  <code>PATH</code> for model visualization.</li>
+</ul>
+</li>
 </ul>
 <p>It is planed to make installers for different platforms available in the future.
 If you want to contribute installer for some platform please se section
 <code>Contributions</code>.</p>
 <h3 id="installation">Installation</h3>
-<p>Download and install pyQt4 and GraphViz for your platform.</p>
 <p>Install <code>Python</code> and <code>pip</code> tool.</p>
 <p>Current stable version of pyFlies can be installed using <code>pip</code> installer:</p>
 <pre><code>pip install pyFlies
@@ -231,15 +241,17 @@ If you want to contribute installer for some platform please se section
 <p>The development version can be installed with:</p>
 <pre><code>pip install https://github.com/igordejanovic/pyFlies/archive/master.zip
 </code></pre>
+<p>For GUI use download and install optional dependencies.</p>
 <h3 id="quick-start">Quick start</h3>
 <ol>
 <li>
-<p>Start pyFlies GUI.</p>
-<pre><code>pyflies
+<p>Start pyFlies GUI. GUI doesn't need to be used. You can also use any text
+   editor to write your models.</p>
+<pre><code>pyfliesgui
 </code></pre>
 </li>
 <li>
-<p>Open new file and write your test description:</p>
+<p>Open new file (e.g. simon.pf) and write your test description:</p>
 <pre><code>experiment "Simon"
 "
 A simple behavioural task to assess a Simon effect.
@@ -318,7 +330,7 @@ generate the code for the target platform.</p>
 <li>
 <p>Configure target generator:</p>
 <pre><code>target PsychoPy {
-  output = "/home/igor/tmp/SimonPsycho/"
+  output = "/home/igor/Simon/"
   responses {
     left = left
     right = right
@@ -333,19 +345,36 @@ only <code>PsychoPy</code> is completed but work is under way to support other
 platforms (e.g. Expyriment, jsPsych...).</p>
 </li>
 <li>
-<p>From the GUI choose <code>Generate code</code> action. The generator will produce code
-   for you experiment and the configured target platform.</p>
-</li>
-<li>
-<p>Run the experiment using target platform and gather data.</p>
+<p>Generate source code for the target platform. This can be done from the
+   command line using <code>pyflies</code> tool.</p>
+<pre><code>$ pyflies simon.pf
+Generating code for target PsychoPy(out=/home/igor/Simon/)...Done
+Code for target platform(s) generated sucessfully.
+</code></pre>
 </li>
 </ol>
+<p>Code generation can also be done from the pyFlies GUI using <code>Generate code</code>
+   button.</p>
+<p>The generator will produce code for you experiment and the configured target
+   platform.</p>
+<ol>
+<li>Run the experiment using target platform and gather data.<pre><code>$ cd ~/Simon/
+$ python2 simon.py
+</code></pre>
+</li>
+</ol>
+<p>Note that PsychoPy, which is used in this introduction, must be installed.</p>
+<h3 id="try-examples">Try examples</h3>
+<p>Clone or <a href="https://github.com/igordejanovic/pyFlies/archive/master.zip">download</a>
+pyFlies repo. Unpack and load examples from <code>examples</code> folder in the editor or
+pyFlies GUI. Update experiment definition to your taste (at least update
+<code>target</code> output specification). Generate and run experiment.</p>
 <h3 id="discuss-ask-questions">Discuss, ask questions</h3>
 <p>Please use <a href="https://groups.google.com/forum/?hl=en#!forum/pyflies">discussion
 forum</a> for general
 discussions, suggestions etc.</p>
 <p>If you have some specific question on textX usage please use
-<a href="http://stackoverflow.com/">stackoverflow</a>.  Just make sure to tag your question
+<a href="http://stackoverflow.com/">stackoverflow</a>. Just make sure to tag your question
 with <code>pyflies</code>.</p>
 <h2 id="screenshots">Screenshots</h2>
 <p><a href="images/pyFliesGUI.png" target="_blank"><img src="images/pyFliesGUI.png"/></a>
@@ -396,5 +425,5 @@ with <code>pyflies</code>.</p>
 
 <!--
 MkDocs version : 0.14.0
-Build Date UTC : 2016-03-19 15:36:29.587391
+Build Date UTC : 2016-03-25 19:43:49.405864
 -->

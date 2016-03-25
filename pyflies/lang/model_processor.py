@@ -47,7 +47,6 @@ resolvable = {
 }
 
 defaults = {
-    'start': 0,
     'duration_from': 2000,
     'duration_to': 4000,
     'target': False,
@@ -108,13 +107,6 @@ def create_resolve_stimulus(stimulus, test_type, condition, metamodel):
                         def_val.value = 0
                         def_val._from = defaults['duration_from']
                         def_val.to = defaults['duration_to']
-                elif attr == 'start':
-                    # Special case
-                    # Complex type. Create instance
-                    def_val = metamodel['Start']()
-                    def_val.value = defaults['start']
-                    def_val.first = 0
-                    def_val.second = 0
                 elif attr in ['_from', 'to'] and \
                         s.__class__.__name__ == 'Point':
                     # Line parameters

@@ -95,7 +95,6 @@ Image:
   'image' '(' file=STRING
    (','
         ( ('position' x=WORD (y=INT)?)
-          |('start' start=Start)
           |('duration' duration=Duration)
           |(keep?='keep')           // Keep stimuli presented after duration elapses
           |(target?='target')      // Target stimuli, measure time from its presentation.
@@ -108,7 +107,6 @@ Shape:
   'shape' '(' shape=ShapeType
    (','
         ( ('position' x=WORD (y=INT)?)  // center of the shape
-          |('start' start=Start)
           |('duration' duration=Duration)
           |(keep?='keep')           // Keep stimuli presented after duration elapses
           |(target?='target')      // Target stimuli, measure time from its presentation.
@@ -131,7 +129,6 @@ Text:
   'text' '(' text=TextType
    (','
         ( ('position' x=WORD (y=INT)?)
-          |('start' start=Start)
           |('duration' duration=Duration)
           |(keep?='keep')           // Keep stimuli presented after duration elapses
           |(target?='target')      // Target stimuli, measure time from its presentation.
@@ -144,8 +141,7 @@ Text:
 Sound:
   'sound' '(' frequency=INT
     (',' (
-           ('start' start=Start)
-           |('duration' duration=Duration)
+           ('duration' duration=Duration)
            |(target?='target')
          )+[',']
     )?
@@ -155,8 +151,7 @@ Sound:
 Audio:
   'audio' '(' file=STRING
     (',' (
-           ('start' start=Start)
-           |('duration' duration=Duration)
+           ('duration' duration=Duration)
            |(target?='target')
          )+[',']
     )?
@@ -170,14 +165,6 @@ TextType:
 
 WORD:
   /[-\w]*\b/
-;
-
-Start:
-  /*
-    first, second - Start will be randomly choosen from the given interval.
-    value - Start is fixed.
-  */
-  ('[' first=INT ',' second=INT ']') | value = INT
 ;
 
 Duration:

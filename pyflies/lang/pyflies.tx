@@ -164,7 +164,7 @@ TextType:
 ;
 
 WORD:
-  /[-\w]*\b/
+  INT|/[-\w]*\b/
 ;
 
 Duration:

@@ -10,7 +10,7 @@ test EriksenFlanker {
 		left		incongruent		left
 		left		congurent		left
 		right		incongruent		right
-		right		incongruent		right	
+		right		congruent		right	
 	}
 	
 	stimuli {

@@ -30,6 +30,8 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
     {%- elif s.shape == "rectangle" -%}
 [[visual.Rect(win,
              pos=({{s.x/100}},{{s.y/100}}),
+             width={{s.width/100}},
+             height={{s.height/100}},
              lineColor="{{s.color}}",
              fillColor="{{s.fillColor}}",
              lineWidth={{s.lineWidth+3}})],

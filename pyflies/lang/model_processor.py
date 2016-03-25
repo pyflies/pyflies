@@ -94,6 +94,8 @@ def create_resolve_stimulus(stimulus, test_type, condition, metamodel):
         """
         for attr in s.__class__._tx_attrs:
             attr_val = getattr(s, attr)
+
+            # If attribute value is not specified set default value
             if not attr_val:
                 def_val = None
                 if attr == 'duration':
@@ -124,6 +126,10 @@ def create_resolve_stimulus(stimulus, test_type, condition, metamodel):
                                     test_type.name)
                 if def_val is not None:
                     setattr(s, attr, def_val)
+
+        # If width is given but not height, make height the same
+        if hasattr(s, 'width') and s.height==0:
+            s.height = s.width
 
     def convert_descriptive_values(s):
         """

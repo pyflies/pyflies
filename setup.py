@@ -61,7 +61,10 @@ setup(
     zip_safe=False,
     entry_points={
         'gui_scripts': [
-            'pyfliesgui = pyflies.scripts:pyfliesgui',
+            'pyfliesgui = pyflies.scripts:pyfliesgui'
+        ],
+        'console_scripts': [
+            'pyflies = pyflies.scripts:pyflies'
         ]
     }
 )

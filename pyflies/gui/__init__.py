@@ -246,13 +246,3 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         self.update_action_states()
 
 
-def main():
-    app = QtGui.QApplication(sys.argv)
-
-    w = PyFliesWindow()
-    w.show()
-
-    sys.exit(app.exec_())
-
-if __name__ == "__main__":
-    main()

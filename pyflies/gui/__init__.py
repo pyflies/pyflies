@@ -138,7 +138,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         try:
             model = pyflies_mm.model_from_str(
                 str(self.current_editor.toPlainText()))
-            model._filename = self.current_editor.filename
+            model._tx_filename = self.current_editor.filename
             self.current_editor.model = model
 
             dot_file = str(uuid.uuid4())

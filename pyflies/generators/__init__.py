@@ -129,7 +129,7 @@ def generate(model, target):
                                 os.makedirs(file_target_dir)
 
                             # Source files are relative to model file
-                            model_dir = dirname(model._filename)
+                            model_dir = dirname(model._tx_filename)
                             src_file = join(model_dir, stimulus.file)
                             dst_file = join(target_folder, stimulus.file)
                             shutil.copyfile(src_file, dst_file)

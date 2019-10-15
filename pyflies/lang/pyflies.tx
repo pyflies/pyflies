@@ -95,29 +95,29 @@ Image:
   'image' '(' file=STRING
    (','
         ( ('position' x=WORD (y=INT)?)
-          |('duration' duration=Duration)
-          |(keep?='keep')           // Keep stimuli presented after duration elapses
-          |(target?='target')      // Target stimuli, measure time from its presentation.
-          |('size' width=WORD (height=INT)?) // size - used for rectangle
-        )+[','])?
+          ('duration' duration=Duration)?
+          (keep?='keep')           // Keep stimuli presented after duration elapses
+          (target?='target')      // Target stimuli, measure time from its presentation.
+          ('size' width=WORD (height=INT)?)? // size - used for rectangle
+        )#[','])?
   ')'
 ;
 
 Shape:
   'shape' '(' shape=ShapeType
    (','
-        ( ('position' x=WORD (y=INT)?)  // center of the shape
-          |('duration' duration=Duration)
-          |(keep?='keep')           // Keep stimuli presented after duration elapses
-          |(target?='target')      // Target stimuli, measure time from its presentation.
-          |('radius' radius=INT)  // radius - used for circle
-          |('from' _from=Point)     // from, to - used for line
-          |('to' to=Point)
-          |('size' width=WORD (height=INT)?)  // size - for rectangle and cross
-          |('color' color=WORD)
-          |('fillColor' fillColor=WORD)
-          |('lineWidth' lineWidth=WORD)
-        )+[','])?
+        ( ('position' x=WORD (y=INT)?)?  // center of the shape
+          ('duration' duration=Duration)?
+          (keep?='keep')         // Keep stimuli presented after duration elapses
+          (target?='target')      // Target stimuli, measure time from its presentation.
+          ('radius' radius=INT)?  // radius - used for circle
+          ('from' _from=Point)?     // from, to - used for line
+          ('to' to=Point)?
+          ('size' width=WORD (height=INT)?)?  // size - for rectangle and cross
+          ('color' color=WORD)?
+          ('fillColor' fillColor=WORD)?
+          ('lineWidth' lineWidth=WORD)?
+        )#[','])?
   ')'
 ;
 
@@ -128,22 +128,22 @@ ShapeType:
 Text:
   'text' '(' text=TextType
    (','
-        ( ('position' x=WORD (y=INT)?)
-          |('duration' duration=Duration)
-          |(keep?='keep')           // Keep stimuli presented after duration elapses
-          |(target?='target')      // Target stimuli, measure time from its presentation.
-          |('size' size=INT)
-          |('color' color=WORD)
-        )+[','])?
+        ( ('position' x=WORD (y=INT)?)?
+          ('duration' duration=Duration)?
+          (keep?='keep')           // Keep stimuli presented after duration elapses
+          (target?='target')      // Target stimuli, measure time from its presentation.
+          ('size' size=INT)?
+          ('color' color=WORD)?
+        )#[','])?
   ')'
 ;
 
 Sound:
   'sound' '(' frequency=INT
     (',' (
-           ('duration' duration=Duration)
-           |(target?='target')
-         )+[',']
+           ('duration' duration=Duration)?
+           (target?='target')
+         )#[',']
     )?
   ')'
 ;
@@ -151,9 +151,9 @@ Sound:
 Audio:
   'audio' '(' file=STRING
     (',' (
-           ('duration' duration=Duration)
-           |(target?='target')
-         )+[',']
+           ('duration' duration=Duration)?
+           (target?='target')
+         )#[',']
     )?
   ')'
 ;
@@ -184,7 +184,7 @@ Block:
 ;
 
 TestInstance:
-  'test' type=[TestType] trials=INT (practice?="practice" | randomize?="randomize")*
+  'test' type=[TestType] trials=INT (practice?="practice" randomize?="randomize")#
 ;
 
 ScreenInstance:

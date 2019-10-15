@@ -3,7 +3,8 @@ import os
 import sys
 import uuid
 from subprocess import call
-from PyQt4 import QtGui, QtCore
+from PyQt5 import QtGui, QtCore
+from PyQt5.Qt import QMainWindow, QFileDialog, QSplitter
 from textx.exceptions import TextXError
 from textx.export import model_export
 
@@ -23,7 +24,7 @@ INIT_PANED_SPLIT = 800 * 3./4
 UNTITLED = "Untitled"
 
 
-class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
+class PyFliesWindow(QMainWindow, Ui_pyFliesWindow):
     def __init__(self):
         super(PyFliesWindow, self).__init__()
         self.setupUi(self)
@@ -66,7 +67,7 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
         scene = ModelGraphScene()
         view = ModelGraphView(scene)
 
-        splitter = QtGui.QSplitter()
+        splitter = QSplitter()
 
         # Create code editor
         editor = CodeEditor()
@@ -166,9 +167,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
 
     @QtCore.pyqtSlot()
     def on_actionOpen_triggered(self):
-        filename = str(QtGui.QFileDialog.getOpenFileName(
-            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)'))
-
+        filename = str(QFileDialog.getOpenFileName(
+            self, 'Open Experiment', '', 'pyFlies experiments (*.pf)')[0])
         # Parse input
         if filename:
             self.new_tab(filename)
@@ -180,8 +180,8 @@ class PyFliesWindow(QtGui.QMainWindow, Ui_pyFliesWindow):
     def on_actionSave_triggered(self):
 
         if self.current_editor.filename == UNTITLED:
-            filename = str(QtGui.QFileDialog.getSaveFileName(
-                self, 'Save Experiment', '', 'pyFlies experiments (*.pf)'))
+            filename = str(QFileDialog.getSaveFileName(
+                self, 'Save Experiment', '', 'pyFlies experiments (*.pf)')[0])
 
             if not filename:
                 return

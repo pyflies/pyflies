@@ -1,29 +1,30 @@
 import re
-from PyQt4 import QtGui
+from PyQt5 import QtGui
+from PyQt5.Qt import QPlainTextEdit, QFont, QTextCursor, QSyntaxHighlighter, QColor, QTextCharFormat
 
 
-class CodeEditor(QtGui.QPlainTextEdit):
+class CodeEditor(QPlainTextEdit):
 
     def __init__(self, *args, **kwargs):
         super(CodeEditor, self).__init__(*args, **kwargs)
         self.highlighter = PyFliesHighlighter(self.document())
         self.setLineWrapMode(self.NoWrap)
 
-        font = QtGui.QFont("")
-        font.setStyleHint(QtGui.QFont.TypeWriter)
+        font = QFont("")
+        font.setStyleHint(QFont.TypeWriter)
         self.setFont(font)
 
     def highlight_error(self, line, col):
         cursor = self.textCursor()
-        cursor.movePosition(QtGui.QTextCursor.Start)
-        cursor.movePosition(QtGui.QTextCursor.NextBlock,
-                            QtGui.QTextCursor.MoveAnchor, line-1)
-        cursor.movePosition(QtGui.QTextCursor.NextCharacter,
-                            QtGui.QTextCursor.MoveAnchor, col-1)
+        cursor.movePosition(QTextCursor.Start)
+        cursor.movePosition(QTextCursor.NextBlock,
+                            QTextCursor.MoveAnchor, line-1)
+        cursor.movePosition(QTextCursor.NextCharacter,
+                            QTextCursor.MoveAnchor, col-1)
         self.setTextCursor(cursor)
 
 
-class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
+class PyFliesHighlighter(QSyntaxHighlighter):
     """
     Syntax highlighter for the pyFlies language.
     """
@@ -53,7 +54,7 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
     ]
 
     def __init__(self, document):
-        QtGui.QSyntaxHighlighter.__init__(self, document)
+        QSyntaxHighlighter.__init__(self, document)
 
         # Multi-line rules (start expr., end expr., state,
         #                   style, style delimiters)
@@ -193,13 +194,13 @@ class PyFliesHighlighter(QtGui.QSyntaxHighlighter):
 def format(color, style=''):
     """Return a QTextCharFormat with the given attributes.
     """
-    _color = QtGui.QColor()
+    _color = QColor()
     _color.setNamedColor(color)
 
-    _format = QtGui.QTextCharFormat()
+    _format = QTextCharFormat()
     _format.setForeground(_color)
     if 'bold' in style:
-        _format.setFontWeight(QtGui.QFont.Bold)
+        _format.setFontWeight(QFont.Bold)
     if 'italic' in style:
         _format.setFontItalic(True)
 

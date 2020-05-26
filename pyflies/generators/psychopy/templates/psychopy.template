@@ -41,7 +41,7 @@ visual.Circle(size=({{s.width}}, {{s.height}}), colour=misc.constants.{{color_ma
 [[visual.Line(win,
               start=({{s.x/100-0.1}},{{s.y/100}}),
               end=({{s.x/100+0.1}}, {{s.y/100}}),
-              lineColor="{{s.color}}"), 
+              lineColor="{{s.color}}"),
   visual.Line(win,
               start=({{s.x/100}},{{s.y/100-0.1}}),
               end=({{s.x/100}}, {{s.y/100+0.1}}),
@@ -181,13 +181,14 @@ def present_stimuli(stimuli):
 
         for sgroup in keep_list:
             for s in sgroup:
-                if isinstance(s, visual.ShapeStim) \
+                if isinstance(s, visual.BaseShapeStim) \
                         or isinstance(s, visual.TextStim) \
                         or isinstance(s, visual.ImageStim):
                     s.draw()
                 elif isinstance(s, sound.Sound):
-                    s.secs = duration
-                    s.play()
+                    snd = sound.Sound(s.sound)
+                    snd.secs = duration
+                    snd.play()
                 else:
                     Exception('Unknown stimulus type - {}'.format(str(s)))
 

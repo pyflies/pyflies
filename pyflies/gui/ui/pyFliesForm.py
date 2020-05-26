@@ -7,7 +7,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
+from PyQt5.Qt import QWidget, QVBoxLayout, QTabWidget, QStatusBar, QIcon, QPixmap, QToolBar, QAction, QApplication
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -16,63 +17,63 @@ except AttributeError:
         return s
 
 try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
+    _encoding = QApplication.UnicodeUTF8
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
+        return QApplication.translate(context, text, disambig, _encoding)
 except AttributeError:
     def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+        return QApplication.translate(context, text, disambig)
 
 class Ui_pyFliesWindow(object):
     def setupUi(self, pyFliesWindow):
         pyFliesWindow.setObjectName(_fromUtf8("pyFliesWindow"))
         pyFliesWindow.resize(611, 497)
-        self.centralwidget = QtGui.QWidget(pyFliesWindow)
+        self.centralwidget = QWidget(pyFliesWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
+        self.verticalLayout = QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
-        self.tabWidget = QtGui.QTabWidget(self.centralwidget)
+        self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.setMovable(True)
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.verticalLayout.addWidget(self.tabWidget)
         pyFliesWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtGui.QStatusBar(pyFliesWindow)
+        self.statusbar = QStatusBar(pyFliesWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
         pyFliesWindow.setStatusBar(self.statusbar)
-        self.toolBar = QtGui.QToolBar(pyFliesWindow)
+        self.toolBar = QToolBar(pyFliesWindow)
         self.toolBar.setIconSize(QtCore.QSize(32, 32))
         self.toolBar.setObjectName(_fromUtf8("toolBar"))
         pyFliesWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar)
-        self.actionNew = QtGui.QAction(pyFliesWindow)
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/new.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionNew = QAction(pyFliesWindow)
+        icon = QIcon()
+        icon.addPixmap(QPixmap(_fromUtf8(":/icons/icons/new.png")), QIcon.Normal, QIcon.Off)
         self.actionNew.setIcon(icon)
         self.actionNew.setObjectName(_fromUtf8("actionNew"))
-        self.actionOpen = QtGui.QAction(pyFliesWindow)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/open.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionOpen = QAction(pyFliesWindow)
+        icon1 = QIcon()
+        icon1.addPixmap(QPixmap(_fromUtf8(":/icons/icons/open.png")), QIcon.Normal, QIcon.Off)
         self.actionOpen.setIcon(icon1)
         self.actionOpen.setObjectName(_fromUtf8("actionOpen"))
-        self.actionSave = QtGui.QAction(pyFliesWindow)
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/save.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSave = QAction(pyFliesWindow)
+        icon2 = QIcon()
+        icon2.addPixmap(QPixmap(_fromUtf8(":/icons/icons/save.png")), QIcon.Normal, QIcon.Off)
         self.actionSave.setIcon(icon2)
         self.actionSave.setObjectName(_fromUtf8("actionSave"))
-        self.actionVisalizationMode = QtGui.QAction(pyFliesWindow)
+        self.actionVisalizationMode = QAction(pyFliesWindow)
         self.actionVisalizationMode.setCheckable(True)
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/vizmode.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3 = QIcon()
+        icon3.addPixmap(QPixmap(_fromUtf8(":/icons/icons/vizmode.png")), QIcon.Normal, QIcon.Off)
         self.actionVisalizationMode.setIcon(icon3)
         self.actionVisalizationMode.setObjectName(_fromUtf8("actionVisalizationMode"))
-        self.actionZoomFit = QtGui.QAction(pyFliesWindow)
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/zoomfit.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionZoomFit = QAction(pyFliesWindow)
+        icon4 = QIcon()
+        icon4.addPixmap(QPixmap(_fromUtf8(":/icons/icons/zoomfit.png")), QIcon.Normal, QIcon.Off)
         self.actionZoomFit.setIcon(icon4)
         self.actionZoomFit.setObjectName(_fromUtf8("actionZoomFit"))
-        self.actionGenerateCode = QtGui.QAction(pyFliesWindow)
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/icons/Generate.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionGenerateCode = QAction(pyFliesWindow)
+        icon5 = QIcon()
+        icon5.addPixmap(QPixmap(_fromUtf8(":/icons/icons/Generate.png")), QIcon.Normal, QIcon.Off)
         self.actionGenerateCode.setIcon(icon5)
         self.actionGenerateCode.setObjectName(_fromUtf8("actionGenerateCode"))
         self.toolBar.addAction(self.actionNew)

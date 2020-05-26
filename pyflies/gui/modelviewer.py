@@ -1,18 +1,18 @@
-from PyQt4 import QtGui
-from PyQt4.Qt import Qt
+from PyQt5 import QtGui
+from PyQt5.Qt import Qt, QObject, QGraphicsScene, QGraphicsView, QPixmap, QPainter
 
 
-class ModelGraphScene(QtGui.QGraphicsScene):
+class ModelGraphScene(QGraphicsScene):
 
     def load_svg(self, svg_file):
         # item = QtSvg.QGraphicsSvgItem(svg_file)
         self.clear()
-        item = QtGui.QPixmap(svg_file)
+        item = QPixmap(svg_file)
         self.item = self.addPixmap(item)
         self.setSceneRect(self.item.boundingRect())
 
 
-class ModelGraphView(QtGui.QGraphicsView):
+class ModelGraphView(QGraphicsView):
     """
     View widget for the experiment model.
     """
@@ -25,11 +25,11 @@ class ModelGraphView(QtGui.QGraphicsView):
         self.setMouseTracking(True)
 
         # Anchor under mouse
-        self.setTransformationAnchor(QtGui.QGraphicsView.AnchorUnderMouse)
+        self.setTransformationAnchor(QGraphicsView.AnchorUnderMouse)
 
         # Seting hints which enable antialiasing
-        self.setRenderHint(QtGui.QPainter.Antialiasing)
-        self.setRenderHint(QtGui.QPainter.TextAntialiasing)
+        self.setRenderHint(QPainter.Antialiasing)
+        self.setRenderHint(QPainter.TextAntialiasing)
 
     def wheelEvent(self, wheel_event):
         """

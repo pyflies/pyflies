@@ -1,5 +1,5 @@
 import sys
-from PyQt4 import QtGui
+from PyQt5.Qt import QApplication
 from pyflies.gui import PyFliesWindow
 
 
@@ -8,7 +8,7 @@ def pyfliesgui():
     Entry point to run GUI.
     """
 
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
 
     w = PyFliesWindow()
     w.show()

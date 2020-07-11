@@ -11,7 +11,7 @@ digraph pyflies {
   start [shape=circle, fillcolor=black, width=0.2, height=0.2, label="", fixedsize=true];
   end [shape=doublecircle, fillcolor=black, width=0.2, height=0.2, label="", fixedsize=true];
 
-'''
+'''  # noqa
 
 # Cluster for sequence and randomize blocks
 cluster = 1

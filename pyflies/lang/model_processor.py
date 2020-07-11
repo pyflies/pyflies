@@ -120,15 +120,15 @@ def create_resolve_stimulus(stimulus, test_type, condition, metamodel):
                 elif attr not in ['_from', 'to', 'value', 'height', 'y']:
                     # This should not happen
                     assert 0, "No default for attribute '{}' " \
-                            ", stimulus type  '{}'" \
-                            "test type '{}'" \
-                            .format(attr, s.__class__.__name__,
-                                    test_type.name)
+                        ", stimulus type  '{}'" \
+                        "test type '{}'" \
+                        .format(attr, s.__class__.__name__,
+                                test_type.name)
                 if def_val is not None:
                     setattr(s, attr, def_val)
 
         # If width is given but not height, make height the same
-        if hasattr(s, 'width') and s.height==0:
+        if hasattr(s, 'width') and s.height == 0:
             s.height = s.width
 
     def convert_descriptive_values(s):
@@ -306,12 +306,12 @@ def pyflies_model_processor(model, metamodel):
                     exp = s.conditionMatch.expression
                     stimuli = s.stimuli
 
-                    if (exp.__class__.__name__ == "FixedCondition" and
-                            exp.expression == "all") or\
-                        (exp.__class__.__name__ == "OrdinalCondition" and
-                         idx == exp.expression - 1) or\
-                        (exp.__class__.__name__ == "ExpressionCondition" and
-                            cond_matches(idx, c, exp.expression)):
+                    if (exp.__class__.__name__ == "FixedCondition"
+                        and exp.expression == "all") or\
+                        (exp.__class__.__name__ == "OrdinalCondition"
+                         and idx == exp.expression - 1) or\
+                        (exp.__class__.__name__ == "ExpressionCondition"
+                         and cond_matches(idx, c, exp.expression)):
 
                         # For each stimuli create a new instance
                         # with all params resolved

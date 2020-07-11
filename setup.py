@@ -4,67 +4,31 @@
 # Name: pyFlies
 # Purpose: A DSL for modeling cognitive psychology experiments
 # Author: Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
-# Copyright: (c) 2015 Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
+# Copyright: (c) 2015-2020 Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>
 # License: GPLv3 License
 ###############################################################################
-
-__author__ = "Igor R. Dejanović <igor DOT dejanovic AT gmail DOT com>"
-__version__ = "0.3"
-
+import sys
 import os
-from setuptools import setup, find_packages
+from setuptools import setup
+from pathlib import Path
+this_dir = Path(__file__).absolute().parent
 
-NAME = 'pyFlies'
-VERSION = __version__
-DESC = 'A DSL for modeling cognitive psychology experiments'
-AUTHOR = 'Igor R. Dejanovic'
-AUTHOR_EMAIL = 'igor DOT dejanovic AT gmail DOT com'
-LICENSE = 'GPLv3'
-URL = 'https://github.com/igordejanovic/pyFlies'
-DOWNLOAD_URL = 'https://github.com/igordejanovic/pyFlies/archive/v%s.tar.gz'\
-    % VERSION
-README = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+if sys.argv[-1].startswith('publish'):
+    if os.system("pip list | grep wheel"):
+        print("wheel not installed.\nUse `pip install wheel`.\nExiting.")
+        sys.exit()
+    if os.system("pip list | grep twine"):
+        print("twine not installed.\nUse `pip install twine`.\nExiting.")
+        sys.exit()
+    os.system("python setup.py sdist bdist_wheel")
+    if sys.argv[-1] == 'publishtest':
+        os.system("twine upload -r test dist/*")
+    else:
+        os.system("twine upload dist/*")
+    sys.exit()
 
-setup(
-    name=NAME,
-    version=VERSION,
-    description=DESC,
-    long_description=README,
-    author=AUTHOR,
-    author_email=AUTHOR_EMAIL,
-    maintainer=AUTHOR,
-    maintainer_email=AUTHOR_EMAIL,
-    license=LICENSE,
-    url=URL,
-    download_url=DOWNLOAD_URL,
-    packages=find_packages(),
-    include_package_data=True,
-    install_requires=[
-        'textX',
-        'Jinja2'
-        ],
-
-    keywords="language behaviour experiment",
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Information Technology',
-        'Intended Audience :: Science/Research',
-        'Intended Audience :: Healthcare Industry',
-        'Topic :: Software Development :: Interpreters',
-        'Topic :: Software Development :: Code Generators',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        ],
-    zip_safe=False,
-    entry_points={
-        'gui_scripts': [
-            'pyfliesgui = pyflies.scripts.gui:pyfliesgui'
-        ],
-        'console_scripts': [
-            'pyflies = pyflies.scripts.console:pyflies'
-        ]
-    }
-)
+if __name__ == "__main__":
+    setup(use_scm_version={
+        "write_to": str(this_dir / "pyflies" / "version.py"),
+        "write_to_template": '__version__ = "{version}"\n',
+    })

@@ -1,0 +1,38 @@
+/*
+    An example textX language
+*/
+
+Program:
+    'begin'
+      commands*=Command    // *= operator means zero or more matches.
+      // commands will be
+      // a list of command objects
+    'end'
+;
+
+// this is an example of abstract rule. command class will never be instantiated
+// in the model.
+Command:
+    InitialCommand | MoveCommand
+;
+
+InitialCommand:
+    'initial' x=INT ',' y=INT
+;
+
+MoveCommand:
+    direction=Direction (steps=INT)?
+;
+
+// this is an example of a match rule
+// match rules has either string match, regex match or other match rule as
+// its alternatives (e.g. int, string... or some user match rule)
+// match rule is treated as a contained match. no class will get created.
+Direction:
+    "up"|"down"|"left"|"right"
+;
+
+// special rule for comments.
+Comment:
+    /\/\/.*$/
+;

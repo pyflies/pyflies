@@ -10,6 +10,7 @@ PyFliesModel:
   "experiment" name=STRING
   (description=STRING)?
   ("basepath" basepath=STRING)?
+  variables*=VariableDef
   blocks+=BlockType
   structure=Structure
   targets*=Target
@@ -18,6 +19,20 @@ PyFliesModel:
 BlockType:
   TestType | ScreenType | SubjectType
 ;
+
+VariableDef:
+    name=ID '=' value=Value
+;
+
+Value:
+    BaseTypeValue | CompoundTypeValue
+;
+
+BaseTypeValue: INT | FLOAT | STRING | BOOL;
+CompoundTypeValue: Range | List;
+Range: lower=INT '..' upper=INT;
+List: '[' values*=Value[','] ']';
+
 
 /*
     Expressions
@@ -39,6 +54,11 @@ Message: 'random' | 'shuffle';
 
 
 TimeReference: start_relative?='.' (relative_op=SignOperator)? time=INT;
+
+/*
+    Test specification
+*/
+
 TestType:
   "test" name=ID "{"
     'conditions' '{'
@@ -64,7 +84,7 @@ TestType:
 
 Condition:
   /\s*/
-  varValues+=WORD[eolterm]  // match values until end of line
+  varExps+=Expression[eolterm]  // match expressions until end of line
 ;
 
 ConditionStimuli:
@@ -89,69 +109,89 @@ FixedConditionEnum:
   "all" | "error" | "fixation" | "correct"
 ;
 
-OrdinalCondition:
-  expression = INT
-;
+OrdinalCondition: expression = INT;
+ExpressionCondition: expression = Expression;
 
-ExpressionCondition:
-  expression = OrExpression
-;
 
-OrExpression: operand=AndExpression ('or' operand=AndExpression)*;
-AndExpression: operand=NotEqualsExpression ('and' operand=NotEqualsExpression)*;
+/*
+    Stimuli spec
+*/
 
-NotEqualsExpression:
-  NotExpression | EqualsExpression;
+StimulusInstance:
+    ('at' at=TimeReference)? stimulus=StimulusSpec ('for' duration=INT)?;
 
-NotExpression: 'not' operand=EqualsExpression;
-EqualsExpression: varName=WORD '=' varValue=WORD;
+StimulusSpec: name=ID '(' params=StimulusParam  ')';
+StimulusParam: name=ID value=Expression;
 
 
 Stimulus:
-  Image | Shape | Sound | Audio | Text
+  Image | Circle | Rectangle | Line | Cross | Sound | Audio | Text
 ;
 
 Image:
-  'image' '(' file=STRING
-   (','
-        ( ('position' x=WORD (y=INT)?)
-          ('duration' duration=Duration)?
-          (keep?='keep')           // Keep stimuli presented after duration elapses
-          (target?='target')      // Target stimuli, measure time from its presentation.
-          ('size' width=WORD (height=INT)?)? // size - used for rectangle
-        )#[','])?
+    'image' '('
+    (
+        ('file' file=STRING)
+        ('position' x=WORD (y=INT)?)
+        ('width' width=Expression)?
+        ('height' height=Expression)?
+    )#[',']
   ')'
 ;
 
-Shape:
-  'shape' '(' shape=ShapeType
-   (','
-        ( ('position' x=WORD (y=INT)?)?  // center of the shape
-          ('duration' duration=Duration)?
-          (keep?='keep')         // Keep stimuli presented after duration elapses
-          (target?='target')      // Target stimuli, measure time from its presentation.
-          ('radius' radius=INT)?  // radius - used for circle
-          ('from' _from=Point)?     // from, to - used for line
-          ('to' to=Point)?
-          ('size' width=WORD (height=INT)?)?  // size - for rectangle and cross
-          ('color' color=WORD)?
-          ('fillColor' fillColor=WORD)?
-          ('lineWidth' lineWidth=WORD)?
-        )#[','])?
-  ')'
+Circle: 'circle' '('
+    (
+        ('position' x=Expression (y=Expression)?)
+        ('radius' radius=Expression)
+        ('color' color=WORD)?
+        ('fillColor' fillColor=WORD)?
+        ('lineWidth' lineWidth=WORD)?
+    )#[',']
+    ')'
 ;
 
-ShapeType:
-  "rectangle" | "circle" | "line" | "cross"
+Rectangle:
+    'rectangle' '('
+    (
+        ('position' x=Expression (y=Expression)?)
+        ('width' width=Expression)?
+        ('height' height=Expression)?
+        ('color' color=WORD)?
+        ('fillColor' fillColor=WORD)?
+        ('lineWidth' lineWidth=WORD)?
+    )#[',']
+    ')'
+;
+
+Line:
+    'line''('
+    (
+        ('from' from=Point)
+        ('to' to=Point)
+        ('color' color=WORD)?
+        ('fillColor' fillColor=WORD)?
+        ('lineWidth' lineWidth=WORD)?
+    )#[',']
+    ')'
+;
+
+Cross:
+    'cross' '('
+    (
+        ('position' x=Expression (y=Expression)?)
+        ('width' width=Expression)?
+        ('height' height=Expression)?
+        ('color' color=WORD)?
+        ('fillColor' fillColor=WORD)?
+        ('lineWidth' lineWidth=WORD)?
+    )#[',']
+    ')'
 ;
 
 Text:
   'text' '(' text=TextType
    (','
         ( ('position' x=WORD (y=INT)?)?
-          ('duration' duration=Duration)?
-          (keep?='keep')           // Keep stimuli presented after duration elapses
-          (target?='target')      // Target stimuli, measure time from its presentation.
           ('size' size=INT)?
           ('color' color=WORD)?
         )#[','])?

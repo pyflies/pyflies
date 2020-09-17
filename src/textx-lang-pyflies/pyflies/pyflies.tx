@@ -10,7 +10,7 @@ PyFliesModel:
   "experiment" name=STRING
   (description=STRING)?
   ("basepath" basepath=STRING)?
-  variables*=VariableDef
+  vars*=VariableAssignment
   blocks+=BlockType
   structure=Structure
   targets*=Target
@@ -20,18 +20,20 @@ BlockType:
   TestType | ScreenType | SubjectType
 ;
 
-VariableDef:
-    name=ID '=' value=Value
+VariableAssignment:
+    name=VariableName '=' value=Value
 ;
 
 Value:
     BaseTypeValue | CompoundTypeValue
 ;
 
-BaseTypeValue: INT | FLOAT | STRING | BOOL;
+BaseTypeValue: FLOAT | INT | STRING | BOOL;
 CompoundTypeValue: Range | List;
 Range: lower=INT '..' upper=INT;
 List: '[' values*=Value[','] ']';
+VariableRef: name=VariableName;
+VariableName: ID;
 
 
 /*
@@ -48,7 +50,7 @@ MultiplicativeExpression: op=UnaryExpression (opn=MultiplicativeOperator op=Unar
 MultiplicativeOperator: '*'|'/';
 UnaryExpression: (opn=SignOperator)? op=PrimaryExpression;
 SignOperator: '-' | '+';
-PrimaryExpression: '(' Expression ')' | MessageExpression | Value;
+PrimaryExpression: '(' Expression ')' | MessageExpression | Value | VariableRef;
 MessageExpression: value=CompoundTypeValue message=Message;
 Message: 'random' | 'shuffle';
 

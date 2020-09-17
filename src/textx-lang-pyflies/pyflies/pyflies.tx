@@ -19,6 +19,26 @@ BlockType:
   TestType | ScreenType | SubjectType
 ;
 
+/*
+    Expressions
+*/
+Expression: op=AndExpression ('or' op=AndExpression)*;
+AndExpression: op=NotExpression ('and' op=NotExpression)*;
+NotExpression: opn?='not' op=ComparisonExpression;
+ComparisonExpression: op=AdditiveExpression ( opn=ComparisonOperator op=AdditiveExpression)*;
+ComparisonOperator: '=='|'!='|'<='|'>='|'>'|'<';
+AdditiveExpression: op=MultiplicativeExpression (opn=AdditiveOperator op=MultiplicativeExpression)*;
+AdditiveOperator: '+'|'-';
+MultiplicativeExpression: op=UnaryExpression (opn=MultiplicativeOperator op=UnaryExpression)*;
+MultiplicativeOperator: '*'|'/';
+UnaryExpression: (opn=SignOperator)? op=PrimaryExpression;
+SignOperator: '-' | '+';
+PrimaryExpression: '(' Expression ')' | MessageExpression | Value;
+MessageExpression: value=CompoundTypeValue message=Message;
+Message: 'random' | 'shuffle';
+
+
+TimeReference: start_relative?='.' (relative_op=SignOperator)? time=INT;
 TestType:
   "test" name=ID "{"
     'conditions' '{'

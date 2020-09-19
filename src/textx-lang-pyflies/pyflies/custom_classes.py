@@ -57,6 +57,10 @@ class ExpressionElement(CustomClass):
             return cycle([self.operation])
 
 
+class Symbol(ExpressionElement):
+    pass
+
+
 class String(ExpressionElement):
     def eval(self):
         model = get_model(self)
@@ -101,7 +105,17 @@ class BinaryOperation(ExpressionElement):
         operations = self.get_operations()
         def op(a, b):
             nextop = next(operations)
-            return nextop(a, b)
+            try:
+                return nextop(a, b)
+            except TypeError:
+                if type(a) is Symbol:
+                    sym = a
+                elif type(b) is Symbol:
+                    sym = b
+                else:
+                    raise
+                raise PyFliesException('Undefined variable "{}"'.format(sym.name))
+
         return reduce(op,
                       map(lambda x: x.eval() if isinstance(x, ExpressionElement) else x,
                           self.op))
@@ -112,7 +126,12 @@ class UnaryOperation(ExpressionElement):
         operations = self.get_operations()
         def op(a):
             nextop = next(operations)
-            return nextop(a)
+            try:
+                return nextop(a)
+            except TypeError:
+                if type(a) is Symbol:
+                    raise PyFliesException('Undefined variable "{}"'.format(a.name))
+                raise
         inner = self.op.eval() if isinstance(self.op, ExpressionElement) else self.op
         return op(inner) if op else inner
 
@@ -123,7 +142,8 @@ class VariableRef(ExpressionElement):
         try:
             return model.var_vals[self.name]
         except (KeyError, AttributeError):
-            raise PyFliesException('Undefined variable "{}"'.format(self.name))
+            # If variable is not defined consider it a symbol
+            return Symbol(self.parent, name=self.name)
 
 
 class Expression(BinaryOperation):

@@ -2,7 +2,7 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import custom_classes
+from pyflies.custom_classes import custom_classes, Symbol
 from pyflies.exceptions import PyFliesException
 
 
@@ -166,6 +166,13 @@ def test_variables():
         ''')
         m.exp.eval()
 
+    # Undefined variable standing on its own (e.g. without taking part of any
+    # operations) is called symbol. It represent itself.
+    m = mm.model_from_str('some_symbol')
+    meval = m.exp.eval()
+    assert type(meval) is Symbol
+    assert meval.name == 'some_symbol'
+
 
 def test_stimuli_definition():
 
@@ -223,3 +230,24 @@ def test_stimuli_definition():
     assert len(m.stimuli) == 2
     assert m.stimuli[0].record and not m.stimuli[1].record
     assert m.stimuli[1].at.time == 0 and m.stimuli[1].stimulus.name == 'circle'
+
+
+def test_conditions_table():
+
+    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+
+    m = mm.model_from_str('''
+        | position | color | congruency  | response |
+        |----------+-------+-------------+----------|
+        | left     | green | congruent   | left     |
+        | left     | red   | incongruent | right    |
+        | right    | green | incongruent | left     |
+        | right    | red   | congruent   | right    |
+    ''')
+    assert m.t.variables == ['position', 'color', 'congruency', 'response']
+    # We have 4 rows in the table
+    assert len(m.t.conditions) == 4
+    c = m.t.conditions[1]
+    red = c.var_exp[1].eval()  # This evaluates to symbol `red`
+    assert type(red) is Symbol
+    assert red.name == 'red'

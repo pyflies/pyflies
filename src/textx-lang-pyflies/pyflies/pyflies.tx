@@ -65,53 +65,37 @@ TimeReference: start_relative?='.' (relative_op=SignOperator)? time=INT;
 TestType:
   "test" name=ID "{"
     'conditions' '{'
-      // Strip all whitespaces before next WORD
-      // because next rule is eolterm and
-      // terminates on newlines.
-      /\s*/
-
-      // Parameter names are in the first line of condition specification
-      condVarNames+=WORD[eolterm]    // match var names until end of line
-
-      // The rest of the description are conditions, one per line
-      // The order of condition values match the param name positions.
-      conditions+=Condition
+        table=ConditionsTable
     '}'
 
     'stimuli' '{'
-        condStimuli+=ConditionStimuli
+        stimuli+=ConditionStimuli
     '}'
   "}"
 ;
 
+ConditionsTable:
+    // Condition table is given in orgmode table format. Various editor plugins
+    // exists to support convenient editing of this table format.
+
+    // Variable names are in the first line of condition specification
+    '|' variables+=WORD['|'] '|'
+    /\|(-*\+)+-*\|/
+
+    // The rest of the description are conditions, one per line
+    // The order of condition values match the param name positions.
+    conditions+=Condition
+;
+
 Condition:
-  /\s*/
-  varExps+=Expression[eolterm]  // match expressions until end of line
+  '|' var_exp+=Expression['|'] '|'
 ;
 
 ConditionStimuli:
   // Condition stimuli is given in the form of
   // condition match expression : stimuli definitions
-  conditionMatch=ConditionMatch ':' stimuli+=StimulusSpec
+  condition=Expression ':' stimuli+=StimulusSpec
 ;
-
-ConditionMatch:
-  expression=ConditionMatchExpression
-;
-
-ConditionMatchExpression:
-   FixedCondition | ExpressionCondition
-;
-
-FixedCondition:
-  expression = FixedConditionEnum
-;
-
-FixedConditionEnum:
-  "all" | "error" | "fixation" | "correct"
-;
-
-ExpressionCondition: expression = Expression;
 
 
 /*

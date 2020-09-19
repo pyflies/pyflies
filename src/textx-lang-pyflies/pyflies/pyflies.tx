@@ -32,7 +32,7 @@ BaseTypeValue: STRICTFLOAT | INT | String | BOOL;
 String: val=STRING;
 CompoundTypeValue: Range | List;
 Range: lower=INT '..' upper=INT;
-List: '[' values*=Value[','] ']';
+List: '[' values*=Expression[','] ']';
 VariableRef: name=VariableName;
 VariableName: ID;
 

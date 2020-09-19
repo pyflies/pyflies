@@ -40,7 +40,9 @@ VariableName: ID;
 /*
     Expressions
 */
-Expression: op=AndExpression ('or' op=AndExpression)*;
+Expression: IfExpression | OrExpression;
+IfExpression: if_true=OrExpression 'if' cond=OrExpression 'else' if_false=OrExpression;
+OrExpression: op=AndExpression ('or' op=AndExpression)*;
 AndExpression: op=NotExpression ('and' op=NotExpression)*;
 NotExpression: opn?='not' op=ComparisonExpression;
 ComparisonExpression: op=AdditiveExpression ( opn=ComparisonOperator op=AdditiveExpression)*;

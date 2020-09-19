@@ -146,7 +146,16 @@ class VariableRef(ExpressionElement):
             return Symbol(self.parent, name=self.name)
 
 
-class Expression(BinaryOperation):
+class IfExpression(ExpressionElement):
+    def eval(self):
+        cond = self.cond.eval()
+        if cond is True:
+            return self.if_true.eval()
+        else:
+            return self.if_false.eval()
+
+
+class OrExpression(BinaryOperation):
     operation = or_
 
 

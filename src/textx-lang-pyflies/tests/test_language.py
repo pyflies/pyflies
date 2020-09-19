@@ -104,6 +104,34 @@ def test_expresions_messages():
     assert meval in [1, 2, 'some value']
 
 
+def test_expressions_if_expression():
+    """
+    Testing if expression of the form:
+    <some val if cond true> if <condition> else <some other value>
+    """
+    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+
+    m = mm.model_from_str('1 if 2 < 2 else 3')
+    meval = m.exp.eval()
+    assert meval == 3
+
+    m = mm.model_from_str('1 if 2 == 2 else 3')
+    meval = m.exp.eval()
+    assert meval == 1
+
+    m = mm.model_from_str('2 > 3 or 8 < 9 if 2 == 2 else 3 < 2')
+    meval = m.exp.eval()
+    assert meval is True
+
+    m = mm.model_from_str('some_symbol if 2 == 2 else "some string"')
+    meval = m.exp.eval()
+    assert type(meval) is Symbol and meval.name == 'some_symbol'
+
+    m = mm.model_from_str('some_symbol if 2 != 2 else "some string"')
+    meval = m.exp.eval()
+    assert meval == 'some string'
+
+
 def test_string_interpolation():
     mm = metamodel_from_file(join(this_folder, 'variables.tx'), classes=custom_classes)
 

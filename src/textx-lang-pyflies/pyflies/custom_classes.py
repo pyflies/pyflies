@@ -16,6 +16,18 @@ class CustomClass:
             setattr(self, k, i)
 
 
+class TimeReference(CustomClass):
+    pass
+
+
+class StimulusSpec(CustomClass):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+        if self.at is None:
+            # Default time reference
+            self.at = TimeReference(self, start_relative=True, relative_op='+', time=0)
+
+
 class VariableAssignment(CustomClass):
     def __init__(self, parent, name, value):
         # Keep variable values on the model
@@ -155,7 +167,7 @@ class UnaryExpression(UnaryOperation):
     }
 
 
-custom_exp_classes = list(map(
+custom_classes = list(map(
     lambda x: x[1],
     inspect.getmembers(sys.modules[__name__],
                        lambda c: inspect.isclass(c)

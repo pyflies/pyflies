@@ -2,9 +2,9 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import (custom_classes, Symbol, OrExpression,
-                                    BaseValue, AdditiveExpression, List,
-                                    String, Range)
+from pyflies.custom_classes import (custom_classes, CustomClass, Symbol,
+                                    OrExpression, BaseValue,
+                                    AdditiveExpression, List, String, Range)
 from pyflies.exceptions import PyFliesException
 
 
@@ -297,17 +297,98 @@ def test_conditions_table():
     mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
 
     m = mm.model_from_str('''
-        | position | color | congruency  | response |
-        |----------+-------+-------------+----------|
-        | left     | green | congruent   | left     |
-        | left     | red   | incongruent | right    |
-        | right    | green | incongruent | left     |
-        | right    | red   | congruent   | right    |
+        {
+            | position | color | congruency  | response |
+            |----------+-------+-------------+----------|
+            | left     | green | congruent   | left     |
+            | left     | red   | incongruent | right    |
+            | right    | green | incongruent | left     |
+            | right    | red   | congruent   | right    |
+        }
     ''')
-    assert m.t.variables == ['position', 'color', 'congruency', 'response']
+    assert m.t[0].t.variables == ['position', 'color', 'congruency', 'response']
     # We have 4 rows in the table
-    assert len(m.t.conditions) == 4
-    c = m.t.conditions[1]
-    red = c.var_exp[1].eval()  # This evaluates to symbol `red`
+    assert len(m.t[0].t.condition_specs) == 4
+    c = m.t[0].t.condition_specs[1]
+    red = c.var_exps[1].eval()  # This evaluates to symbol `red`
     assert type(red) is Symbol
     assert red.name == 'red'
+
+
+def test_conditions_table_expansion():
+    """
+    Test that iterations and loops are expanded properly.
+    """
+
+    classes = list(custom_classes)
+
+    class CTable(CustomClass):
+        def expand(self):
+            self.t.expand()
+
+    classes.append(CTable)
+    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=classes)
+
+    m = mm.model_from_str('''
+        positions = [left, right]
+        colors = [green, red]
+
+        {   // Unexpanded table with loops
+            | position       | color       | response  |
+            |----------------+-------------+-----------|
+            | positions loop | colors loop | positions |
+        }
+
+        {   // This should be the result of expansion
+            | position | color | response |
+            |----------+-------+----------|
+            | left     | green | left     |
+            | left     | red   | right    |
+            | right    | green | left     |
+            | right    | red   | right    |
+        }
+
+        {   // Lets change order a bit. Make color top loop and position inner loop
+            | color       | response  | position       |
+            |-------------+-----------+----------------|
+            | colors loop | positions | positions loop |
+        }
+
+        {   // This should be the result of expansion
+            | color | response | position |
+            |-------+----------+----------|
+            | green | left     | left     |
+            | green | right    | right    |
+            | red   | left     | left     |
+            | red   | right    | right    |
+        }
+    ''')
+    for i in range(4):
+        m.t[i].expand()
+
+    # position and color will loop making color a nested loop of the position
+    # response will cycle
+    assert m.t[0].t.conditions == m.t[1].t.conditions
+
+    # In this case position is inner loop of color. response still cycles.
+    assert m.t[2].t.conditions == m.t[3].t.conditions
+
+
+def test_conditions_table_condition_variable_reference():
+    """
+    Test that references to condition variables are evaluated properly during
+    table expansion.
+    """
+
+    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+
+    m = mm.model_from_str('''
+        positions = [left, right]
+        colors = [green, red]
+
+        {
+        | position       | color       | congruency                                        | response  |
+        |----------------+-------------+---------------------------------------------------+-----------|
+        | positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+        }
+    ''')

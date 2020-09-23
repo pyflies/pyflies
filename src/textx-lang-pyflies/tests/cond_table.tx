@@ -2,5 +2,11 @@ import pyflies
 
 Model:
     vars*=VariableAssignment
-    t=ConditionsTable
+    t+=CTable
+;
+
+CTable:
+    '{'
+        t=ConditionsTable
+    '}'
 ;

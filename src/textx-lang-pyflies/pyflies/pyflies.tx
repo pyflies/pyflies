@@ -40,7 +40,7 @@ VariableName: ID;
 /*
     Expressions
 */
-Expression: IfExpression | OrExpression;
+Expression: IfExpression | LoopExpression | OrExpression;
 IfExpression: if_true=OrExpression 'if' cond=OrExpression 'else' if_false=OrExpression;
 OrExpression: op=AndExpression ('or' op=AndExpression)*;
 AndExpression: op=NotExpression ('and' op=NotExpression)*;
@@ -56,6 +56,7 @@ SignOperator: '-' | '+';
 PrimaryExpression: '(' Expression ')' | MessageExpression | Value | VariableRef;
 MessageExpression: value=CompoundTypeValue message=Message;
 Message: 'choose' | 'shuffle';
+LoopExpression: exp=OrExpression 'loop';
 
 
 TimeReference: start_relative?='.' (relative_op=SignOperator)? time=INT;
@@ -84,13 +85,13 @@ ConditionsTable:
     '|' variables+=WORD['|'] '|'
     /\|(-*\+)+-*\|/
 
-    // The rest of the description are conditions, one per line
+    // The rest of the description are condition specifications, one per line
     // The order of condition values match the param name positions.
-    conditions+=Condition
+    condition_specs+=Condition
 ;
 
 Condition:
-  '|' var_exp+=Expression['|'] '|'
+  '|' var_exps+=Expression['|'] '|'
 ;
 
 ConditionStimuli:

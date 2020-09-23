@@ -42,6 +42,12 @@ class VariableAssignment(CustomClass):
 
 
 class ExpressionElement(CustomClass):
+    def reduce(self):
+        """
+        Return reduced version of the expression if possible
+        """
+        return self
+
     def get_operations(self):
         """
         Return iterable of operations
@@ -58,23 +64,32 @@ class ExpressionElement(CustomClass):
 
 
 class Symbol(ExpressionElement):
-    pass
+    def __eq__(self, other):
+        return type(other) is Symbol and self.name == other.name
+
+
+class BaseValue(ExpressionElement):
+    def eval(self):
+        return self.value
 
 
 class String(ExpressionElement):
     def eval(self):
         model = get_model(self)
         try:
-            return self.val.format(**model.var_vals)
+            return self.value.format(**model.var_vals)
         except KeyError as k:
             raise PyFliesException('Undefined variable "{}"'.format(k.args[0]))
         except AttributeError:
-            if '{' in self.val.replace('{{', ''):
-                raise PyFliesException('Undefined variables in "{}"'.format(self.val))
-            return self.val
+            if '{' in self.value.replace('{{', ''):
+                raise PyFliesException('Undefined variables in "{}"'.format(self.value))
+            return self.value
 
 
 class List(ExpressionElement):
+    def reduce(self):
+        return List(self.parent, values=[x.reduce() for x in self.values])
+
     def eval(self):
         res = []
         for v in self.values:
@@ -101,6 +116,12 @@ class MessageExpression(ExpressionElement):
 
 
 class BinaryOperation(ExpressionElement):
+    def reduce(self):
+        if len(self.op) == 1:
+            return self.op[0].reduce()
+        else:
+            return super().reduce()
+
     def eval(self):
         operations = self.get_operations()
         def op(a, b):
@@ -122,6 +143,12 @@ class BinaryOperation(ExpressionElement):
 
 
 class UnaryOperation(ExpressionElement):
+    def reduce(self):
+        if not self.opn and isinstance(self.op, ExpressionElement):
+            return self.op.reduce()
+        else:
+            return super().reduce()
+
     def eval(self):
         operations = self.get_operations()
         def op(a):

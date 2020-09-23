@@ -2,7 +2,9 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import custom_classes, Symbol
+from pyflies.custom_classes import (custom_classes, Symbol, OrExpression,
+                                    BaseValue, AdditiveExpression, List,
+                                    String, Range)
 from pyflies.exceptions import PyFliesException
 
 
@@ -157,6 +159,36 @@ def test_string_interpolation():
         "this is {a} interpolation {b}"
         ''')
         m.exp.eval()
+
+
+def test_expression_reduction():
+    """
+    Test that expression is reduced to its minimal constituents.
+    This is an optimization measure and also helps with expression analysis.
+    """
+
+    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+
+    m = mm.model_from_str('25')
+    assert type(m.exp) is OrExpression
+    assert type(m.exp.reduce()) is BaseValue
+    assert m.exp.eval() == 25
+
+    m = mm.model_from_str('25 + 12')
+    assert type(m.exp) is OrExpression
+    assert type(m.exp.reduce()) is AdditiveExpression
+    assert m.exp.eval() == 37
+
+    m = mm.model_from_str('[1, 2, [\'some string\', 3.4, true], 5..7]')
+    assert type(m.exp) is OrExpression
+    mred = m.exp.reduce()
+    assert type(mred) is List
+    assert type(mred[0]) is BaseValue
+    assert type(mred[2]) is List
+    assert type(mred[3]) is Range
+    assert type(mred[2][0]) is String
+    assert type(mred[2][1]) is BaseValue
+    assert m.exp.eval() == [1, 2, ['some string', 3.4, True], [5, 6, 7]]
 
 
 def test_variables():

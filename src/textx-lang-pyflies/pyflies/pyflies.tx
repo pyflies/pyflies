@@ -25,11 +25,11 @@ VariableAssignment:
 ;
 
 Value:
-    CompoundTypeValue | BaseTypeValue
+    String | CompoundTypeValue | BaseValue
 ;
 
-BaseTypeValue: STRICTFLOAT | INT | String | BOOL;
-String: val=STRING;
+BaseValue: value=STRICTFLOAT | value=INT | value=BOOL;
+String: value=STRING;
 CompoundTypeValue: Range | List;
 Range: lower=INT '..' upper=INT;
 List: '[' values*=Expression[','] ']';

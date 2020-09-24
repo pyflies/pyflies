@@ -191,6 +191,23 @@ def test_expression_reduction():
     assert m.exp.eval() == [1, 2, ['some string', 3.4, True], [5, 6, 7]]
 
 
+@pytest.mark.parametrize('exp, rep',
+                         [
+                             ('25', '25'),
+                             ('25 + 12 +3 * 4 /3', '25 + 12 + 3 * 4 / 3'),
+                             ('true or False and a and not 3 >= 5.4< 3',
+                              'True or False and a and not 3 >= 5.4 < 3'),
+                             ('1..5 loop', '1..5 loop'),
+                             ('1..5 shuffle', '1..5 shuffle'),
+                             ('[1, 2, 3] shuffle', '[1, 2, 3] shuffle'),
+                             ('a if 3 > 5 and b else c', 'a if 3 > 5 and b else c'),
+                         ])
+def test_string_representation(exp, rep):
+
+    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    assert str(mm.model_from_str(exp).exp.reduce()) == rep
+
+
 def test_variables():
     """
     Test variables definition (assignments) and expression evaluation with

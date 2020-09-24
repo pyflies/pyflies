@@ -67,10 +67,16 @@ class Symbol(ExpressionElement):
     def __eq__(self, other):
         return type(other) is Symbol and self.name == other.name
 
+    def __str__(self):
+        return self.name
+
 
 class BaseValue(ExpressionElement):
     def eval(self):
         return self.value
+
+    def __str__(self):
+        return str(self.value)
 
 
 class String(ExpressionElement):
@@ -84,6 +90,9 @@ class String(ExpressionElement):
             if '{' in self.value.replace('{{', ''):
                 raise PyFliesException('Undefined variables in "{}"'.format(self.value))
             return self.value
+
+    def __str__(self):
+        return self.value
 
 
 class List(ExpressionElement):
@@ -102,14 +111,21 @@ class List(ExpressionElement):
     def __getitem__(self, idx):
         return self.values[idx]
 
+    def __str__(self):
+        return '[{}]'.format(', '.join([str(x.reduce()) for x in self.values]))
+
 
 class Range(ExpressionElement):
     def eval(self):
         return list(range(self.lower, self.upper + 1))
 
+    def __str__(self):
+        return '{}..{}'.format(self.lower, self.upper)
+
 
 class LoopExpression(ExpressionElement):
-    pass
+    def __str__(self):
+        return '{} loop'.format(str(self.exp))
 
 
 class MessageExpression(ExpressionElement):
@@ -120,6 +136,9 @@ class MessageExpression(ExpressionElement):
             return value
         else:
             return random.choice(value)
+
+    def __str__(self):
+        return '{} {}'.format(str(self.value), self.message)
 
 
 class BinaryOperation(ExpressionElement):
@@ -148,6 +167,20 @@ class BinaryOperation(ExpressionElement):
                       map(lambda x: x.eval() if isinstance(x, ExpressionElement) else x,
                           self.op))
 
+    def __str__(self):
+        if len(self.op) > 1:
+            a = [str(self.op[0].reduce())]
+            if hasattr(self, 'opn'):
+                opn = self.opn
+            else:
+                opn = [self.operation_str] * (len(self.op) - 1)
+            for oper, op in zip(opn, [str(x.reduce()) for x in self.op[1:]]):
+                a.append(oper)
+                a.append(op)
+            return ' '.join(a)
+        else:
+            return str(self.op[0])
+
 
 class UnaryOperation(ExpressionElement):
     def reduce(self):
@@ -169,6 +202,16 @@ class UnaryOperation(ExpressionElement):
         inner = self.op.eval() if isinstance(self.op, ExpressionElement) else self.op
         return op(inner) if op else inner
 
+    def __str__(self):
+        if not self.opn:
+            opn = ''
+        elif hasattr(self, 'operation_str'):
+            opn = self.operation_str + ' '
+        else:
+            opn = self.opn + ' '
+        return '{}{}'.format(opn, str(self.op))
+
+
 
 class VariableRef(ExpressionElement):
     def eval(self):
@@ -179,6 +222,9 @@ class VariableRef(ExpressionElement):
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
 
+    def __str__(self):
+        return self.name
+
 
 class IfExpression(ExpressionElement):
     def eval(self):
@@ -188,17 +234,25 @@ class IfExpression(ExpressionElement):
         else:
             return self.if_false.eval()
 
+    def __str__(self):
+        return '{} if {} else {}'.format(self.if_true.reduce(),
+                                         self.cond.reduce(),
+                                         self.if_false.reduce())
+
 
 class OrExpression(BinaryOperation):
     operation = or_
+    operation_str = 'or'
 
 
 class AndExpression(BinaryOperation):
     operation = and_
+    operation_str = 'and'
 
 
 class NotExpression(UnaryOperation):
     operation = not_
+    operation_str = 'not'
 
 
 class ComparisonExpression(BinaryOperation):

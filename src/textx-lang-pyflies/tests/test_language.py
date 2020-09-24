@@ -391,6 +391,43 @@ def test_conditions_table_expansion():
     assert m.t[2].t.conditions == m.t[3].t.conditions
 
 
+def test_conditions_table_str_representation():
+    """
+    Test that tables are properly formatted when converted to string
+    representation.
+    """
+    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+
+    m = mm.model_from_str('''
+        positions = [left, right]
+        colors = [green, red]
+
+        {
+        | position       | color       | congruency                                        | response  |
+        |----------------+-------------+---------------------------------------------------+-----------|
+        | positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+        }
+    ''')
+
+    assert m.t[0].t.to_str(expanded=False) == \
+        '''
+| position       | color       | congruency                                        | response  |
+|----------------+-------------+---------------------------------------------------+-----------|
+| positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+        '''.strip()
+
+    m.t[0].t.expand()
+    assert m.t[0].t.to_str() == \
+        '''
+| position | color | congruency                                        | response |
+|----------+-------+---------------------------------------------------+----------|
+| left     | green | congruent if reponse == position else uncongruent | left     |
+| left     | red   | congruent if reponse == position else uncongruent | right    |
+| right    | green | congruent if reponse == position else uncongruent | left     |
+| right    | red   | congruent if reponse == position else uncongruent | right    |
+        '''.strip()
+
+
 def test_conditions_table_condition_variable_reference():
     """
     Test that references to condition variables are evaluated properly during

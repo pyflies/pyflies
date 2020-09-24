@@ -290,6 +290,9 @@ class Condition(CustomClass):
             self.var_exps[idx] = var_exp.reduce()
 
 class ConditionsTable(CustomClass):
+    def is_expanded(self):
+        return hasattr(self, 'conditions')
+
     def expand(self):
         """
         Expands the table taking into account `loop` messages for looping, and
@@ -336,6 +339,45 @@ class ConditionsTable(CustomClass):
                     condition.append(next(cond_i).eval())
                 self.conditions.append(condition)
 
+    def __str__(self):
+        """
+        String representation will be in orgmode table format for better readability.
+        Also, by default, expanded version will be used if exists.
+        """
+        if self.is_expanded():
+            return self.to_str()
+        else:
+            self.to_str([spec.var_exps for spec in self.condition_specs])
+
+    def to_str(self, expanded=True):
+
+        if expanded and not self.is_expanded():
+            raise PyFliesException('Table is not expanded. Expand it first or use `expanded=False`.')
+
+        if self.is_expanded():
+            table = self.conditions
+        else:
+            table = [list(spec.var_exps) for spec in self.condition_specs]
+
+        column_widths = [len(x) + 2 for x in self.variables]
+        for row in table:
+            for idx, element in enumerate(row):
+                str_rep = str(element)
+                row[idx] = str_rep
+                if column_widths[idx] < len(str_rep) + 2:
+                    column_widths[idx] = len(str_rep) + 2
+
+        def get_row(row):
+            str_row = '|'
+            for idx, element in enumerate(row):
+                str_row += ' ' + element.ljust(column_widths[idx] - 1) + '|'
+            return str_row
+
+        str_rep = get_row(self.variables)
+        str_rep += '\n|' + '+'.join(['-' * x for x in column_widths]) + '|\n'
+        str_rep += '\n'.join([get_row(row) for row in table])
+
+        return str_rep
 
     def connect_stimuli(self, stimuli):
         """
@@ -343,9 +385,8 @@ class ConditionsTable(CustomClass):
         matched stimuli to the table/condition phase.  Table must be previously
         expanded.
         """
-        if not hasattr(self, 'conditions'):
+        if not self.is_expanded():
             raise PyFliesException('Cannot evaluate stimuli on unexpanded table.')
- 
 
 
 custom_classes = list(map(

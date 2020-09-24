@@ -229,6 +229,11 @@ class UnaryExpression(UnaryOperation):
         '+': lambda x: x
     }
 
+class Condition(CustomClass):
+    def __init__(self, *args, **kwargs):
+        # Reduce all condition expressions
+        for idx, var_exp in enumerate(self.var_exps):
+            self.var_exps[idx] = var_exp.reduce()
 
 class ConditionsTable(CustomClass):
     def expand(self):

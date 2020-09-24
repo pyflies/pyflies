@@ -403,46 +403,60 @@ def test_conditions_table_str_representation():
         colors = [green, red]
 
         {
-        | position       | color       | congruency                                        | response  |
-        |----------------+-------------+---------------------------------------------------+-----------|
-        | positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+        | position       | color       | congruency                                         | response  |
+        |----------------+-------------+----------------------------------------------------+-----------|
+        | positions loop | colors loop | congruent if response == position else uncongruent | positions |
         }
     ''')
 
     assert m.t[0].t.to_str(expanded=False) == \
         '''
-| position       | color       | congruency                                        | response  |
-|----------------+-------------+---------------------------------------------------+-----------|
-| positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+| position       | color       | congruency                                         | response  |
+|----------------+-------------+----------------------------------------------------+-----------|
+| positions loop | colors loop | congruent if response == position else uncongruent | positions |
         '''.strip()
 
     m.t[0].t.expand()
     assert m.t[0].t.to_str() == \
         '''
-| position | color | congruency                                        | response |
-|----------+-------+---------------------------------------------------+----------|
-| left     | green | congruent if reponse == position else uncongruent | left     |
-| left     | red   | congruent if reponse == position else uncongruent | right    |
-| right    | green | congruent if reponse == position else uncongruent | left     |
-| right    | red   | congruent if reponse == position else uncongruent | right    |
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| left     | green | congruent   | left     |
+| left     | red   | uncongruent | right    |
+| right    | green | uncongruent | left     |
+| right    | red   | congruent   | right    |
         '''.strip()
 
+    m = mm.model_from_str('''
+        {
+        | position | order          |
+        |----------+----------------|
+        | order    | [1, 2, 3] loop |
+        }
+    ''')
+    m.t[0].t.expand()
+    assert m.t[0].t.to_str() == '''
+| position | order |
+|----------+-------|
+| 1        | 1     |
+| 2        | 2     |
+| 3        | 3     |
+    '''.strip()
 
-def test_conditions_table_condition_variable_reference():
+def test_conditions_table_condition_cyclic_reference():
     """
-    Test that references to condition variables are evaluated properly during
-    table expansion.
+    Test that table expression with cyclic references raise exception.
     """
 
     mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
 
     m = mm.model_from_str('''
-        positions = [left, right]
-        colors = [green, red]
-
         {
-        | position       | color       | congruency                                        | response  |
-        |----------------+-------------+---------------------------------------------------+-----------|
-        | positions loop | colors loop | congruent if reponse == position else uncongruent | positions |
+        | position | color    |
+        |----------+----------|
+        | color    | position |
         }
     ''')
+    with pytest.raises(PyFliesException, match=r'Cyclic dependency.*'):
+        m.t[0].t.expand()
+

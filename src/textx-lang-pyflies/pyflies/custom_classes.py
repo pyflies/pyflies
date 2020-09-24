@@ -9,6 +9,25 @@ from textx import get_model
 from pyflies.exceptions import PyFliesException
 
 
+class Postpone(BaseException):
+    """
+    Used to indicate that evaluation cannot be done at this time.
+    E.g., in case of forward references during table row evaluation.
+    """
+    pass
+
+
+class PostponedEval:
+    def __init__(self, exp):
+        self.exp = exp
+
+    def __str__(self):
+        return 'PostponedEval({})'.format(str(self.exp))
+
+    def __repr__(self):
+        return str(self)
+
+
 class CustomClass:
     def __init__(self, parent, **kwargs):
         self.parent = parent
@@ -64,15 +83,21 @@ class ExpressionElement(CustomClass):
 
 
 class Symbol(ExpressionElement):
+    def eval(self, context=None):
+        return self
+
     def __eq__(self, other):
         return type(other) is Symbol and self.name == other.name
 
     def __str__(self):
         return self.name
 
+    def __repr__(self):
+        return 'Symbol({})'.format(self.name)
+
 
 class BaseValue(ExpressionElement):
-    def eval(self):
+    def eval(self, context=None):
         return self.value
 
     def __str__(self):
@@ -80,7 +105,7 @@ class BaseValue(ExpressionElement):
 
 
 class String(ExpressionElement):
-    def eval(self):
+    def eval(self, context=None):
         model = get_model(self)
         try:
             return self.value.format(**model.var_vals)
@@ -99,11 +124,11 @@ class List(ExpressionElement):
     def reduce(self):
         return List(self.parent, values=[x.reduce() for x in self.values])
 
-    def eval(self):
+    def eval(self, context=None):
         res = []
         for v in self.values:
             try:
-                res.append(v.eval())
+                res.append(v.eval(context))
             except AttributeError:
                 res.append(v)
         return res
@@ -116,7 +141,7 @@ class List(ExpressionElement):
 
 
 class Range(ExpressionElement):
-    def eval(self):
+    def eval(self, context=None):
         return list(range(self.lower, self.upper + 1))
 
     def __str__(self):
@@ -129,8 +154,8 @@ class LoopExpression(ExpressionElement):
 
 
 class MessageExpression(ExpressionElement):
-    def eval(self):
-        value = self.value.eval()
+    def eval(self, context=None):
+        value = self.value.eval(context)
         if self.message == 'shuffle':
             random.shuffle(value)
             return value
@@ -148,7 +173,7 @@ class BinaryOperation(ExpressionElement):
         else:
             return super().reduce()
 
-    def eval(self):
+    def eval(self, context=None):
         operations = self.get_operations()
         def op(a, b):
             nextop = next(operations)
@@ -164,7 +189,7 @@ class BinaryOperation(ExpressionElement):
                 raise PyFliesException('Undefined variable "{}"'.format(sym.name))
 
         return reduce(op,
-                      map(lambda x: x.eval() if isinstance(x, ExpressionElement) else x,
+                      map(lambda x: x.eval(context) if isinstance(x, ExpressionElement) else x,
                           self.op))
 
     def __str__(self):
@@ -189,7 +214,7 @@ class UnaryOperation(ExpressionElement):
         else:
             return super().reduce()
 
-    def eval(self):
+    def eval(self, context=None):
         operations = self.get_operations()
         def op(a):
             nextop = next(operations)
@@ -199,7 +224,7 @@ class UnaryOperation(ExpressionElement):
                 if type(a) is Symbol:
                     raise PyFliesException('Undefined variable "{}"'.format(a.name))
                 raise
-        inner = self.op.eval() if isinstance(self.op, ExpressionElement) else self.op
+        inner = self.op.eval(context) if isinstance(self.op, ExpressionElement) else self.op
         return op(inner) if op else inner
 
     def __str__(self):
@@ -212,13 +237,23 @@ class UnaryOperation(ExpressionElement):
         return '{}{}'.format(opn, str(self.op))
 
 
-
 class VariableRef(ExpressionElement):
-    def eval(self):
+    def eval(self, context=None):
         model = get_model(self)
         try:
-            return model.var_vals[self.name]
-        except (KeyError, AttributeError):
+            c = dict(model.var_vals)
+        except AttributeError:
+            c = {}
+        try:
+            if context:
+                c.update(context)
+
+            value = c[self.name]
+            if type(value) is Postpone:
+                raise Postpone('Postponed evaluation of "{}"'.format(self.name))
+            return value
+
+        except KeyError:
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
 
@@ -227,12 +262,13 @@ class VariableRef(ExpressionElement):
 
 
 class IfExpression(ExpressionElement):
-    def eval(self):
-        cond = self.cond.eval()
+    def eval(self, context=None):
+
+        cond = self.cond.eval(context)
         if cond is True:
-            return self.if_true.eval()
+            return self.if_true.eval(context)
         else:
-            return self.if_false.eval()
+            return self.if_false.eval(context)
 
     def __str__(self):
         return '{} if {} else {}'.format(self.if_true.reduce(),
@@ -298,6 +334,33 @@ class ConditionsTable(CustomClass):
         Expands the table taking into account `loop` messages for looping, and
         ranges and list for cycling.
         """
+
+        def evaluate_condition(condition):
+            """
+            All condition variable values must be evaluated to base
+            values or symbols. Do this in loop because there can be
+            forward references. If we pass a full loop and no value
+            has been resolved we have cyclic reference
+            """
+            while True:
+                all_resolved = all([not type(c) is PostponedEval for c in condition])
+                if all_resolved:
+                    break
+                resolved = False
+                for idx, c in enumerate(condition):
+                    if type(c) is PostponedEval:
+                        try:
+                            cond_value = c.exp.eval(row_context)
+                            condition[idx] = cond_value
+                            if type(cond_value) in [BaseValue, Symbol]:
+                                row_context[self.variables[idx]] = cond_value
+                            resolved = True
+                        except Postpone:
+                            pass
+                if not resolved:
+                    raise PyFliesException(
+                        'Cyclic dependency in table. Row {}.'.format(condition))
+
         self.conditions = []
 
         for c in self.condition_specs:
@@ -325,18 +388,26 @@ class ConditionsTable(CustomClass):
             if loops:
                 loops = product(*loops)
                 for loop_vals in loops:
+
+                    # Evaluate looping variables
+                    row_context = dict([(v, Postpone()) for v in self.variables])
                     condition = [None] * len(cond_template)
                     for loop_val, idx in zip(loop_vals, loops_idx):
                         condition[idx] = loop_val
+                        row_context[self.variables[idx]] = loop_val
+
                     for idx, cond_i in enumerate(cond_template):
                         if cond_i is not None:
-                            condition[idx] = next(cond_i)
+                            condition[idx] = PostponedEval(next(cond_i))
+
+                    evaluate_condition(condition)
+
                     self.conditions.append(condition)
             else:
                 # No looping - just evaluate all expressions
-                condition = []
-                for cond_i in cond_template:
-                    condition.append(next(cond_i).eval())
+                row_context = dict([(v, Postpone()) for v in self.variables])
+                condition = [PostponedEval(next(x)) for x in cond_template]
+                evaluate_condition(condition)
                 self.conditions.append(condition)
 
     def __str__(self):

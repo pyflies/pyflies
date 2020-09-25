@@ -9,6 +9,7 @@ from textx import get_model
 from .exceptions import PyFliesException
 from .table import ExpTable, get_column_widths, table_to_str, row_to_str
 from .time import TimeReferenceInst
+from .stimuli import StimulusSpecInst, StimulusInst, StimulusParamInst
 
 
 class Postpone(BaseException):
@@ -35,19 +36,6 @@ class CustomClass:
         self.parent = parent
         for k, i in kwargs.items():
             setattr(self, k, i)
-
-
-class TimeReference(CustomClass):
-    def eval(self, context=None):
-        return TimeReferenceInst(self, context)
-
-
-class StimulusSpec(CustomClass):
-    def __init__(self, parent, **kwargs):
-        super().__init__(parent, **kwargs)
-        if self.at is None:
-            # Default time reference
-            self.at = TimeReference(self, start_relative=True, relative_op='+', time=0)
 
 
 class VariableAssignment(CustomClass):
@@ -339,6 +327,36 @@ class Condition(CustomClass):
 
     def __len__(self):
         return len(self.var_exps)
+
+
+class TimeReference(ExpressionElement):
+    def eval(self, context=None):
+        return TimeReferenceInst(self, context)
+
+
+class StimulusSpec(ExpressionElement):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+        if self.at is None:
+            # Default time reference
+            self.at = TimeReference(self, start_relative=True, relative_op='+',
+                                    time=AdditiveExpression(self, op=[0], opn=None))
+        if self.duration is None:
+            # Default duration is 0, meaning indefinite
+            self.duration = AdditiveExpression(self, op=[0], opn=None)
+
+    def eval(self, context=None):
+        return StimulusSpecInst(self, context)
+
+
+class Stimulus(ExpressionElement):
+    def eval(self, context=None):
+        return StimulusInst(self, context)
+
+
+class StimulusParam(ExpressionElement):
+    def eval(self, context=None):
+        return StimulusParamInst(self, context)
 
 
 class ConditionsTable(CustomClass):

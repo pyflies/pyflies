@@ -106,7 +106,8 @@ ConditionStimuli:
 */
 
 StimulusSpec:
-    ('at' at=TimeReference)? (record?='record' | stimulus=Stimulus) ('for' duration=INT)?;
+    ('at' at=TimeReference)? (record?='record' | stimulus=Stimulus)
+    ('for' duration=AdditiveExpression)?;
 
 Stimulus: name=ID '(' params*=StimulusParam[',']  ')';
 StimulusParam: name=ID value=Expression;

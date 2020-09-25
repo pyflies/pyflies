@@ -1,10 +1,10 @@
-class TimeReferenceInst:
+from .evaluated import EvaluatedBase
+
+
+class TimeReferenceInst(EvaluatedBase):
     """
     Represents an evaluated time reference specification.
     """
     def __init__(self, spec, context=None):
-        self.spec = spec
+        super().__init__(spec, context)
         self.time = spec.time.eval(context)
-
-    def __getattr__(self, name):
-        return getattr(self.spec, name)

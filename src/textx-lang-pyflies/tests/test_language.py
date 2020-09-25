@@ -268,10 +268,12 @@ def test_stimuli_definition():
 
     mm = get_meta('stimuli.tx')
 
-    m = mm.model_from_str('at 100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
+    # Time, duration and params can be expressions
+    context = {'a': 10, 'b': 5}
+    m = mm.model_from_str('at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
+    stim = m.stimuli[0].eval(context)
     assert stim.duration == 200
-    assert stim.at.time == 100
+    assert stim.at.time == 110
     assert not stim.record
     assert stim.stimulus.name == 'circle'
     assert stim.stimulus.params[0].name == 'position'
@@ -281,14 +283,14 @@ def test_stimuli_definition():
 
     # Time can relative to the start of the previous stimulus
     m = mm.model_from_str('at .+100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
+    stim = m.stimuli[0].eval()
     assert stim.at.time == 100
     assert stim.at.relative_op == '+'
     assert stim.at.start_relative
 
     # Time can relative to the end of the previous stimulus
     m = mm.model_from_str('at +100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
+    stim = m.stimuli[0].eval()
     assert stim.at.time == 100
     assert stim.at.relative_op == '+'
     assert not stim.at.start_relative
@@ -296,7 +298,7 @@ def test_stimuli_definition():
     # If not given, by default it is the same as the start of the previous
     # E.g. `at .`
     m = mm.model_from_str('circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
+    stim = m.stimuli[0].eval()
     assert stim.at.time == 0
     assert stim.at.relative_op == '+'
     assert stim.at.start_relative
@@ -304,11 +306,11 @@ def test_stimuli_definition():
     # If duration is not given it is assumed that stimulus should be shown
     # until the end of the trial
     m = mm.model_from_str('at 100 circle(position 0, radius 20)')
-    stim = m.stimuli[0]
+    stim = m.stimuli[0].eval()
     assert stim.duration == 0
 
     m = mm.model_from_str('at 100 record')
-    stim = m.stimuli[0]
+    stim = m.stimuli[0].eval()
     assert stim.duration == 0
     assert stim.record
     assert stim.at.time == 100
@@ -318,8 +320,8 @@ def test_stimuli_definition():
     # and the second is circle stimuli for 200
     m = mm.model_from_str('at 100 record circle(position 0, radius 20) for 200')
     assert len(m.stimuli) == 2
-    assert m.stimuli[0].record and not m.stimuli[1].record
-    assert m.stimuli[1].at.time == 0 and m.stimuli[1].stimulus.name == 'circle'
+    assert m.stimuli[0].eval().record and not m.stimuli[1].eval().record
+    assert m.stimuli[1].eval().at.time == 0 and m.stimuli[1].eval().stimulus.name == 'circle'
 
 
 def test_conditions_table():

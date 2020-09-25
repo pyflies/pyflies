@@ -59,7 +59,7 @@ Message: 'choose' | 'shuffle';
 LoopExpression: exp=OrExpression 'loop';
 
 
-TimeReference: start_relative?='.' (relative_op=SignOperator)? time=INT;
+TimeReference: start_relative?='.' (relative_op=SignOperator)? time=AdditiveExpression;
 
 /*
     Test specification

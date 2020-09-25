@@ -8,6 +8,7 @@ from textx import get_model
 
 from .exceptions import PyFliesException
 from .table import ExpTable, get_column_widths, table_to_str, row_to_str
+from .time import TimeReferenceInst
 
 
 class Postpone(BaseException):
@@ -37,7 +38,8 @@ class CustomClass:
 
 
 class TimeReference(CustomClass):
-    pass
+    def eval(self, context=None):
+        return TimeReferenceInst(self, context)
 
 
 class StimulusSpec(CustomClass):

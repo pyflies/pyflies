@@ -23,27 +23,34 @@ def test_time_references():
     mm = get_meta('timeref.tx')
 
     # Plain
-    ref = mm.model_from_str('10').ref
+    ref = mm.model_from_str('10').ref.eval()
     assert ref.relative_op is None
     assert not ref.start_relative
     assert ref.time == 10
 
     # Positive relative from previous end
-    ref = mm.model_from_str('+10').ref
+    ref = mm.model_from_str('+10').ref.eval()
     assert ref.relative_op == '+'
     assert ref.time == 10
     assert not ref.start_relative
 
     # Negative relative from previous end
-    ref = mm.model_from_str('-10').ref
+    ref = mm.model_from_str('-10').ref.eval()
     assert ref.relative_op == '-'
     assert ref.time == 10
 
     # Positive relative from previous start
-    ref = mm.model_from_str('.+10').ref
+    ref = mm.model_from_str('.+10').ref.eval()
     assert ref.relative_op == '+'
     assert ref.start_relative
     assert ref.time == 10
+
+    # Time reference can be an integer expression
+    ref = mm.model_from_str('.+10 + 3 * 2').ref.eval()
+    assert ref.relative_op == '+'
+    assert ref.start_relative
+    assert ref.time == 16
+
 
 
 def test_expressions_arithmetic():

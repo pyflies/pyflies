@@ -6,6 +6,7 @@ def processor(model, metamodel):
 
     for table in get_children_of_type('ConditionsTable', model):
         table.expand()
+        table.calc_phases()
 
 
     return  #TODO: Rework/move checks from bellow

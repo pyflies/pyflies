@@ -49,14 +49,14 @@ class ExpTable(list):
     def calculate_column_widths(self):
         self.column_widths = get_column_widths(self.cond_table.variables, self)
 
-    def eval_condition_stimuli(self, cond_stimuli_table):
+    def calc_phases(self):
         """
-        Accepts a list of ConditionStimuli specification.  Iterates over all
-        rows and applies each ConditionStimuli spec.
+        Evaluates condition stimuli specification from the associated condition
+        table for each trial phase.  After evaluation each row will have
+        connected appropriate, evaluated stimuli instances.
         """
-        for idx, row in enumerate(self):
-            for cond_stimuli in cond_stimuli_table:
-                row.eval_condition_stimuli(cond_stimuli, idx)
+        for row in self:
+            row.calc_phases()
 
     def __str__(self):
         return table_to_str(self.cond_table.variables, self, self.column_widths)
@@ -68,33 +68,47 @@ class ExpTableRow(list):
         self.extend(elements if elements is not None else [])
 
         # Trial phases
-        self.ph_fixation = None
-        self.ph_execution = None
+        self.ph_fix = None
+        self.ph_exec = None
         self.ph_error = None
         self.ph_correct = None
 
-    def eval_condition_stimuli(self, cond_stimuli, row_num):
+    def get_context(self, context):
         """
-        Accepts ConditionStimuli specification, evaluates the condition and if
-        it matches some of the phases, evaluated Stimuli are attached to the
-        appropriate phase.
+        Returns context containing passed context, this row variable values,
+        and global scope (variable defined at model level) with priorities in
+        the given order.
         """
-        # 1. Evaluate conditon_stimuli.condition (Expression) in the context of
-        # the current table row
-        # cond_val = cond_stimuli.condition.eval()
-        # if cond_val is True or cond_val == row_num:
-        #     self.ph_execution = 
+        c = dict(zip(self.table.cond_table.variables, self))
+        c.update(context)
+        return self.table.cond_table.get_context(c)
 
-        # 2. If it is True or if evaluates to integer representing current row
-        # number attach it to ph_execution. If it evaluates to some of the
-        # symbols (fixation, error, correct) attach it to the appropriate phase.
+    def calc_phases(self):
+        """
+        Evaluate condition stimuli specification for each phase of this trial.
+        If condition is True evaluate stimuli specs and attach to this row.
+        """
+        for phase in ['fix', 'exec', 'error', 'correct']:
+            context = self.get_context({phase: True})
+
+            stim_specs = self.table.cond_table.parent.stimuli
+            for sspec in stim_specs:
+                try:
+                    cond_val = sspec.condition.eval(context)
+                except PyFliesException:
+                    cond_val = False
+
+                if cond_val is True:
+                    stim_insts = [stim.eval(context) for stim in sspec.stimuli]
+                    setattr(self, f'ph_{phase}', stim_insts)
+                    break
 
     def eval(self, context=None):
         """
-        All condition variable values must be evaluated to base
-        values or symbols. Do this in loop because there can be
-        forward references. If we pass a full loop and no value
-        has been resolved we have cyclic reference
+        All condition variable values must be evaluated to base values or
+        symbols.  Do this in loop because there can be forward references.  If
+        we pass a full loop and no value has been resolved we have cyclic
+        reference
         """
         from .custom_classes import PostponedEval, Postpone, BaseValue, Symbol
         while True:

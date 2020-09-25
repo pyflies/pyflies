@@ -87,7 +87,7 @@ ConditionsTable:
 
     // The rest of the description are condition specifications, one per line
     // The order of condition values match the param name positions.
-    condition_specs+=Condition
+    cond_specs+=Condition
 ;
 
 Condition:

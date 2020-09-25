@@ -1,0 +1,6 @@
+import pyflies
+
+Model:
+    vars*=VariableAssignment
+    test=TestType
+;

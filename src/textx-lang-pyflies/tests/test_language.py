@@ -469,3 +469,56 @@ def test_conditions_table_phases_evaluation():
     Test that evaluated table has attached appropriate stimuli specifications
     for each trial phase.
     """
+    mm = get_meta('test_type.tx')
+
+    m = mm.model_from_str('''
+        positions = [left, right]
+        colors = [green, red]
+
+        test Example {
+            conditions {
+              | position       | color       | response  |
+              |----------------+-------------+-----------|
+              | positions loop | colors loop | positions |
+            }
+            stimuli {
+                fix: cross() for 200..500 choose
+                exec: circle(x position, color color) for 300..700 choose
+                error and color == green: sound(freq 300)
+                error: sound(freq 500)
+                correct: sound(freq 1000)
+            }
+        }
+    ''')
+
+    t = m.test.table.exp_table
+    for trial in range(4):
+        # fix
+        s = t[trial].ph_fix[0]
+        assert s.stimulus.name == 'cross'
+        assert s.at.time == 0
+        assert 200 < s.duration < 500
+
+        # exec
+        st = t[trial].ph_exec[0]
+        assert st.stimulus.name == 'circle'
+        assert st.at.time == 0
+        assert 300 < st.duration < 700
+
+        # error
+        st = t[trial].ph_error[0]
+        assert st.stimulus.name == 'sound'
+        # Frequencies are 300 when color is green and 500 otherwise
+        assert st.stimulus.params[0].value == 300 if t[trial][1].name == 'green' else 500
+
+        # Correct
+        st = t[trial].ph_correct[0]
+        assert st.stimulus.name == 'sound'
+        assert st.stimulus.params[0].name == 'freq'
+        assert st.stimulus.params[0].value == 1000
+
+
+    # Parameters evaluation
+    st = t[0].ph_exec[0]
+    assert st.stimulus.params[0].value.name == 'left'
+    assert st.stimulus.params[1].value.name == 'green'

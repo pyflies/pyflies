@@ -26,3 +26,4 @@ class StimulusInst(EvaluatedBase):
 class StimulusParamInst(EvaluatedBase):
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
+        self.value = self.value.eval(context)

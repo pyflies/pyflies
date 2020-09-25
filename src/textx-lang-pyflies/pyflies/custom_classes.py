@@ -37,6 +37,16 @@ class CustomClass:
         for k, i in kwargs.items():
             setattr(self, k, i)
 
+    def get_context(self, local_context):
+        model = get_model(self)
+        try:
+            c = dict(model.var_vals)
+        except AttributeError:
+            c = {}
+        if local_context:
+            c.update(local_context)
+        return c
+
 
 class VariableAssignment(CustomClass):
     def __init__(self, parent, name, value):
@@ -71,16 +81,6 @@ class ExpressionElement(CustomClass):
         else:
             # if a single operation, cycle
             return cycle([self.operation])
-
-    def get_context(self, local_context):
-        model = get_model(self)
-        try:
-            c = dict(model.var_vals)
-        except AttributeError:
-            c = {}
-        if local_context:
-            c.update(local_context)
-        return c
 
 
 class Symbol(ExpressionElement):
@@ -363,7 +363,7 @@ class ConditionsTable(CustomClass):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
 
-        self.column_widths = get_column_widths(self.variables, self.condition_specs)
+        self.column_widths = get_column_widths(self.variables, self.cond_specs)
 
     def expand(self):
         """
@@ -424,14 +424,17 @@ class ConditionsTable(CustomClass):
 
         self.exp_table.calculate_column_widths()
 
+    def calc_phases(self):
+        self.exp_table.calc_phases()
+
     def __getitem__(self, idx):
-        return self.condition_specs[idx]
+        return self.cond_specs[idx]
 
     def __iter__(self):
-        return iter(self.condition_specs)
+        return iter(self.cond_specs)
 
     def __len__(self):
-        return len(self.condition_specs)
+        return len(self.cond_specs)
 
     def __eq__(self, other):
         return self.exp_table == other.exp_table
@@ -443,7 +446,7 @@ class ConditionsTable(CustomClass):
         return self.to_str()
 
     def to_str(self, expanded=True):
-        rows = [spec.var_exps for spec in self.condition_specs]
+        rows = [spec.var_exps for spec in self.cond_specs]
         if expanded:
             return table_to_str(self.variables, self.exp_table,
                                 self.exp_table.column_widths)
@@ -458,6 +461,11 @@ class ConditionsTable(CustomClass):
         """
         if not self.is_expanded():
             raise PyFliesException('Cannot evaluate stimuli on unexpanded table.')
+
+
+class TestType(CustomClass):
+    def calc_phases(self):
+        self.table.calc_phases()
 
 
 custom_classes = list(map(

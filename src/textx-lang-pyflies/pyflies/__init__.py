@@ -1,6 +1,6 @@
 import os
 from textx import language, metamodel_from_file
-from .model_processor import pyflies_model_processor
+from .model_processor import processor
 
 __version__ = "0.4.0.dev"
 
@@ -14,6 +14,6 @@ def pyflies_language():
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors
     # http://textx.github.io/textX/stable/scoping/
-    mm.register_model_processor(pyflies_model_processor)
+    mm.register_model_processor(processor)
 
     return mm

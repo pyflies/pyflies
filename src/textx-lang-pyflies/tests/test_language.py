@@ -6,35 +6,41 @@ from pyflies.custom_classes import (custom_classes, CustomClass, Symbol,
                                     OrExpression, BaseValue,
                                     AdditiveExpression, List, String, Range)
 from pyflies.exceptions import PyFliesException
+from pyflies.model_processor import processor
 
 
 this_folder = join(dirname(abspath(__file__)))
 
 
+def get_meta(file_name):
+    mm =  metamodel_from_file(file_name, classes=custom_classes)
+    mm.register_model_processor(processor)
+    return mm
+
 def test_time_references():
     """Test for pyflies time references"""
 
-    mm = metamodel_from_file(join(this_folder, 'timeref.tx'))
+    mm = get_meta('timeref.tx')
 
     # Plain
-    ref = mm.model_from_str('10')
+    ref = mm.model_from_str('10').ref
     assert ref.relative_op is None
     assert not ref.start_relative
     assert ref.time == 10
 
     # Positive relative from previous end
-    ref = mm.model_from_str('+10')
+    ref = mm.model_from_str('+10').ref
     assert ref.relative_op == '+'
     assert ref.time == 10
     assert not ref.start_relative
 
     # Negative relative from previous end
-    ref = mm.model_from_str('-10')
+    ref = mm.model_from_str('-10').ref
     assert ref.relative_op == '-'
     assert ref.time == 10
 
     # Positive relative from previous start
-    ref = mm.model_from_str('.+10')
+    ref = mm.model_from_str('.+10').ref
     assert ref.relative_op == '+'
     assert ref.start_relative
     assert ref.time == 10
@@ -45,7 +51,7 @@ def test_expressions_arithmetic():
     Test Pyflies arithmetic expressions.
     """
 
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     exp = mm.model_from_str('2 + 3 * 2 * 3 / 5 - 1')
     assert exp.exp.eval() == 4.6
@@ -55,7 +61,7 @@ def test_expressions_comparison_boolean():
     Test Pyflies boolean expressions.
     """
 
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     exp = mm.model_from_str('2 > 1 and 6 <= 8')
     assert exp.exp.eval() is True
@@ -72,7 +78,7 @@ def test_expressions_comparison_boolean():
 
 
 def test_compound_types():
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     m = mm.model_from_str('[1, 2, ["some string", 4.5], 3]')
     meval = m.exp.eval()
@@ -87,7 +93,7 @@ def test_expresions_messages():
     """
     Test sending messages to compound types
     """
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     m = mm.model_from_str('10..20 shuffle')
     meval = m.exp.eval()
@@ -111,7 +117,7 @@ def test_expressions_if_expression():
     Testing if expression of the form:
     <some val if cond true> if <condition> else <some other value>
     """
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     m = mm.model_from_str('1 if 2 < 2 else 3')
     meval = m.exp.eval()
@@ -135,7 +141,7 @@ def test_expressions_if_expression():
 
 
 def test_string_interpolation():
-    mm = metamodel_from_file(join(this_folder, 'variables.tx'), classes=custom_classes)
+    mm = get_meta('variables.tx')
 
     m = mm.model_from_str('''
     a = 5
@@ -167,7 +173,7 @@ def test_expression_reduction():
     This is an optimization measure and also helps with expression analysis.
     """
 
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
 
     m = mm.model_from_str('25')
     assert type(m.exp) is OrExpression
@@ -204,7 +210,7 @@ def test_expression_reduction():
                          ])
 def test_string_representation(exp, rep):
 
-    mm = metamodel_from_file(join(this_folder, 'expression.tx'), classes=custom_classes)
+    mm = get_meta('expression.tx')
     assert str(mm.model_from_str(exp).exp.reduce()) == rep
 
 
@@ -213,7 +219,7 @@ def test_variables():
     Test variables definition (assignments) and expression evaluation with
     variables.
     """
-    mm = metamodel_from_file(join(this_folder, 'variables.tx'), classes=custom_classes)
+    mm = get_meta('variables.tx')
 
     m = mm.model_from_str('''
     a = 5
@@ -253,7 +259,7 @@ def test_variables():
 
 def test_stimuli_definition():
 
-    mm = metamodel_from_file(join(this_folder, 'stimuli.tx'), classes=custom_classes)
+    mm = get_meta('stimuli.tx')
 
     m = mm.model_from_str('at 100 circle(position 0, radius 20) for 200')
     stim = m.stimuli[0]
@@ -311,7 +317,7 @@ def test_stimuli_definition():
 
 def test_conditions_table():
 
-    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+    mm = get_meta('cond_table.tx')
 
     m = mm.model_from_str('''
         {
@@ -337,14 +343,7 @@ def test_conditions_table_expansion():
     Test that iterations and loops are expanded properly.
     """
 
-    classes = list(custom_classes)
-
-    class CTable(CustomClass):
-        def expand(self):
-            self.t.expand()
-
-    classes.append(CTable)
-    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=classes)
+    mm = get_meta('cond_table.tx')
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -380,8 +379,6 @@ def test_conditions_table_expansion():
             | red   | right    | right    |
         }
     ''')
-    for i in range(4):
-        m.t[i].expand()
 
     # position and color will loop making color a nested loop of the position
     # response will cycle
@@ -396,7 +393,7 @@ def test_conditions_table_str_representation():
     Test that tables are properly formatted when converted to string
     representation.
     """
-    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+    mm = get_meta('cond_table.tx')
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -416,7 +413,6 @@ def test_conditions_table_str_representation():
 | positions loop | colors loop | congruent if response == position else uncongruent | positions |
         '''.strip()
 
-    m.t[0].t.expand()
     assert m.t[0].t.to_str() == \
         '''
 | position | color | congruency  | response |
@@ -434,7 +430,6 @@ def test_conditions_table_str_representation():
         | order    | [1, 2, 3] loop |
         }
     ''')
-    m.t[0].t.expand()
     assert m.t[0].t.to_str() == '''
 | position | order |
 |----------+-------|
@@ -448,15 +443,20 @@ def test_conditions_table_condition_cyclic_reference():
     Test that table expression with cyclic references raise exception.
     """
 
-    mm = metamodel_from_file(join(this_folder, 'cond_table.tx'), classes=custom_classes)
+    mm = get_meta('cond_table.tx')
 
-    m = mm.model_from_str('''
-        {
-        | position | color    |
-        |----------+----------|
-        | color    | position |
-        }
-    ''')
     with pytest.raises(PyFliesException, match=r'Cyclic dependency.*'):
-        m.t[0].t.expand()
+        mm.model_from_str('''
+            {
+            | position | color    |
+            |----------+----------|
+            | color    | position |
+            }
+        ''')
 
+
+def test_conditions_table_phases_evaluation():
+    """
+    Test that evaluated table has attached appropriate stimuli specifications
+    for each trial phase.
+    """

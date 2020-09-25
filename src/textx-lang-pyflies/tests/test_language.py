@@ -277,9 +277,9 @@ def test_stimuli_definition():
     assert not stim.record
     assert stim.stimulus.name == 'circle'
     assert stim.stimulus.params[0].name == 'position'
-    assert stim.stimulus.params[0].value.eval() == 0
+    assert stim.stimulus.params[0].value == 0
     assert stim.stimulus.params[1].name == 'radius'
-    assert stim.stimulus.params[1].value.eval() == 20
+    assert stim.stimulus.params[1].value == 20
 
     # Time can relative to the start of the previous stimulus
     m = mm.model_from_str('at .+100 circle(position 0, radius 20) for 200')
@@ -340,8 +340,8 @@ def test_conditions_table():
     ''')
     assert m.t[0].t.variables == ['position', 'color', 'congruency', 'response']
     # We have 4 rows in the table
-    assert len(m.t[0].t.condition_specs) == 4
-    c = m.t[0].t.condition_specs[1]
+    assert len(m.t[0].t.cond_specs) == 4
+    c = m.t[0].t.cond_specs[1]
     red = c.var_exps[1].eval()  # This evaluates to symbol `red`
     assert type(red) is Symbol
     assert red.name == 'red'

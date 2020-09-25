@@ -6,7 +6,8 @@ from functools import reduce
 from itertools import cycle, repeat, product
 from textx import get_model
 
-from pyflies.exceptions import PyFliesException
+from .exceptions import PyFliesException
+from .table import ExpTable, get_column_widths, table_to_str, row_to_str
 
 
 class Postpone(BaseException):
@@ -81,6 +82,16 @@ class ExpressionElement(CustomClass):
             # if a single operation, cycle
             return cycle([self.operation])
 
+    def get_context(self, local_context):
+        model = get_model(self)
+        try:
+            c = dict(model.var_vals)
+        except AttributeError:
+            c = {}
+        if local_context:
+            c.update(local_context)
+        return c
+
 
 class Symbol(ExpressionElement):
     def eval(self, context=None):
@@ -106,9 +117,9 @@ class BaseValue(ExpressionElement):
 
 class String(ExpressionElement):
     def eval(self, context=None):
-        model = get_model(self)
+        context = self.get_context(context)
         try:
-            return self.value.format(**model.var_vals)
+            return self.value.format(**context)
         except KeyError as k:
             raise PyFliesException('Undefined variable "{}"'.format(k.args[0]))
         except AttributeError:
@@ -239,16 +250,9 @@ class UnaryOperation(ExpressionElement):
 
 class VariableRef(ExpressionElement):
     def eval(self, context=None):
-        model = get_model(self)
+        context = self.get_context(context)
         try:
-            c = dict(model.var_vals)
-        except AttributeError:
-            c = {}
-        try:
-            if context:
-                c.update(context)
-
-            value = c[self.name]
+            value = context[self.name]
             if type(value) is Postpone:
                 raise Postpone('Postponed evaluation of "{}"'.format(self.name))
             return value
@@ -325,9 +329,21 @@ class Condition(CustomClass):
         for idx, var_exp in enumerate(self.var_exps):
             self.var_exps[idx] = var_exp.reduce()
 
+    def __getitem__(self, idx):
+        return self.var_exps[idx]
+
+    def __iter__(self):
+        return iter(self.var_exps)
+
+    def __len__(self):
+        return len(self.var_exps)
+
+
 class ConditionsTable(CustomClass):
-    def is_expanded(self):
-        return hasattr(self, 'conditions')
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+
+        self.column_widths = get_column_widths(self.variables, self.condition_specs)
 
     def expand(self):
         """
@@ -335,40 +351,16 @@ class ConditionsTable(CustomClass):
         ranges and list for cycling.
         """
 
-        def evaluate_condition(condition):
-            """
-            All condition variable values must be evaluated to base
-            values or symbols. Do this in loop because there can be
-            forward references. If we pass a full loop and no value
-            has been resolved we have cyclic reference
-            """
-            while True:
-                all_resolved = all([not type(c) is PostponedEval for c in condition])
-                if all_resolved:
-                    break
-                resolved = False
-                for idx, c in enumerate(condition):
-                    if type(c) is PostponedEval:
-                        try:
-                            cond_value = c.exp.eval(row_context)
-                            condition[idx] = cond_value
-                            if type(cond_value) in [BaseValue, Symbol]:
-                                row_context[self.variables[idx]] = cond_value
-                            resolved = True
-                        except Postpone:
-                            pass
-                if not resolved:
-                    raise PyFliesException(
-                        'Cyclic dependency in table. Row {}.'.format(condition))
+        self.exp_table = ExpTable(self)
 
-        self.conditions = []
-
-        for c in self.condition_specs:
+        for c in self:
             cond_template = []
             loops = []
             loops_idx = []
-            # Create cond template
-            for idx, var_exp in enumerate(c.var_exps):
+
+            # Create cond template which will be used to instantiate concrete
+            # expanded table rows.
+            for idx, var_exp in enumerate(c):
                 var_exp = var_exp.reduce()
                 if type(var_exp) is LoopExpression:
                     loops.append(var_exp.exp.eval())
@@ -382,73 +374,61 @@ class ConditionsTable(CustomClass):
                     else:
                         cond_template.append(repeat(var_exp))
 
-            assert len(cond_template) == len(c.var_exps)
+            assert len(cond_template) == len(c)
             # Evaluate template making possibly new rows if there are loop
             # expressions
             if loops:
                 loops = product(*loops)
                 for loop_vals in loops:
 
-                    # Evaluate looping variables
-                    row_context = dict([(v, Postpone()) for v in self.variables])
-                    condition = [None] * len(cond_template)
+                    # Evaluate looping variables. We start with all variables
+                    # in postponed state to enable postponing evaluation of all
+                    # expressions that uses postponed table variables (i.e.
+                    # referencing forward column value)
+                    context = dict([(v, Postpone()) for v in self.variables])
+                    row = self.exp_table.new_row([None] * len(cond_template))
                     for loop_val, idx in zip(loop_vals, loops_idx):
-                        condition[idx] = loop_val
-                        row_context[self.variables[idx]] = loop_val
+                        row[idx] = loop_val
+                        context[self.variables[idx]] = loop_val
 
                     for idx, cond_i in enumerate(cond_template):
                         if cond_i is not None:
-                            condition[idx] = PostponedEval(next(cond_i))
+                            row[idx] = PostponedEval(next(cond_i))
 
-                    evaluate_condition(condition)
-
-                    self.conditions.append(condition)
+                    row.eval(context)
             else:
                 # No looping - just evaluate all expressions
-                row_context = dict([(v, Postpone()) for v in self.variables])
-                condition = [PostponedEval(next(x)) for x in cond_template]
-                evaluate_condition(condition)
-                self.conditions.append(condition)
+                context = dict([(v, Postpone()) for v in self.variables])
+                row = self.exp_table.new_row([PostponedEval(next(x)) for x in cond_template])
+                row.eval(context)
+
+        self.exp_table.calculate_column_widths()
+
+    def __getitem__(self, idx):
+        return self.condition_specs[idx]
+
+    def __iter__(self):
+        return iter(self.condition_specs)
+
+    def __len__(self):
+        return len(self.condition_specs)
+
+    def __eq__(self, other):
+        return self.exp_table == other.exp_table
 
     def __str__(self):
         """
         String representation will be in orgmode table format for better readability.
-        Also, by default, expanded version will be used if exists.
         """
-        if self.is_expanded():
-            return self.to_str()
-        else:
-            self.to_str([spec.var_exps for spec in self.condition_specs])
+        return self.to_str()
 
     def to_str(self, expanded=True):
-
-        if expanded and not self.is_expanded():
-            raise PyFliesException('Table is not expanded. Expand it first or use `expanded=False`.')
-
-        if self.is_expanded():
-            table = self.conditions
+        rows = [spec.var_exps for spec in self.condition_specs]
+        if expanded:
+            return table_to_str(self.variables, self.exp_table,
+                                self.exp_table.column_widths)
         else:
-            table = [list(spec.var_exps) for spec in self.condition_specs]
-
-        column_widths = [len(x) + 2 for x in self.variables]
-        for row in table:
-            for idx, element in enumerate(row):
-                str_rep = str(element)
-                row[idx] = str_rep
-                if column_widths[idx] < len(str_rep) + 2:
-                    column_widths[idx] = len(str_rep) + 2
-
-        def get_row(row):
-            str_row = '|'
-            for idx, element in enumerate(row):
-                str_row += ' ' + element.ljust(column_widths[idx] - 1) + '|'
-            return str_row
-
-        str_rep = get_row(self.variables)
-        str_rep += '\n|' + '+'.join(['-' * x for x in column_widths]) + '|\n'
-        str_rep += '\n'.join([get_row(row) for row in table])
-
-        return str_rep
+            return table_to_str(self.variables, rows, self.column_widths)
 
     def connect_stimuli(self, stimuli):
         """

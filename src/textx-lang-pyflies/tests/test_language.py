@@ -385,10 +385,10 @@ def test_conditions_table_expansion():
 
     # position and color will loop making color a nested loop of the position
     # response will cycle
-    assert m.t[0].t.conditions == m.t[1].t.conditions
+    assert m.t[0].t == m.t[1].t
 
     # In this case position is inner loop of color. response still cycles.
-    assert m.t[2].t.conditions == m.t[3].t.conditions
+    assert m.t[2].t == m.t[3].t
 
 
 def test_conditions_table_str_representation():

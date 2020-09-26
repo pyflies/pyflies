@@ -7,14 +7,14 @@
 */
 
 PyFliesModel:
-  "experiment" name=STRING
-  (description=STRING)?
-  ("basepath" basepath=STRING)?
+  (description=Description)?
   vars*=VariableAssignment
   blocks+=BlockType
   structure=Structure
   targets*=Target
 ;
+
+Description: '"""'- /((?!""").)*/ '"""'-;
 
 BlockType:
   TestType | ScreenType
@@ -234,7 +234,8 @@ Block:
 ;
 
 TestInstance:
-  'test' type=[TestType] trials=INT (practice?="practice" randomize?="randomize")#
+  'test' type=[TestType] runs=INT
+    (practice?="practice" (randomize?="randomize" randomize_all?="all")?)#
 ;
 
 ScreenInstance:

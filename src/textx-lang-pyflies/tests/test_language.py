@@ -9,11 +9,11 @@ from pyflies.exceptions import PyFliesException
 from pyflies.model_processor import processor
 
 
-this_folder = join(dirname(abspath(__file__)))
+this_folder = dirname(abspath(__file__))
 
 
 def get_meta(file_name):
-    mm =  metamodel_from_file(file_name, classes=custom_classes)
+    mm =  metamodel_from_file(join(this_folder, file_name), classes=custom_classes)
     mm.register_model_processor(processor)
     return mm
 
@@ -522,3 +522,31 @@ def test_conditions_table_phases_evaluation():
     st = t[0].ph_exec[0]
     assert st.stimulus.params[0].value.name == 'left'
     assert st.stimulus.params[1].value.name == 'green'
+
+
+def test_experiment_structure():
+    """
+    Test full experiment structure
+    """
+
+    mm = get_meta('pyflies.tx')
+
+    m = mm.model_from_file(join(this_folder, 'EriksenFlanker.pf'))
+    assert len(m.blocks) == 3
+    assert m.blocks[1].__class__.__name__ == 'ScreenType'
+    assert m.description == 'Eriksen flanker test.'
+    assert len(m.structure.elements) == 4
+
+    # Practice run
+    ptest = m.structure.elements[1]
+    assert ptest.practice
+    assert ptest.randomize
+    assert not ptest.randomize_all
+    assert ptest.runs == 1
+
+    # Real test
+    rtest = m.structure.elements[3]
+    assert not rtest.practice
+    assert rtest.randomize
+    assert rtest.randomize_all
+    assert rtest.runs == 5

@@ -16,9 +16,14 @@ def get_column_widths(variables, rows):
     return column_widths
 
 
-def table_to_str(header, rows, column_widths):
+def header_str(header, column_widths):
     str_rep = row_to_str(header, column_widths)
     str_rep += '\n|' + '+'.join(['-' * x for x in column_widths]) + '|\n'
+    return str_rep
+
+
+def table_to_str(header, rows, column_widths):
+    str_rep = header_str(header, column_widths)
     str_rep += '\n'.join([row_to_str(row, column_widths) for row in rows])
     return str_rep
 
@@ -57,6 +62,9 @@ class ExpTable(list):
         """
         for row in self:
             row.calc_phases()
+
+    def header_str(self):
+        return header_str(self.cond_table.variables, self.column_widths)
 
     def __str__(self):
         return table_to_str(self.cond_table.variables, self, self.column_widths)

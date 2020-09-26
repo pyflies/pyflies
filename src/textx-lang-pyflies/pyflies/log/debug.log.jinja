@@ -19,11 +19,13 @@ Conditions:
 
 {{test.table}}
 
-Detailed with stimuli:
 
+Detailed with stimuli:
 {% for row in test.table.exp_table %}
 
+{{test.table.exp_table.header_str()-}}
 {{row}}
+
   Phases:
     fix:
 {{list_str(row.ph_fix)}}    exec:

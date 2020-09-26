@@ -99,7 +99,12 @@ class ExpTableRow(list):
                     cond_val = False
 
                 if cond_val is True:
-                    stim_insts = [stim.eval(context) for stim in sspec.stimuli]
+                    stim_insts = []
+                    last_stim = None
+                    for stim in sspec.stimuli:
+                        stim_inst = stim.eval(context, last_stim)
+                        stim_insts.append(stim_inst)
+                        last_stim = stim_inst
                     setattr(self, f'ph_{phase}', stim_insts)
                     break
 

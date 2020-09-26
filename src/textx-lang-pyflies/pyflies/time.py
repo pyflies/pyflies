@@ -8,3 +8,6 @@ class TimeReferenceInst(EvaluatedBase):
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
         self.time = spec.time.eval(context)
+
+    def __repr__(self):
+        return 'at {}'.format(self.time)

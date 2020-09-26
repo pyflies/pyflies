@@ -345,8 +345,8 @@ class StimulusSpec(ExpressionElement):
             # Default duration is 0, meaning indefinite
             self.duration = AdditiveExpression(self, op=[0], opn=None)
 
-    def eval(self, context=None):
-        return StimulusSpecInst(self, context)
+    def eval(self, context=None, last_stim=None):
+        return StimulusSpecInst(self, context, last_stim)
 
 
 class Stimulus(ExpressionElement):

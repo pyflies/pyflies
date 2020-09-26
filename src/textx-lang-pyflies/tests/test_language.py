@@ -273,7 +273,7 @@ def test_stimuli_definition():
     m = mm.model_from_str('at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
     stim = m.stimuli[0].eval(context)
     assert stim.duration == 200
-    assert stim.at.time == 110
+    assert stim.at == 110
     assert not stim.record
     assert stim.stimulus.name == 'circle'
     assert stim.stimulus.params[0].name == 'position'
@@ -283,23 +283,23 @@ def test_stimuli_definition():
 
     # Time can relative to the start of the previous stimulus
     m = mm.model_from_str('at .+100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0].eval()
-    assert stim.at.time == 100
+    stim = m.stimuli[0]
+    assert stim.at.time.eval() == 100
     assert stim.at.relative_op == '+'
     assert stim.at.start_relative
 
     # Time can relative to the end of the previous stimulus
     m = mm.model_from_str('at +100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0].eval()
-    assert stim.at.time == 100
+    stim = m.stimuli[0]
+    assert stim.at.time.eval() == 100
     assert stim.at.relative_op == '+'
     assert not stim.at.start_relative
 
     # If not given, by default it is the same as the start of the previous
     # E.g. `at .`
     m = mm.model_from_str('circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0].eval()
-    assert stim.at.time == 0
+    stim = m.stimuli[0]
+    assert stim.at.time.eval() == 0
     assert stim.at.relative_op == '+'
     assert stim.at.start_relative
 
@@ -313,7 +313,7 @@ def test_stimuli_definition():
     stim = m.stimuli[0].eval()
     assert stim.duration == 0
     assert stim.record
-    assert stim.at.time == 100
+    assert stim.at == 100
 
     # If both recording and stimulus are defined at the same time it is parsed
     # as two statements: first will start recording at 100
@@ -321,7 +321,7 @@ def test_stimuli_definition():
     m = mm.model_from_str('at 100 record circle(position 0, radius 20) for 200')
     assert len(m.stimuli) == 2
     assert m.stimuli[0].eval().record and not m.stimuli[1].eval().record
-    assert m.stimuli[1].eval().at.time == 0 and m.stimuli[1].eval().stimulus.name == 'circle'
+    assert m.stimuli[1].eval().at == 0 and m.stimuli[1].eval().stimulus.name == 'circle'
 
 
 def test_conditions_table():
@@ -496,13 +496,13 @@ def test_conditions_table_phases_evaluation():
         # fix
         s = t[trial].ph_fix[0]
         assert s.stimulus.name == 'cross'
-        assert s.at.time == 0
+        assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
         assert st.stimulus.name == 'circle'
-        assert st.at.time == 0
+        assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
@@ -531,10 +531,10 @@ def test_experiment_structure():
 
     mm = get_meta('pyflies.tx')
 
-    m = mm.model_from_file(join(this_folder, 'EriksenFlanker.pf'))
+    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
     assert len(m.blocks) == 3
     assert m.blocks[1].__class__.__name__ == 'ScreenType'
-    assert m.description == 'Eriksen flanker test.'
+    assert m.description == 'Model for testing purposes.'
     assert len(m.structure.elements) == 4
 
     # Practice run
@@ -550,3 +550,24 @@ def test_experiment_structure():
     assert rtest.randomize
     assert rtest.randomize_all
     assert rtest.runs == 5
+
+
+def test_experiment_time_calculations():
+    """
+    Test full experiment relative/absolute time calculations.
+    """
+
+    mm = get_meta('pyflies.tx')
+
+    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
+
+    # Get expanded table
+    t = m.blocks[0].table.exp_table
+
+    trial = t[0]
+    stims = trial.ph_exec
+    assert stims[1].at == 150
+    assert stims[2].at == 300
+    assert stims[2].duration == 100
+    assert stims[3].at == 500
+    assert stims[4].at == 400

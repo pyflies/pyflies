@@ -1,0 +1,37 @@
+{% macro list_str(list) -%}
+  {% for l in list %}
+            {{l}}
+  {% endfor %}
+{%- endmacro %}
+"""
+{{m.description}}
+"""
+
+Tests count: {{tests | count}}
+Screens: {{screens}}
+
+{% for test in tests %}
+
+Test: {{test.name}}
+--------------------------------------------------------------------------
+
+Conditions:
+
+{{test.table}}
+
+Detailed with stimuli:
+
+{% for row in test.table.exp_table %}
+
+{{row}}
+  Phases:
+    fix:
+{{list_str(row.ph_fix)}}    exec:
+{{list_str(row.ph_exec)}}    error:
+{{list_str(row.ph_error)}}    correct:
+{{list_str(row.ph_correct)}}
+{% endfor %}
+
+--------------------------------------------------------------------------
+{% endfor %}
+

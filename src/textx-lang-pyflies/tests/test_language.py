@@ -497,13 +497,13 @@ def test_conditions_table_phases_evaluation():
         s = t[trial].ph_fix[0]
         assert s.stimulus.name == 'cross'
         assert s.at.time == 0
-        assert 200 < s.duration < 500
+        assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
         assert st.stimulus.name == 'circle'
         assert st.at.time == 0
-        assert 300 < st.duration < 700
+        assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]

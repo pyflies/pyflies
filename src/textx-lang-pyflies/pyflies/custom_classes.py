@@ -475,5 +475,6 @@ custom_classes = list(map(
                        and issubclass(c, CustomClass)
                        and c.__name__ not in ['CustomClass',
                                               'ExpressionElement',
+                                              'Symbol',
                                               'BinaryOperation',
                                               'UnaryOperation'])))

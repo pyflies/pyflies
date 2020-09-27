@@ -1,7 +1,9 @@
 {% macro list_str(list) -%}
+  {% if list %}
   {% for l in list %}
             {{l}}
   {% endfor %}
+  {% endif %}
 {%- endmacro %}
 """
 {{m.description}}

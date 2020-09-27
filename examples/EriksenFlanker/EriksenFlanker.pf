@@ -1,37 +1,33 @@
-/*
+"""
 Eriksen flanker test.
-*/
-experiment "Eriksen Flanker"
+"""
+
+directions = [left, right]
+congruencies = [incongruent, congruent]
 
 test EriksenFlanker {
 	conditions {
-		direction	category		response
-		
-		left		incongruent		left
-		left		congurent		left
-		right		incongruent		right
-		right		congruent		right	
-	}
+      | direction       | category          | response  |
+      |-----------------+-------------------+-----------|
+      | directions loop | congruencies loop | direction |
+    }
 	
 	stimuli {
-		1: image("images/left-incongruent.png")
-		2: image("images/left-congruent.png")
-		3: image("images/right-incongruent.png")
-		4: image("images/right-congruent.png")
-		error: sound(1000, duration 300)
-		fixation: shape(cross, duration [1000, 3000]) 
-
-  		duration 5000		
+		fix: cross() for 1000..3000 choose
+    exec: image(file "images/{direction}-{category}.png")
+		error: sound(freq 300) for 500
+		correct: sound(freq 700) for 300
 	}
 }
 
 screen intro {
     Welcome
     -------
+
     In the following test you will be presented with a line of 5 arrow pointing
-    left or right. You should respond by the direction of the *middle arrow* as 
-	fast as possible by pressing left or right arrow on the keyboard or touching/clicking
-    on appropriate button on the screen.
+    left or right. You should respond by the direction of the *middle arrow* as
+    fast as possible by pressing left or right arrow on the keyboard or
+    touching/clicking on appropriate button on the screen.
 
     You will first do a practice run with 4 trials. After that a real run with
     20 trial will be performed.
@@ -56,12 +52,12 @@ structure {
   screen intro
 
   // Perform practice test serie
-  test EriksenFlanker 1 practice randomize
+  test EriksenFlanker 1 practice randomize all
 
   screen real 
   
   // Perform real test serie (collects data)
-  test EriksenFlanker 5 randomize
+  test EriksenFlanker 5 randomize all
 
 }
 

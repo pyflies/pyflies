@@ -183,25 +183,22 @@ def test_string_interpolation():
 
 def test_expression_reduction():
     """
-    Test that expression is reduced to its minimal constituents.
+    Test that expressions are reduced to their minimal constituents.
     This is an optimization measure and also helps with expression analysis.
     """
 
     mm = get_meta('expression.tx')
 
     m = mm.model_from_str('25')
-    assert type(m.exp) is OrExpression
-    assert type(m.exp.reduce()) is BaseValue
+    assert type(m.exp) is BaseValue
     assert m.exp.eval() == 25
 
     m = mm.model_from_str('25 + 12')
-    assert type(m.exp) is OrExpression
-    assert type(m.exp.reduce()) is AdditiveExpression
+    assert type(m.exp) is AdditiveExpression
     assert m.exp.eval() == 37
 
     m = mm.model_from_str('[1, 2, [\'some string\', 3.4, true], 5..7]')
-    assert type(m.exp) is OrExpression
-    mred = m.exp.reduce()
+    mred = m.exp
     assert type(mred) is List
     assert type(mred[0]) is BaseValue
     assert type(mred[2]) is List

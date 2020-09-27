@@ -17,9 +17,10 @@ def processor(model, metamodel):
                 if attr.cont:
                     if attr.mult in (MULT_ONE, MULT_OPTIONAL):
                         new_elem = getattr(obj, attr_name)
-                        if new_elem:
+                        if new_elem is not None:
                             if isinstance(new_elem, ExpressionElement):
-                                setattr(obj, attr_name, new_elem.reduce())
+                                reduced = new_elem.reduce()
+                                setattr(obj, attr_name, reduced)
                             else:
                                 reduce(new_elem)
                     else:
@@ -27,7 +28,8 @@ def processor(model, metamodel):
                         if new_elem_list:
                             for idx, new_elem in enumerate(new_elem_list):
                                 if isinstance(new_elem, ExpressionElement):
-                                    new_elem_list[idx] = new_elem.reduce()
+                                    reduced = new_elem.reduce()
+                                    new_elem_list[idx] = reduced
                                 else:
                                     reduce(new_elem)
 

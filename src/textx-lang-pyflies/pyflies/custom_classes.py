@@ -192,7 +192,7 @@ class List(ExpressionElement):
         return self.values[idx]
 
     def __str__(self):
-        return '[{}]'.format(', '.join([str(x.reduce()) for x in self.values]))
+        return '[{}]'.format(', '.join([str(x) for x in self.values]))
 
 
 class Range(ExpressionElement):
@@ -206,6 +206,10 @@ class Range(ExpressionElement):
 class LoopExpression(ExpressionElement):
     def __str__(self):
         return '{} loop'.format(str(self.exp))
+
+    def reduce(self):
+        self.exp = self.exp.reduce()
+        return super().reduce()
 
 
 class MessageExpression(ExpressionElement):
@@ -223,8 +227,10 @@ class MessageExpression(ExpressionElement):
 
 class BinaryOperation(ExpressionElement):
     def reduce(self):
+        for idx, op in enumerate(self.op):
+            self.op[idx] = op.reduce()
         if len(self.op) == 1:
-            return self.op[0].reduce()
+            return self.op[0]
         else:
             return super().reduce()
 
@@ -264,8 +270,9 @@ class BinaryOperation(ExpressionElement):
 
 class UnaryOperation(ExpressionElement):
     def reduce(self):
-        if not self.opn and isinstance(self.op, ExpressionElement):
-            return self.op.reduce()
+        self.op = self.op.reduce()
+        if not self.opn:
+            return self.op
         else:
             return super().reduce()
 
@@ -383,32 +390,34 @@ class Condition(CustomClass):
         return len(self.var_exps)
 
 
-class TimeReference(ExpressionElement):
+class TimeReference(CustomClass):
     def eval(self, context=None):
         return TimeReferenceInst(self, context)
 
 
-class StimulusSpec(ExpressionElement):
+class StimulusSpec(CustomClass):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
         if self.at is None:
             # Default time reference
             self.at = TimeReference(self, start_relative=True, relative_op='+',
-                                    time=AdditiveExpression(self, op=[0], opn=None))
+                                    time=None)
+            self.at.time = BaseValue(parent=self.at, value=0)
+
         if self.duration is None:
             # Default duration is 0, meaning indefinite
-            self.duration = AdditiveExpression(self, op=[0], opn=None)
+            self.duration = BaseValue(parent=self, value=0)
 
     def eval(self, context=None, last_stim=None):
         return StimulusSpecInst(self, context, last_stim)
 
 
-class Stimulus(ExpressionElement):
+class Stimulus(CustomClass):
     def eval(self, context=None):
         return StimulusInst(self, context)
 
 
-class StimulusParam(ExpressionElement):
+class StimulusParam(CustomClass):
     def eval(self, context=None):
         return StimulusParamInst(self, context)
 

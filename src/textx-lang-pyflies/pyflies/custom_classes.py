@@ -4,12 +4,19 @@ import random
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 from itertools import cycle, repeat, product
-from textx import get_model
+from textx import get_children_of_type
 
 from .exceptions import PyFliesException
 from .table import ExpTable, get_column_widths, table_to_str, row_to_str
 from .time import TimeReferenceInst
 from .stimuli import StimulusSpecInst, StimulusInst, StimulusParamInst
+
+
+def get_parent_of_type(clazz, obj):
+    if isinstance(obj, clazz):
+        return obj
+    if hasattr(obj, 'parent'):
+        return get_parent_of_type(clazz, obj.parent)
 
 
 class Postpone(BaseException):
@@ -32,31 +39,78 @@ class PostponedEval:
 
 
 class CustomClass:
-    def __init__(self, parent, **kwargs):
-        self.parent = parent
+    def __init__(self, *args, **kwargs):
+        if args:
+            self.parent = args[0]
         for k, i in kwargs.items():
             setattr(self, k, i)
+        super().__init__()
 
-    def get_context(self, local_context):
-        model = get_model(self)
-        try:
-            c = dict(model.var_vals)
-        except AttributeError:
-            c = {}
-        if local_context:
-            c.update(local_context)
+    def get_scope(self):
+        return get_parent_of_type(ScopeProvider, self)
+
+    def get_context(self, local_context=None):
+        """
+        Return the full context by recursively following scopes up the
+        containment hierarchy.
+        """
+        if local_context is None:
+            local_context = {}
+        scope = self.get_scope()
+        if scope is None:
+            return local_context
+        c = dict(scope.var_vals)
+        c.update(local_context)
+
+        # Follow parent scope hierarchy
+        p = scope
+        while hasattr(p, 'parent') and p.parent is not None:
+            p = self.parent
+            if hasattr(p, 'get_context'):
+                return p.get_context(c)
+
         return c
 
 
-class VariableAssignment(CustomClass):
-    def __init__(self, parent, name, value):
-        # Keep variable values on the model
-        # for use in expressions
-        model = get_model(self)
-        if not hasattr(model, 'var_vals'):
-            model.var_vals = {}
-        model.var_vals[name] = value.eval() if isinstance(value, ExpressionElement) else value
+class ScopeProvider:
+    """
+    Scoper providers are containers for variable definitions.  They provide the
+    means to evaluate variables, even multiple times, using values from parent
+    scope providers (scope providers may nest).  Some scope providers are
+    evaluated only once (e.g. PyFliesModel) while others may be evaluated
+    multiple times (e.g. condition table rows) to account for the changing
+    local context and values which may change on multiple reevaluation (e.g.
+    random values).
 
+    This class should be inherited by each model class which represents the
+    root of the scope.
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.var_vals = {}
+
+        # Collect all variable assignments that belong to this scope.
+        # Do not collect child scopes.
+
+        assignments = get_children_of_type(
+            VariableAssignment, self,
+            should_follow=lambda obj: not isinstance(obj, ScopeProvider))
+
+        self.vars = assignments
+
+    def eval_vars(self):
+        self.var_vals = {}
+        context = self.get_context()
+        for var in self.vars:
+            self.var_vals[var.name] = var.value.eval(context)
+
+
+class PyFliesModel(ScopeProvider, CustomClass):
+    pass
+
+
+class VariableAssignment(CustomClass):
     def __repr__(self):
         return '{} = {}'.format(self.name, self.value)
 
@@ -474,6 +528,7 @@ custom_classes = list(map(
                        lambda c: inspect.isclass(c)
                        and issubclass(c, CustomClass)
                        and c.__name__ not in ['CustomClass',
+                                              'ScopeProvider',
                                               'ExpressionElement',
                                               'Symbol',
                                               'BinaryOperation',

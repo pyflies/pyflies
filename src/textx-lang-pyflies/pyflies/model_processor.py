@@ -4,6 +4,7 @@ from textx import TextXSemanticError, get_children_of_type
 
 def processor(model, metamodel):
 
+    model.eval_vars()
     for table in get_children_of_type('ConditionsTable', model):
         table.expand()
         table.calc_phases()

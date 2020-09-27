@@ -14,14 +14,14 @@ PyFliesModel:
   targets*=Target
 ;
 
-Description: '"""'- /((?!""").)*/ '"""'-;
+Description: '"""'- /((?!""")(.|\n))*/ '"""'-;
 
 BlockType:
   TestType | ScreenType
 ;
 
 VariableAssignment:
-    name=VariableName '=' value=Value
+    name=VariableName '=' value=Expression
 ;
 
 Value:

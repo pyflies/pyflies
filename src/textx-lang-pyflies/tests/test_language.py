@@ -2,8 +2,8 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import (custom_classes, CustomClass, Symbol,
-                                    OrExpression, BaseValue,
+from pyflies.custom_classes import (custom_classes, CustomClass, ScopeProvider,
+                                    Symbol, OrExpression, BaseValue,
                                     AdditiveExpression, List, String, Range)
 from pyflies.exceptions import PyFliesException
 from pyflies.model_processor import processor
@@ -12,8 +12,14 @@ from pyflies.model_processor import processor
 this_folder = dirname(abspath(__file__))
 
 
-def get_meta(file_name):
-    mm =  metamodel_from_file(join(this_folder, file_name), classes=custom_classes)
+class Model(CustomClass, ScopeProvider):
+    pass
+
+
+def get_meta(file_name, classes=None):
+    if classes is None:
+        classes = custom_classes + [Model]
+    mm =  metamodel_from_file(join(this_folder, file_name), classes=classes)
     mm.register_model_processor(processor)
     return mm
 
@@ -148,6 +154,7 @@ def test_expressions_if_expression():
 
 
 def test_string_interpolation():
+
     mm = get_meta('variables.tx')
 
     m = mm.model_from_str('''
@@ -262,6 +269,67 @@ def test_variables():
     meval = m.exp.eval()
     assert type(meval) is Symbol
     assert meval.name == 'some_symbol'
+
+
+def test_scope_providers():
+    """
+    Scope providers are object which provides scope for variable definition.
+    Variable can be defined in any child element of the scope provider.  Scope
+    providers provide means to evaluate variable values using postponing for
+    forward references, detecting circular references and using variable values
+    from parent scope providers.
+    """
+    class SProvider(CustomClass, ScopeProvider):
+        pass
+
+    mm = get_meta('scope.tx', classes=custom_classes + [Model, SProvider])
+
+    m = mm.model_from_str('''
+    a = 1..10 choose
+    b = 5 + a
+    {
+      // We can use outer scope vars in variable definition
+      c = 3 + b
+
+      // And in expressions, here can use `c` after evaluation
+      //
+      a + c
+    }
+    a + b
+    ''')
+
+    # Model level evaluation is done by model processor
+    # Wee need to evaluate only inner scope
+    assert not m.inner_scope.var_vals
+    m.inner_scope.eval_vars()
+    assert m.inner_scope.var_vals
+
+    a, b = m.var_vals['a'], m.var_vals['b']
+    assert b == 5 + a
+    assert m.exp.eval() == a + b
+    assert 'c' not in m.var_vals
+    assert 'c' in m.inner_scope.var_vals
+    c = m.inner_scope.var_vals['c']
+    assert c == 3 + b
+    assert m.inner_scope.exp.eval() == a + c
+
+    m = mm.model_from_str('''
+    a = 2
+    {
+      // We can use outer scope vars in variable definition
+      c = 3 + a
+
+      // And in expressions, here can use `c` after evaluation
+      //
+      a + c
+    }
+    // But `c` is not visible here
+    a + c
+    ''')
+
+    m.inner_scope.eval_vars()
+    with pytest.raises(PyFliesException, match=r'Undefined variable "c"'):
+        m.exp.eval()
 
 
 def test_stimuli_definition():
@@ -447,6 +515,7 @@ def test_conditions_table_str_representation():
 | 3        | 3     |
     '''.strip()
 
+
 def test_conditions_table_condition_cyclic_reference():
     """
     Test that table expression with cyclic references raise exception.
@@ -529,12 +598,12 @@ def test_experiment_structure():
     Test full experiment structure
     """
 
-    mm = get_meta('pyflies.tx')
+    mm = get_meta('pyflies.tx', classes=custom_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
     assert len(m.blocks) == 3
     assert m.blocks[1].__class__.__name__ == 'ScreenType'
-    assert m.description == 'Model for testing purposes.'
+    assert m.description == 'Model for testing purposes.\n'
     assert len(m.structure.elements) == 4
 
     # Practice run
@@ -557,7 +626,7 @@ def test_experiment_time_calculations():
     Test full experiment relative/absolute time calculations.
     """
 
-    mm = get_meta('pyflies.tx')
+    mm = get_meta('pyflies.tx', classes=custom_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 

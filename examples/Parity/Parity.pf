@@ -1,34 +1,27 @@
-experiment "Parity"
-"
+"""
 A parity judgment task to assess the SNARC effect.
 
 See e.g.:
 Gevers, W., Reynvoet, B., & Fias, W. (2003). The mental representation of
 ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
-"
+"""
+
+numbers = 1..9
+parities = [odd, even]
 
 test Parity {
-	conditions {
-		number	parity		response
-		
-		1		odd			odd
-		2		even		even
-		3		odd			odd
-		4		even		even
-		5		odd			odd
-		6		even		even
-		7		odd			odd
-		8		even		even
-		9		odd			odd
-	}
-	
-	stimuli{
-		all: text(number)
-		error: sound(1000, duration 300)
-		correct: sound(500, duration 300)
-		fixation: shape(cross)
-		
-	}
+     conditions {
+        | number       | parity   | response |
+        |--------------+----------+----------|
+        | numbers loop | parities | parities |
+     }
+
+     stimuli {
+             fix: cross() for 1000..3000 choose
+             exec: text(text number)
+             correct: sound(freq 500) for 300
+             error: sound(freq 1000) for 300
+     }
 }
 
 screen Intro {
@@ -59,7 +52,7 @@ structure {
 	screen Intro
 	test Parity 1 practice randomize
 	screen Real
-	test Parity 2 randomize
+	test Parity 2 randomize all
 }
 
 /*

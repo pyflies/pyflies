@@ -4,12 +4,11 @@ import random
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 from itertools import cycle, repeat, product
-from textx import get_children_of_type
 
 from .exceptions import PyFliesException
-from .table import ExpTable, get_column_widths, table_to_str, row_to_str
 from .time import TimeReferenceInst
 from .stimuli import StimulusSpecInst, StimulusInst, StimulusParamInst
+from .scope import ScopeProvider, Postpone, PostponedEval
 
 
 def get_parent_of_type(clazz, obj):
@@ -19,26 +18,7 @@ def get_parent_of_type(clazz, obj):
         return get_parent_of_type(clazz, obj.parent)
 
 
-class Postpone(BaseException):
-    """
-    Used to indicate that evaluation cannot be done at this time.
-    E.g., in case of forward references during table row evaluation.
-    """
-    pass
-
-
-class PostponedEval:
-    def __init__(self, exp):
-        self.exp = exp
-
-    def __str__(self):
-        return 'PostponedEval({})'.format(str(self.exp))
-
-    def __repr__(self):
-        return str(self)
-
-
-class CustomClass:
+class ModelElement:
     def __init__(self, *args, **kwargs):
         if args:
             self.parent = args[0]
@@ -65,60 +45,34 @@ class CustomClass:
         # Follow parent scope hierarchy
         p = scope
         while hasattr(p, 'parent') and p.parent is not None:
-            p = self.parent
+            p = p.parent
             if hasattr(p, 'get_context'):
                 return p.get_context(c)
 
         return c
 
 
-class ScopeProvider:
-    """
-    Scoper providers are containers for variable definitions.  They provide the
-    means to evaluate variables, even multiple times, using values from parent
-    scope providers (scope providers may nest).  Some scope providers are
-    evaluated only once (e.g. PyFliesModel) while others may be evaluated
-    multiple times (e.g. condition table rows) to account for the changing
-    local context and values which may change on multiple reevaluation (e.g.
-    random values).
-
-    This class should be inherited by each model class which represents the
-    root of the scope.
-    """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.var_vals = {}
-
-        # Collect all variable assignments that belong to this scope.
-        # Do not collect child scopes.
-
-        assignments = get_children_of_type(
-            VariableAssignment, self,
-            should_follow=lambda obj: not isinstance(obj, ScopeProvider))
-
-        self.vars = assignments
-
-    def eval_vars(self):
-        self.var_vals = {}
-        context = self.get_context()
-        for var in self.vars:
-            self.var_vals[var.name] = var.value.eval(context)
-
-
-class PyFliesModel(ScopeProvider, CustomClass):
+class PyFliesModel(ScopeProvider, ModelElement):
     pass
 
 
-class VariableAssignment(CustomClass):
+class VariableAssignment(ModelElement):
     def __repr__(self):
         return '{} = {}'.format(self.name, self.value)
 
 
-class ExpressionElement(CustomClass):
+class ExpressionElement(ModelElement):
     def reduce(self):
         """
         Return reduced version of the expression if possible
+        """
+        return self
+
+    def resolve(self, context=None):
+        """
+        If this expression element is resolvable (e.g. VariableRef), try to
+        resolve in the current context.  This is a default implementation that
+        return self.  All resolvable elements should override.
         """
         return self
 
@@ -175,7 +129,13 @@ class String(ExpressionElement):
         return self.value
 
 
-class List(ExpressionElement):
+class Sequence(ExpressionElement):
+    """
+    A sequence of expressions.
+    """
+
+
+class List(Sequence):
     def reduce(self):
         return List(self.parent, values=[x.reduce() for x in self.values])
 
@@ -188,6 +148,9 @@ class List(ExpressionElement):
                 res.append(v)
         return res
 
+    def get_exps(self):
+        return self.values
+
     def __getitem__(self, idx):
         return self.values[idx]
 
@@ -195,9 +158,12 @@ class List(ExpressionElement):
         return '[{}]'.format(', '.join([str(x) for x in self.values]))
 
 
-class Range(ExpressionElement):
+class Range(Sequence):
     def eval(self, context=None):
         return list(range(self.lower, self.upper + 1))
+
+    def get_exps(self):
+        return [BaseValue(self, value=x) for x in self.eval()]
 
     def __str__(self):
         return '{}..{}'.format(self.lower, self.upper)
@@ -255,12 +221,12 @@ class BinaryOperation(ExpressionElement):
 
     def __str__(self):
         if len(self.op) > 1:
-            a = [str(self.op[0].reduce())]
+            a = [str(self.op[0])]
             if hasattr(self, 'opn'):
                 opn = self.opn
             else:
                 opn = [self.operation_str] * (len(self.op) - 1)
-            for oper, op in zip(opn, [str(x.reduce()) for x in self.op[1:]]):
+            for oper, op in zip(opn, [str(x) for x in self.op[1:]]):
                 a.append(oper)
                 a.append(op)
             return ' '.join(a)
@@ -304,13 +270,19 @@ class VariableRef(ExpressionElement):
         context = self.get_context(context)
         try:
             value = context[self.name]
-            if type(value) is Postpone:
+            if type(value) is PostponedEval:
                 raise Postpone('Postponed evaluation of "{}"'.format(self.name))
             return value
 
         except KeyError:
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
+
+    def resolve(self):
+        resolved = self.get_scope().get(self.name)
+        if resolved is not None:
+            return resolved
+        return self
 
     def __str__(self):
         return self.name
@@ -326,9 +298,7 @@ class IfExpression(ExpressionElement):
             return self.if_false.eval(context)
 
     def __str__(self):
-        return '{} if {} else {}'.format(self.if_true.reduce(),
-                                         self.cond.reduce(),
-                                         self.if_false.reduce())
+        return '{} if {} else {}'.format(self.if_true, self.cond, self.if_false)
 
 
 class OrExpression(BinaryOperation):
@@ -374,12 +344,7 @@ class UnaryExpression(UnaryOperation):
         '+': lambda x: x
     }
 
-class Condition(CustomClass):
-    def __init__(self, *args, **kwargs):
-        # Reduce all condition expressions
-        for idx, var_exp in enumerate(self.var_exps):
-            self.var_exps[idx] = var_exp.reduce()
-
+class Condition(ModelElement):
     def __getitem__(self, idx):
         return self.var_exps[idx]
 
@@ -390,12 +355,12 @@ class Condition(CustomClass):
         return len(self.var_exps)
 
 
-class TimeReference(CustomClass):
+class TimeReference(ModelElement):
     def eval(self, context=None):
         return TimeReferenceInst(self, context)
 
 
-class StimulusSpec(CustomClass):
+class StimulusSpec(ModelElement):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
         if self.at is None:
@@ -412,20 +377,20 @@ class StimulusSpec(CustomClass):
         return StimulusSpecInst(self, context, last_stim)
 
 
-class Stimulus(CustomClass):
+class Stimulus(ModelElement):
     def eval(self, context=None):
         return StimulusInst(self, context)
 
 
-class StimulusParam(CustomClass):
+class StimulusParam(ModelElement):
     def eval(self, context=None):
         return StimulusParamInst(self, context)
 
 
-class ConditionsTable(CustomClass):
+class ConditionsTable(ModelElement):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
-
+        from .table import get_column_widths
         self.column_widths = get_column_widths(self.variables, self.cond_specs)
 
     def expand(self):
@@ -434,30 +399,33 @@ class ConditionsTable(CustomClass):
         ranges and list for cycling.
         """
 
-        self.exp_table = ExpTable(self)
+        from .table import ExpTable, ExpTableRow
 
-        for c in self:
+        self.expanded = ExpTable(self)
+
+        for cond_spec in self:
             cond_template = []
             loops = []
             loops_idx = []
 
             # Create cond template which will be used to instantiate concrete
             # expanded table rows.
-            for idx, var_exp in enumerate(c):
-                var_exp = var_exp.reduce()
+            for idx, var_exp in enumerate(cond_spec):
                 if type(var_exp) is LoopExpression:
-                    loops.append(var_exp.exp.eval())
+                    loops.append(var_exp.exp.resolve())
                     loops_idx.append(idx)
                     cond_template.append(None)
                 else:
-                    if type(var_exp) in [List, Range] \
-                       or (type(var_exp) is VariableRef
-                           and type(var_exp.eval()) is list):
-                        cond_template.append(cycle(var_exp.eval()))
+                    # If not a loop expression then cycle if list-like
+                    # expression (e.g. List or Range) or repeat otherwise
+                    var_exp_resolved = var_exp.resolve()
+                    if isinstance(var_exp_resolved, Sequence):
+                        cond_template.append(cycle(var_exp_resolved.get_exps()))
                     else:
                         cond_template.append(repeat(var_exp))
 
-            assert len(cond_template) == len(c)
+            assert len(cond_template) == len(cond_spec)
+
             # Evaluate template making possibly new rows if there are loop
             # expressions
             if loops:
@@ -468,27 +436,25 @@ class ConditionsTable(CustomClass):
                     # in postponed state to enable postponing evaluation of all
                     # expressions that uses postponed table variables (i.e.
                     # referencing forward column value)
-                    context = dict([(v, Postpone()) for v in self.variables])
-                    row = self.exp_table.new_row([None] * len(cond_template))
-                    for loop_val, idx in zip(loop_vals, loops_idx):
+                    row = [None] * len(cond_template)
+                    for idx, loop_val in zip(loops_idx, loop_vals):
                         row[idx] = loop_val
-                        context[self.variables[idx]] = loop_val
 
                     for idx, cond_i in enumerate(cond_template):
                         if cond_i is not None:
-                            row[idx] = PostponedEval(next(cond_i))
+                            row[idx] = next(cond_i)
 
-                    row.eval(context)
+                    row = ExpTableRow(self.expanded, row)
+                    row.eval()
             else:
                 # No looping - just evaluate all expressions
-                context = dict([(v, Postpone()) for v in self.variables])
-                row = self.exp_table.new_row([PostponedEval(next(x)) for x in cond_template])
-                row.eval(context)
+                row = ExpTableRow(self.expanded, [next(x) for x in cond_template])
+                row.eval()
 
-        self.exp_table.calculate_column_widths()
+        self.expanded.calculate_column_widths()
 
     def calc_phases(self):
-        self.exp_table.calc_phases()
+        self.expanded.calc_phases()
 
     def __getitem__(self, idx):
         return self.cond_specs[idx]
@@ -500,7 +466,7 @@ class ConditionsTable(CustomClass):
         return len(self.cond_specs)
 
     def __eq__(self, other):
-        return self.exp_table == other.exp_table
+        return self.expanded == other.expanded
 
     def __str__(self):
         """
@@ -509,11 +475,11 @@ class ConditionsTable(CustomClass):
         return self.to_str()
 
     def to_str(self, expanded=True):
-        rows = [spec.var_exps for spec in self.cond_specs]
         if expanded:
-            return table_to_str(self.variables, self.exp_table,
-                                self.exp_table.column_widths)
+            return str(self.expanded)
         else:
+            from .table import table_to_str
+            rows = [spec.var_exps for spec in self.cond_specs]
             return table_to_str(self.variables, rows, self.column_widths)
 
     def connect_stimuli(self, stimuli):
@@ -535,10 +501,10 @@ custom_classes = list(map(
     lambda x: x[1],
     inspect.getmembers(sys.modules[__name__],
                        lambda c: inspect.isclass(c)
-                       and issubclass(c, CustomClass)
-                       and c.__name__ not in ['CustomClass',
-                                              'ScopeProvider',
+                       and issubclass(c, ModelElement)
+                       and c.__name__ not in ['ModelElement',
                                               'ExpressionElement',
+                                              'Sequence',
                                               'Symbol',
                                               'BinaryOperation',
                                               'UnaryOperation'])))

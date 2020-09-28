@@ -1,4 +1,7 @@
+from typing import List
 from .exceptions import PyFliesException
+from .scope import ScopeProvider
+from .custom_classes import ModelElement
 
 
 def get_column_widths(variables, rows):
@@ -38,21 +41,17 @@ def row_to_str(row, column_widths=None):
     return str_row
 
 
-class ExpTable(list):
+class ExpTable(ModelElement):
     """
     Represents fully expanded and evaluated Condition table.
     """
     def __init__(self, cond_table):
-        self.cond_table = cond_table
+        self.parent = cond_table
         self.column_widths = None
-
-    def new_row(self, elements=None):
-        new_row = ExpTableRow(self, elements)
-        self.append(new_row)
-        return new_row
+        self.rows = []
 
     def calculate_column_widths(self):
-        self.column_widths = get_column_widths(self.cond_table.variables, self)
+        self.column_widths = get_column_widths(self.parent.variables, self.rows)
 
     def calc_phases(self):
         """
@@ -60,36 +59,44 @@ class ExpTable(list):
         table for each trial phase.  After evaluation each row will have
         connected appropriate, evaluated stimuli instances.
         """
-        for row in self:
+        for row in self.rows:
             row.calc_phases()
 
     def header_str(self):
-        return header_str(self.cond_table.variables, self.column_widths)
+        return header_str(self.parent.variables, self.column_widths)
 
     def __str__(self):
-        return table_to_str(self.cond_table.variables, self, self.column_widths)
+        return table_to_str(self.parent.variables, self.rows, self.column_widths)
+
+    def __getitem__(self, idx):
+        return self.rows[idx]
+
+    def __iter__(self):
+        return iter(self.rows)
+
+    def __eq__(self, other):
+        return self.rows == other.rows
 
 
-class ExpTableRow(list):
-    def __init__(self, table, elements):
-        self.table = table
-        self.extend(elements if elements is not None else [])
+class ExpTableRow(ModelElement, ScopeProvider):
+    def __init__(self, table: ExpTable, exps: List['Expression']):
+        self.parent = table
+        self.exps = exps
+        table.rows.append(self)
+
+        # Create variable assignments needed by ScopeProvider.
+        # We inherit all standard scope provider mechanics in reference
+        # resolving and variable calculation.
+        from .custom_classes import VariableAssignment
+        self.vars = []
+        for name, value in zip(self.parent.parent.variables, self.exps):
+            self.vars.append(VariableAssignment(self, name=name, value=value))
 
         # Trial phases
         self.ph_fix = None
         self.ph_exec = None
         self.ph_error = None
         self.ph_correct = None
-
-    def get_context(self, context):
-        """
-        Returns context containing passed context, this row variable values,
-        and global scope (variable defined at model level) with priorities in
-        the given order.
-        """
-        c = dict(zip(self.table.cond_table.variables, self))
-        c.update(context)
-        return self.table.cond_table.get_context(c)
 
     def calc_phases(self):
         """
@@ -99,7 +106,11 @@ class ExpTableRow(list):
         for phase in ['fix', 'exec', 'error', 'correct']:
             context = self.get_context({phase: True})
 
-            stim_specs = self.table.cond_table.parent.stimuli
+            test = self.parent.parent.parent
+            # Evaluate test variables in the context of this row
+            test.eval(context)
+
+            stim_specs = test.stimuli
             for sspec in stim_specs:
                 try:
                     cond_val = sspec.condition.eval(context)
@@ -116,35 +127,23 @@ class ExpTableRow(list):
                     setattr(self, f'ph_{phase}', stim_insts)
                     break
 
-    def eval(self, context=None):
-        """
-        All condition variable values must be evaluated to base values or
-        symbols.  Do this in loop because there can be forward references.  If
-        we pass a full loop and no value has been resolved we have cyclic
-        reference
-        """
-        from .custom_classes import PostponedEval, Postpone, BaseValue, Symbol
-        while True:
-            all_resolved = all([not type(c) is PostponedEval for c in self])
-            if all_resolved:
-                break
-            resolved = False
-            for idx, c in enumerate(self):
-                if type(c) is PostponedEval:
-                    try:
-                        cond_value = c.exp.eval(context)
-                        self[idx] = cond_value
-                        if type(cond_value) in [BaseValue, Symbol]:
-                            context[self.table.cond_table.variables[idx]] = cond_value
-                        resolved = True
-                    except Postpone:
-                        pass
-            if not resolved:
-                raise PyFliesException(
-                    'Cyclic dependency in table. Row {}.'.format(self))
-
     def __str__(self):
-        return row_to_str(self, self.table.column_widths)
+        return row_to_str(self, self.parent.column_widths)
 
     def __repr__(self):
         return str(self)
+
+    def __getitem__(self, idx):
+        """
+        Get column `idx` value of this row.
+        """
+        return self.var_vals[self.vars[idx].name]
+
+    def __iter__(self):
+        """
+        Iterate over row values in order of variable/column definition.
+        """
+        return iter((self.var_vals[v.name] for v in self.vars))
+
+    def __eq__(self, other):
+        return self.var_vals == other.var_vals

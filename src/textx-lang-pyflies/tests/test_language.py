@@ -2,9 +2,10 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import (custom_classes, CustomClass, ScopeProvider,
+from pyflies.custom_classes import (custom_classes, ModelElement,
                                     Symbol, OrExpression, BaseValue,
                                     AdditiveExpression, List, String, Range)
+from pyflies.scope import ScopeProvider
 from pyflies.exceptions import PyFliesException
 from pyflies.model_processor import processor
 
@@ -12,7 +13,11 @@ from pyflies.model_processor import processor
 this_folder = dirname(abspath(__file__))
 
 
-class Model(CustomClass, ScopeProvider):
+class Model(ModelElement, ScopeProvider):
+    pass
+
+
+class CTable(ModelElement, ScopeProvider):
     pass
 
 
@@ -276,7 +281,7 @@ def test_scope_providers():
     forward references, detecting circular references and using variable values
     from parent scope providers.
     """
-    class SProvider(CustomClass, ScopeProvider):
+    class SProvider(ModelElement, ScopeProvider):
         pass
 
     mm = get_meta('scope.tx', classes=custom_classes + [Model, SProvider])
@@ -298,7 +303,7 @@ def test_scope_providers():
     # Model level evaluation is done by model processor
     # Wee need to evaluate only inner scope
     assert not m.inner_scope.var_vals
-    m.inner_scope.eval_vars()
+    m.inner_scope.eval()
     assert m.inner_scope.var_vals
 
     a, b = m.var_vals['a'], m.var_vals['b']
@@ -324,7 +329,7 @@ def test_scope_providers():
     a + c
     ''')
 
-    m.inner_scope.eval_vars()
+    m.inner_scope.eval()
     with pytest.raises(PyFliesException, match=r'Undefined variable "c"'):
         m.exp.eval()
 
@@ -391,7 +396,10 @@ def test_stimuli_definition():
 
 def test_conditions_table():
 
-    mm = get_meta('cond_table.tx')
+    class CTable(ModelElement, ScopeProvider):
+        pass
+
+    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         {
@@ -417,7 +425,7 @@ def test_conditions_table_expansion():
     Test that iterations and loops are expanded properly.
     """
 
-    mm = get_meta('cond_table.tx')
+    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -467,7 +475,7 @@ def test_conditions_table_str_representation():
     Test that tables are properly formatted when converted to string
     representation.
     """
-    mm = get_meta('cond_table.tx')
+    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -476,7 +484,7 @@ def test_conditions_table_str_representation():
         {
         | position       | color       | congruency                                         | response  |
         |----------------+-------------+----------------------------------------------------+-----------|
-        | positions loop | colors loop | congruent if response == position else uncongruent | positions |
+        | positions loop | colors loop | congruent if response == position else incongruent | positions |
         }
     ''')
 
@@ -484,7 +492,7 @@ def test_conditions_table_str_representation():
         '''
 | position       | color       | congruency                                         | response  |
 |----------------+-------------+----------------------------------------------------+-----------|
-| positions loop | colors loop | congruent if response == position else uncongruent | positions |
+| positions loop | colors loop | congruent if response == position else incongruent | positions |
         '''.strip()
 
     assert m.t[0].t.to_str() == \
@@ -492,8 +500,8 @@ def test_conditions_table_str_representation():
 | position | color | congruency  | response |
 |----------+-------+-------------+----------|
 | left     | green | congruent   | left     |
-| left     | red   | uncongruent | right    |
-| right    | green | uncongruent | left     |
+| left     | red   | incongruent | right    |
+| right    | green | incongruent | left     |
 | right    | red   | congruent   | right    |
         '''.strip()
 
@@ -557,7 +565,7 @@ def test_conditions_table_phases_evaluation():
         }
     ''')
 
-    t = m.test.table.exp_table
+    t = m.test.table.expanded
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
@@ -628,12 +636,11 @@ def test_experiment_time_calculations():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.blocks[0].table.exp_table
+    t = m.blocks[0].table.expanded
 
     trial = t[0]
     stims = trial.ph_exec
     assert stims[1].at == 150
     assert stims[2].at == 300
-    assert stims[2].duration == 100
     assert stims[3].at == 500
     assert stims[4].at == 400

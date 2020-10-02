@@ -644,3 +644,26 @@ def test_experiment_time_calculations():
     assert stims[2].at == 300
     assert stims[3].at == 500
     assert stims[4].at == 400
+
+
+def test_stimuli_variable_assignments():
+    """
+    Test that variables defined in stimuli block are evaluated during table
+    expansion for each table row.
+    """
+
+    mm = get_meta('pyflies.tx', classes=custom_classes)
+
+    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
+
+    # Get expanded table
+    t = m.blocks[0].table.expanded
+
+    # Duration is 100 where direction is left, and 200 where direction is right
+    trial = t[0]
+    assert trial.var_vals['direction'].name == 'left'
+    assert trial.ph_exec[2].duration == 100
+
+    trial = t[2]
+    assert trial.var_vals['direction'].name == 'right'
+    assert trial.ph_exec[2].duration == 200

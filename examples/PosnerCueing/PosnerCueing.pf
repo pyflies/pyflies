@@ -1,41 +1,41 @@
-experiment "Posner Cueing"
-"
+"""
 A neuropsychological test often used to assess attention.
 
 See also:
 http://en.wikipedia.org/wiki/Posner_cueing_task
-"
+"""
+
+positions = [left, right]
 
 test Posner {
-	conditions {
-		cue     position	congruency		response
-
-		left	left		congruent		press
-		left	right		incongruent		press
-		right	left		incongruent		press
-		right	right		congruent		press
-	}
-	
-	stimuli{
-		all: 	shape(cross, duration 1, keep)
-				shape(rectangle, duration 1, position left, size 22, keep)
-				shape(rectangle, duration [1000, 1500], position right, size 22, keep)
-				shape(rectangle, duration [1000, 1500], position cue, 
-					  size 20, keep)
-				shape(cross, target, position position)
-		error: 	sound(1000, duration 300)
-	}
+    conditions {
+        | cue            | position       | congruency                                    | response |
+        |----------------+----------------+-----------------------------------------------+----------|
+        | positions loop | positions loop | congruent if cue == position else incongruent | press    |
+    }
+    stimuli {
+        cue_display = 1000..1500 choose
+        cross_display = cue_display + 1000..1500 choose
+        exec: cross()
+              rectangle(posx left, width 20)
+              rectangle(posx right, width 20)
+              at cue_display rectangle(posx cue, width 18)
+              at cross_display cross(posx position)
+              at .+0 record
+        error: sound(freq 1000) for 300
+    }
 }
 
 screen Practice {
   Posner Cueing
   -------------
 	
-  You will be presented with the two empty boxes positioned left and right
-  from the center of the screen. You should concentrate on the center of the screen
-  and wait for the cue. The cue will be presented as a box highlight.
-  After some time a cross shaped object will be presented in some of the squares.
-  React as fast as you can by pressing space button when you detect a cross shaped object.
+  You will be presented with the two empty boxes positioned left and right from
+  the center of the screen. You should concentrate on the center of the screen
+  and wait for the cue. The cue will be presented as a box highlight. After some
+  time a cross shaped object will be presented in some of the squares. React as
+  fast as you can by pressing space button when you detect a cross shaped
+  object.
 	
   Press SPACE for practice block.
 }

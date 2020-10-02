@@ -72,17 +72,17 @@ exp = design.Experiment("{{m.name}}")
 control.initialize(exp)
 
 {% for b in m.blocks -%}
-  {%- if b._typename == "TestType" %}
+  {%- if b._typename == "Test" %}
 # {{b.name}} test
   {%- endif %}
 {{b.name}} = Block()
-  {%- if b._typename == "ScreenType" %}
+  {%- if b._typename == "Screen" %}
 t = design.Trial()
 s = stimuli.TextScreen("Instructions", """{{b.content|striptabs}}""")
 s.preload()
 t.add_stimulus(s)
 {{b.name}}.append(t)
-  {% elif b._typename == "TestType" %}
+  {% elif b._typename == "Test" %}
 # FIXME: This is per experiment. How to specify variable names per block?
 factor_names = [{% for v in b.conditions.varNames %}"{{v}}", {% endfor %}]
 data_variable_names = factor_names[:]

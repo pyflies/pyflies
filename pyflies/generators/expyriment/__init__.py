@@ -29,7 +29,7 @@ def generate(model, target):
 
     # Transform stimuli sizes and positions
     for b in model.blocks:
-        if b.__class__.__name__ == "TestType":
+        if b.__class__.__name__ == "Test":
             for cs in b.condStimuli:
                 for s in cs.stimuli:
                     if s.__class__.__name__ in ['Shape', 'Image']:

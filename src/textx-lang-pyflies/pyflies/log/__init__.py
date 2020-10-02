@@ -10,8 +10,8 @@ def pyflies_log_generator(metamodel, model, output_path, overwrite, debug, **cus
     this_folder = dirname(abspath(__file__))
     template_file = join(this_folder, 'debug.log.jinja')
 
-    tests = [t for t in model.blocks if t.__class__.__name__ == 'TestType']
-    screens = [t for t in model.blocks if t.__class__.__name__ == 'ScreenType']
+    tests = [t for t in model.blocks if t.__class__.__name__ == 'Test']
+    screens = [t for t in model.blocks if t.__class__.__name__ == 'Screen']
 
     config = {'m': model,
               'tests': tests,

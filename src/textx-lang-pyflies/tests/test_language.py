@@ -607,7 +607,7 @@ def test_experiment_structure():
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
     assert len(m.blocks) == 3
-    assert m.blocks[1].__class__.__name__ == 'ScreenType'
+    assert m.blocks[1].__class__.__name__ == 'Screen'
     assert m.description == 'Model for testing purposes.\n'
     assert len(m.structure.elements) == 4
 

@@ -9,15 +9,15 @@
 PyFliesModel:
   (description=Description)?
   vars*=VariableAssignment
-  blocks+=BlockType
+  blocks+=Block
   structure=Structure
   targets*=Target
 ;
 
 Description: '"""'- /((?!""")(.|\n))*/ '"""'-;
 
-BlockType:
-  TestType | ScreenType
+Block:
+  Test | Screen
 ;
 
 VariableAssignment:
@@ -65,7 +65,7 @@ TimeReference: start_relative?='.' (relative_op=SignOperator)? time=AdditiveExpr
     Test specification
 */
 
-TestType:
+Test:
   "test" name=ID "{"
     'conditions' '{'
         table=ConditionsTable
@@ -231,17 +231,13 @@ Point:
   '[' x=INT ',' y=INT ']'
 ;
 
-Block:
-  Sequence | Randomize
-;
-
 TestInstance:
-  'test' type=[TestType] runs=INT
+  'test' type=[Test] runs=INT
     (practice?="practice" (randomize?="randomize" randomize_all?="all")?)#
 ;
 
 ScreenInstance:
-  'screen' type=[ScreenType]
+  'screen' type=[Screen]
 ;
 
 Reference:
@@ -271,7 +267,7 @@ Randomize:
   '}'
 ;
 
-ScreenType:
+Screen:
   'screen' name=ID "{"
   /*    content=/(.|\n)*?(?=})/  */
       content=/[^}]*/

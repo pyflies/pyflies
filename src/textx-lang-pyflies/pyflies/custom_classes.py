@@ -492,7 +492,7 @@ class ConditionsTable(ModelElement):
             raise PyFliesException('Cannot evaluate stimuli on unexpanded table.')
 
 
-class TestType(CustomClass):
+class Test(ModelElement, ScopeProvider):
     def calc_phases(self):
         self.table.calc_phases()
 

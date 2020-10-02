@@ -117,7 +117,7 @@ def generate(model, target):
 
     # Copy all files referenced from model
     for b in model.blocks:
-        if b.__class__.__name__ == "TestType":
+        if b.__class__.__name__ == "Test":
             for cs in b.condStimuli:
                 stimuli = cs.stimuli
                 for stimulus in stimuli:

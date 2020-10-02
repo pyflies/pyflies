@@ -48,7 +48,7 @@ def processor(model, metamodel):
 
     # Post-processing is done for each test type
     for block in model.blocks:
-        if block.__class__.__name__ == "TestType":
+        if block.__class__.__name__ == "Test":
 
             # Check that there is a condition variable named "response"
             if "response" not in block.condVarNames:

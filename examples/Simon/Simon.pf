@@ -1,26 +1,26 @@
-experiment "Simon"
-"
+"""
 A simple behavioural task to assess a Simon effect.
 
 See also:
 http://en.wikipedia.org/wiki/Simon_effect
-"
+"""
+
+positions = [left, right]
+colors = [green, red]
+responses = positions
 
 test Simon {
     conditions {
-        position     color        congruency        response
-
-        left         green        congruent         left
-        left         red          incongruent       right
-        right        green        incongruent       left
-        right        red          congruent         right
+      | position       | color       | congruency                                         | response                          |
+      |----------------+-------------+----------------------------------------------------+-----------------------------------|
+      | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
     }
-    
+
     stimuli{
-        all: shape(rectangle, position position, color color, fillColor color)
-        error: sound(1000, duration 300)
-        correct: sound(500, duration 300)
-        fixation: shape(cross)
+        exec: rectangle(posx position, color color, fillColor color)
+        error: sound(freq 1000) for 300
+        correct: sound(freq 500) for 300
+        fix: cross()
     }
 }
 
@@ -48,22 +48,11 @@ structure {
     screen Practice
     test Simon 1 practice randomize
     screen Real
-    test Simon 10 randomize
+    test Simon 10 randomize all
 }
-
-/*
-target Expyriment {
-  output = "/home/igor/tmp/Simon/"
-  responses {
-      // see expyriment/misc/constants.py
-    left = K_LEFT
-    right = K_RIGHT
-  }
-}
-*/
 
 target PsychoPy {
-  output = "/home/igor/tmp/SimonPsycho/"
+  output = "~/SimonPsycho/"
   responses {
     left = left
     right = right

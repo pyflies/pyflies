@@ -113,7 +113,7 @@ StimulusSpec:
 Stimulus: name=StimulusName '(' params*=StimulusParam[',']  ')';
 StimulusParam: name=ID value=Expression;
 
-StimulusName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'sound' | 'audio';
+StimulusName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio';
 
 /*
     Concrete stimuli with parameters and default values will be

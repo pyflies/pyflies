@@ -1,4 +1,4 @@
-from os.path import dirname, abspath, join
+from os.path import dirname, abspath, join, splitext
 from textx import generator
 from textxjinja import textx_jinja_generator
 
@@ -18,6 +18,6 @@ def pyflies_log_generator(metamodel, model, output_path, overwrite, debug, **cus
               'screens': screens}
 
     if not output_path:
-        output_path = dirname(abspath(model._tx_filename))
+        output_path = splitext(model._tx_filename)[0] + '.log'
 
     textx_jinja_generator(template_file, output_path, config, overwrite)

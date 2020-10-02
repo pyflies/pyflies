@@ -1,0 +1,140 @@
+"""
+A neuropsychological test often used to assess attention.
+
+See also:
+http://en.wikipedia.org/wiki/Posner_cueing_task
+
+"""
+
+Tests count: 1
+Screens: [<Screen:Practice>, <Screen:Real>]
+
+Variables:
+    positions = [left, right]
+
+
+
+Test: Posner
+--------------------------------------------------------------------------
+
+Conditions:
+
+| cue   | position | congruency  | response |
+|-------+----------+-------------+----------|
+| left  | left     | congruent   | press    |
+| left  | right    | incongruent | press    |
+| right | left     | incongruent | press    |
+| right | right    | congruent   | press    |
+
+
+Detailed with stimuli for each trial:
+
+| cue   | position | congruency  | response |
+|-------+----------+-------------+----------|
+| left  | left     | congruent   | press    |
+
+  Variables:
+    positions = [left, right]
+    cue_display = 1308
+    cross_display = 2669
+    cue = left
+    position = left
+    congruency = congruent
+    response = press
+
+  Phases:
+    fix:
+    exec:
+            at 0 cross() for 0
+            at 0 rectangle(posx left, width 20) for 0
+            at 0 rectangle(posx right, width 20) for 0
+            at 1308 rectangle(posx left, width 18) for 0
+            at 2669 cross(posx left) for 0
+            at 2669 None for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+
+
+| cue   | position | congruency  | response |
+|-------+----------+-------------+----------|
+| left  | right    | incongruent | press    |
+
+  Variables:
+    positions = [left, right]
+    cue_display = 1270
+    cross_display = 2748
+    cue = left
+    position = right
+    congruency = incongruent
+    response = press
+
+  Phases:
+    fix:
+    exec:
+            at 0 cross() for 0
+            at 0 rectangle(posx left, width 20) for 0
+            at 0 rectangle(posx right, width 20) for 0
+            at 1270 rectangle(posx left, width 18) for 0
+            at 2748 cross(posx right) for 0
+            at 2748 None for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+
+
+| cue   | position | congruency  | response |
+|-------+----------+-------------+----------|
+| right | left     | incongruent | press    |
+
+  Variables:
+    positions = [left, right]
+    cue_display = 1278
+    cross_display = 2714
+    cue = right
+    position = left
+    congruency = incongruent
+    response = press
+
+  Phases:
+    fix:
+    exec:
+            at 0 cross() for 0
+            at 0 rectangle(posx left, width 20) for 0
+            at 0 rectangle(posx right, width 20) for 0
+            at 1278 rectangle(posx right, width 18) for 0
+            at 2714 cross(posx left) for 0
+            at 2714 None for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+
+
+| cue   | position | congruency  | response |
+|-------+----------+-------------+----------|
+| right | right    | congruent   | press    |
+
+  Variables:
+    positions = [left, right]
+    cue_display = 1476
+    cross_display = 2528
+    cue = right
+    position = right
+    congruency = congruent
+    response = press
+
+  Phases:
+    fix:
+    exec:
+            at 0 cross() for 0
+            at 0 rectangle(posx left, width 20) for 0
+            at 0 rectangle(posx right, width 20) for 0
+            at 1476 rectangle(posx right, width 18) for 0
+            at 2528 cross(posx right) for 0
+            at 2528 None for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+
+
+--------------------------------------------------------------------------

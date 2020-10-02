@@ -1,0 +1,118 @@
+"""
+Eriksen flanker test.
+
+"""
+
+Tests count: 1
+Screens: [<Screen:intro>, <Screen:real>]
+
+Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+
+
+
+Test: EriksenFlanker
+--------------------------------------------------------------------------
+
+Conditions:
+
+| direction | category    | response |
+|-----------+-------------+----------|
+| left      | incongruent | left     |
+| left      | congruent   | left     |
+| right     | incongruent | right    |
+| right     | congruent   | right    |
+
+
+Detailed with stimuli for each trial:
+
+| direction | category    | response |
+|-----------+-------------+----------|
+| left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    direction = left
+    category = incongruent
+    response = left
+
+  Phases:
+    fix:
+            at 0 cross() for 2648
+    exec:
+            at 0 image(file images/left-incongruent.png) for 0
+    error:
+            at 0 sound(freq 300) for 500
+    correct:
+            at 0 sound(freq 700) for 300
+
+
+| direction | category    | response |
+|-----------+-------------+----------|
+| left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    direction = left
+    category = congruent
+    response = left
+
+  Phases:
+    fix:
+            at 0 cross() for 2542
+    exec:
+            at 0 image(file images/left-congruent.png) for 0
+    error:
+            at 0 sound(freq 300) for 500
+    correct:
+            at 0 sound(freq 700) for 300
+
+
+| direction | category    | response |
+|-----------+-------------+----------|
+| right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    direction = right
+    category = incongruent
+    response = right
+
+  Phases:
+    fix:
+            at 0 cross() for 1257
+    exec:
+            at 0 image(file images/right-incongruent.png) for 0
+    error:
+            at 0 sound(freq 300) for 500
+    correct:
+            at 0 sound(freq 700) for 300
+
+
+| direction | category    | response |
+|-----------+-------------+----------|
+| right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    direction = right
+    category = congruent
+    response = right
+
+  Phases:
+    fix:
+            at 0 cross() for 1580
+    exec:
+            at 0 image(file images/right-congruent.png) for 0
+    error:
+            at 0 sound(freq 300) for 500
+    correct:
+            at 0 sound(freq 700) for 300
+
+
+--------------------------------------------------------------------------

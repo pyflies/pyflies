@@ -1,0 +1,130 @@
+"""
+A simple behavioural task to assess a Simon effect.
+
+See also:
+http://en.wikipedia.org/wiki/Simon_effect
+
+"""
+
+Tests count: 1
+Screens: [<Screen:Practice>, <Screen:Real>]
+
+Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+
+
+
+Test: Simon
+--------------------------------------------------------------------------
+
+Conditions:
+
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| left     | green | congruent   | left     |
+| left     | red   | incongruent | right    |
+| right    | green | incongruent | left     |
+| right    | red   | congruent   | right    |
+
+
+Detailed with stimuli for each trial:
+
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+
+  Phases:
+    fix:
+            at 0 cross() for 0
+    exec:
+            at 0 rectangle(posx left, color green, fillColor green) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+
+  Phases:
+    fix:
+            at 0 cross() for 0
+    exec:
+            at 0 rectangle(posx left, color red, fillColor red) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+
+  Phases:
+    fix:
+            at 0 cross() for 0
+    exec:
+            at 0 rectangle(posx right, color green, fillColor green) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| position | color | congruency  | response |
+|----------+-------+-------------+----------|
+| right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+
+  Phases:
+    fix:
+            at 0 cross() for 0
+    exec:
+            at 0 rectangle(posx right, color red, fillColor red) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+--------------------------------------------------------------------------

@@ -54,8 +54,9 @@ MultiplicativeOperator: '*'|'/';
 UnaryExpression: (opn=SignOperator)? op=PrimaryExpression;
 SignOperator: '-' | '+';
 PrimaryExpression: '(' Expression ')' | MessageExpression | Value | VariableRef;
-MessageExpression: value=CompoundTypeValue message=Message;
+MessageExpression: receiver=MessageReceiver message=Message;
 Message: 'choose' | 'shuffle';
+MessageReceiver: CompoundTypeValue | VariableRef;
 LoopExpression: exp=OrExpression 'loop';
 
 

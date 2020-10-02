@@ -154,6 +154,9 @@ class List(Sequence):
     def __getitem__(self, idx):
         return self.values[idx]
 
+    def __iter__(self):
+        return iter(self.values)
+
     def __str__(self):
         return '[{}]'.format(', '.join([str(x) for x in self.values]))
 
@@ -168,6 +171,12 @@ class Range(Sequence):
     def __str__(self):
         return '{}..{}'.format(self.lower, self.upper)
 
+    def __getitem__(self, idx):
+        return self.eval()[idx]
+
+    def __iter__(self):
+        return iter(self.eval())
+
 
 class LoopExpression(ExpressionElement):
     def __str__(self):
@@ -180,7 +189,7 @@ class LoopExpression(ExpressionElement):
 
 class MessageExpression(ExpressionElement):
     def eval(self, context=None):
-        value = self.value.eval(context)
+        value = self.receiver.eval(context)
         if self.message == 'shuffle':
             random.shuffle(value)
             return value
@@ -188,7 +197,7 @@ class MessageExpression(ExpressionElement):
             return random.choice(value)
 
     def __str__(self):
-        return '{} {}'.format(str(self.value), self.message)
+        return '{} {}'.format(str(self.receiver), self.message)
 
 
 class BinaryOperation(ExpressionElement):

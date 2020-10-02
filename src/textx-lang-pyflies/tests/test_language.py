@@ -334,6 +334,15 @@ def test_scope_providers():
         m.exp.eval()
 
 
+    # We can use forward referencing
+    m = mm.model_from_str('''
+    a = b choose
+    b = 1..10
+    a + 100
+    ''')
+    assert m.var_vals['a'] + 100 == m.exp.eval()
+
+
 def test_stimuli_definition():
 
     mm = get_meta('stimuli.tx')

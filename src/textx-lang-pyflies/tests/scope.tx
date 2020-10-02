@@ -3,7 +3,7 @@ import pyflies
 // Model is a scope provider
 Model:
     vars*=VariableAssignment
-    inner_scope=SProvider
+    (inner_scope=SProvider)?
     exp=Expression
 ;
 

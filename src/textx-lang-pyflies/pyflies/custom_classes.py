@@ -289,6 +289,12 @@ class VariableRef(ExpressionElement):
 
 
 class IfExpression(ExpressionElement):
+    def reduce(self):
+        self.cond = self.cond.reduce()
+        self.if_true = self.if_true.reduce()
+        self.if_false = self.if_false.reduce()
+        return self
+
     def eval(self, context=None):
 
         cond = self.cond.eval(context)

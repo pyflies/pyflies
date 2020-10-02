@@ -102,7 +102,7 @@ class Symbol(ExpressionElement):
         return self.name
 
     def __repr__(self):
-        return 'Symbol({})'.format(self.name)
+        return self.name
 
 
 class BaseValue(ExpressionElement):

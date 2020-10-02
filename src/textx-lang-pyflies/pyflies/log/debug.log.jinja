@@ -5,12 +5,22 @@
   {% endfor %}
   {% endif %}
 {%- endmacro %}
+{% macro context_str(context) -%}
+  {% if context %}
+Variables:
+  {% for var_name, var_value in context.items() %}
+    {{var_name}} = {{var_value}}
+  {% endfor %}
+  {% endif %}
+{%- endmacro %}
 """
 {{m.description}}
 """
 
 Tests count: {{tests | count}}
 Screens: {{screens}}
+
+{{context_str(m.get_context())}}
 
 {% for test in tests %}
 
@@ -22,12 +32,13 @@ Conditions:
 {{test.table}}
 
 
-Detailed with stimuli:
-{% for row in test.table.exp_table %}
+Detailed with stimuli for each trial:
+{% for row in test.table.expanded %}
 
-{{test.table.exp_table.header_str()-}}
+{{test.table.expanded.header_str()-}}
 {{row}}
 
+  {{context_str(row.get_context())}}
   Phases:
     fix:
 {{list_str(row.ph_fix)}}    exec:

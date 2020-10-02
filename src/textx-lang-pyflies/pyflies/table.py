@@ -110,6 +110,10 @@ class ExpTableRow(ModelElement, ScopeProvider):
             # Evaluate test variables in the context of this row
             test.eval(context)
 
+            # Keep full context on the row for debugging purposes
+            # e.g. export to log
+            self.var_vals.update(self.get_context())
+
             stim_specs = test.stimuli
             for sspec in stim_specs:
                 try:

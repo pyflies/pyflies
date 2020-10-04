@@ -161,21 +161,16 @@ class List(Sequence):
         return '[{}]'.format(', '.join([str(x) for x in self.values]))
 
 
-class Range(Sequence):
+class Range(List):
+    def reduce(self):
+        self.values = [BaseValue(self, value=x) for x in self.eval()]
+        return self
+
     def eval(self, context=None):
         return list(range(self.lower, self.upper + 1))
 
-    def get_exps(self):
-        return [BaseValue(self, value=x) for x in self.eval()]
-
     def __str__(self):
         return '{}..{}'.format(self.lower, self.upper)
-
-    def __getitem__(self, idx):
-        return self.eval()[idx]
-
-    def __iter__(self):
-        return iter(self.eval())
 
 
 class LoopExpression(ExpressionElement):

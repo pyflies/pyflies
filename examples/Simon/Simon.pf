@@ -16,11 +16,24 @@ test Simon {
       | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
     }
 
+    /* Since this is a relatively small condition table we could just
+       spell it out like:
+
+      | position | color | congruency  | response |
+      |----------+-------+-------------+----------|
+      | left     | green | congruent   | left     |
+      | left     | red   | incongruent | right    |
+      | right    | green | incongruent | left     |
+      | right    | red   | congruent   | right    |
+
+      instead of using expressions in table cells.
+    */
+
     stimuli{
+        fix: cross() for 2000..4000 choose
         exec: rectangle(posx position, color color, fillColor color)
         error: sound(freq 1000) for 300
         correct: sound(freq 500) for 300
-        fix: cross()
     }
 }
 

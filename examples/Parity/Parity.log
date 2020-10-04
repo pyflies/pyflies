@@ -1,0 +1,237 @@
+"""
+A parity judgment task to assess the SNARC effect.
+
+See e.g.:
+Gevers, W., Reynvoet, B., & Fias, W. (2003). The mental representation of
+ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
+
+"""
+
+Tests count: 1
+Screens: [<Screen:Intro>, <Screen:Real>]
+
+Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+
+
+
+Test: Parity
+--------------------------------------------------------------------------
+
+Conditions:
+
+| number | parity | response |
+|--------+--------+----------|
+| 1      | odd    | odd      |
+| 2      | even   | even     |
+| 3      | odd    | odd      |
+| 4      | even   | even     |
+| 5      | odd    | odd      |
+| 6      | even   | even     |
+| 7      | odd    | odd      |
+| 8      | even   | even     |
+| 9      | odd    | odd      |
+
+
+Detailed with stimuli for each trial:
+
+| number | parity | response |
+|--------+--------+----------|
+| 1      | odd    | odd      |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 1
+    parity = odd
+    response = odd
+
+  Phases:
+    fix:
+            at 0 cross() for 1950
+    exec:
+            at 0 text(text 1) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 2      | even   | even     |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 2
+    parity = even
+    response = even
+
+  Phases:
+    fix:
+            at 0 cross() for 2951
+    exec:
+            at 0 text(text 2) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 3      | odd    | odd      |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 3
+    parity = odd
+    response = odd
+
+  Phases:
+    fix:
+            at 0 cross() for 2804
+    exec:
+            at 0 text(text 3) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 4      | even   | even     |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 4
+    parity = even
+    response = even
+
+  Phases:
+    fix:
+            at 0 cross() for 1792
+    exec:
+            at 0 text(text 4) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 5      | odd    | odd      |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 5
+    parity = odd
+    response = odd
+
+  Phases:
+    fix:
+            at 0 cross() for 2029
+    exec:
+            at 0 text(text 5) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 6      | even   | even     |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 6
+    parity = even
+    response = even
+
+  Phases:
+    fix:
+            at 0 cross() for 1512
+    exec:
+            at 0 text(text 6) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 7      | odd    | odd      |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 7
+    parity = odd
+    response = odd
+
+  Phases:
+    fix:
+            at 0 cross() for 1026
+    exec:
+            at 0 text(text 7) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 8      | even   | even     |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 8
+    parity = even
+    response = even
+
+  Phases:
+    fix:
+            at 0 cross() for 2756
+    exec:
+            at 0 text(text 8) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+| number | parity | response |
+|--------+--------+----------|
+| 9      | odd    | odd      |
+
+  Variables:
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    parities = [odd, even]
+    number = 9
+    parity = odd
+    response = odd
+
+  Phases:
+    fix:
+            at 0 cross() for 1628
+    exec:
+            at 0 text(text 9) for 0
+    error:
+            at 0 sound(freq 1000) for 300
+    correct:
+            at 0 sound(freq 500) for 300
+
+
+--------------------------------------------------------------------------

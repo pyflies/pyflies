@@ -55,18 +55,6 @@ structure {
 	test Parity 2 randomize all
 }
 
-/*
-target Expyriment {
-  output = "/home/igor/tmp/Parity/"
-  responses {
-  	// see expyriment/misc/constants.py
-    odd = K_LEFT
-    even = K_RIGHT
-    next = K_RETURN
-  }
-}
-*/
-
 target PsychoPy {
   output = "/home/igor/tmp/ParityPsycho/"
   responses {

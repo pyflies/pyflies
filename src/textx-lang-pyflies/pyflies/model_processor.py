@@ -1,7 +1,7 @@
 from textx import TextXSemanticError, get_children_of_type
 from textx.const import MULT_ONE, MULT_OPTIONAL
 # from pyflies.generators import generator_names
-from .model import ExpressionElement, ConditionsTable
+from .model import ExpressionElement
 
 
 def processor(model, metamodel):
@@ -44,7 +44,7 @@ def processor(model, metamodel):
         table.expand()
         table.calc_phases()
 
-    return  #TODO: Rework/move checks from bellow
+    return  # TODO: Rework/move checks from bellow
 
     # Post-processing is done for each test type
     for block in model.blocks:

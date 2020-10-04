@@ -1,4 +1,5 @@
 from typing import List
+import pyflies
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
 from .model import ModelElement
@@ -79,7 +80,7 @@ class ExpTable(ModelElement):
 
 
 class ExpTableRow(ModelElement, ScopeProvider):
-    def __init__(self, table: ExpTable, exps: List['Expression']):
+    def __init__(self, table: ExpTable, exps: List['pyflies.model.Expression']):
         self.parent = table
         self.exps = exps
         table.rows.append(self)

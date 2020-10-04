@@ -20,7 +20,8 @@ class StimulusSpecInst(EvaluatedBase):
         self.stimulus = spec.stimulus.eval(context) if spec.stimulus else None
 
     def __repr__(self):
-        return 'at {} {} for {}'.format(str(self.at), str(self.stimulus), str(self.duration))
+        return 'at {} {} for {}'.format(str(self.at), str(self.stimulus),
+                                        str(self.duration))
 
 
 class StimulusInst(EvaluatedBase):

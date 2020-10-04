@@ -10,7 +10,8 @@ __version__ = "0.4.0.dev"
 def pyflies_language():
     "A language for psychology experiments specification"
     current_dir = os.path.dirname(__file__)
-    mm = metamodel_from_file(os.path.join(current_dir, 'pyflies.tx'), classes=model_classes)
+    mm = metamodel_from_file(os.path.join(current_dir, 'pyflies.tx'),
+                             classes=model_classes)
 
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors

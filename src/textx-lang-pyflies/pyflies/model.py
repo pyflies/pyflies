@@ -211,6 +211,7 @@ class BinaryOperation(ExpressionElement):
 
     def eval(self, context=None):
         operations = self.get_operations()
+
         def op(a, b):
             nextop = next(operations)
             try:
@@ -225,7 +226,8 @@ class BinaryOperation(ExpressionElement):
                 raise PyFliesException('Undefined variable "{}"'.format(sym.name))
 
         return reduce(op,
-                      map(lambda x: x.eval(context) if isinstance(x, ExpressionElement) else x,
+                      map(lambda x: x.eval(context)
+                          if isinstance(x, ExpressionElement) else x,
                           self.op))
 
     def __str__(self):
@@ -253,6 +255,7 @@ class UnaryOperation(ExpressionElement):
 
     def eval(self, context=None):
         operations = self.get_operations()
+
         def op(a):
             nextop = next(operations)
             try:
@@ -261,7 +264,8 @@ class UnaryOperation(ExpressionElement):
                 if type(a) is Symbol:
                     raise PyFliesException('Undefined variable "{}"'.format(a.name))
                 raise
-        inner = self.op.eval(context) if isinstance(self.op, ExpressionElement) else self.op
+        inner = self.op.eval(context) \
+            if isinstance(self.op, ExpressionElement) else self.op
         return op(inner) if op else inner
 
     def __str__(self):
@@ -341,11 +345,13 @@ class ComparisonExpression(BinaryOperation):
         '>': gt
     }
 
+
 class AdditiveExpression(BinaryOperation):
     operation = {
         '+': add,
         '-': sub
     }
+
 
 class MultiplicativeExpression(BinaryOperation):
     operation = {
@@ -353,11 +359,13 @@ class MultiplicativeExpression(BinaryOperation):
         '/': truediv
     }
 
+
 class UnaryExpression(UnaryOperation):
     operation = {
         '-': neg,
         '+': lambda x: x
     }
+
 
 class Condition(ModelElement):
     def __getitem__(self, idx):

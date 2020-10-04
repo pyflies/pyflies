@@ -1,9 +1,8 @@
 import pytest
 from os.path import join, dirname, abspath
-from textx import metamodel_from_file, TextXSyntaxError
+from textx import metamodel_from_file
 
-from pyflies.model import (model_classes, ModelElement,
-                           Symbol, OrExpression, BaseValue,
+from pyflies.model import (model_classes, ModelElement, Symbol, BaseValue,
                            AdditiveExpression, List, String, Range)
 from pyflies.scope import ScopeProvider
 from pyflies.exceptions import PyFliesException
@@ -24,9 +23,10 @@ class CTable(ModelElement, ScopeProvider):
 def get_meta(file_name, classes=None):
     if classes is None:
         classes = model_classes + [Model]
-    mm =  metamodel_from_file(join(this_folder, file_name), classes=classes)
+    mm = metamodel_from_file(join(this_folder, file_name), classes=classes)
     mm.register_model_processor(processor)
     return mm
+
 
 def test_time_references():
     """Test for pyflies time references"""
@@ -63,7 +63,6 @@ def test_time_references():
     assert ref.time == 16
 
 
-
 def test_expressions_arithmetic():
     """
     Test Pyflies arithmetic expressions.
@@ -73,6 +72,7 @@ def test_expressions_arithmetic():
 
     exp = mm.model_from_str('2 + 3 * 2 * 3 / 5 - 1')
     assert exp.exp.eval() == 4.6
+
 
 def test_expressions_comparison_boolean():
     """
@@ -333,7 +333,6 @@ def test_scope_providers():
     with pytest.raises(PyFliesException, match=r'Undefined variable "c"'):
         m.exp.eval()
 
-
     # We can use forward referencing
     m = mm.model_from_str('''
     a = b choose
@@ -349,7 +348,8 @@ def test_stimuli_definition():
 
     # Time, duration and params can be expressions
     context = {'a': 10, 'b': 5}
-    m = mm.model_from_str('at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
+    m = mm.model_from_str(
+        'at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
     stim = m.stimuli[0].eval(context)
     assert stim.duration == 200
     assert stim.at == 110
@@ -495,14 +495,14 @@ def test_conditions_table_str_representation():
         |----------------+-------------+----------------------------------------------------+-----------|
         | positions loop | colors loop | congruent if response == position else incongruent | positions |
         }
-    ''')
+    ''')  # noqa
 
     assert m.t[0].t.to_str(expanded=False) == \
         '''
 | position       | color       | congruency                                         | response  |
 |----------------+-------------+----------------------------------------------------+-----------|
 | positions loop | colors loop | congruent if response == position else incongruent | positions |
-        '''.strip()
+        '''.strip()  # noqa
 
     assert m.t[0].t.to_str() == \
         '''
@@ -599,7 +599,6 @@ def test_conditions_table_phases_evaluation():
         assert st.stimulus.name == 'sound'
         assert st.stimulus.params[0].name == 'freq'
         assert st.stimulus.params[0].value == 1000
-
 
     # Parameters evaluation
     st = t[0].ph_exec[0]

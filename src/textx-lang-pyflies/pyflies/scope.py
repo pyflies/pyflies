@@ -52,7 +52,6 @@ class ScopeProvider:
 
         self.vars = assignments
 
-
     def get(self, name):
         """
         Search the scope for the given name and return expression if found or
@@ -71,7 +70,7 @@ class ScopeProvider:
         Evaluates all variables defined in this scope.  Do evaluation in a loop
         with postponing to enable forward referencing.
         """
-        from .model import BaseValue, Symbol
+        from .model import Symbol
 
         self.var_vals = {v.name: PostponedEval(v.value) for v in self.vars}
         context = self.get_context(context)
@@ -96,4 +95,3 @@ class ScopeProvider:
             # dependency
             if not resolved:
                 raise PyFliesException('Cyclic dependency detected.')
-

@@ -512,7 +512,7 @@ class Test(ModelElement, ScopeProvider):
         self.table.calc_phases()
 
 
-custom_classes = list(map(
+model_classes = list(map(
     lambda x: x[1],
     inspect.getmembers(sys.modules[__name__],
                        lambda c: inspect.isclass(c)

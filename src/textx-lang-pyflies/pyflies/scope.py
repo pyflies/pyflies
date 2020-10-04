@@ -45,7 +45,7 @@ class ScopeProvider:
 
         # Collect all variable assignments that belong to this scope.
         # Do not collect child scopes.
-        from .custom_classes import VariableAssignment
+        from .model import VariableAssignment
         assignments = get_children_of_type(
             VariableAssignment, self,
             should_follow=lambda obj: not isinstance(obj, ScopeProvider))
@@ -71,7 +71,7 @@ class ScopeProvider:
         Evaluates all variables defined in this scope.  Do evaluation in a loop
         with postponing to enable forward referencing.
         """
-        from .custom_classes import BaseValue, Symbol
+        from .model import BaseValue, Symbol
 
         self.var_vals = {v.name: PostponedEval(v.value) for v in self.vars}
         context = self.get_context(context)

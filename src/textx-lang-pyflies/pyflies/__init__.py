@@ -1,7 +1,7 @@
 import os
 from textx import language, metamodel_from_file
 from .model_processor import processor
-from .custom_classes import custom_classes
+from .model import model_classes
 
 __version__ = "0.4.0.dev"
 
@@ -10,7 +10,7 @@ __version__ = "0.4.0.dev"
 def pyflies_language():
     "A language for psychology experiments specification"
     current_dir = os.path.dirname(__file__)
-    mm = metamodel_from_file(os.path.join(current_dir, 'pyflies.tx'), classes=custom_classes)
+    mm = metamodel_from_file(os.path.join(current_dir, 'pyflies.tx'), classes=model_classes)
 
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors

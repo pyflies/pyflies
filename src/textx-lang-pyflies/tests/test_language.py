@@ -2,9 +2,9 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file, TextXSyntaxError
 
-from pyflies.custom_classes import (custom_classes, ModelElement,
-                                    Symbol, OrExpression, BaseValue,
-                                    AdditiveExpression, List, String, Range)
+from pyflies.model import (model_classes, ModelElement,
+                           Symbol, OrExpression, BaseValue,
+                           AdditiveExpression, List, String, Range)
 from pyflies.scope import ScopeProvider
 from pyflies.exceptions import PyFliesException
 from pyflies.model_processor import processor
@@ -23,7 +23,7 @@ class CTable(ModelElement, ScopeProvider):
 
 def get_meta(file_name, classes=None):
     if classes is None:
-        classes = custom_classes + [Model]
+        classes = model_classes + [Model]
     mm =  metamodel_from_file(join(this_folder, file_name), classes=classes)
     mm.register_model_processor(processor)
     return mm
@@ -284,7 +284,7 @@ def test_scope_providers():
     class SProvider(ModelElement, ScopeProvider):
         pass
 
-    mm = get_meta('scope.tx', classes=custom_classes + [Model, SProvider])
+    mm = get_meta('scope.tx', classes=model_classes + [Model, SProvider])
 
     m = mm.model_from_str('''
     a = 1..10 choose
@@ -408,7 +408,7 @@ def test_conditions_table():
     class CTable(ModelElement, ScopeProvider):
         pass
 
-    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
+    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         {
@@ -434,7 +434,7 @@ def test_conditions_table_expansion():
     Test that iterations and loops are expanded properly.
     """
 
-    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
+    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -484,7 +484,7 @@ def test_conditions_table_str_representation():
     Test that tables are properly formatted when converted to string
     representation.
     """
-    mm = get_meta('cond_table.tx', classes=custom_classes + [CTable, Model])
+    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -612,7 +612,7 @@ def test_experiment_structure():
     Test full experiment structure
     """
 
-    mm = get_meta('pyflies.tx', classes=custom_classes)
+    mm = get_meta('pyflies.tx', classes=model_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
     assert len(m.blocks) == 3
@@ -640,7 +640,7 @@ def test_experiment_time_calculations():
     Test full experiment relative/absolute time calculations.
     """
 
-    mm = get_meta('pyflies.tx', classes=custom_classes)
+    mm = get_meta('pyflies.tx', classes=model_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
@@ -661,7 +661,7 @@ def test_stimuli_variable_assignments():
     expansion for each table row.
     """
 
-    mm = get_meta('pyflies.tx', classes=custom_classes)
+    mm = get_meta('pyflies.tx', classes=model_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 

@@ -1,7 +1,7 @@
 from typing import List
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
-from .custom_classes import ModelElement
+from .model import ModelElement
 
 
 def get_column_widths(variables, rows):
@@ -87,7 +87,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
         # Create variable assignments needed by ScopeProvider.
         # We inherit all standard scope provider mechanics in reference
         # resolving and variable calculation.
-        from .custom_classes import VariableAssignment
+        from .model import VariableAssignment
         self.vars = []
         for name, value in zip(self.parent.parent.variables, self.exps):
             self.vars.append(VariableAssignment(self, name=name, value=value))

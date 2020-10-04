@@ -1,7 +1,7 @@
 from textx import TextXSemanticError, get_children_of_type
 from textx.const import MULT_ONE, MULT_OPTIONAL
 # from pyflies.generators import generator_names
-from pyflies.custom_classes import ExpressionElement, ConditionsTable
+from .model import ExpressionElement, ConditionsTable
 
 
 def processor(model, metamodel):

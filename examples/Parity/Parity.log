@@ -49,9 +49,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2770
+            at 0 cross() for 2474
     exec:
             at 0 text(text 1) for 0
+            at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -71,9 +72,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1100
+            at 0 cross() for 1553
     exec:
             at 0 text(text 2) for 0
+            at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -93,9 +95,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1987
+            at 0 cross() for 2126
     exec:
             at 0 text(text 3) for 0
+            at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -115,9 +118,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2712
+            at 0 cross() for 2899
     exec:
             at 0 text(text 4) for 0
+            at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -137,9 +141,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1366
+            at 0 cross() for 1771
     exec:
             at 0 text(text 5) for 0
+            at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -159,9 +164,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2526
+            at 0 cross() for 2003
     exec:
             at 0 text(text 6) for 0
+            at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -181,9 +187,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1791
+            at 0 cross() for 2702
     exec:
             at 0 text(text 7) for 0
+            at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -203,9 +210,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2313
+            at 0 cross() for 1475
     exec:
             at 0 text(text 8) for 0
+            at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -225,9 +233,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1607
+            at 0 cross() for 1541
     exec:
             at 0 text(text 9) for 0
+            at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

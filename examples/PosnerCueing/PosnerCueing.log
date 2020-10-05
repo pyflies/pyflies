@@ -35,8 +35,8 @@ Detailed with stimuli for each trial:
 
   Variables:
     positions = [left, right]
-    cue_display = 1304
-    cross_display = 2543
+    cue_display = 1308
+    cross_display = 2724
     cue = left
     position = left
     congruency = congruent
@@ -48,9 +48,9 @@ Detailed with stimuli for each trial:
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1304 rectangle(posx left, width 18) for 0
-            at 2543 cross(posx left) for 0
-            at 2543 None for 0
+            at 1308 rectangle(posx left, width 18) for 0
+            at 2724 cross(posx left) for 0
+            at 2724 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -62,8 +62,8 @@ Detailed with stimuli for each trial:
 
   Variables:
     positions = [left, right]
-    cue_display = 1404
-    cross_display = 2820
+    cue_display = 1084
+    cross_display = 2326
     cue = left
     position = right
     congruency = incongruent
@@ -75,9 +75,9 @@ Detailed with stimuli for each trial:
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1404 rectangle(posx left, width 18) for 0
-            at 2820 cross(posx right) for 0
-            at 2820 None for 0
+            at 1084 rectangle(posx left, width 18) for 0
+            at 2326 cross(posx right) for 0
+            at 2326 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -89,8 +89,8 @@ Detailed with stimuli for each trial:
 
   Variables:
     positions = [left, right]
-    cue_display = 1131
-    cross_display = 2258
+    cue_display = 1084
+    cross_display = 2365
     cue = right
     position = left
     congruency = incongruent
@@ -102,9 +102,9 @@ Detailed with stimuli for each trial:
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1131 rectangle(posx right, width 18) for 0
-            at 2258 cross(posx left) for 0
-            at 2258 None for 0
+            at 1084 rectangle(posx right, width 18) for 0
+            at 2365 cross(posx left) for 0
+            at 2365 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -116,8 +116,8 @@ Detailed with stimuli for each trial:
 
   Variables:
     positions = [left, right]
-    cue_display = 1180
-    cross_display = 2348
+    cue_display = 1107
+    cross_display = 2441
     cue = right
     position = right
     congruency = congruent
@@ -129,9 +129,9 @@ Detailed with stimuli for each trial:
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1180 rectangle(posx right, width 18) for 0
-            at 2348 cross(posx right) for 0
-            at 2348 None for 0
+            at 1107 rectangle(posx right, width 18) for 0
+            at 2441 cross(posx right) for 0
+            at 2441 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

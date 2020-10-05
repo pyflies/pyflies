@@ -72,7 +72,7 @@ Test:
         table=ConditionsTable
     '}'
 
-    'stimuli' '{'
+    'trial' '{'
         vars*=VariableAssignment
         stimuli+=ConditionStimuli
     '}'
@@ -108,13 +108,13 @@ ConditionStimuli:
 */
 
 StimulusSpec:
-    ('at' at=TimeReference)? (record?='record' | stimulus=Stimulus)
-    ('for' duration=AdditiveExpression)?;
+    ('at' at=TimeReference)? stimulus=Stimulus ('for' duration=AdditiveExpression)?;
 
 Stimulus: name=StimulusName '(' params*=StimulusParam[',']  ')';
 StimulusParam: name=ID value=Expression;
 
-StimulusName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio';
+StimulusName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
+            | 'key' | 'mouse';
 
 /*
     Concrete stimuli with parameters and default values will be

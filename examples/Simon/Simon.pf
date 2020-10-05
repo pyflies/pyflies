@@ -29,9 +29,10 @@ test Simon {
       instead of using expressions in table cells.
     */
 
-    stimuli{
+    trial {
         fix: cross() for 2000..4000 choose
         exec: rectangle(posx position, color color, fillColor color)
+              key(valid response)
         error: sound(freq 1000) for 300
         correct: sound(freq 500) for 300
     }

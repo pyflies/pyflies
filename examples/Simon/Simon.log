@@ -46,9 +46,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2089
+            at 0 cross() for 2911
     exec:
             at 0 rectangle(posx left, color green, fillColor green) for 0
+            at 0 key(valid left) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -70,9 +71,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 3193
+            at 0 cross() for 2624
     exec:
             at 0 rectangle(posx left, color red, fillColor red) for 0
+            at 0 key(valid right) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -94,9 +96,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2869
+            at 0 cross() for 3571
     exec:
             at 0 rectangle(posx right, color green, fillColor green) for 0
+            at 0 key(valid left) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -118,9 +121,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2838
+            at 0 cross() for 3721
     exec:
             at 0 rectangle(posx right, color red, fillColor red) for 0
+            at 0 key(valid right) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

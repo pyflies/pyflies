@@ -16,9 +16,10 @@ test Parity {
         | numbers loop | parities | parities |
      }
 
-     stimuli {
+     trial {
              fix: cross() for 1000..3000 choose
              exec: text(text number)
+                   key(valid response)
              correct: sound(freq 500) for 300
              error: sound(freq 1000) for 300
      }

@@ -40,9 +40,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1173
+            at 0 cross() for 2392
     exec:
             at 0 image(file images/left-incongruent.png) for 0
+            at 0 key(valid left) for 0
     error:
             at 0 sound(freq 300) for 500
     correct:
@@ -62,9 +63,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2443
+            at 0 cross() for 1896
     exec:
             at 0 image(file images/left-congruent.png) for 0
+            at 0 key(valid left) for 0
     error:
             at 0 sound(freq 300) for 500
     correct:
@@ -84,9 +86,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2405
+            at 0 cross() for 2525
     exec:
             at 0 image(file images/right-incongruent.png) for 0
+            at 0 key(valid right) for 0
     error:
             at 0 sound(freq 300) for 500
     correct:
@@ -106,9 +109,10 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1396
+            at 0 cross() for 2574
     exec:
             at 0 image(file images/right-congruent.png) for 0
+            at 0 key(valid right) for 0
     error:
             at 0 sound(freq 300) for 500
     correct:

@@ -13,7 +13,7 @@ test Posner {
         |----------------+----------------+-----------------------------------------------+----------|
         | positions loop | positions loop | congruent if cue == position else incongruent | press    |
     }
-    stimuli {
+    trial {
         cue_display = 1000..1500 choose
         cross_display = cue_display + 1000..1500 choose
         exec: cross()
@@ -21,7 +21,8 @@ test Posner {
               rectangle(posx right, width 20)
               at cue_display rectangle(posx cue, width 18)
               at cross_display cross(posx position)
-              at .+0 record
+              key(valid response)
+              // mouse(target cross)
         error: sound(freq 1000) for 300
     }
 }

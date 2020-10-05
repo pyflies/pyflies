@@ -359,7 +359,6 @@ def test_stimuli_definition():
     stim = m.stimuli[0].eval(context)
     assert stim.duration == 200
     assert stim.at == 110
-    assert not stim.record
     assert stim.stimulus.name == 'circle'
     assert stim.stimulus.params[0].name == 'position'
     assert stim.stimulus.params[0].value == 0
@@ -393,20 +392,6 @@ def test_stimuli_definition():
     m = mm.model_from_str('at 100 circle(position 0, radius 20)')
     stim = m.stimuli[0].eval()
     assert stim.duration == 0
-
-    m = mm.model_from_str('at 100 record')
-    stim = m.stimuli[0].eval()
-    assert stim.duration == 0
-    assert stim.record
-    assert stim.at == 100
-
-    # If both recording and stimulus are defined at the same time it is parsed
-    # as two statements: first will start recording at 100
-    # and the second is circle stimuli for 200
-    m = mm.model_from_str('at 100 record circle(position 0, radius 20) for 200')
-    assert len(m.stimuli) == 2
-    assert m.stimuli[0].eval().record and not m.stimuli[1].eval().record
-    assert m.stimuli[1].eval().at == 0 and m.stimuli[1].eval().stimulus.name == 'circle'
 
 
 def test_conditions_table():
@@ -570,7 +555,7 @@ def test_conditions_table_phases_evaluation():
               |----------------+-------------+-----------|
               | positions loop | colors loop | positions |
             }
-            stimuli {
+            trial {
                 fix: cross() for 200..500 choose
                 exec: circle(x position, color color) for 300..700 choose
                 error and color == green: sound(freq 300)

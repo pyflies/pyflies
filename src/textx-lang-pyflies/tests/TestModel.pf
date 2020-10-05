@@ -12,7 +12,7 @@ test TestModel {
       | directions loop | congruencies loop | direction |
     }
 	
-	stimuli {
+	trial {
     duration = 100 if direction == left else 200
 		fix: cross() for 1000..3000 choose
     exec: at 50 circle(radius 100, posx left if direction == right else right) for 1000..2000 choose

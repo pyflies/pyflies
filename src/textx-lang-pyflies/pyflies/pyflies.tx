@@ -9,14 +9,14 @@
 PyFliesModel:
   (description=Description)?
   vars*=VariableAssignment
-  blocks+=Block
-  structure=Structure
+  routines+=Routine
+  (flow=Flow)?
   targets*=Target
 ;
 
 Description: '"""'- /((?!""")(.|\n))*/ '"""'-;
 
-Block:
+Routine:
   Test | Screen
 ;
 
@@ -233,39 +233,36 @@ Point:
   '[' x=INT ',' y=INT ']'
 ;
 
-TestInstance:
-  'test' type=[Test] runs=INT
-    (practice?="practice" (randomize?="randomize" randomize_all?="all")?)#
+Statement:
+    Repeat | Show
 ;
 
-ScreenInstance:
-  'screen' type=[Screen]
+Repeat:
+  'repeat' what=Repeatable runs=INT ('times' | 'time')?
+    full_random?=FullRandom random?='random' ('as'? practice?='practice')?
 ;
 
-Reference:
-  TestInstance | ScreenInstance
+Repeatable:
+    Block | TestRef
 ;
 
-StructureElement:
-  Reference | Block
+TestRef: test=[Test];
+
+Block:
+    '{'
+        statements*=Statement
+    '}'
 ;
 
+FullRandom: 'full' 'random';
 
-Structure:
-  'structure' '{'
-    elements*=StructureElement
-  '}'
+Show:
+  'show' screen = [Screen]
 ;
 
-Sequence:
-  'sequence' '{'
-    elements*=StructureElement
-  '}'
-;
-
-Randomize:
-  'randomize' '{'
-    elements*=StructureElement
+Flow:
+  'flow' '{'
+    statements *= Statement
   '}'
 ;
 

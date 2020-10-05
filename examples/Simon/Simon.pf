@@ -57,11 +57,11 @@ screen Real {
     Press SPACE for the real block.
 }
 
-structure {
-    screen Practice
-    test Simon 1 practice randomize
-    screen Real
-    test Simon 10 randomize all
+flow {
+    show Practice
+    repeat Simon 1 time random as practice
+    show Real
+    repeat Simon 10 times full random
 }
 
 target PsychoPy {

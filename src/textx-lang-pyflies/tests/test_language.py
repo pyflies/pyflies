@@ -620,24 +620,26 @@ def test_experiment_structure():
     mm = get_meta('pyflies.tx', classes=model_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
-    assert len(m.blocks) == 3
-    assert m.blocks[1].__class__.__name__ == 'Screen'
+    assert len(m.routines) == 3
+    assert m.routines[1].__class__.__name__ == 'Screen'
     assert m.description == 'Model for testing purposes.\n'
-    assert len(m.structure.elements) == 4
+    assert len(m.flow.statements) == 3
 
     # Practice run
-    ptest = m.structure.elements[1]
+    ptest = m.flow.statements[1]
     assert ptest.practice
-    assert ptest.randomize
-    assert not ptest.randomize_all
+    assert ptest.random
+    assert not ptest.full_random
     assert ptest.runs == 1
 
-    # Real test
-    rtest = m.structure.elements[3]
-    assert not rtest.practice
-    assert rtest.randomize
-    assert rtest.randomize_all
-    assert rtest.runs == 5
+    # Block repeat
+    rtest = m.flow.statements[2]
+    assert rtest.runs == 3
+    assert not rtest.random and not rtest.full_random and not rtest.practice
+    # Inner test
+    itest = rtest.what.statements[1]
+    assert itest.runs == 5
+    assert not itest.random and itest.full_random and not itest.practice
 
 
 def test_experiment_time_calculations():
@@ -650,7 +652,7 @@ def test_experiment_time_calculations():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.blocks[0].table.expanded
+    t = m.routines[0].table.expanded
 
     trial = t[0]
     stims = trial.ph_exec
@@ -671,7 +673,7 @@ def test_stimuli_variable_assignments():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.blocks[0].table.expanded
+    t = m.routines[0].table.expanded
 
     # Duration is 100 where direction is left, and 200 where direction is right
     trial = t[0]

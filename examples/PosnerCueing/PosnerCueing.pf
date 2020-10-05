@@ -50,23 +50,12 @@ screen Real {
 	
 }
 
-structure {
-	screen Practice
-	test Posner 1 practice randomize
-	screen Real
-	test Posner 1 randomize
+flow {
+	show Practice
+	repeat Posner 1 time full random as practice
+	show Real
+	repeat Posner 10 times full random
 }
-
-/*
-target Expyriment {
-  output = "/home/igor/tmp/Simon/"
-  responses {
-  	// see expyriment/misc/constants.py
-    left = K_LEFT
-    right = K_RIGHT
-  }
-}
-*/
 
 target PsychoPy {
   output = "/home/igor/tmp/PosnerPsycho/"

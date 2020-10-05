@@ -51,32 +51,27 @@ screen real {
 
 
 
-structure {
+flow {
 
   // Show introduction
-  screen intro
+  show intro
 
   // Perform practice test serie
-  test TestModel 1 practice randomize
+  repeat TestModel 1 time random as practice
 
-  screen real 
-  
-  // Perform real test serie (collects data)
-  test TestModel 5 randomize all
+    
+  // Just to show that we can repeat not only a single test but also
+  // a block
+  repeat {
+    show real 
+
+    // Perform real test serie (collects data).
+    // `full random` means that all 5 * 4 trials will
+    // be in random order
+    repeat TestModel 5 times full random
+  } 3 times
 
 }
-
-/*
-target Expyriment {
-  // Target folder where test should be generated
-  output = "/home/igor/tmp/eriksen/"
-
-  responses {
-    left = K_LEFT
-    right = K_RIGHT
-  }  
-}
-*/
 
 target PsychoPy {
   // Target folder where test should be generated

@@ -48,11 +48,11 @@ screen Real {
 	Press ENTER key for the start.
 }
 
-structure {
-	screen Intro
-	test Parity 1 practice randomize
-	screen Real
-	test Parity 2 randomize all
+flow {
+  show Intro
+  repeat Parity 1 time random as practice
+	show Real
+  repeat Parity 2 times full random
 }
 
 target PsychoPy {

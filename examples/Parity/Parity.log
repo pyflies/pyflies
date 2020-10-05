@@ -49,7 +49,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1950
+            at 0 cross() for 2770
     exec:
             at 0 text(text 1) for 0
     error:
@@ -71,7 +71,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2951
+            at 0 cross() for 1100
     exec:
             at 0 text(text 2) for 0
     error:
@@ -93,7 +93,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2804
+            at 0 cross() for 1987
     exec:
             at 0 text(text 3) for 0
     error:
@@ -115,7 +115,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1792
+            at 0 cross() for 2712
     exec:
             at 0 text(text 4) for 0
     error:
@@ -137,7 +137,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2029
+            at 0 cross() for 1366
     exec:
             at 0 text(text 5) for 0
     error:
@@ -159,7 +159,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1512
+            at 0 cross() for 2526
     exec:
             at 0 text(text 6) for 0
     error:
@@ -181,7 +181,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1026
+            at 0 cross() for 1791
     exec:
             at 0 text(text 7) for 0
     error:
@@ -203,7 +203,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2756
+            at 0 cross() for 2313
     exec:
             at 0 text(text 8) for 0
     error:
@@ -225,7 +225,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1628
+            at 0 cross() for 1607
     exec:
             at 0 text(text 9) for 0
     error:

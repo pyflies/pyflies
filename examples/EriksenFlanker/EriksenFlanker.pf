@@ -46,32 +46,20 @@ screen real {
 
 
 
-structure {
+flow {
 
   // Show introduction
-  screen intro
+  show intro
 
   // Perform practice test serie
-  test EriksenFlanker 1 practice randomize all
+  repeat EriksenFlanker 1 time full random as practice
 
-  screen real 
+  show real 
   
   // Perform real test serie (collects data)
-  test EriksenFlanker 5 randomize all
+  repeat EriksenFlanker 5 times full random
 
 }
-
-/*
-target Expyriment {
-  // Target folder where test should be generated
-  output = "/home/igor/tmp/eriksen/"
-
-  responses {
-    left = K_LEFT
-    right = K_RIGHT
-  }  
-}
-*/
 
 target PsychoPy {
   // Target folder where test should be generated

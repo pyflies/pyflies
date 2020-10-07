@@ -3,7 +3,7 @@ Eriksen flanker test.
 
 """
 
-Tests count: 1
+Tests: [<Test:EriksenFlanker>]
 Screens: [<Screen:intro>, <Screen:real>]
 
 Variables:
@@ -41,7 +41,7 @@ Trial 1
 
   Phases:
     fix:
-            at 0 cross() for 1971
+            at 0 cross() for 2671
     exec:
             at 0 image(file images/left-incongruent.png) for 0
             at 0 key(valid left) for 0
@@ -65,7 +65,7 @@ Trial 2
 
   Phases:
     fix:
-            at 0 cross() for 1108
+            at 0 cross() for 2225
     exec:
             at 0 image(file images/left-congruent.png) for 0
             at 0 key(valid left) for 0
@@ -89,7 +89,7 @@ Trial 3
 
   Phases:
     fix:
-            at 0 cross() for 2689
+            at 0 cross() for 1810
     exec:
             at 0 image(file images/right-incongruent.png) for 0
             at 0 key(valid right) for 0
@@ -113,7 +113,7 @@ Trial 4
 
   Phases:
     fix:
-            at 0 cross() for 1659
+            at 0 cross() for 1885
     exec:
             at 0 image(file images/right-congruent.png) for 0
             at 0 key(valid right) for 0

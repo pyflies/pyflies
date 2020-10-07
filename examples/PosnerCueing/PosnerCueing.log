@@ -6,7 +6,7 @@ http://en.wikipedia.org/wiki/Posner_cueing_task
 
 """
 
-Tests count: 1
+Tests: [<Test:Posner>]
 Screens: [<Screen:Practice>, <Screen:Real>]
 
 Variables:
@@ -36,8 +36,8 @@ Trial 1
 
   Variables:
     positions = [left, right]
-    cue_display = 1126
-    cross_display = 2535
+    cue_display = 1489
+    cross_display = 2658
     cue = left
     position = left
     congruency = congruent
@@ -49,9 +49,9 @@ Trial 1
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1126 rectangle(posx left, width 18) for 0
-            at 2535 cross(posx left) for 0
-            at 2535 key(valid press) for 0
+            at 1489 rectangle(posx left, width 18) for 0
+            at 2658 cross(posx left) for 0
+            at 2658 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -64,8 +64,8 @@ Trial 2
 
   Variables:
     positions = [left, right]
-    cue_display = 1448
-    cross_display = 2597
+    cue_display = 1265
+    cross_display = 2443
     cue = left
     position = right
     congruency = incongruent
@@ -77,9 +77,9 @@ Trial 2
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1448 rectangle(posx left, width 18) for 0
-            at 2597 cross(posx right) for 0
-            at 2597 key(valid press) for 0
+            at 1265 rectangle(posx left, width 18) for 0
+            at 2443 cross(posx right) for 0
+            at 2443 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -92,8 +92,8 @@ Trial 3
 
   Variables:
     positions = [left, right]
-    cue_display = 1251
-    cross_display = 2375
+    cue_display = 1334
+    cross_display = 2433
     cue = right
     position = left
     congruency = incongruent
@@ -105,9 +105,9 @@ Trial 3
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1251 rectangle(posx right, width 18) for 0
-            at 2375 cross(posx left) for 0
-            at 2375 key(valid press) for 0
+            at 1334 rectangle(posx right, width 18) for 0
+            at 2433 cross(posx left) for 0
+            at 2433 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -120,8 +120,8 @@ Trial 4
 
   Variables:
     positions = [left, right]
-    cue_display = 1149
-    cross_display = 2152
+    cue_display = 1372
+    cross_display = 2456
     cue = right
     position = right
     congruency = congruent
@@ -133,9 +133,9 @@ Trial 4
             at 0 cross() for 0
             at 0 rectangle(posx left, width 20) for 0
             at 0 rectangle(posx right, width 20) for 0
-            at 1149 rectangle(posx right, width 18) for 0
-            at 2152 cross(posx right) for 0
-            at 2152 key(valid press) for 0
+            at 1372 rectangle(posx right, width 18) for 0
+            at 2456 cross(posx right) for 0
+            at 2456 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

@@ -6,7 +6,7 @@ http://en.wikipedia.org/wiki/Simon_effect
 
 """
 
-Tests count: 1
+Tests: [<Test:Simon>]
 Screens: [<Screen:Practice>, <Screen:Real>]
 
 Variables:
@@ -47,7 +47,7 @@ Trial 1
 
   Phases:
     fix:
-            at 0 cross() for 2216
+            at 0 cross() for 2162
     exec:
             at 0 rectangle(posx left, color green, fillColor green) for 0
             at 0 key(valid left) for 0
@@ -73,7 +73,7 @@ Trial 2
 
   Phases:
     fix:
-            at 0 cross() for 2843
+            at 0 cross() for 3214
     exec:
             at 0 rectangle(posx left, color red, fillColor red) for 0
             at 0 key(valid right) for 0
@@ -99,7 +99,7 @@ Trial 3
 
   Phases:
     fix:
-            at 0 cross() for 3078
+            at 0 cross() for 2714
     exec:
             at 0 rectangle(posx right, color green, fillColor green) for 0
             at 0 key(valid left) for 0
@@ -125,7 +125,7 @@ Trial 4
 
   Phases:
     fix:
-            at 0 cross() for 3400
+            at 0 cross() for 2645
     exec:
             at 0 rectangle(posx right, color red, fillColor red) for 0
             at 0 key(valid right) for 0

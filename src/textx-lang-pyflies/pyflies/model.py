@@ -514,6 +514,9 @@ class Test(ModelElement, ScopeProvider):
     def calc_phases(self):
         self.table.calc_phases()
 
+    def __repr__(self):
+        return '<Test:{}>'.format(self.name)
+
 
 model_classes = list(map(
     lambda x: x[1],

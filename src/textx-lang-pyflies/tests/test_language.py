@@ -348,50 +348,50 @@ def test_scope_providers():
     assert m.var_vals['a'] + 100 == m.exp.eval()
 
 
-def test_stimuli_definition():
+def test_components_definition():
 
-    mm = get_meta('stimuli.tx')
+    mm = get_meta('components.tx')
 
     # Time, duration and params can be expressions
     context = {'a': 10, 'b': 5}
     m = mm.model_from_str(
         'at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
-    stim = m.stimuli[0].eval(context)
-    assert stim.duration == 200
-    assert stim.at == 110
-    assert stim.stimulus.name == 'circle'
-    assert stim.stimulus.params[0].name == 'position'
-    assert stim.stimulus.params[0].value == 0
-    assert stim.stimulus.params[1].name == 'radius'
-    assert stim.stimulus.params[1].value == 20
+    comp = m.components[0].eval(context)
+    assert comp.duration == 200
+    assert comp.at == 110
+    assert comp.component.name == 'circle'
+    assert comp.component.params[0].name == 'position'
+    assert comp.component.params[0].value == 0
+    assert comp.component.params[1].name == 'radius'
+    assert comp.component.params[1].value == 20
 
-    # Time can relative to the start of the previous stimulus
+    # Time can relative to the start of the previous component
     m = mm.model_from_str('at .+100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
-    assert stim.at.time.eval() == 100
-    assert stim.at.relative_op == '+'
-    assert stim.at.start_relative
+    comp = m.components[0]
+    assert comp.at.time.eval() == 100
+    assert comp.at.relative_op == '+'
+    assert comp.at.start_relative
 
-    # Time can relative to the end of the previous stimulus
+    # Time can relative to the end of the previous component
     m = mm.model_from_str('at +100 circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
-    assert stim.at.time.eval() == 100
-    assert stim.at.relative_op == '+'
-    assert not stim.at.start_relative
+    comp = m.components[0]
+    assert comp.at.time.eval() == 100
+    assert comp.at.relative_op == '+'
+    assert not comp.at.start_relative
 
     # If not given, by default it is the same as the start of the previous
     # E.g. `at .`
     m = mm.model_from_str('circle(position 0, radius 20) for 200')
-    stim = m.stimuli[0]
-    assert stim.at.time.eval() == 0
-    assert stim.at.relative_op == '+'
-    assert stim.at.start_relative
+    comp = m.components[0]
+    assert comp.at.time.eval() == 0
+    assert comp.at.relative_op == '+'
+    assert comp.at.start_relative
 
-    # If duration is not given it is assumed that stimulus should be shown
+    # If duration is not given it is assumed that component should be shown
     # until the end of the trial
     m = mm.model_from_str('at 100 circle(position 0, radius 20)')
-    stim = m.stimuli[0].eval()
-    assert stim.duration == 0
+    comp = m.components[0].eval()
+    assert comp.duration == 0
 
 
 def test_conditions_table():
@@ -540,7 +540,7 @@ def test_conditions_table_condition_cyclic_reference():
 
 def test_conditions_table_phases_evaluation():
     """
-    Test that evaluated table has attached appropriate stimuli specifications
+    Test that evaluated table has attached appropriate components specifications
     for each trial phase.
     """
     mm = get_meta('test_type.tx')
@@ -569,32 +569,32 @@ def test_conditions_table_phases_evaluation():
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
-        assert s.stimulus.name == 'cross'
+        assert s.component.name == 'cross'
         assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
-        assert st.stimulus.name == 'circle'
+        assert st.component.name == 'circle'
         assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]
-        assert st.stimulus.name == 'sound'
+        assert st.component.name == 'sound'
         # Frequencies are 300 when color is green and 500 otherwise
-        assert st.stimulus.params[0].value == 300 if t[trial][1].name == 'green' else 500
+        assert st.component.params[0].value == 300 if t[trial][1].name == 'green' else 500
 
         # Correct
         st = t[trial].ph_correct[0]
-        assert st.stimulus.name == 'sound'
-        assert st.stimulus.params[0].name == 'freq'
-        assert st.stimulus.params[0].value == 1000
+        assert st.component.name == 'sound'
+        assert st.component.params[0].name == 'freq'
+        assert st.component.params[0].value == 1000
 
     # Parameters evaluation
     st = t[0].ph_exec[0]
-    assert st.stimulus.params[0].value.name == 'left'
-    assert st.stimulus.params[1].value.name == 'green'
+    assert st.component.params[0].value.name == 'left'
+    assert st.component.params[1].value.name == 'green'
 
 
 def test_experiment_structure():
@@ -640,16 +640,16 @@ def test_experiment_time_calculations():
     t = m.routines[0].table.expanded
 
     trial = t[0]
-    stims = trial.ph_exec
-    assert stims[1].at == 150
-    assert stims[2].at == 300
-    assert stims[3].at == 500
-    assert stims[4].at == 400
+    comps = trial.ph_exec
+    assert comps[1].at == 150
+    assert comps[2].at == 300
+    assert comps[3].at == 500
+    assert comps[4].at == 400
 
 
-def test_stimuli_variable_assignments():
+def test_components_variable_assignments():
     """
-    Test that variables defined in stimuli block are evaluated during table
+    Test that variables defined in the trial block are evaluated during table
     expansion for each table row.
     """
 

@@ -25,8 +25,9 @@ Conditions:
 | right     | congruent   | right    |
 
 
-Detailed with stimuli for each trial:
+Detailed with components for each trial:
 
+Trial 1
 | direction | category    | response |
 |-----------+-------------+----------|
 | left      | incongruent | left     |
@@ -40,7 +41,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2392
+            at 0 cross() for 1971
     exec:
             at 0 image(file images/left-incongruent.png) for 0
             at 0 key(valid left) for 0
@@ -50,6 +51,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 700) for 300
 
 
+Trial 2
 | direction | category    | response |
 |-----------+-------------+----------|
 | left      | congruent   | left     |
@@ -63,7 +65,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1896
+            at 0 cross() for 1108
     exec:
             at 0 image(file images/left-congruent.png) for 0
             at 0 key(valid left) for 0
@@ -73,6 +75,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 700) for 300
 
 
+Trial 3
 | direction | category    | response |
 |-----------+-------------+----------|
 | right     | incongruent | right    |
@@ -86,7 +89,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2525
+            at 0 cross() for 2689
     exec:
             at 0 image(file images/right-incongruent.png) for 0
             at 0 key(valid right) for 0
@@ -96,6 +99,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 700) for 300
 
 
+Trial 4
 | direction | category    | response |
 |-----------+-------------+----------|
 | right     | congruent   | right    |
@@ -109,7 +113,7 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2574
+            at 0 cross() for 1659
     exec:
             at 0 image(file images/right-congruent.png) for 0
             at 0 key(valid right) for 0

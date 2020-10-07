@@ -1,3 +1,0 @@
-import pyflies
-
-Model: stimuli*=StimulusSpec;

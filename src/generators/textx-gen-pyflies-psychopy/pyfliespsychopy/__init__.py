@@ -11,15 +11,14 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
                               **custom_args):
     "Generator for generating PsychoPy code from pyFlies descriptions"
 
-    # template directory
-    template_folder = join(dirname(__file__), 'templates')
+    template_file = join(dirname(__file__), 'templates', 'main.py.jinja')
 
     if output_path is None:
-        output_path = dirname(model._tx_filename)
+        output_file = basename(splitext(model._tx_filename)[0]) + '.py'
+    else:
+        output_file = output_path
 
-    file_name = basename(splitext(model._tx_filename)[0])
     config = {'m': model,
-              'file_name': file_name,
               'responseMap': {}}
 
     for target in model.targets:
@@ -35,17 +34,22 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
 
     filters = {
         'striptabs': striptabs,
-        'duration': duration
+        'duration': duration,
+        'type': typ
     }
 
     # call the generator
-    textx_jinja_generator(template_folder, output_path, config, overwrite, filters)
+    textx_jinja_generator(template_file, output_file, config, overwrite, filters)
 
 
 # Jinja filters
 
 def striptabs(s):
     return re.sub(r'^[ \t]+', '', s, flags=re.M)
+
+
+def typ(obj):
+    return obj.__class__.__name__
 
 
 def duration(s):

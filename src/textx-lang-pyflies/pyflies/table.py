@@ -56,9 +56,9 @@ class ExpTable(ModelElement):
 
     def calc_phases(self):
         """
-        Evaluates condition stimuli specification from the associated condition
+        Evaluates condition components specification from the associated condition
         table for each trial phase.  After evaluation each row will have
-        connected appropriate, evaluated stimuli instances.
+        connected appropriate, evaluated components instances.
         """
         for row in self.rows:
             row.calc_phases()
@@ -101,8 +101,8 @@ class ExpTableRow(ModelElement, ScopeProvider):
 
     def calc_phases(self):
         """
-        Evaluate condition stimuli specification for each phase of this trial.
-        If condition is True evaluate stimuli specs and attach to this row.
+        Evaluate condition components specification for each phase of this trial.
+        If condition is True evaluate components specs and attach to this row.
         """
         for phase in ['fix', 'exec', 'error', 'correct']:
             context = self.get_context({phase: True})
@@ -115,21 +115,21 @@ class ExpTableRow(ModelElement, ScopeProvider):
             # e.g. export to log
             self.var_vals.update(self.get_context())
 
-            stim_specs = test.stimuli
-            for sspec in stim_specs:
+            comp_specs = test.components
+            for sspec in comp_specs:
                 try:
                     cond_val = sspec.condition.eval(context)
                 except PyFliesException:
                     cond_val = False
 
                 if cond_val is True:
-                    stim_insts = []
-                    last_stim = None
-                    for stim in sspec.stimuli:
-                        stim_inst = stim.eval(context, last_stim)
-                        stim_insts.append(stim_inst)
-                        last_stim = stim_inst
-                    setattr(self, f'ph_{phase}', stim_insts)
+                    comp_insts = []
+                    last_comp = None
+                    for comp in sspec.components:
+                        comp_inst = comp.eval(context, last_comp)
+                        comp_insts.append(comp_inst)
+                        last_comp = comp_inst
+                    setattr(self, f'ph_{phase}', comp_insts)
                     break
 
     def __str__(self):

@@ -32,9 +32,10 @@ Conditions:
 {{test.table}}
 
 
-Detailed with stimuli for each trial:
+Detailed with components for each trial:
 {% for row in test.table.expanded %}
 
+Trial {{loop.index}}
 {{test.table.expanded.header_str()-}}
 {{row}}
 

@@ -7,7 +7,7 @@ from itertools import cycle, repeat, product
 
 from .exceptions import PyFliesException
 from .time import TimeReferenceInst
-from .stimuli import StimulusSpecInst, StimulusInst, StimulusParamInst
+from .components import ComponentSpecInst, ComponentInst, ComponentParamInst
 from .scope import ScopeProvider, Postpone, PostponedEval
 
 
@@ -378,7 +378,7 @@ class TimeReference(ModelElement):
         return TimeReferenceInst(self, context)
 
 
-class StimulusSpec(ModelElement):
+class ComponentSpec(ModelElement):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
         if self.at is None:
@@ -392,17 +392,17 @@ class StimulusSpec(ModelElement):
             self.duration = BaseValue(parent=self, value=0)
 
     def eval(self, context=None, last_stim=None):
-        return StimulusSpecInst(self, context, last_stim)
+        return ComponentSpecInst(self, context, last_stim)
 
 
-class Stimulus(ModelElement):
+class Component(ModelElement):
     def eval(self, context=None):
-        return StimulusInst(self, context)
+        return ComponentInst(self, context)
 
 
-class StimulusParam(ModelElement):
+class ComponentParam(ModelElement):
     def eval(self, context=None):
-        return StimulusParamInst(self, context)
+        return ComponentParamInst(self, context)
 
 
 class ConditionsTable(ModelElement):
@@ -500,14 +500,14 @@ class ConditionsTable(ModelElement):
             rows = [spec.var_exps for spec in self.cond_specs]
             return table_to_str(self.variables, rows, self.column_widths)
 
-    def connect_stimuli(self, stimuli):
+    def connect_components(self, components):
         """
-        For each table condition, and each phase, evaluates stimuli and connect
-        matched stimuli to the table/condition phase.  Table must be previously
+        For each table condition, and each phase, evaluates components and connect
+        matched components to the table/condition phase.  Table must be previously
         expanded.
         """
         if not self.is_expanded():
-            raise PyFliesException('Cannot evaluate stimuli on unexpanded table.')
+            raise PyFliesException('Cannot evaluate components on unexpanded table.')
 
 
 class Test(ModelElement, ScopeProvider):

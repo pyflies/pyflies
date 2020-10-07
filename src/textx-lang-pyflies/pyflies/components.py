@@ -1,9 +1,9 @@
 from .evaluated import EvaluatedBase
 
 
-class StimulusSpecInst(EvaluatedBase):
+class ComponentSpecInst(EvaluatedBase):
     """
-    Represents an evaluated instance of stimulus specification
+    Represents an evaluated instance of component specification
     """
     def __init__(self, spec, context=None, last_stim=None):
         super().__init__(spec, context)
@@ -17,16 +17,16 @@ class StimulusSpecInst(EvaluatedBase):
                 if not self.spec.at.start_relative:
                     self.at += last_stim.duration
         self.duration = spec.duration.eval(context)
-        self.stimulus = spec.stimulus.eval(context) if spec.stimulus else None
+        self.component = spec.component.eval(context) if spec.component else None
 
     def __repr__(self):
-        return 'at {} {} for {}'.format(str(self.at), str(self.stimulus),
+        return 'at {} {} for {}'.format(str(self.at), str(self.component),
                                         str(self.duration))
 
 
-class StimulusInst(EvaluatedBase):
+class ComponentInst(EvaluatedBase):
     """
-    An evaluated instance of stimulus
+    An evaluated instance of component
     """
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
@@ -38,7 +38,7 @@ class StimulusInst(EvaluatedBase):
         return '{}({})'.format(self.spec.name, ', '.join([str(x) for x in self.params]))
 
 
-class StimulusParamInst(EvaluatedBase):
+class ComponentParamInst(EvaluatedBase):
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
         self.value = self.value.eval(context)

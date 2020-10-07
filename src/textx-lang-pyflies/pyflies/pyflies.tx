@@ -74,7 +74,7 @@ Test:
 
     'trial' '{'
         vars*=VariableAssignment
-        stimuli+=ConditionStimuli
+        components+=ConditionsComponents
     '}'
   "}"
 ;
@@ -96,28 +96,28 @@ Condition:
   '|' var_exps+=Expression['|'] '|'
 ;
 
-ConditionStimuli:
-  // Condition stimuli is given in the form of
-  // condition match expression : stimuli definitions
-  condition=Expression ':' stimuli+=StimulusSpec
+ConditionsComponents:
+  // Condition components is given in the form of
+  // condition match expression : components definitions
+  condition=Expression ':' components+=ComponentSpec
 ;
 
 
 /*
-    Stimuli spec
+    Components spec
 */
 
-StimulusSpec:
-    ('at' at=TimeReference)? stimulus=Stimulus ('for' duration=AdditiveExpression)?;
+ComponentSpec:
+    ('at' at=TimeReference)? component=Component ('for' duration=AdditiveExpression)?;
 
-Stimulus: name=StimulusName '(' params*=StimulusParam[',']  ')';
-StimulusParam: name=ID value=Expression;
+Component: name=ComponentName '(' params*=ComponentParam[',']  ')';
+ComponentParam: name=ID value=Expression;
 
-StimulusName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
-            | 'key' | 'mouse';
+ComponentName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
+             | 'key' | 'mouse';
 
 /*
-    Concrete stimuli with parameters and default values will be
+    Concrete components with parameters and default values will be
     defined in model/obj. processors to produce better error report.
 
 Image:

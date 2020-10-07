@@ -8,6 +8,6 @@ Model:
 CTable:
     '{'
         t=ConditionsTable
-        stimuli*=StimulusSpec
+        components*=ComponentSpec
     '}'
 ;

@@ -2,11 +2,13 @@ import pytest
 from os.path import join, dirname, abspath
 from textx import metamodel_from_file
 
-from pyflies.model import (model_classes, ModelElement, Symbol, BaseValue,
-                           AdditiveExpression, List, String, Range)
+from pyflies.lang.common import (ModelElement, Symbol, BaseValue,
+                                 AdditiveExpression, List, String, Range)
+from pyflies.lang.common import classes as common_classes
+from pyflies.lang.pyflies import classes as model_classes
 from pyflies.scope import ScopeProvider
 from pyflies.exceptions import PyFliesException
-from pyflies.model_processor import processor
+from pyflies.lang.pyflies_processor import processor
 
 
 this_folder = dirname(abspath(__file__))
@@ -348,9 +350,9 @@ def test_scope_providers():
     assert m.var_vals['a'] + 100 == m.exp.eval()
 
 
-def test_components_definition():
+def test_component_timing_definition():
 
-    mm = get_meta('components.tx')
+    mm = get_meta('component_spec.tx')
 
     # Time, duration and params can be expressions
     context = {'a': 10, 'b': 5}
@@ -668,3 +670,37 @@ def test_components_variable_assignments():
     trial = t[2]
     assert trial.var_vals['direction'].name == 'right'
     assert trial.ph_exec[2].duration == 200
+
+
+def test_component_specification():
+    """
+    Test component specification language
+    """
+
+    mm = metamodel_from_file(join(this_folder, 'components.tx'), classes=common_classes)
+
+    model_str = r'''
+    component test_comp
+    """
+    This is test component
+    """
+    {
+        // First param don't have a default value and thus is mandatory
+        param first_param: string
+
+        // Second param has default value and thus is optional
+        param second_param: int = 5
+        """
+        Parameter description
+        """
+
+        // Third param can be of multiple types
+        param multi_type: [int, string, symbol] = 10
+    }
+    '''
+
+    model = mm.model_from_str(model_str)
+    comp = model.comp_types[0]
+    assert comp.param_types[1].description.strip() == 'Parameter description'
+    assert comp.param_types[2].types == ['int', 'string', 'symbol']
+    assert comp.param_types[2].default.eval() == 10

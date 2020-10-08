@@ -1,3 +1,1 @@
-import pyflies
-
-Model: components*=ComponentSpec;
+../pyflies/lang/components.tx

@@ -1,3 +1,6 @@
+"""
+Custom classes for common.tx
+"""
 import sys
 import inspect
 import random
@@ -5,10 +8,8 @@ from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, tru
 from functools import reduce
 from itertools import cycle, repeat, product
 
-from .exceptions import PyFliesException
-from .time import TimeReferenceInst
-from .components import ComponentSpecInst, ComponentInst, ComponentParamInst
-from .scope import ScopeProvider, Postpone, PostponedEval
+from pyflies.exceptions import PyFliesException
+from pyflies.scope import ScopeProvider, Postpone, PostponedEval
 
 
 def get_parent_of_type(clazz, obj):
@@ -50,15 +51,6 @@ class ModelElement:
                 return p.get_context(c)
 
         return c
-
-
-class PyFliesModel(ScopeProvider, ModelElement):
-    pass
-
-
-class VariableAssignment(ModelElement):
-    def __repr__(self):
-        return '{} = {}'.format(self.name, self.value)
 
 
 class ExpressionElement(ModelElement):
@@ -362,163 +354,7 @@ class UnaryExpression(UnaryOperation):
     }
 
 
-class Condition(ModelElement):
-    def __getitem__(self, idx):
-        return self.var_exps[idx]
-
-    def __iter__(self):
-        return iter(self.var_exps)
-
-    def __len__(self):
-        return len(self.var_exps)
-
-
-class TimeReference(ModelElement):
-    def eval(self, context=None):
-        return TimeReferenceInst(self, context)
-
-
-class ComponentSpec(ModelElement):
-    def __init__(self, parent, **kwargs):
-        super().__init__(parent, **kwargs)
-        if self.at is None:
-            # Default time reference
-            self.at = TimeReference(self, start_relative=True, relative_op='+',
-                                    time=None)
-            self.at.time = BaseValue(parent=self.at, value=0)
-
-        if self.duration is None:
-            # Default duration is 0, meaning indefinite
-            self.duration = BaseValue(parent=self, value=0)
-
-    def eval(self, context=None, last_stim=None):
-        return ComponentSpecInst(self, context, last_stim)
-
-
-class Component(ModelElement):
-    def eval(self, context=None):
-        return ComponentInst(self, context)
-
-
-class ComponentParam(ModelElement):
-    def eval(self, context=None):
-        return ComponentParamInst(self, context)
-
-
-class ConditionsTable(ModelElement):
-    def __init__(self, parent, **kwargs):
-        super().__init__(parent, **kwargs)
-        from .table import get_column_widths
-        self.column_widths = get_column_widths(self.variables, self.cond_specs)
-
-    def expand(self):
-        """
-        Expands the table taking into account `loop` messages for looping, and
-        ranges and list for cycling.
-        """
-
-        from .table import ExpTable, ExpTableRow
-
-        self.expanded = ExpTable(self)
-
-        for cond_spec in self:
-            cond_template = []
-            loops = []
-            loops_idx = []
-
-            # Create cond template which will be used to instantiate concrete
-            # expanded table rows.
-            for idx, var_exp in enumerate(cond_spec):
-                if type(var_exp) is LoopExpression:
-                    loops.append(var_exp.exp.resolve())
-                    loops_idx.append(idx)
-                    cond_template.append(None)
-                else:
-                    # If not a loop expression then cycle if list-like
-                    # expression (e.g. List or Range) or repeat otherwise
-                    var_exp_resolved = var_exp.resolve()
-                    if isinstance(var_exp_resolved, Sequence):
-                        cond_template.append(cycle(var_exp_resolved.get_exps()))
-                    else:
-                        cond_template.append(repeat(var_exp))
-
-            assert len(cond_template) == len(cond_spec)
-
-            # Evaluate template making possibly new rows if there are loop
-            # expressions
-            if loops:
-                loops = product(*loops)
-                for loop_vals in loops:
-
-                    # Evaluate looping variables. We start with all variables
-                    # in postponed state to enable postponing evaluation of all
-                    # expressions that uses postponed table variables (i.e.
-                    # referencing forward column value)
-                    row = [None] * len(cond_template)
-                    for idx, loop_val in zip(loops_idx, loop_vals):
-                        row[idx] = loop_val
-
-                    for idx, cond_i in enumerate(cond_template):
-                        if cond_i is not None:
-                            row[idx] = next(cond_i)
-
-                    row = ExpTableRow(self.expanded, row)
-                    row.eval()
-            else:
-                # No looping - just evaluate all expressions
-                row = ExpTableRow(self.expanded, [next(x) for x in cond_template])
-                row.eval()
-
-        self.expanded.calculate_column_widths()
-
-    def calc_phases(self):
-        self.expanded.calc_phases()
-
-    def __getitem__(self, idx):
-        return self.cond_specs[idx]
-
-    def __iter__(self):
-        return iter(self.cond_specs)
-
-    def __len__(self):
-        return len(self.cond_specs)
-
-    def __eq__(self, other):
-        return self.expanded == other.expanded
-
-    def __str__(self):
-        """
-        String representation will be in orgmode table format for better readability.
-        """
-        return self.to_str()
-
-    def to_str(self, expanded=True):
-        if expanded:
-            return str(self.expanded)
-        else:
-            from .table import table_to_str
-            rows = [spec.var_exps for spec in self.cond_specs]
-            return table_to_str(self.variables, rows, self.column_widths)
-
-    def connect_components(self, components):
-        """
-        For each table condition, and each phase, evaluates components and connect
-        matched components to the table/condition phase.  Table must be previously
-        expanded.
-        """
-        if not self.is_expanded():
-            raise PyFliesException('Cannot evaluate components on unexpanded table.')
-
-
-class Test(ModelElement, ScopeProvider):
-    def calc_phases(self):
-        self.table.calc_phases()
-
-    def __repr__(self):
-        return '<Test:{}>'.format(self.name)
-
-
-model_classes = list(map(
+classes = list(map(
     lambda x: x[1],
     inspect.getmembers(sys.modules[__name__],
                        lambda c: inspect.isclass(c)

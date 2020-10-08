@@ -13,7 +13,7 @@ VariableName: ID;
 Point:
     '[' x=INT ',' y=INT ']'
 ;
-
+Type: 'int' | 'float' | 'string' | 'bool' | 'symbol' | 'list' | 'point' | 'color';
 
 
 // Expressions
@@ -36,5 +36,10 @@ Message: 'choose' | 'shuffle';
 MessageReceiver: CompoundTypeValue | VariableRef;
 LoopExpression: exp=OrExpression 'loop';
 
+
+// Special rule for comments
+Comment:
+    /\/\/.*$/|/\/\*(.|\n)*?\*\//  // Non-greedy match of block component content
+;
 
 Description: '"""'- /((?!""")(.|\n))*/ '"""'-;

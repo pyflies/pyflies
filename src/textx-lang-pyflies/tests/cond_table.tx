@@ -11,3 +11,8 @@ CTable:
         components*=ComponentSpec
     '}'
 ;
+
+// Special rule for comments
+Comment:
+    /\/\/.*$/|/\/\*(.|\n)*?\*\//  // Non-greedy match of block component content
+;

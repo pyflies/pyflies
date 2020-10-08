@@ -6,6 +6,8 @@
   License: GPLv3 License
 */
 
+import common
+
 PyFliesModel:
   (description=Description)?
   vars*=VariableAssignment
@@ -14,8 +16,6 @@ PyFliesModel:
   targets*=Target
 ;
 
-Description: '"""'- /((?!""")(.|\n))*/ '"""'-;
-
 Routine:
   Test | Screen
 ;
@@ -23,42 +23,6 @@ Routine:
 VariableAssignment:
     name=VariableName '=' value=Expression
 ;
-
-Value:
-    String | CompoundTypeValue | BaseValue
-;
-
-BaseValue: value=STRICTFLOAT | value=INT | value=BOOL;
-String: value=STRING;
-CompoundTypeValue: Range | List;
-Range: lower=INT '..' upper=INT;
-List: '[' values*=Expression[','] ']';
-VariableRef: name=VariableName;
-VariableName: ID;
-
-
-/*
-    Expressions
-*/
-Expression: IfExpression | LoopExpression | OrExpression;
-IfExpression: if_true=OrExpression 'if' cond=OrExpression 'else' if_false=OrExpression;
-OrExpression: op=AndExpression ('or' op=AndExpression)*;
-AndExpression: op=NotExpression ('and' op=NotExpression)*;
-NotExpression: (opn='not')? op=ComparisonExpression;
-ComparisonExpression: op=AdditiveExpression ( opn=ComparisonOperator op=AdditiveExpression)*;
-ComparisonOperator: '=='|'!='|'<='|'>='|'>'|'<';
-AdditiveExpression: op=MultiplicativeExpression (opn=AdditiveOperator op=MultiplicativeExpression)*;
-AdditiveOperator: '+'|'-';
-MultiplicativeExpression: op=UnaryExpression (opn=MultiplicativeOperator op=UnaryExpression)*;
-MultiplicativeOperator: '*'|'/';
-UnaryExpression: (opn=SignOperator)? op=PrimaryExpression;
-SignOperator: '-' | '+';
-PrimaryExpression: '(' Expression ')' | MessageExpression | Value | VariableRef;
-MessageExpression: receiver=MessageReceiver message=Message;
-Message: 'choose' | 'shuffle';
-MessageReceiver: CompoundTypeValue | VariableRef;
-LoopExpression: exp=OrExpression 'loop';
-
 
 TimeReference: start_relative?='.' (relative_op=SignOperator)? time=AdditiveExpression;
 
@@ -211,27 +175,12 @@ Audio:
 ;
 
 
-TextType:
-  STRING | /\w*\b/
-;
-
-
-Duration:
-   // _from , to - duration will be randomly choosen from the given interval.
-   // value - duration is fixed.
-  ('[' _from=INT ',' to=INT ']') | value = INT
-;
-
     */
 
 WORD:
     INT|/[-\w]*\b/
 ;
 
-
-Point:
-  '[' x=INT ',' y=INT ']'
-;
 
 Statement:
     Repeat | Show

@@ -680,7 +680,15 @@ def test_component_specification():
     mm = metamodel_from_file(join(this_folder, 'components.tx'), classes=common_classes)
 
     model_str = r'''
-    component test_comp
+    abstract component abs_comp
+    """
+    This component is used in inheritance
+    """
+    {
+        param abs_param: int
+    }
+
+    component test_comp extends abs_comp
     """
     This is test component
     """
@@ -700,7 +708,11 @@ def test_component_specification():
     '''
 
     model = mm.model_from_str(model_str)
+
     comp = model.comp_types[0]
+    assert comp.abstract
+
+    comp = model.comp_types[1]
     assert comp.param_types[1].description.strip() == 'Parameter description'
     assert comp.param_types[2].types == ['int', 'string', 'symbol']
     assert comp.param_types[2].default.eval() == 10

@@ -10,10 +10,10 @@ Model:
 ;
 
 ComponentType:
-    'component' name=ID
+    abstract?='abstract' 'component' name=ID ('extends' extends+=[ComponentType][','])?
     (description=Description)?
     '{'
-        param_types+=ParamType
+        param_types*=ParamType
     '}'
 ;
 

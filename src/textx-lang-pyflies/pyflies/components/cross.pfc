@@ -1,0 +1,5 @@
+component cross extends visual
+"""
+Usually used as a fixation point
+"""
+{}

@@ -1,0 +1,28 @@
+// Base abstract components that define common properties
+
+abstract component visual
+"""
+The definition of parameters used by all visual stimuli
+"""
+{
+    param position:point = (0, 0)
+    """
+    The position of the component. By default center of the screen.
+    """
+
+    param size:[symbol, int] = 20
+    """
+    The size of the component. May be given in descriptive way or as a
+    size in the coordinate space.
+    """
+
+    param color:[symbol, color] = white
+    """
+    This color is used for border of the component.
+    """
+
+    param fillColor:[symbol, color] = white
+    """
+    This color is used to fill the interior of the visual component.
+    """
+}

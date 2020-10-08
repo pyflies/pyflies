@@ -5,12 +5,14 @@
 */
 import common
 
-Model:
+CompModel:
     comp_types+=ComponentType
 ;
 
 ComponentType:
-    abstract?='abstract' 'component' name=ID ('extends' extends+=[ComponentType][','])?
+    abstract?='abstract' 'component' name=ID
+        ('extends' extends+=[ComponentType][',']
+            ('('inherit_param_types+=[ParamType][',']')')? )?
     (description=Description)?
     '{'
         param_types*=ParamType

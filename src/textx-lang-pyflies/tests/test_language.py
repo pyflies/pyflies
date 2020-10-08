@@ -1,7 +1,9 @@
 import pytest
+import os
 from os.path import join, dirname, abspath
-from textx import metamodel_from_file
+from textx import metamodel_from_file, metamodel_for_language, scoping
 
+import pyflies
 from pyflies.lang.common import (ModelElement, Symbol, BaseValue,
                                  AdditiveExpression, List, String, Range)
 from pyflies.lang.common import classes as common_classes
@@ -23,9 +25,21 @@ class CTable(ModelElement, ScopeProvider):
 
 
 def get_meta(file_name, classes=None):
+    global_repo_provider = scoping.providers.PlainNameGlobalRepo()
     if classes is None:
         classes = model_classes + [Model]
-    mm = metamodel_from_file(join(this_folder, file_name), classes=classes)
+    mm = metamodel_from_file(join(this_folder, file_name), classes=classes,
+                             global_repository=True)
+
+    # Load all component models
+    component_folder = join(dirname(pyflies.__file__), 'components')
+    cmm = metamodel_for_language('pyflies-comp')
+    for comp_file in os.listdir(component_folder):
+        global_repo_provider.add_model(cmm.model_from_file(join(component_folder, comp_file)))
+    mm.register_scope_providers({
+        '*.*': global_repo_provider
+    })
+
     mm.register_model_processor(processor)
     return mm
 
@@ -361,10 +375,10 @@ def test_component_timing_definition():
     comp = m.components[0].eval(context)
     assert comp.duration == 200
     assert comp.at == 110
-    assert comp.component.name == 'circle'
-    assert comp.component.params[0].name == 'position'
+    assert comp.component.type.name == 'circle'
+    assert comp.component.params[0].type.name == 'position'
     assert comp.component.params[0].value == 0
-    assert comp.component.params[1].name == 'radius'
+    assert comp.component.params[1].type.name == 'radius'
     assert comp.component.params[1].value == 20
 
     # Time can relative to the start of the previous component
@@ -559,7 +573,7 @@ def test_conditions_table_phases_evaluation():
             }
             trial {
                 fix: cross() for 200..500 choose
-                exec: circle(x position, color color) for 300..700 choose
+                exec: circle(position position, color color) for 300..700 choose
                 error and color == green: sound(freq 300)
                 error: sound(freq 500)
                 correct: sound(freq 1000)
@@ -571,26 +585,26 @@ def test_conditions_table_phases_evaluation():
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
-        assert s.component.name == 'cross'
+        assert s.component.type.name == 'cross'
         assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
-        assert st.component.name == 'circle'
+        assert st.component.type.name == 'circle'
         assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]
-        assert st.component.name == 'sound'
+        assert st.component.type.name == 'sound'
         # Frequencies are 300 when color is green and 500 otherwise
         assert st.component.params[0].value == 300 if t[trial][1].name == 'green' else 500
 
         # Correct
         st = t[trial].ph_correct[0]
-        assert st.component.name == 'sound'
-        assert st.component.params[0].name == 'freq'
+        assert st.component.type.name == 'sound'
+        assert st.component.params[0].type.name == 'freq'
         assert st.component.params[0].value == 1000
 
     # Parameters evaluation

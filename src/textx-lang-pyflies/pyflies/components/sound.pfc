@@ -1,0 +1,10 @@
+component sound
+"""
+Plays sound of the given frequency
+"""
+{
+   param freq: int = 500 
+   """
+   The frequency of the sound
+   """
+}

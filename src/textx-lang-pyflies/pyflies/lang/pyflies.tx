@@ -7,6 +7,7 @@
 */
 
 import common
+import components
 
 PyFliesModel:
   (description=Description)?
@@ -74,15 +75,16 @@ ConditionsComponents:
 ComponentSpec:
     ('at' at=TimeReference)? component=Component ('for' duration=AdditiveExpression)?;
 
-Component: name=ComponentName '(' params*=ComponentParam[',']  ')';
-ComponentParam: name=ID value=Expression;
-
-ComponentName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
-             | 'key' | 'mouse';
+Component: type=[ComponentType] '(' params*=ComponentParam[',']  ')';
+ComponentParam: type=[ParamType] value=Expression;
 
 /*
     Concrete components with parameters and default values will be
     defined in model/obj. processors to produce better error report.
+
+ComponentName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
+    | 'key' | 'mouse';
+
 
 Image:
     'image' '('

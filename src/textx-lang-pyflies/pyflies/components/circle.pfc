@@ -1,0 +1,10 @@
+component circle extends visual
+"""
+Visual stimuli in the shape of a circle.
+"""
+{
+    param radius:int = 20
+    """
+    The radius of the circle.
+    """
+}

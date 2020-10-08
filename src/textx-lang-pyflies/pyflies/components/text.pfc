@@ -1,0 +1,10 @@
+component text extends visual
+"""
+A component for displaying text
+"""
+{
+    param content: string
+    """
+    A mandatory content for display
+    """
+}

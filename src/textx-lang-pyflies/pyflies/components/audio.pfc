@@ -1,0 +1,10 @@
+component audio
+"""
+Plays audio loaded from the given file
+"""
+{
+    param file: string
+    """
+    The file to load audio from
+    """
+}

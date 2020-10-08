@@ -1,0 +1,10 @@
+component image extends visual(position, color, size)
+"""
+A component that displays image loaded from file
+"""
+{
+    param file: string
+    """
+    A file path relative to the model file.
+    """
+}

@@ -1,47 +1,21 @@
 import pytest
 import os
 from os.path import join, dirname, abspath
-from textx import metamodel_from_file, metamodel_for_language, scoping
 
 import pyflies
 from pyflies.lang.common import (ModelElement, Symbol, BaseValue,
                                  AdditiveExpression, List, String, Range)
-from pyflies.lang.common import classes as common_classes
-from pyflies.lang.pyflies import classes as model_classes
 from pyflies.scope import ScopeProvider
 from pyflies.exceptions import PyFliesException
-from pyflies.lang.pyflies_processor import processor
+from pyflies.lang.pyflies import classes as model_classes
+from .common import get_meta, Model
 
 
 this_folder = dirname(abspath(__file__))
 
 
-class Model(ModelElement, ScopeProvider):
-    pass
-
-
 class CTable(ModelElement, ScopeProvider):
     pass
-
-
-def get_meta(file_name, classes=None):
-    global_repo_provider = scoping.providers.PlainNameGlobalRepo()
-    if classes is None:
-        classes = model_classes + [Model]
-    mm = metamodel_from_file(join(this_folder, file_name), classes=classes,
-                             global_repository=True)
-
-    # Load all component models
-    component_folder = join(dirname(pyflies.__file__), 'components')
-    cmm = metamodel_for_language('pyflies-comp')
-    for comp_file in os.listdir(component_folder):
-        global_repo_provider.add_model(cmm.model_from_file(join(component_folder, comp_file)))
-    mm.register_scope_providers({
-        '*.*': global_repo_provider
-    })
-
-    mm.register_model_processor(processor)
-    return mm
 
 
 def test_time_references():
@@ -661,72 +635,3 @@ def test_experiment_time_calculations():
     assert comps[2].at == 300
     assert comps[3].at == 500
     assert comps[4].at == 400
-
-
-def test_components_variable_assignments():
-    """
-    Test that variables defined in the trial block are evaluated during table
-    expansion for each table row.
-    """
-
-    mm = get_meta('pyflies.tx', classes=model_classes)
-
-    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
-
-    # Get expanded table
-    t = m.routines[0].table.expanded
-
-    # Duration is 100 where direction is left, and 200 where direction is right
-    trial = t[0]
-    assert trial.var_vals['direction'].name == 'left'
-    assert trial.ph_exec[2].duration == 100
-
-    trial = t[2]
-    assert trial.var_vals['direction'].name == 'right'
-    assert trial.ph_exec[2].duration == 200
-
-
-def test_component_specification():
-    """
-    Test component specification language
-    """
-
-    mm = metamodel_from_file(join(this_folder, 'components.tx'), classes=common_classes)
-
-    model_str = r'''
-    abstract component abs_comp
-    """
-    This component is used in inheritance
-    """
-    {
-        param abs_param: int
-    }
-
-    component test_comp extends abs_comp
-    """
-    This is test component
-    """
-    {
-        // First param don't have a default value and thus is mandatory
-        param first_param: string
-
-        // Second param has default value and thus is optional
-        param second_param: int = 5
-        """
-        Parameter description
-        """
-
-        // Third param can be of multiple types
-        param multi_type: [int, string, symbol] = 10
-    }
-    '''
-
-    model = mm.model_from_str(model_str)
-
-    comp = model.comp_types[0]
-    assert comp.abstract
-
-    comp = model.comp_types[1]
-    assert comp.param_types[1].description.strip() == 'Parameter description'
-    assert comp.param_types[2].types == ['int', 'string', 'symbol']
-    assert comp.param_types[2].default.eval() == 10

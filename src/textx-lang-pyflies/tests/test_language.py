@@ -349,10 +349,10 @@ def test_component_timing_definition():
     comp = m.components[0].eval(context)
     assert comp.duration == 200
     assert comp.at == 110
-    assert comp.component.type.name == 'circle'
-    assert comp.component.params[0].type.name == 'position'
+    assert comp.component.name == 'circle'
+    assert comp.component.params[0].name == 'position'
     assert comp.component.params[0].value == 0
-    assert comp.component.params[1].type.name == 'radius'
+    assert comp.component.params[1].name == 'radius'
     assert comp.component.params[1].value == 20
 
     # Time can relative to the start of the previous component
@@ -559,32 +559,32 @@ def test_conditions_table_phases_evaluation():
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
-        assert s.component.type.name == 'cross'
+        assert s.component.name == 'cross'
         assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
-        assert st.component.type.name == 'circle'
+        assert st.component.name == 'circle'
         assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]
-        assert st.component.type.name == 'sound'
+        assert st.component.name == 'sound'
         # Frequencies are 300 when color is green and 500 otherwise
         assert st.component.params[0].value == 300 if t[trial][1].name == 'green' else 500
 
         # Correct
         st = t[trial].ph_correct[0]
-        assert st.component.type.name == 'sound'
-        assert st.component.params[0].type.name == 'freq'
+        assert st.component.name == 'sound'
+        assert st.component.params[0].name == 'freq'
         assert st.component.params[0].value == 1000
 
     # Parameters evaluation
     st = t[0].ph_exec[0]
-    assert st.component.params[0].value.name == 'left'
-    assert st.component.params[1].value.name == 'green'
+    assert st.component.params[0].value == 'left'
+    assert st.component.params[1].value == 'green'
 
 
 def test_experiment_structure():

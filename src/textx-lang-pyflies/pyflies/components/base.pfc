@@ -5,7 +5,7 @@ abstract component visual
 The definition of parameters used by all visual stimuli
 """
 {
-    param position:point = (0, 0)
+    param position:point = 0:0
     """
     The position of the component. By default center of the screen.
     """

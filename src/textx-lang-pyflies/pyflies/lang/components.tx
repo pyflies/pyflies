@@ -11,8 +11,7 @@ CompModel:
 
 ComponentType:
     abstract?='abstract' 'component' name=ID
-        ('extends' extends+=[ComponentType][',']
-            ('('inherit_param_types+=[ParamType][',']')')? )?
+        ('extends' extends+=[ComponentType][','])?
     (description=Description)?
     '{'
         param_types*=ParamType

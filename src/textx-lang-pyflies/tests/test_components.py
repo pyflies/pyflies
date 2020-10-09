@@ -77,3 +77,35 @@ def test_component_specification():
     assert comp.param_types[1].description.strip() == 'Parameter description'
     assert comp.param_types[2].types == ['int', 'string', 'symbol']
     assert comp.param_types[2].default.eval() == 10
+
+
+def test_components_param_type_referencing_and_default():
+    """
+    Test that component instances can reference component and param types and
+    that if param is not set the default value will be applied.
+    """
+    mm = get_meta('pyflies.tx', classes=model_classes)
+
+    m = mm.model_from_file(join(this_folder, 'test_component_parameters.pf'))
+
+    t = m.routines[0]
+
+    comp_time = t.cond_components[0].comp_times[0]
+
+
+    comp_type = comp_time.component.type
+    assert comp_type.name == 'cross'
+
+
+    # Check default values for parameters
+    table = t.table.expanded
+    trial = table.rows[0]
+    comp_inst = trial.ph_exec[0].component
+    assert comp_inst.spec.type.name == 'circle'
+    # Given values
+    assert comp_inst.radius == 100
+    assert comp_inst.position.y == 40
+    # Default values defined in abstract "visual" component
+    assert comp_inst.color == 'white'
+    assert comp_inst.fillColor == 'white'
+    assert comp_inst.size == 20

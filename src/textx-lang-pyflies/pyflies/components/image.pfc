@@ -1,4 +1,4 @@
-component image extends visual(position, color, size)
+component image extends visual
 """
 A component that displays image loaded from file
 """

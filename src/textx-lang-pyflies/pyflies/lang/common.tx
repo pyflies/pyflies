@@ -3,7 +3,7 @@ Value:
     String | CompoundTypeValue | BaseValue
 ;
 
-BaseValue: value=STRICTFLOAT | value=INT | value=BOOL | value=Point;
+BaseValue: value=Point | value=STRICTFLOAT | value=INT | value=BOOL;
 String: value=STRING;
 CompoundTypeValue: Range | List;
 Range: lower=INT '..' upper=INT;
@@ -11,7 +11,7 @@ List: '[' values*=Expression[','] ']';
 VariableRef: name=VariableName;
 VariableName: ID;
 Point:
-    '(' x=INT ',' y=INT ')'
+    x=INT ':' y=INT
 ;
 Type: 'int' | 'float' | 'string' | 'bool' | 'symbol' | 'list' | 'point' | 'color';
 

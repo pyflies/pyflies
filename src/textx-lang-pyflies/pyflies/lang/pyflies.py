@@ -66,11 +66,36 @@ class ComponentTime(ModelElement):
 
 
 class Component(ModelElement):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+
+        # Create default parameters specs following inheritance chain
+        # of component types
+        comp_type = self.type
+        all_params = list(self.params)
+
+        def get_inherited(comp_type):
+            for param_type in comp_type.param_types:
+                if param_type.name not in [x.type.name for x in all_params]:
+                    all_params.append(ComponentParam(parent=self,
+                                                     type=param_type,
+                                                     value=param_type.default))
+            for inh_comp in comp_type.extends:
+                get_inherited(inh_comp)
+        get_inherited(comp_type)
+        self.all_params = all_params
+
+
     def eval(self, context=None):
         return ComponentInst(self, context)
 
 
 class ComponentParam(ModelElement):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+
+        # TODO. Check component param type
+
     def eval(self, context=None):
         return ComponentParamInst(self, context)
 

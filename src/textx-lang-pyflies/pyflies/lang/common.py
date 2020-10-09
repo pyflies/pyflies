@@ -88,7 +88,7 @@ class Symbol(ExpressionElement):
         return self
 
     def __eq__(self, other):
-        return type(other) is Symbol and self.name == other.name
+        return str(self) == str(other)
 
     def __str__(self):
         return self.name

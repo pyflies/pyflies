@@ -26,16 +26,31 @@ class ComponentTimeInst(EvaluatedBase):
 
 class ComponentInst(EvaluatedBase):
     """
-    An evaluated instance of component
+    An evaluated instance of a component.
     """
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
-        self.params = []
-        for p in spec.params:
-            self.params.append(p.eval(context))
+        self._params = {}
+        for p in spec.all_params:
+            self._params[p.type.name] = p.eval(context)
+
+    @property
+    def name(self):
+        return self.spec.type.name
+
+    @property
+    def params(self):
+        return list(self._params.values())
+
+    def __getattr__(self, name):
+        try:
+            return self._params[name].value
+        except KeyError:
+            raise AttributeError('"{}" object has no attribute "{}"'.format(
+                type(self).__name__, name))
 
     def __repr__(self):
-        return '{}({})'.format(self.spec.name, ', '.join([str(x) for x in self.params]))
+        return '{}({})'.format(self.spec.type.name, ', '.join([str(x) for x in self.params]))
 
 
 class ComponentParamInst(EvaluatedBase):
@@ -43,5 +58,9 @@ class ComponentParamInst(EvaluatedBase):
         super().__init__(spec, context)
         self.value = self.value.eval(context)
 
+    @property
+    def name(self):
+        return self.type.name
+
     def __repr__(self):
-        return '{} {}'.format(self.spec.name, self.value)
+        return '{} {}'.format(self.spec.type.name, self.value)

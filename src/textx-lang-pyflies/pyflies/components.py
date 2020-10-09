@@ -1,9 +1,9 @@
 from .evaluated import EvaluatedBase
 
 
-class ComponentSpecInst(EvaluatedBase):
+class ComponentTimeInst(EvaluatedBase):
     """
-    Represents an evaluated instance of component specification
+    Represents an evaluated instance of component-time specification
     """
     def __init__(self, spec, context=None, last_stim=None):
         super().__init__(spec, context)

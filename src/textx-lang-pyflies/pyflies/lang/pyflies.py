@@ -10,7 +10,7 @@ from itertools import cycle, repeat, product
 
 from pyflies.exceptions import PyFliesException
 from pyflies.time import TimeReferenceInst
-from pyflies.components import ComponentSpecInst, ComponentInst, ComponentParamInst
+from pyflies.components import ComponentTimeInst, ComponentInst, ComponentParamInst
 from pyflies.scope import ScopeProvider, Postpone, PostponedEval
 
 from .common import ModelElement, classes as common_classes, BaseValue, LoopExpression, Sequence
@@ -48,7 +48,7 @@ class TimeReference(ModelElement):
         return TimeReferenceInst(self, context)
 
 
-class ComponentSpec(ModelElement):
+class ComponentTime(ModelElement):
     def __init__(self, parent, **kwargs):
         super().__init__(parent, **kwargs)
         if self.at is None:
@@ -62,7 +62,7 @@ class ComponentSpec(ModelElement):
             self.duration = BaseValue(parent=self, value=0)
 
     def eval(self, context=None, last_stim=None):
-        return ComponentSpecInst(self, context, last_stim)
+        return ComponentTimeInst(self, context, last_stim)
 
 
 class Component(ModelElement):

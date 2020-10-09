@@ -115,20 +115,19 @@ class ExpTableRow(ModelElement, ScopeProvider):
             # e.g. export to log
             self.var_vals.update(self.get_context())
 
-            comp_specs = test.cond_components
-            for sspec in comp_specs:
+            for cond_comp in test.cond_components:
                 try:
-                    cond_val = sspec.condition.eval(context)
+                    cond_val = cond_comp.condition.eval(context)
                 except PyFliesException:
                     cond_val = False
 
                 if cond_val is True:
                     comp_insts = []
                     last_comp = None
-                    for comp in sspec.components:
-                        comp_inst = comp.eval(context, last_comp)
-                        comp_insts.append(comp_inst)
-                        last_comp = comp_inst
+                    for comp_time in cond_comp.comp_times:
+                        comp_time_inst = comp_time.eval(context, last_comp)
+                        comp_insts.append(comp_time_inst)
+                        last_comp = comp_time_inst
                     setattr(self, f'ph_{phase}', comp_insts)
                     break
 

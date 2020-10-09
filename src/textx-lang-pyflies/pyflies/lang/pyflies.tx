@@ -64,7 +64,7 @@ Condition:
 ConditionsComponents:
   // Condition components is given in the form of
   // condition match expression : components definitions
-  condition=Expression ':' components+=ComponentSpec
+  condition=Expression ':' comp_times+=ComponentTime
 ;
 
 
@@ -72,7 +72,7 @@ ConditionsComponents:
     Components spec
 */
 
-ComponentSpec:
+ComponentTime:
     ('at' at=TimeReference)? component=Component ('for' duration=AdditiveExpression)?;
 
 Component: type=[ComponentType] '(' params*=ComponentParam[',']  ')';

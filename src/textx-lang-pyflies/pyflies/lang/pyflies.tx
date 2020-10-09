@@ -39,7 +39,7 @@ Test:
 
     'trial' '{'
         vars*=VariableAssignment
-        components+=ConditionsComponents
+        cond_components+=ConditionsComponents
     '}'
   "}"
 ;

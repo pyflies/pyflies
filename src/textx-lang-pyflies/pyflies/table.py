@@ -115,7 +115,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
             # e.g. export to log
             self.var_vals.update(self.get_context())
 
-            comp_specs = test.components
+            comp_specs = test.cond_components
             for sspec in comp_specs:
                 try:
                     cond_val = sspec.condition.eval(context)

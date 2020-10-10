@@ -10,13 +10,13 @@ test TestModel {
     }
 	
 	trial {
-		fix: cross()  // empty params
-        exec: circle(radius 100, position (0, 40))
-              sound(freq 100)
-              image(file "testfile.png")
-              rectangle(size 200 + 300 / 2, position left)
-              rectangle(size 100, position left)
-		error: sound(freq 300)
-		correct: sound(freq 700)
+		fix -> cross()  // empty params
+        exec -> circle(radius 100, position (0, 40))
+                sound(freq 100)
+                image(file "testfile.png")
+                rectangle(size 200 + 300 / 2, position left)
+                rectangle(size 100, position left)
+		error -> sound(freq 300)
+		correct -> sound(freq 700)
 	}
 }

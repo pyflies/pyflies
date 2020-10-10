@@ -546,11 +546,11 @@ def test_conditions_table_phases_evaluation():
               | positions loop | colors loop | positions |
             }
             trial {
-                fix: cross() for 200..500 choose
-                exec: circle(position position, color color) for 300..700 choose
-                error and color == green: sound(freq 300)
-                error: sound(freq 500)
-                correct: sound(freq 1000)
+                fix -> cross() for 200..500 choose
+                exec -> circle(position position, color color) for 300..700 choose
+                error and color == green -> sound(freq 300)
+                error -> sound(freq 500)
+                correct -> sound(freq 1000)
             }
         }
     ''')

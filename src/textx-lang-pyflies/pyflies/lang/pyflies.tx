@@ -64,7 +64,7 @@ Condition:
 ConditionsComponents:
   // Condition components is given in the form of
   // condition match expression : components definitions
-  condition=Expression ':' comp_times+=ComponentTime
+  condition=Expression '->' comp_times+=ComponentTime
 ;
 
 

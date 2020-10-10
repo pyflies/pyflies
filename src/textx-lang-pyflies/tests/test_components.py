@@ -105,8 +105,8 @@ def test_components_param_type_referencing_and_default():
     assert comp_inst.radius == 100
     assert comp_inst.position.y == 40
     # Default values defined in abstract "visual" component
-    assert comp_inst.color == 'white'
-    assert comp_inst.fillColor == 'white'
+    assert comp_inst.color == '#ffffff'
+    assert comp_inst.fillColor == '#ffffff'
     assert comp_inst.size == 20
 
 

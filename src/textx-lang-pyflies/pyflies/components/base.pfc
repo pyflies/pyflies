@@ -16,13 +16,14 @@ The definition of parameters used by all visual stimuli
     size in the coordinate space.
     """
 
-    param color:[symbol, color] = white
+    param color:[symbol, color] = #ffffff
     """
-    This color is used for border of the component.
+    This color is used for border of the component. Default is white.
     """
 
-    param fillColor:[symbol, color] = white
+    param fillColor:[symbol, color] = #ffffff
     """
     This color is used to fill the interior of the visual component.
+    Default is white.
     """
 }

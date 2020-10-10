@@ -165,6 +165,10 @@ class Range(List):
         return '{}..{}'.format(self.lower, self.upper)
 
 
+class Point(ExpressionElement):
+    def __str__(self):
+        return '({}, {})'.format(self.x, self.y)
+
 class LoopExpression(ExpressionElement):
     def __str__(self):
         return '{} loop'.format(str(self.exp))
@@ -284,7 +288,7 @@ class VariableRef(ExpressionElement):
             return resolved
         return self
 
-    def __str__(self):
+    def __repr__(self):
         return self.name
 
 

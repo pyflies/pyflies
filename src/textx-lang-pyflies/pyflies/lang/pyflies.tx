@@ -78,107 +78,6 @@ ComponentTime:
 Component: type=[ComponentType|ID|+m:comp_types] '(' params*=ComponentParam[',']  ')';
 ComponentParam: type=[ParamType|ID|+m:..~type.~extends*.param_types] value=Expression;
 
-/*
-    Concrete components with parameters and default values will be
-    defined in model/obj. processors to produce better error report.
-
-ComponentName: 'cross' | 'circle' | 'rectangle' | 'line' | 'image' | 'text' | 'sound' | 'audio'
-    | 'key' | 'mouse';
-
-
-Image:
-    'image' '('
-    (
-        ('file' file=STRING)
-        ('position' x=WORD (y=INT)?)
-        ('width' width=Expression)?
-        ('height' height=Expression)?
-    )#[',']
-  ')'
-;
-
-Circle: 'circle' '('
-    (
-        ('position' x=Expression (y=Expression)?)
-        ('radius' radius=Expression)
-        ('color' color=WORD)?
-        ('fillColor' fillColor=WORD)?
-        ('lineWidth' lineWidth=WORD)?
-    )#[',']
-    ')'
-;
-
-Rectangle:
-    'rectangle' '('
-    (
-        ('position' x=Expression (y=Expression)?)
-        ('width' width=Expression)?
-        ('height' height=Expression)?
-        ('color' color=WORD)?
-        ('fillColor' fillColor=WORD)?
-        ('lineWidth' lineWidth=WORD)?
-    )#[',']
-    ')'
-;
-
-Line:
-    'line''('
-    (
-        ('from' from=Point)
-        ('to' to=Point)
-        ('color' color=WORD)?
-        ('fillColor' fillColor=WORD)?
-        ('lineWidth' lineWidth=WORD)?
-    )#[',']
-    ')'
-;
-
-Cross:
-    'cross' '('
-    (
-        ('position' x=Expression (y=Expression)?)
-        ('width' width=Expression)?
-        ('height' height=Expression)?
-        ('color' color=WORD)?
-        ('fillColor' fillColor=WORD)?
-        ('lineWidth' lineWidth=WORD)?
-    )#[',']
-    ')'
-;
-
-Text:
-  'text' '(' text=TextType
-   (','
-        ( ('position' x=WORD (y=INT)?)?
-          ('size' size=INT)?
-          ('color' color=WORD)?
-        )#[','])?
-  ')'
-;
-
-Sound:
-  'sound' '(' frequency=INT
-    (',' (
-           ('duration' duration=Duration)?
-           (target?='target')
-         )#[',']
-    )?
-  ')'
-;
-
-Audio:
-  'audio' '(' file=STRING
-    (',' (
-           ('duration' duration=Duration)?
-           (target?='target')
-         )#[',']
-    )?
-  ')'
-;
-
-
-    */
-
 WORD:
     INT|/[-\w]*\b/
 ;
@@ -226,20 +125,10 @@ Screen:
 
 Target:
   'target' name=ID '{'
-    'output' '=' output=STRING
-    'responses' '{'
-        responseMap*=ResponseMap
-    '}'
-    targetParam*=TargetParam
+    settings*=Setting
   '}'
 ;
 
-TargetParam:
+Setting:
   name=ID '=' value=BASETYPE
 ;
-
-ResponseMap:
-  name=ID '=' target=BASETYPE
-;
-
-

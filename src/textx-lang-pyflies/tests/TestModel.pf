@@ -74,11 +74,9 @@ flow {
 }
 
 target PsychoPy {
-  // Target folder where test should be generated
-  output = "/home/igor/tmp/eriksenPsycho/"
-
-  responses {
-    left = left
-    right = right
-  }  
+  // Here we can map experiment symbols
+  // or provide additional configuration
+  left = 'left'
+  right = 'right'
+  some_config = 5
 }

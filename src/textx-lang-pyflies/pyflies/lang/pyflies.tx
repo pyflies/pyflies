@@ -75,8 +75,8 @@ ConditionsComponents:
 ComponentTime:
     ('at' at=TimeReference)? component=Component ('for' duration=AdditiveExpression)?;
 
-Component: type=[ComponentType] '(' params*=ComponentParam[',']  ')';
-ComponentParam: type=[ParamType] value=Expression;
+Component: type=[ComponentType|ID|+m:comp_types] '(' params*=ComponentParam[',']  ')';
+ComponentParam: type=[ParamType|ID|+m:..~type.~extends*.param_types] value=Expression;
 
 /*
     Concrete components with parameters and default values will be

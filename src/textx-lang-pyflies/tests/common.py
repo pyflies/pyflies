@@ -16,21 +16,16 @@ class Model(ModelElement, ScopeProvider):
 
 
 def get_meta(file_name, classes=None):
-    global_repo_provider = scoping.providers.PlainNameGlobalRepo()
+    builtin_models = scoping.ModelRepository()
+    cmm = metamodel_for_language('pyflies-comp')
+    component_folder = join(dirname(pyflies.__file__), 'components')
+    for comp_file in os.listdir(component_folder):
+        cm = cmm.model_from_file(join(component_folder, comp_file))
+        builtin_models.add_model(cm)
+
     if classes is None:
         classes = model_classes + [Model]
-    mm = metamodel_from_file(join(this_folder, file_name), classes=classes,
-                             global_repository=True)
-
-    # Load all component models
-    component_folder = join(dirname(pyflies.__file__), 'components')
-    cmm = metamodel_for_language('pyflies-comp')
-    for comp_file in os.listdir(component_folder):
-        global_repo_provider.add_model(cmm.model_from_file(join(component_folder, comp_file)))
-    mm.register_scope_providers({
-        '*.*': global_repo_provider
-    })
-
+    mm = metamodel_from_file(join(this_folder, file_name),
+                             classes=classes, builtin_models=builtin_models)
     mm.register_model_processor(processor)
     return mm
-

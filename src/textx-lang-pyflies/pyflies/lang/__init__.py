@@ -13,17 +13,17 @@ current_dir = dirname(__file__)
 @language('pyflies', '*.pf')
 def pyflies_language():
     "A language for psychology experiments specification"
-    global_repo_provider = scoping.providers.PlainNameGlobalRepo()
-    # global_provider = scoping.providers.PlainNameGlobalRepo()
-    mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
-                             classes=pyflies_classes, global_repository=True)
 
-    # Load all component models
-    component_folder = join(current_dir, '..', 'components')
+    builtin_models = scoping.ModelRepository()
     cmm = metamodel_for_language('pyflies-comp')
-    import pdb; pdb.set_trace()
+    component_folder = join(dirname(pyflies.__file__), '..', 'components')
+
     for comp_file in os.listdir(component_folder):
-        global_repo_provider.add_model(cmm.model_from_file(comp_file))
+        cm = cmm.model_from_file(join(component_folder, comp_file))
+        builtin_models.add_model(cm)
+
+    mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
+                             classes=pyflies_classes, builtin_models=builtin_models)
 
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors

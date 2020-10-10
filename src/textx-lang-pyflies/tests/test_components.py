@@ -1,10 +1,9 @@
 import pytest
 import os
 from os.path import join, dirname, abspath
-from textx import metamodel_from_file, metamodel_for_language, scoping
+from textx import metamodel_from_file, metamodel_for_language, scoping, TextXSemanticError
+from pyflies.exceptions import PyFliesException
 from pyflies.lang.common import classes as common_classes
-from pyflies.lang.pyflies import classes as model_classes
-from .common import get_meta
 
 
 this_folder = dirname(abspath(__file__))
@@ -16,7 +15,7 @@ def test_components_variable_assignments():
     expansion for each table row.
     """
 
-    mm = get_meta('pyflies.tx', classes=model_classes)
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
@@ -84,7 +83,7 @@ def test_components_param_type_referencing_and_default():
     Test that component instances can reference component and param types and
     that if param is not set the default value will be applied.
     """
-    mm = get_meta('pyflies.tx', classes=model_classes)
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_file(join(this_folder, 'test_component_parameters.pf'))
 
@@ -109,3 +108,14 @@ def test_components_param_type_referencing_and_default():
     assert comp_inst.color == 'white'
     assert comp_inst.fillColor == 'white'
     assert comp_inst.size == 20
+
+
+def test_component_only_valid_param_can_be_referenced():
+    """
+    Test that only valid parameters from component definition can be referenced.
+    """
+
+    mm = metamodel_for_language('pyflies')
+
+    with pytest.raises(TextXSemanticError, match=r'.*Unknown object "position".*'):
+        m = mm.model_from_file(join(this_folder, 'test_component_parameters_wrong.pf'))

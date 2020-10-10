@@ -45,7 +45,6 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
                 return
 
         for idx, attr in attrs:
-            print(attr.__class__.__name__)
             if attr.__class__.__name__ == 'VariableRef':
                 if attr.name in settings:
                     if type(obj) is list:
@@ -62,6 +61,14 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     if unresolved:
         click.echo('Warning: these symbols where not resolved by '
                 'the target configuration: {}'.format(unresolved))
+
+    default_settings = {
+        'resolution': '(1024, 768)',
+    }
+
+    for dsn, ds in default_settings.items():
+        if dsn not in settings:
+            settings[dsn] = ds
 
     filters = {
         'striptabs': striptabs,

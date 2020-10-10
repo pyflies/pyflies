@@ -34,7 +34,7 @@ TimeReference: start_relative?='.' (relative_op=SignOperator)? time=AdditiveExpr
 Test:
   "test" name=ID "{"
     'conditions' '{'
-        table=ConditionsTable
+        table_spec=ConditionsTable
     '}'
 
     'trial' '{'

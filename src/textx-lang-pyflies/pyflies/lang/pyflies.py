@@ -114,7 +114,8 @@ class ConditionsTable(ModelElement):
 
         from pyflies.table import ExpTable, ExpTableRow
 
-        self.expanded = ExpTable(self)
+        table = ExpTable(self)
+        self.parent.table = table
 
         for cond_spec in self:
             cond_template = []
@@ -157,17 +158,17 @@ class ConditionsTable(ModelElement):
                         if cond_i is not None:
                             row[idx] = next(cond_i)
 
-                    row = ExpTableRow(self.expanded, row)
+                    row = ExpTableRow(table, row)
                     row.eval()
             else:
                 # No looping - just evaluate all expressions
-                row = ExpTableRow(self.expanded, [next(x) for x in cond_template])
+                row = ExpTableRow(table, [next(x) for x in cond_template])
                 row.eval()
 
-        self.expanded.calculate_column_widths()
+        table.calculate_column_widths()
 
     def calc_phases(self):
-        self.expanded.calc_phases()
+        self.parent.table.calc_phases()
 
     def __getitem__(self, idx):
         return self.cond_specs[idx]
@@ -179,7 +180,7 @@ class ConditionsTable(ModelElement):
         return len(self.cond_specs)
 
     def __eq__(self, other):
-        return self.expanded == other.expanded
+        return self.parent.table == other.parent.table
 
     def __str__(self):
         """
@@ -189,7 +190,7 @@ class ConditionsTable(ModelElement):
 
     def to_str(self, expanded=True):
         if expanded:
-            return str(self.expanded)
+            return str(self.parent.table)
         else:
             from pyflies.table import table_to_str
             rows = [spec.var_exps for spec in self.cond_specs]

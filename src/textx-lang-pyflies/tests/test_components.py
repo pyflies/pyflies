@@ -20,7 +20,7 @@ def test_components_variable_assignments():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routines[0].table.expanded
+    t = m.routines[0].table
 
     # Duration is 100 where direction is left, and 200 where direction is right
     trial = t[0]
@@ -97,7 +97,7 @@ def test_components_param_type_referencing_and_default():
 
 
     # Check default values for parameters
-    table = t.table.expanded
+    table = t.table
     trial = table.rows[0]
     comp_inst = trial.ph_exec[0].component
     assert comp_inst.spec.type.name == 'circle'

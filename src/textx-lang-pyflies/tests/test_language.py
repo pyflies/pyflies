@@ -555,7 +555,7 @@ def test_conditions_table_phases_evaluation():
         }
     ''')
 
-    t = m.test.table.expanded
+    t = m.test.table
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
@@ -627,7 +627,7 @@ def test_experiment_time_calculations():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routines[0].table.expanded
+    t = m.routines[0].table
 
     trial = t[0]
     comps = trial.ph_exec

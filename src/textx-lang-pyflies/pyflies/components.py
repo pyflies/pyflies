@@ -5,17 +5,21 @@ class ComponentTimeInst(EvaluatedBase):
     """
     Represents an evaluated instance of component-time specification
     """
-    def __init__(self, spec, context=None, last_stim=None):
+    def __init__(self, spec, context=None, last_comp=None):
         super().__init__(spec, context)
+        spec.inst = self
         self.at = spec.at.eval(context).time
-        if self.spec.at.relative_op == '-':
+        if spec.at.relative_op == '-':
             self.at = -self.at
-        if last_stim:
-            relative = self.spec.at.relative_op is not None or self.spec.at.start_relative
+        relative_to = spec.at.relative_to or last_comp
+        if relative_to:
+            relative = (spec.at.relative_op is not None
+                        or spec.at.start_relative
+                        or spec.at.relative_to)
             if relative:
-                self.at += last_stim.at
-                if not self.spec.at.start_relative:
-                    self.at += last_stim.duration
+                self.at += relative_to.inst.at
+                if not spec.at.start_relative:
+                    self.at += relative_to.inst.duration
         self.duration = spec.duration.eval(context)
         self.component = spec.component.eval(context) if spec.component else None
 

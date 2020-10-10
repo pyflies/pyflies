@@ -633,5 +633,5 @@ def test_experiment_time_calculations():
     comps = trial.ph_exec
     assert comps[1].at == 150
     assert comps[2].at == 300
-    assert comps[3].at == 500
-    assert comps[4].at == 400
+    assert comps[3].at == 650
+    assert comps[4].at == 550

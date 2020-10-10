@@ -16,9 +16,15 @@ test TestModel {
         duration = 100 if direction == left else 200
 		fix -> cross() for 1000..3000 choose
         exec -> at 50 circle(radius 100, position left if direction == right else right) for 1000..2000 choose
-                at .100 sound(freq 100) for 400
+                // This component has name for later referencing
+                at .100 mysound:sound(freq 100) for 400
                 at 300 image(file "images/{direction}-{category}.png") for duration
-                at +100 rectangle(size 200 + 300 / 2, position left)
+
+                // By default component is relative to previous.
+                // This will be relative to `mysound`
+                // It should start at 50 + 100 + 400 + 100 = 650
+                at mysound:+100 rectangle(size 200 + 300 / 2, position left)
+
                 at .-100 rectangle(size 100, position left)
 		error -> sound(freq 300) for 500
 		correct -> sound(freq 700) for 300

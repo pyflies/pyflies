@@ -54,7 +54,7 @@ class ComponentTime(ModelElement):
         if self.at is None:
             # Default time reference
             self.at = TimeReference(self, start_relative=True, relative_op='+',
-                                    time=None)
+                                    relative_to=None, time=None)
             self.at.time = BaseValue(parent=self.at, value=0)
 
         if self.duration is None:

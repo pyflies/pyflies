@@ -10,6 +10,6 @@ test TestModel {
     }
 	
 	trial {
-        exec: sound(freq 100, position 50:50)   // position is wrong param for this comp. type
+        exec: sound(freq 100, position (50,50))   // position is wrong param for this comp. type
 	}
 }

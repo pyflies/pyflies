@@ -3,5 +3,7 @@ component rectangle extends visual
 Visual stimuli in the form of rectangle
 """
 {
-    // Doesn't have any additional parameters
+    // override size to be of point type
+    // 0 for height means 'keep aspect ratio'
+    param size:[symbol, point] = (20, 0)
 }

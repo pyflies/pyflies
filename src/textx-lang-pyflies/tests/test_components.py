@@ -118,4 +118,32 @@ def test_component_only_valid_param_can_be_referenced():
     mm = metamodel_for_language('pyflies')
 
     with pytest.raises(TextXSemanticError, match=r'.*Unknown object "position".*'):
-        m = mm.model_from_file(join(this_folder, 'test_component_parameters_wrong.pf'))
+        mm.model_from_file(join(this_folder, 'test_component_parameters_wrong.pf'))
+
+
+def test_component_instances():
+    """
+    Test that component instances with default param values are correctly collected.
+    """
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'test_component_parameters.pf'))
+
+    test = m.routines[0]
+    assert test.components
+
+    # Cross
+    comp = test.components[0]
+    assert comp.spec.type.name == 'cross'
+    assert comp.name == 'TestModel_mycross'
+    assert comp.params[0].spec.type.name == 'position'
+    assert comp.params[0].is_constant
+
+    # Circle
+    comp = test.components[2]
+    assert comp.spec.type.name == 'circle'
+    assert comp.name == 'TestModel_circle_2'
+    assert not comp.params[0].is_constant
+    # For params which depends on condition variables default value (defined in
+    # the param type) will be used
+    assert comp.params[0].value.x == 0
+    assert comp.params[0].value.y == 0

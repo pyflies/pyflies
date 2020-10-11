@@ -207,6 +207,19 @@ class ConditionsTable(ModelElement):
 
 
 class Test(ModelElement, ScopeProvider):
+    def instantiate_default_components(self):
+        """
+        Create component instances with default values.
+        Used for targets that needs upfront component initialization.
+        """
+        components = []
+        for ccond in self.components_cond:
+            for ctimes in ccond.comp_times:
+                comp_spec = ctimes.component
+                component = ComponentInst(comp_spec)
+                components.append(component)
+        self.components = components
+
     def calc_phases(self):
         self.table.calc_phases()
 

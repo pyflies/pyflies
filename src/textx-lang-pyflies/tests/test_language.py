@@ -345,25 +345,25 @@ def test_component_timing_definition():
     # Time, duration and params can be expressions
     context = {'a': 10, 'b': 5}
     m = mm.model_from_str(
-        'at a + 100 circle(position 0, radius 5 + 15) for a + b * a + 140')
+        'at a + 100 c:circle(position 0, radius 5 + 15) for a + b * a + 140')
     comp = m.components[0].eval(context)
     assert comp.duration == 200
     assert comp.at == 110
-    assert comp.component.name == 'circle'
+    assert comp.component.name == 'testing_c'
     assert comp.component.params[0].name == 'position'
     assert comp.component.params[0].value == 0
     assert comp.component.params[1].name == 'radius'
     assert comp.component.params[1].value == 20
 
     # Time can relative to the start of the previous component
-    m = mm.model_from_str('at .+100 circle(position 0, radius 20) for 200')
+    m = mm.model_from_str('at .+100 c:circle(position 0, radius 20) for 200')
     comp = m.components[0]
     assert comp.at.time.eval() == 100
     assert comp.at.relative_op == '+'
     assert comp.at.start_relative
 
     # Time can relative to the end of the previous component
-    m = mm.model_from_str('at +100 circle(position 0, radius 20) for 200')
+    m = mm.model_from_str('at +100 c:circle(position 0, radius 20) for 200')
     comp = m.components[0]
     assert comp.at.time.eval() == 100
     assert comp.at.relative_op == '+'
@@ -371,7 +371,7 @@ def test_component_timing_definition():
 
     # If not given, by default it is the same as the start of the previous
     # E.g. `at .`
-    m = mm.model_from_str('circle(position 0, radius 20) for 200')
+    m = mm.model_from_str('c:circle(position 0, radius 20) for 200')
     comp = m.components[0]
     assert comp.at.time.eval() == 0
     assert comp.at.relative_op == '+'
@@ -379,7 +379,7 @@ def test_component_timing_definition():
 
     # If duration is not given it is assumed that component should be shown
     # until the end of the trial
-    m = mm.model_from_str('at 100 circle(position 0, radius 20)')
+    m = mm.model_from_str('at 100 c:circle(position 0, radius 20)')
     comp = m.components[0].eval()
     assert comp.duration == 0
 
@@ -559,25 +559,26 @@ def test_conditions_table_phases_evaluation():
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
-        assert s.component.name == 'cross'
+        assert s.component.name == 'Example_cross_0'
         assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
-        assert st.component.name == 'circle'
+        assert st.component.name == 'Example_circle_1'
         assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]
-        assert st.component.name == 'sound'
+        assert st.component.name == 'Example_sound_2' \
+            if t[trial][1].name == 'green' else 'Example_sound_3'
         # Frequencies are 300 when color is green and 500 otherwise
         assert st.component.params[0].value == 300 if t[trial][1].name == 'green' else 500
 
         # Correct
         st = t[trial].ph_correct[0]
-        assert st.component.name == 'sound'
+        assert st.component.name == 'Example_sound_4'
         assert st.component.params[0].name == 'freq'
         assert st.component.params[0].value == 1000
 

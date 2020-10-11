@@ -4,14 +4,15 @@ Model for testing of component pameter lookup.
 
 test TestModel {
 	conditions {
-      | direction | response |
-      |-----------+----------|
-      | left      | left     |
+      | direction | position | response |
+      |-----------+----------+----------|
+      | left      | (0, 50)  | left     |
     }
 	
 	trial {
-		fix -> cross()  // empty params
+		fix -> mycross:cross(position (0,0))
         exec -> circle(radius 100, position (0, 40))
+                circle(position position)
                 sound(freq 100)
                 image(file "testfile.png")
                 rectangle(size 200 + 300 / 2, position left)

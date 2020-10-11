@@ -37,7 +37,7 @@ Test:
 
     'trial' '{'
         vars*=VariableAssignment
-        cond_components+=ConditionsComponents
+        components_cond+=ComponentsCondition
     '}'
   "}"
 ;
@@ -59,7 +59,7 @@ Condition:
   '|' var_exps+=Expression['|'] '|'
 ;
 
-ConditionsComponents:
+ComponentsCondition:
   // Condition components is given in the form of
   // condition match expression : components definitions
   condition=Expression '->' comp_times+=ComponentTime

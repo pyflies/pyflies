@@ -115,7 +115,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
             # e.g. export to log
             self.var_vals.update(self.get_context())
 
-            for cond_comp in test.cond_components:
+            for cond_comp in test.components_cond:
                 try:
                     cond_val = cond_comp.condition.eval(context)
                 except PyFliesException:

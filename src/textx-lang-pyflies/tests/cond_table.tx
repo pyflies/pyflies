@@ -8,7 +8,7 @@ Model:
 CTable:
     '{'
         t=ConditionsTable
-        cond_components*=ComponentTime
+        components_cond*=ComponentTime
     '}'
 ;
 

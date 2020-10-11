@@ -89,7 +89,7 @@ def test_components_param_type_referencing_and_default():
 
     t = m.routines[0]
 
-    comp_time = t.cond_components[0].comp_times[0]
+    comp_time = t.components_cond[0].comp_times[0]
 
 
     comp_type = comp_time.component.type

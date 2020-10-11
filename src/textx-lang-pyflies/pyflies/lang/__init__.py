@@ -5,6 +5,7 @@ import pyflies
 from .pyflies_processor import processor
 from .pyflies import classes as pyflies_classes
 from .components import classes as component_classes
+from .common import reduce_exp
 
 
 current_dir = dirname(__file__)
@@ -20,6 +21,7 @@ def pyflies_language():
 
     for comp_file in os.listdir(component_folder):
         cm = cmm.model_from_file(join(component_folder, comp_file))
+        reduce_exp(cm)
         builtin_models.add_model(cm)
 
     mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
@@ -42,7 +44,9 @@ def pyflies_component_language(**kwargs):
 
     # Load base components which can be referenced in other component definition
     component_folder = join(dirname(pyflies.__file__), '..', 'components')
-    global_repo_provider.add_model(mm.model_from_file(join(component_folder, 'base.pfc')))
+    m = mm.model_from_file(join(component_folder, 'base.pfc'))
+    reduce_exp(m)
+    global_repo_provider.add_model(m)
     mm.register_scope_providers({
         '*.*': global_repo_provider
     })

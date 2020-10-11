@@ -7,6 +7,7 @@ import random
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 from itertools import cycle, repeat, product
+from textx.const import MULT_ONE, MULT_OPTIONAL
 
 from pyflies.exceptions import PyFliesException
 from pyflies.scope import ScopeProvider, Postpone, PostponedEval
@@ -17,6 +18,33 @@ def get_parent_of_type(clazz, obj):
         return obj
     if hasattr(obj, 'parent'):
         return get_parent_of_type(clazz, obj.parent)
+
+def reduce_exp(obj):
+    """
+    Descends down the containment tree and reduce all expressions.
+    """
+    cls = obj.__class__
+    if hasattr(cls, '_tx_attrs'):
+        for attr_name, attr in obj._tx_attrs.items():
+            # Follow only attributes with containment semantics
+            if attr.cont:
+                if attr.mult in (MULT_ONE, MULT_OPTIONAL):
+                    new_elem = getattr(obj, attr_name)
+                    if new_elem is not None:
+                        if isinstance(new_elem, ExpressionElement):
+                            reduced = new_elem.reduce()
+                            setattr(obj, attr_name, reduced)
+                        else:
+                            reduce_exp(new_elem)
+                else:
+                    new_elem_list = getattr(obj, attr_name)
+                    if new_elem_list:
+                        for idx, new_elem in enumerate(new_elem_list):
+                            if isinstance(new_elem, ExpressionElement):
+                                reduced = new_elem.reduce()
+                                new_elem_list[idx] = reduced
+                            else:
+                                reduce_exp(new_elem)
 
 
 class ModelElement:

@@ -1,0 +1,20 @@
+"""
+Model for testing of component timings definition.
+"""
+a = 10
+b = 5
+test TestModel {
+	conditions {
+      | direction | position | response |
+      |-----------+----------+----------|
+      | left      | (0, 50)  | left     |
+    }
+	
+	trial {
+        exec -> at a + 100 c:circle(position 0, radius 5 + 15) for a + b * a + 140
+                at .+100 c:circle(position 0, radius 20) for 200
+                at +100 c:circle(position 0, radius 20) for 200
+                c:circle(position 0, radius 20) for 200
+                at 100 c:circle(position 0, radius 20)
+	}
+}

@@ -78,6 +78,52 @@ def test_component_specification():
     assert comp.param_types[2].default.eval() == 10
 
 
+def test_component_timing_definition():
+
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'test_component_timing_definition.pf'))
+    comp_times = m.routines[0].components_cond[0].comp_times
+
+    # Time, duration and params can be expressions
+    # at a + 100 c:circle(position 0, radius 5 + 15) for a + b * a + 140
+    comp = comp_times[0].eval()
+    assert comp.duration == 200
+    assert comp.at == 110
+    assert comp.component.name == 'TestModel_c'
+    assert comp.component.params[0].name == 'position'
+    assert comp.component.params[0].value == 0
+    assert comp.component.params[1].name == 'radius'
+    assert comp.component.params[1].value == 20
+
+    # Time can relative to the start of the previous component
+    # at .+100 c:circle(position 0, radius 20) for 200
+    comp = comp_times[1]
+    assert comp.at.time.eval() == 100
+    assert comp.at.relative_op == '+'
+    assert comp.at.start_relative
+
+    # Time can relative to the end of the previous component
+    # at +100 c:circle(position 0, radius 20) for 200
+    comp = comp_times[2]
+    assert comp.at.time.eval() == 100
+    assert comp.at.relative_op == '+'
+    assert not comp.at.start_relative
+
+    # If not given, by default it is the same as the start of the previous
+    # E.g. `at .`
+    # c:circle(position 0, radius 20) for 200
+    comp = comp_times[3]
+    assert comp.at.time.eval() == 0
+    assert comp.at.relative_op == '+'
+    assert comp.at.start_relative
+
+    # If duration is not given it is assumed that component should be shown
+    # until the end of the trial
+    # at 100 c:circle(position 0, radius 20)
+    comp = comp_times[4]
+    assert comp.duration.eval() == 0
+
+
 def test_components_param_type_referencing_and_default():
     """
     Test that component instances can reference component and param types and

@@ -151,7 +151,7 @@ class ConditionsTable(ModelElement):
                         else:
                             cond_template.append(iter(var_exp_resolved))
                     else:
-                        if has_sequences:
+                        if should_repeat:
                             cond_template.append(repeat(var_exp))
                         else:
                             cond_template.append(iter([var_exp]))

@@ -69,8 +69,7 @@ class ComponentInst(EvaluatedBase):
         try:
             return self._params[name].value
         except KeyError:
-            raise AttributeError('"{}" object has no attribute "{}"'.format(
-                type(self).__name__, name))
+            return getattr(self.spec, name)
 
     def __repr__(self):
         return '{}({})'.format(self.spec.type.name, ', '.join([str(x) for x in self.params]))

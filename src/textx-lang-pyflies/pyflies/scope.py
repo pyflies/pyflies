@@ -70,7 +70,7 @@ class ScopeProvider:
         Evaluates all variables defined in this scope.  Do evaluation in a loop
         with postponing to enable forward referencing.
         """
-        from .lang.common import Symbol
+        from .lang.common import Symbol, Point
 
         self.var_vals = {v.name: PostponedEval(v.value) for v in self.vars}
         context = self.get_context(context)
@@ -84,7 +84,7 @@ class ScopeProvider:
                 if type(exp) is PostponedEval:
                     try:
                         value = exp.exp.eval(context)
-                        if type(value) in [int, float, str, list, Symbol]:
+                        if type(value) in [int, float, str, list, Symbol, Point]:
                             context[name] = value
                             self.var_vals[name] = value
                         resolved = True

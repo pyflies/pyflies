@@ -1,6 +1,7 @@
 from textx import get_parent_of_type, get_children_of_type
 from .evaluated import EvaluatedBase
 from .exceptions import PyFliesException
+from .lang.common import unresolvable_refs
 
 
 class ComponentTimeInst(EvaluatedBase):
@@ -82,8 +83,8 @@ class ComponentParamInst(EvaluatedBase):
         # Find out if this param is dependent on trial condition variables
         test = get_parent_of_type("Test", self.spec)
         cond_var_names = test.table_spec.variables
-        self.is_constant = all([c.name not in cond_var_names
-                                for c in get_children_of_type("VariableRef", spec.value)])
+
+        self.is_constant = not any([r.name in cond_var_names for r in unresolvable_refs(spec.value)])
 
         if not self.is_constant and context is None:
             # Use default value

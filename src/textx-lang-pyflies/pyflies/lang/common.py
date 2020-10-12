@@ -7,6 +7,7 @@ import random
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 from itertools import cycle, repeat, product
+from textx import get_children_of_type
 from textx.const import MULT_ONE, MULT_OPTIONAL
 
 from pyflies.exceptions import PyFliesException
@@ -45,6 +46,24 @@ def reduce_exp(obj):
                                 new_elem_list[idx] = reduced
                             else:
                                 reduce_exp(new_elem)
+
+
+def unresolvable_refs(exp):
+    """
+    Find all variable refs in the given expression that can't be resolved for
+    the given context.
+    """
+    unresolvable = []
+    var_refs = get_children_of_type("VariableRef", exp)
+    while var_refs:
+        var_ref = var_refs.pop()
+        resolved_ref = var_ref.resolve()
+        if resolved_ref is var_ref:
+            unresolvable.append(var_ref)
+        else:
+            new_var_refs = get_children_of_type("VariableRef", resolved_ref)
+            var_refs.extend(new_var_refs)
+    return unresolvable
 
 
 class ModelElement:

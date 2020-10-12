@@ -192,3 +192,9 @@ def test_component_instances():
     # the param type) will be used
     assert comp.params[0].value.x == 0
     assert comp.params[0].value.y == 0
+
+    # Sound
+    comp = test.components[3]
+    assert comp.name == 'TestModel_sound_3'
+    assert comp.params[0].type.name == 'freq'
+    assert not comp.params[0].is_constant

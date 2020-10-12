@@ -166,7 +166,7 @@ def test_component_only_valid_param_can_be_referenced():
         mm.model_from_file(join(this_folder, 'test_component_parameters_wrong.pf'))
 
 
-def test_component_instances():
+def test_default_component_instances():
     """
     Test that component instances with default param values are correctly collected.
     """
@@ -198,3 +198,21 @@ def test_component_instances():
     assert comp.name == 'TestModel_sound_3'
     assert comp.params[0].type.name == 'freq'
     assert not comp.params[0].is_constant
+
+
+def test_trial_component_instances():
+    """
+    Test that component instances for each trial are correctly instantiated.
+    """
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'test_trial_component_parameters.pf'))
+
+    test = m.routines[0]
+    trial = test.table.rows[0]
+    assert trial.ph_exec[0].component.params[1].value == 'left'
+    assert trial.ph_exec[1].component.params[0].value.y == 50
+    assert trial.ph_exec[2].component.params[0].value == 500
+
+    trial = test.table.rows[1]
+    assert trial.ph_exec[0].component.params[1].value == 'up'
+    assert trial.ph_exec[2].component.params[0].value == 200

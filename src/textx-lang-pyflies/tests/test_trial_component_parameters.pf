@@ -1,0 +1,24 @@
+"""
+Model for evaluating component parameters for each trial.
+"""
+directions = [left, up, down, righ]
+responses = [yes, no]
+
+test TestModel {
+    conditions {
+    | direction       | position | response  |
+    |-----------------+----------+-----------|
+    | directions loop | (0, 50)  | responses |
+    }
+
+    trial {
+        duration = 500 if direction == left else 200
+        dur = duration
+        fix -> mycross:cross(position (0,0))
+        exec -> circle(radius 100, position direction)
+                circle(position position)
+                sound(freq dur)
+        error -> sound(freq 300)
+        correct -> sound(freq 700)
+    }
+}

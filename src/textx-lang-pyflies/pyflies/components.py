@@ -89,7 +89,15 @@ class ComponentParamInst(EvaluatedBase):
             # Use default value
             self.value = spec.type.default.eval()
         else:
-            self.value = self.value.eval(context)
+            try:
+                self.value = self.value.eval(context)
+            except PyFliesException as e:
+                if 'Undefined variable' in str(e):
+                    # This may happen if expression contains strings with
+                    # interpolated variables which are not available
+                    # Use default value
+                    self.value = spec.type.default.eval()
+
 
     @property
     def name(self):

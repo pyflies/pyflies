@@ -153,6 +153,14 @@ class Sequence(ExpressionElement):
     """
     A sequence of expressions.
     """
+    def __getitem__(self, idx):
+        return self.values[idx]
+
+    def __iter__(self):
+        return iter(self.values)
+
+    def __len__(self):
+        return len(self.values)
 
 
 class List(Sequence):
@@ -167,15 +175,6 @@ class List(Sequence):
             except AttributeError:
                 res.append(v)
         return res
-
-    def get_exps(self):
-        return self.values
-
-    def __getitem__(self, idx):
-        return self.values[idx]
-
-    def __iter__(self):
-        return iter(self.values)
 
     def __str__(self):
         return '[{}]'.format(', '.join([str(x) for x in self.values]))

@@ -122,6 +122,18 @@ class ConditionsTable(ModelElement):
             loops = []
             loops_idx = []
 
+            # First check to see if there is loops and if sequences
+            # This will influence the interpretation of the row
+            has_loops = any([type(v) is LoopExpression for v in cond_spec])
+            has_sequences = any([isinstance(v.resolve(), Sequence) for v in cond_spec])
+            should_repeat = has_loops or has_sequences
+            if not has_loops and has_sequences:
+                # There are sequences but no loops. We shall do iteration for
+                # the length of the longest sequence. Other sequences will
+                # cycle. Base values will repeat.
+                max_len = max([len(x.resolve())
+                               for x in cond_spec if isinstance(x.resolve(), Sequence)])
+
             # Create cond template which will be used to instantiate concrete
             # expanded table rows.
             for idx, var_exp in enumerate(cond_spec):
@@ -134,9 +146,15 @@ class ConditionsTable(ModelElement):
                     # expression (e.g. List or Range) or repeat otherwise
                     var_exp_resolved = var_exp.resolve()
                     if isinstance(var_exp_resolved, Sequence):
-                        cond_template.append(cycle(var_exp_resolved.get_exps()))
+                        if has_loops or len(var_exp_resolved) < max_len:
+                            cond_template.append(cycle(var_exp_resolved))
+                        else:
+                            cond_template.append(iter(var_exp_resolved))
                     else:
-                        cond_template.append(repeat(var_exp))
+                        if has_sequences:
+                            cond_template.append(repeat(var_exp))
+                        else:
+                            cond_template.append(iter([var_exp]))
 
             assert len(cond_template) == len(cond_spec)
 
@@ -161,9 +179,14 @@ class ConditionsTable(ModelElement):
                     row = ExpTableRow(table, row)
                     row.eval()
             else:
-                # No looping - just evaluate all expressions
-                row = ExpTableRow(table, [next(x) for x in cond_template])
-                row.eval()
+                # No looping - just evaluate all expressions until all
+                # iterators are exhausted
+                try:
+                    while True:
+                        row = ExpTableRow(table, [next(x) for x in cond_template])
+                        row.eval()
+                except StopIteration:
+                    pass
 
         table.calculate_column_widths()
 

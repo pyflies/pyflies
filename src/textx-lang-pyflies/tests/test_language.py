@@ -414,6 +414,59 @@ def test_conditions_table_expansion():
     assert m.t[2].t == m.t[3].t
 
 
+def test_conditions_table_no_loop_expansion():
+    """
+    Test that iterations without loops are expanded properly.
+    """
+
+    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+
+    m = mm.model_from_str('''
+        positions = [left, right]
+        colors = [green, red, blue]
+
+        {   // Unexpanded table with iterations only
+            | position | color  | response  |
+            |----------+--------+-----------|
+            | (0, 10)  | colors | positions |
+        }
+    ''')
+    assert m.t[0].t.to_str() == \
+        '''
+| position | color | response |
+|----------+-------+----------|
+| (0, 10)  | green | left     |
+| (0, 10)  | red   | right    |
+| (0, 10)  | blue  | left     |
+
+        '''.strip()
+
+
+def test_conditions_table_no_loop_no_sequence_expansion():
+    """
+    Test that iterations without loops and sequences are expanded properly.
+    """
+
+    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+
+    m = mm.model_from_str('''
+        {   // Unexpanded table without loops and sequences
+            | position | color | response |
+            |----------+-------+----------|
+            | (0, 10)  | 2 + 4 | 6 - 2    |
+            | (0, 10)  | 2 + 5 | 6 - 2    |
+        }
+    ''')
+    assert m.t[0].t.to_str() == \
+        '''
+| position | color | response |
+|----------+-------+----------|
+| (0, 10)  | 6     | 4        |
+| (0, 10)  | 7     | 4        |
+
+        '''.strip()
+
+
 def test_conditions_table_str_representation():
     """
     Test that tables are properly formatted when converted to string

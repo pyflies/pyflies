@@ -3,7 +3,7 @@ component image extends visual
 A component that displays image loaded from file
 """
 {
-    param file: string
+    param file: string = 'default path'
     """
     A file path relative to the model file.
     """

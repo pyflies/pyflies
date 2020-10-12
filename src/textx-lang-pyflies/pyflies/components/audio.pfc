@@ -3,7 +3,7 @@ component audio
 Plays audio loaded from the given file
 """
 {
-    param file: string
+    param file: string = 'default path'
     """
     The file to load audio from
     """

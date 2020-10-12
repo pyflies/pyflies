@@ -45,7 +45,7 @@ def test_component_specification():
     This component is used in inheritance
     """
     {
-        param abs_param: int
+        param abs_param: int = 20
     }
 
     component test_comp extends abs_comp
@@ -53,10 +53,8 @@ def test_component_specification():
     This is test component
     """
     {
-        // First param don't have a default value and thus is mandatory
-        param first_param: string
+        param first_param: string = 'First param'
 
-        // Second param has default value and thus is optional
         param second_param: int = 5
         """
         Parameter description
@@ -76,6 +74,7 @@ def test_component_specification():
     assert comp.param_types[1].description.strip() == 'Parameter description'
     assert comp.param_types[2].types == ['int', 'string', 'symbol']
     assert comp.param_types[2].default.eval() == 10
+    assert comp.extends[0].param_types[0].default.eval() == 20
 
 
 def test_component_timing_definition():

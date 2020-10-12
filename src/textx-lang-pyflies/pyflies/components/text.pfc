@@ -3,7 +3,7 @@ component text extends visual
 A component for displaying text
 """
 {
-    param content: string
+    param content: string = 'default text'
     """
     A mandatory content for display
     """

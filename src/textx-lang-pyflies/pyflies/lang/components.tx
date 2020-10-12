@@ -19,9 +19,7 @@ ComponentType:
 ;
 
 ParamType:
-    // If default value is supplied param is optional
     'param' name=ID ':'
-        (types=Type | '[' types+=Type[','] ']')
-        ('=' default = Expression)?
+        (types=Type | '[' types+=Type[','] ']') '=' default = Expression
     (description=Description)?
 ;

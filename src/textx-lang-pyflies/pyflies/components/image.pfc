@@ -7,4 +7,9 @@ A component that displays image loaded from file
     """
     A file path relative to the model file.
     """
+
+    param ori: int = 0
+    """
+    Orijentation in degrees.
+    """
 }

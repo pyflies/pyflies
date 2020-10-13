@@ -38,34 +38,35 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     unresolved = set()
     def recursive_resolve(obj):
         """
-        Find all unresolved symbols in the experiment model and replace with
-        value from target settings. Collect all that can't be replaced to issue
-        warning to the user.
+        Find all unresolved symbols for component param values in the
+        experiment model and replace with value from target settings.  Collect
+        all that can't be replaced to issue warning to the user.
         """
         if id(obj) in visited:
             return
         visited.add(id(obj))
         try:
-            attrs = vars(obj).items()
+            attrs = vars(obj).values()
         except TypeError:
-            if type(obj) is list:
-                attrs = enumerate(obj)
+            if isinstance(obj, list):
+                attrs = obj
+            elif isinstance(obj, dict):
+                attrs = obj.values()
             else:
                 return
 
-        for idx, attr in attrs:
-            if attr.__class__.__name__ == 'VariableRef':
-                if attr.name in settings:
-                    if type(obj) is list:
-                        obj[idx] = settings[attr.name]
+        for attr in attrs:
+            if attr.__class__.__name__ == 'ComponentParamInst':
+                if type(attr.value) is Symbol:
+                    if attr.value.name in settings:
+                        attr.value = settings[attr.value.name]
                     else:
-                        setattr(obj, idx, settings[attr.name])
-                else:
-                    unresolved.add(attr.name)
+                        unresolved.add(attr.value.name)
             recursive_resolve(attr)
     recursive_resolve(model)
 
-    unresolved -= {'fix', 'exec', 'error', 'correct'}
+    # Remove symbols that has mappings by PsychoPy generator
+    unresolved -= {'left', 'right', 'up', 'down'}
 
     if unresolved:
         click.echo('Warning: these symbols where not resolved by '

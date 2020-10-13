@@ -184,15 +184,25 @@ defaultKeyboard = keyboard.Keyboard()
     {% for trial in routine.table %}
       # Trial {{loop.index}}
       {
+      {% if trial.ph_fix %}
+        'ph_fix': [{{trial.ph_fix|map(attribute='component')|map(attribute='name')|join(', ')}}]
+      {% endif %}
+      {% if trial.ph_exec %}
+        'ph_exec': [{{trial.ph_exec|map(attribute='component')|map(attribute='name')|join(', ')}}],
+      {% endif %}
+      {% if trial.ph_error %}
+        'ph_error': [{{trial.ph_error|map(attribute='component')|map(attribute='name')|join(', ')}}],
+      {% endif %}
+      {% if trial.ph_correct %}
+        'ph_correct': [{{trial.ph_correct(attribute='component')|map(attribute='name')|join(', ')}}],
+      {% endif %}
       {% for comp_time in trial.comp_times %}
-        '{{comp_time.component.name}}': {
-          'at': {{comp_time.at}},
-          'duration': {{comp_time.duration}},
-        {% for param in comp_time.component.params %}
-          {% if not param.is_constant %}
+        '{{comp_time.component.name}}': {'at': {{comp_time.at}}, 'duration': {{comp_time.duration}},
+        {%- for param in comp_time.component.params %}
+          {% if not param.is_constant -%}
           '{{param|param_name}}': {{param|param_value}},
-          {% endif %}
-        {% endfor %}
+          {%- endif %}
+        {% endfor -%}
         },
       {% endfor %}
       },

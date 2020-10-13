@@ -99,6 +99,9 @@ class ExpTableRow(ModelElement, ScopeProvider):
         self.ph_error = None
         self.ph_correct = None
 
+        # All comp time spec together
+        self.comp_times = []
+
     def calc_phases(self):
         """
         Evaluate condition components specification for each phase of this trial.
@@ -127,6 +130,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
                     for comp_time in cond_comp.comp_times:
                         comp_time_inst = comp_time.eval(context, last_comp)
                         comp_insts.append(comp_time_inst)
+                        self.comp_times.append(comp_time_inst)
                         last_comp = comp_time
                     setattr(self, f'ph_{phase}', comp_insts)
                     break

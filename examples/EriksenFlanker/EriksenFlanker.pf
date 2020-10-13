@@ -13,11 +13,11 @@ test EriksenFlanker {
     }
 	
 	trial {
-		fix: cross() for 1000..3000 choose
-    exec: image(file "images/{direction}-{category}.png")
-          key(valid response)
-		error: sound(freq 300) for 500
-		correct: sound(freq 700) for 300
+		fix -> cross() for 1000..3000 choose
+        exec -> image(file "images/{direction}-{category}.png")
+                key(valid response)
+		error -> sound(freq 300) for 500
+		correct -> sound(freq 700) for 300
 	}
 }
 
@@ -63,11 +63,6 @@ flow {
 }
 
 target PsychoPy {
-  // Target folder where test should be generated
-  output = "/home/igor/tmp/eriksenPsycho/"
-
-  responses {
-    left = left
-    right = right
-  }  
+  left = left
+  right = right
 }

@@ -30,11 +30,11 @@ test Simon {
     */
 
     trial {
-        fix: cross() for 2000..4000 choose
-        exec: rectangle(posx position, color color, fillColor color)
-              key(valid response)
-        error: sound(freq 1000) for 300
-        correct: sound(freq 500) for 300
+        fix -> cross() for 2000..4000 choose
+        exec -> rectangle(position position, color color, fillColor color)
+                key(valid response)
+        error -> sound(freq 1000) for 300
+        correct -> sound(freq 500) for 300
     }
 }
 
@@ -66,9 +66,6 @@ flow {
 }
 
 target PsychoPy {
-  output = "~/SimonPsycho/"
-  responses {
-    left = left
-    right = right
-  }
+  left = left
+  right = right
 }

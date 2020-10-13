@@ -16,6 +16,14 @@ Variables:
 
 Test: Posner
 --------------------------------------------------------------------------
+Components with param values:
+Posner_cross_0 = <ComponentType:cross>(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Posner_rectangle_1 = <ComponentType:rectangle>(position left constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Posner_rectangle_2 = <ComponentType:rectangle>(position right constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Posner_rectangle_3 = <ComponentType:rectangle>(position (0, 0), size 18 constant, color #ffffff constant, fillColor #ffffff constant, )
+Posner_cross_4 = <ComponentType:cross>(position (0, 0), size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Posner_key_5 = <ComponentType:key>(valid space, )
+Posner_sound_6 = <ComponentType:sound>(freq 1000 constant, )
 
 Conditions:
 
@@ -36,8 +44,8 @@ Trial 1
 
   Variables:
     positions = [left, right]
-    cue_display = 1489
-    cross_display = 2658
+    cue_display = 1043
+    cross_display = 2497
     cue = left
     position = left
     congruency = congruent
@@ -46,12 +54,12 @@ Trial 1
   Phases:
     fix:
     exec:
-            at 0 cross() for 0
-            at 0 rectangle(posx left, width 20) for 0
-            at 0 rectangle(posx right, width 20) for 0
-            at 1489 rectangle(posx left, width 18) for 0
-            at 2658 cross(posx left) for 0
-            at 2658 key(valid press) for 0
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 1043 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2497 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2497 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -64,8 +72,8 @@ Trial 2
 
   Variables:
     positions = [left, right]
-    cue_display = 1265
-    cross_display = 2443
+    cue_display = 1083
+    cross_display = 2278
     cue = left
     position = right
     congruency = incongruent
@@ -74,12 +82,12 @@ Trial 2
   Phases:
     fix:
     exec:
-            at 0 cross() for 0
-            at 0 rectangle(posx left, width 20) for 0
-            at 0 rectangle(posx right, width 20) for 0
-            at 1265 rectangle(posx left, width 18) for 0
-            at 2443 cross(posx right) for 0
-            at 2443 key(valid press) for 0
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 1083 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2278 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2278 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -92,8 +100,8 @@ Trial 3
 
   Variables:
     positions = [left, right]
-    cue_display = 1334
-    cross_display = 2433
+    cue_display = 1404
+    cross_display = 2672
     cue = right
     position = left
     congruency = incongruent
@@ -102,12 +110,12 @@ Trial 3
   Phases:
     fix:
     exec:
-            at 0 cross() for 0
-            at 0 rectangle(posx left, width 20) for 0
-            at 0 rectangle(posx right, width 20) for 0
-            at 1334 rectangle(posx right, width 18) for 0
-            at 2433 cross(posx left) for 0
-            at 2433 key(valid press) for 0
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 1404 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2672 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2672 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -120,8 +128,8 @@ Trial 4
 
   Variables:
     positions = [left, right]
-    cue_display = 1372
-    cross_display = 2456
+    cue_display = 1158
+    cross_display = 2409
     cue = right
     position = right
     congruency = congruent
@@ -130,12 +138,12 @@ Trial 4
   Phases:
     fix:
     exec:
-            at 0 cross() for 0
-            at 0 rectangle(posx left, width 20) for 0
-            at 0 rectangle(posx right, width 20) for 0
-            at 1372 rectangle(posx right, width 18) for 0
-            at 2456 cross(posx right) for 0
-            at 2456 key(valid press) for 0
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 1158 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2409 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2409 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

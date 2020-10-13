@@ -10,56 +10,49 @@ numbers = 1..9
 parities = [odd, even]
 
 test Parity {
-     conditions {
+    conditions {
         | number       | parity   | response |
         |--------------+----------+----------|
         | numbers loop | parities | parities |
-     }
+    }
 
-     trial {
-             fix: cross() for 1000..3000 choose
-             exec: text(text number)
-                   key(valid response)
-             correct: sound(freq 500) for 300
-             error: sound(freq 1000) for 300
-     }
+    trial {
+        fix -> cross() for 1000..3000 choose
+        exec -> text(content number)
+                key(valid response)
+        correct -> sound(freq 500) for 300
+        error -> sound(freq 1000) for 300
+    }
 }
 
 screen Intro {
-	Parity classification
-	---------------------
-	
-	This is a practice block.
-	
-	You will be presented with a digit.
-	Press LEFT for odd and RIGHT for even digit.
-	
-	Press ENTER key for the start.
+    Parity classification
+    ---------------------
+
+    This is a practice block.
+
+    You will be presented with a digit.
+    Press LEFT for odd and RIGHT for even digit.
+
+    Press ENTER key for the start.
 }
 
 screen Real {
-	Parity classification
-	---------------------
-	
-	Now a REAL testing will be performed.
-	
-	You will be presented with a digit.
-	Press LEFT for odd and RIGHT for even digit.
-	
-	Press ENTER key for the start.
+    Parity classification
+    ---------------------
+
+    Now a REAL testing will be performed.
+
+    You will be presented with a digit.
+    Press LEFT for odd and RIGHT for even digit.
+
+    Press ENTER key for the start.
 }
 
 flow {
-  show Intro
-  repeat Parity 1 time random as practice
-	show Real
-  repeat Parity 2 times full random
+    show Intro
+    repeat Parity 1 time random as practice
+    show Real
+    repeat Parity 2 times full random
 }
 
-target PsychoPy {
-  output = "/home/igor/tmp/ParityPsycho/"
-  responses {
-    odd = left
-    even = right
-  }
-}

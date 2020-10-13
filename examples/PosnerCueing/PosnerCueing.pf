@@ -16,51 +16,47 @@ test Posner {
     trial {
         cue_display = 1000..1500 choose
         cross_display = cue_display + 1000..1500 choose
-        exec: cross()
-              rectangle(posx left, width 20)
-              rectangle(posx right, width 20)
-              at cue_display rectangle(posx cue, width 18)
-              at cross_display cross(posx position)
-              key(valid response)
-              // mouse(target cross)
-        error: sound(freq 1000) for 300
+        exec -> cross()
+                rectangle(position left, size 20)
+                rectangle(position right, size 20)
+                at cue_display rectangle(position cue, size 18)
+                at cross_display cross(position position)
+                key(valid response)
+                // mouse(target cross)
+        error -> sound(freq 1000) for 300
     }
 }
 
 screen Practice {
-  Posner Cueing
-  -------------
-	
-  You will be presented with the two empty boxes positioned left and right from
-  the center of the screen. You should concentrate on the center of the screen
-  and wait for the cue. The cue will be presented as a box highlight. After some
-  time a cross shaped object will be presented in some of the squares. React as
-  fast as you can by pressing space button when you detect a cross shaped
-  object.
-	
-  Press SPACE for practice block.
+    Posner Cueing
+    -------------
+
+    You will be presented with the two empty boxes positioned left and right from
+    the center of the screen. You should concentrate on the center of the screen
+    and wait for the cue. The cue will be presented as a box highlight. After some
+    time a cross shaped object will be presented in some of the squares. React as
+    fast as you can by pressing space button when you detect a cross shaped
+    object.
+
+    Press SPACE for practice block.
 }
 
 screen Real {
-  Posner Cueing
-  -------------
-	
-  Now a REAL testing will be performed.
+    Posner Cueing
+    -------------
 
-  Press SPACE to start the test.
-	
+    Now a REAL testing will be performed.
+
+    Press SPACE to start the test.
 }
 
 flow {
-	show Practice
-	repeat Posner 1 time full random as practice
-	show Real
-	repeat Posner 10 times full random
+    show Practice
+    repeat Posner 1 time full random as practice
+    show Real
+    repeat Posner 10 times full random
 }
 
 target PsychoPy {
-  output = "/home/igor/tmp/PosnerPsycho/"
-  responses {
     press = space
-  }
 }

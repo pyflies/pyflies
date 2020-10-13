@@ -7,7 +7,7 @@ ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
 
 """
 
-Tests count: 1
+Tests: [<Test:Parity>]
 Screens: [<Screen:Intro>, <Screen:Real>]
 
 Variables:
@@ -18,6 +18,12 @@ Variables:
 
 Test: Parity
 --------------------------------------------------------------------------
+Components with param values:
+Parity_cross_0 = <ComponentType:cross>(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Parity_text_1 = <ComponentType:text>(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Parity_key_2 = <ComponentType:key>(valid space, )
+Parity_sound_3 = <ComponentType:sound>(freq 500 constant, )
+Parity_sound_4 = <ComponentType:sound>(freq 1000 constant, )
 
 Conditions:
 
@@ -34,8 +40,9 @@ Conditions:
 | 9      | odd    | odd      |
 
 
-Detailed with stimuli for each trial:
+Detailed with components for each trial:
 
+Trial 1
 | number | parity | response |
 |--------+--------+----------|
 | 1      | odd    | odd      |
@@ -49,9 +56,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2474
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1627
     exec:
-            at 0 text(text 1) for 0
+            at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -59,6 +66,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 2
 | number | parity | response |
 |--------+--------+----------|
 | 2      | even   | even     |
@@ -72,9 +80,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1553
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
     exec:
-            at 0 text(text 2) for 0
+            at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -82,6 +90,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 3
 | number | parity | response |
 |--------+--------+----------|
 | 3      | odd    | odd      |
@@ -95,9 +104,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2126
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1294
     exec:
-            at 0 text(text 3) for 0
+            at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -105,6 +114,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 4
 | number | parity | response |
 |--------+--------+----------|
 | 4      | even   | even     |
@@ -118,9 +128,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2899
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2511
     exec:
-            at 0 text(text 4) for 0
+            at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -128,6 +138,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 5
 | number | parity | response |
 |--------+--------+----------|
 | 5      | odd    | odd      |
@@ -141,9 +152,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1771
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2377
     exec:
-            at 0 text(text 5) for 0
+            at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -151,6 +162,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 6
 | number | parity | response |
 |--------+--------+----------|
 | 6      | even   | even     |
@@ -164,9 +176,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2003
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1715
     exec:
-            at 0 text(text 6) for 0
+            at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -174,6 +186,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 7
 | number | parity | response |
 |--------+--------+----------|
 | 7      | odd    | odd      |
@@ -187,9 +200,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 2702
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1465
     exec:
-            at 0 text(text 7) for 0
+            at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -197,6 +210,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 8
 | number | parity | response |
 |--------+--------+----------|
 | 8      | even   | even     |
@@ -210,9 +224,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1475
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2855
     exec:
-            at 0 text(text 8) for 0
+            at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -220,6 +234,7 @@ Detailed with stimuli for each trial:
             at 0 sound(freq 500) for 300
 
 
+Trial 9
 | number | parity | response |
 |--------+--------+----------|
 | 9      | odd    | odd      |
@@ -233,9 +248,9 @@ Detailed with stimuli for each trial:
 
   Phases:
     fix:
-            at 0 cross() for 1541
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2119
     exec:
-            at 0 text(text 9) for 0
+            at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
     error:
             at 0 sound(freq 1000) for 300

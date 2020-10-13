@@ -18,6 +18,12 @@ Variables:
 
 Test: Simon
 --------------------------------------------------------------------------
+Components with param values:
+Simon_cross_0 = <ComponentType:cross>(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Simon_rectangle_1 = <ComponentType:rectangle>(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 0) constant, )
+Simon_key_2 = <ComponentType:key>(valid space, )
+Simon_sound_3 = <ComponentType:sound>(freq 1000 constant, )
+Simon_sound_4 = <ComponentType:sound>(freq 500 constant, )
 
 Conditions:
 
@@ -47,9 +53,9 @@ Trial 1
 
   Phases:
     fix:
-            at 0 cross() for 2162
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2121
     exec:
-            at 0 rectangle(posx left, color green, fillColor green) for 0
+            at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -73,9 +79,9 @@ Trial 2
 
   Phases:
     fix:
-            at 0 cross() for 3214
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3099
     exec:
-            at 0 rectangle(posx left, color red, fillColor red) for 0
+            at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -99,9 +105,9 @@ Trial 3
 
   Phases:
     fix:
-            at 0 cross() for 2714
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2903
     exec:
-            at 0 rectangle(posx right, color green, fillColor green) for 0
+            at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
     error:
             at 0 sound(freq 1000) for 300
@@ -125,9 +131,9 @@ Trial 4
 
   Phases:
     fix:
-            at 0 cross() for 2645
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3475
     exec:
-            at 0 rectangle(posx right, color red, fillColor red) for 0
+            at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
     error:
             at 0 sound(freq 1000) for 300

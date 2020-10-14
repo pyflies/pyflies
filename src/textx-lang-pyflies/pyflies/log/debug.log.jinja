@@ -28,7 +28,7 @@ Test: {{test.name}}
 --------------------------------------------------------------------------
 Components with param values:
 {% for component in test.components %}
-{{component.name}} = {{component.type}}({% for param in component.params %}{{param.name}} {{param.value}}{% if param.is_constant %} constant{% endif %}, {% endfor %})
+{{component.name}} = {{component.type.name}}({% for param in component.params %}{{param.name}} {{param.value}}{% if param.is_constant %} constant{% endif %}, {% endfor %})
 {% endfor %}
 
 Conditions:

@@ -5,10 +5,27 @@ from os.path import basename, splitext, join, dirname
 from textx import generator
 from textxjinja import textx_jinja_generator
 
+from pyflies.exceptions import PyFliesException
+from pyflies.tools import resolve_params
 from pyflies.lang.common import Symbol, Point
 
 __version__ = "0.1.0.dev"
 
+
+# These are settings that can be used in the `target` configuration. A default
+# value will be used if a setting is not provided. These settings can be
+# referenced as variables in all expressions in the pyFlies model.
+default_settings = {
+    'left': (-0.5, 0),
+    'right': (0.5, 0),
+    'up': (0, 0.5),
+    'down': (0, -0.5),
+    'fullScreen': False,
+    'resolution': (1024, 768),
+    'background': 'black',
+    'frameTolerance': 0.001,
+    'soundBackend': 'sound.backend_ptb.SoundPTB',
+}
 
 # Settings from the model target configuration
 settings = {}
@@ -28,57 +45,16 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     else:
         output_file = output_path
 
-    settings = {}
+    settings = dict(default_settings)
     for target in model.targets:
         if target.name.lower() == 'psychopy':
             for ts in target.settings:
                 settings[ts.name] = ts.value
 
-    visited = set()
-    unresolved = set()
-    def recursive_resolve(obj):
-        """
-        Find all unresolved symbols for component param values in the
-        experiment model and replace with value from target settings.  Collect
-        all that can't be replaced to issue warning to the user.
-        """
-        if id(obj) in visited:
-            return
-        visited.add(id(obj))
-        try:
-            attrs = vars(obj).values()
-        except TypeError:
-            if isinstance(obj, list):
-                attrs = obj
-            elif isinstance(obj, dict):
-                attrs = obj.values()
-            else:
-                return
-
-        for attr in attrs:
-            if attr.__class__.__name__ == 'ComponentParamInst':
-                if type(attr.value) is Symbol:
-                    if attr.value.name in settings:
-                        attr.value = settings[attr.value.name]
-                    else:
-                        unresolved.add(attr.value.name)
-            recursive_resolve(attr)
-    recursive_resolve(model)
-
-    # Remove symbols that has mappings by PsychoPy generator
-    unresolved -= {'left', 'right', 'up', 'down'}
-
+    unresolved = resolve_params(model, settings)
     if unresolved:
         click.echo('Warning: these symbols where not resolved by '
                 'the target configuration: {}'.format(unresolved))
-
-    default_settings = {
-        'resolution': '(1024, 768)',
-    }
-
-    for dsn, ds in default_settings.items():
-        if dsn not in settings:
-            settings[dsn] = ds
 
     filters = {
         'comp_type': comp_type,
@@ -87,9 +63,10 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
         'param_value': param_value,
         'striptabs': striptabs,
         'type': typ,
+        'name': name,
         'color': color,
         'point': point,
-        'size': size,
+        'coord': coord,
         'duration': duration,
 
     }
@@ -102,7 +79,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     textx_jinja_generator(template_file, output_file, config, overwrite, filters)
 
 
-# Jinja filters
+# Jinja filters and mappings pyFlies -> PsychoPy
 
 def striptabs(s):
     return re.sub(r'^[ \t]+', '', s, flags=re.M)
@@ -110,6 +87,14 @@ def striptabs(s):
 
 def typ(obj):
     return obj.__class__.__name__
+
+
+def name(obj):
+    t = typ(obj)
+    return {
+        'Screen': '{}_screen'.format(obj.name),
+        'Test': '{}_test'.format(obj.name),
+    }.get(t, obj.name)
 
 
 def color(obj):
@@ -123,29 +108,20 @@ def point(obj):
     """
     Mapping of points/positions
     """
-    p = {
-        'left': (-0.5, 0),
-        'right': (0.5, 0),
-        'up': (0, 0.5),
-        'down': (0, -0.5),
-     }.get(str(obj))
-
-    if p is None:
-        return (size(obj.x), size(obj.y))
-    return p
+    return (coord(obj.x), coord(obj.y))
 
 
-
-def size(obj):
+def coord(obj):
     """
-    Mapping of sizes
+    Scaling of coordinates.  pyFlies uses Descartes coordinates [-100, 100]
+    while PsychoPy uses [-1, 1].
     """
     return obj / 100
 
 
 def duration(obj):
     """
-    Mapping of durations to seconds
+    Mapping of durations to seconds. pyFlies uses ms.
     """
     return obj / 1000
 
@@ -153,18 +129,23 @@ def comp_type(comp):
     """
     Mapping of component types
     """
-    return {
+    target_comp = {
         'text': 'visual.TextStim',
         'circle': 'visual.Circle',
         'rectangle': 'visual.Rect',
         'cross': 'visual.ShapeStim',
         'line': 'visual.Line',
         'image': 'visual.ImageStim',
-        'sound': 'sound.SoundPTB',
-        'audio': 'sound.SoundPTB',
+        'sound': settings['soundBackend'],
+        'audio': settings['soundBackend'],
         'mouse': 'event.Mouse',
         'key': 'event.Key',
-    }.get(comp.type.name, 'UNEXISTING_COMPONENT')
+    }.get(comp.type.name)
+
+    assert target_comp is not None, \
+        'No mapping for component {}'.format(comp.type.name)
+
+    return target_comp
 
 
 def param_used(param):
@@ -214,20 +195,33 @@ def param_name(param):
 
 def param_value(param):
     """
-    Mapping of component values.
+    Mapping of component parameter values.
     """
     value = param.value
+    comp = param.parent.type.name
 
-    # If the value is symbol check target mapping configuration
-    if type(value) is Symbol:
-        if str(value) in settings:
-            return "'{}'".format(settings[str(value)])
-
-    if type(param.value) is Point or param.name == 'position':
+    if type(param.value) is Point:
         return point(param.value)
-    elif param.name == 'size':
-        return size(param.value)
+    elif type(param.value) in [int, float]:
+        # Numerical values
+        # By default return as is if not recognized
+        # as coordinate by param name and comp type
+        return {
+            # If parameter is 'size' treat as coordinate if
+            # not text
+            'size': {
+                'text': param.value
+            }.get(comp, coord(param.value))
+        }.get(param.name, param.value)
+
     elif type(param.value) in [str, Symbol]:
+        # Strings and symbols map to quoted strings
         return "'{}'".format(param.value)
 
-    return param.value
+    elif type(param.value) is tuple:
+        # For points resolved through default settings
+        return param.value
+
+    raise PyFliesException('Unrecognized parameter '
+                           'type "{}" for parameter "{}"'
+                           .format(type(param.value), param.name))

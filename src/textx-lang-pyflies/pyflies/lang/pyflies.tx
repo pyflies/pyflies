@@ -34,7 +34,7 @@ TestType:
       table_spec=ConditionsTable
 
       vars*=VariableAssignment
-      components_cond+=ComponentsCondition
+      components_cond*=ComponentsCondition
 
   "}"
 ;

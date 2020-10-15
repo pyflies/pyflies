@@ -6,15 +6,15 @@ import inspect
 import random
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
-from itertools import cycle, repeat, product
 
 from pyflies.exceptions import PyFliesException
 from pyflies.time import TimeReferenceInst
 from pyflies.components import ComponentTimeInst, ComponentInst, ComponentParamInst
 from pyflies.scope import ScopeProvider, Postpone, PostponedEval
+from pyflies.evaluated import EvaluatedBase
+from pyflies.table import ConditionsTableInst
 
 from .common import ModelElement, classes as common_classes, BaseValue, LoopExpression, Sequence
-
 
 def get_parent_of_type(clazz, obj):
     if isinstance(obj, clazz):
@@ -111,92 +111,12 @@ class ConditionsTable(ModelElement):
         from pyflies.table import get_column_widths
         self.column_widths = get_column_widths(self.variables, self.cond_specs)
 
-    def expand(self):
+    def eval(self, context=None):
         """
         Expands the table taking into account `loop` messages for looping, and
         ranges and lists for cycling.
         """
-
-        from pyflies.table import ExpTable, ExpTableRow
-
-        table = ExpTable(self)
-        self.parent.table = table
-
-        for cond_spec in self:
-            cond_template = []
-            loops = []
-            loops_idx = []
-
-            # First check to see if there is loops and if sequences
-            # This will influence the interpretation of the row
-            has_loops = any([type(v) is LoopExpression for v in cond_spec])
-            has_sequences = any([isinstance(v.resolve(), list) for v in cond_spec])
-            should_repeat = has_loops or has_sequences
-            if not has_loops and has_sequences:
-                # There are sequences but no loops. We shall do iteration for
-                # the length of the longest sequence. Other sequences will
-                # cycle. Base values will repeat.
-                max_len = max([len(x.resolve())
-                               for x in cond_spec if isinstance(x.resolve(), list)])
-
-            # Create cond template which will be used to instantiate concrete
-            # expanded table rows.
-            for idx, var_exp in enumerate(cond_spec):
-                if type(var_exp) is LoopExpression:
-                    loops.append(var_exp.exp.resolve())
-                    loops_idx.append(idx)
-                    cond_template.append(None)
-                else:
-                    # If not a loop expression then cycle if list-like
-                    # expression (e.g. List or Range) or repeat otherwise
-                    var_exp_resolved = var_exp.resolve()
-                    if isinstance(var_exp_resolved, list):
-                        if has_loops or len(var_exp_resolved) < max_len:
-                            cond_template.append(cycle(var_exp_resolved))
-                        else:
-                            cond_template.append(iter(var_exp_resolved))
-                    else:
-                        if should_repeat:
-                            cond_template.append(repeat(var_exp_resolved))
-                        else:
-                            cond_template.append(iter([var_exp_resolved]))
-
-            assert len(cond_template) == len(cond_spec)
-
-            # Evaluate template making possibly new rows if there are loop
-            # expressions
-            if loops:
-                loops = product(*loops)
-                for loop_vals in loops:
-
-                    # Evaluate looping variables. We start with all variables
-                    # in postponed state to enable postponing evaluation of all
-                    # expressions that uses postponed table variables (i.e.
-                    # referencing forward column value)
-                    row = [None] * len(cond_template)
-                    for idx, loop_val in zip(loops_idx, loop_vals):
-                        row[idx] = loop_val
-
-                    for idx, cond_i in enumerate(cond_template):
-                        if cond_i is not None:
-                            row[idx] = next(cond_i)
-
-                    row = ExpTableRow(table, row)
-                    row.eval()
-            else:
-                # No looping - just evaluate all expressions until all
-                # iterators are exhausted
-                try:
-                    while True:
-                        row = ExpTableRow(table, [next(x) for x in cond_template])
-                        row.eval()
-                except StopIteration:
-                    pass
-
-        table.calculate_column_widths()
-
-    def calc_phases(self):
-        self.parent.table.calc_phases()
+        return ConditionsTableInst(self, context)
 
     def __getitem__(self, idx):
         return self.cond_specs[idx]
@@ -207,31 +127,16 @@ class ConditionsTable(ModelElement):
     def __len__(self):
         return len(self.cond_specs)
 
-    def __eq__(self, other):
-        return self.parent.table == other.parent.table
-
     def __str__(self):
         """
         String representation will be in orgmode table format for better readability.
         """
         return self.to_str()
 
-    def to_str(self, expanded=True):
-        if expanded:
-            return str(self.parent.table)
-        else:
-            from pyflies.table import table_to_str
-            rows = [spec.var_exps for spec in self.cond_specs]
-            return table_to_str(self.variables, rows, self.column_widths)
-
-    def connect_components(self, components):
-        """
-        For each table condition, and each phase, evaluates components and connect
-        matched components to the table/condition phase.  Table must be previously
-        expanded.
-        """
-        if not self.is_expanded():
-            raise PyFliesException('Cannot evaluate components on unexpanded table.')
+    def to_str(self):
+        from pyflies.table import table_to_str
+        rows = [spec.var_exps for spec in self.cond_specs]
+        return table_to_str(self.variables, rows, self.column_widths)
 
 
 class TestType(ModelElement, ScopeProvider):
@@ -248,11 +153,77 @@ class TestType(ModelElement, ScopeProvider):
                 components.append(component)
         self.components = components
 
-    def calc_phases(self):
-        self.table.calc_phases()
-
     def __repr__(self):
         return '<TestType:{}>'.format(self.name)
+
+
+class Block(ModelElement):
+    def eval(self, context):
+        insts = []
+        statements = self.statements
+        if self.random:
+            random.sample(statements, len(statements))
+
+        for s in statements:
+            insts.extend(s.eval(context))
+
+        return insts
+
+
+class Repeat(ModelElement):
+    def eval(self, context):
+        insts = []
+        if self._with:
+            table = self._with.eval(context)
+            cond_var_names = self._with.variables
+            for row in table:
+                context = dict(context)
+                context.update(zip(cond_var_names, row))
+                insts.extend(self.what.eval(context))
+        elif self.times == 0:
+            times = 1
+            for idx in range(times):
+                insts.extend(self.what.eval(context))
+
+        return insts
+
+
+class Show(ModelElement):
+    def eval(self, context):
+        return self.screen.eval(context, duration=self.duration)
+
+
+class Test(ModelElement):
+    def eval(self, context):
+        context = dict(context)
+        context.update({a.name: a.value for a in self.args})
+        return [TestInst(self.type, context)]
+
+
+class TestInst(EvaluatedBase):
+    def __init__(self, spec, context):
+        super().__init__(spec, context)
+        self.table = spec.table_spec.eval(context)
+        self.table.calc_phases(context)
+
+
+class Screen(ModelElement):
+    def eval(self, context=None, duration=0):
+        context = dict(context)
+        context.update({a.name: a.value for a in self.args})
+        return [ScreenInst(self.type, duration, context)]
+
+
+class ScreenInst(EvaluatedBase):
+    def __init__(self, spec, duration, context):
+        self.content = spec.content.format(**context)
+        self.duration = duration
+
+
+class Flow(ModelElement):
+    def eval(self):
+        context = self.get_context()
+        self.insts = self.block.eval(context)
 
 
 classes = list(map(
@@ -260,6 +231,7 @@ classes = list(map(
     inspect.getmembers(sys.modules[__name__],
                        lambda c: inspect.isclass(c)
                        and issubclass(c, ModelElement)
+                       and not c.__name__.endswith('Inst')
                        and c.__name__ not in ['ModelElement',
                                               'ExpressionElement',
                                               'Sequence',

@@ -20,7 +20,7 @@ def test_components_variable_assignments():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routine_types[0].table
+    t = m.flow.insts[1].table
 
     # Duration is 100 where direction is left, and 200 where direction is right
     trial = t[0]
@@ -142,7 +142,7 @@ def test_components_param_type_referencing_and_default():
 
 
     # Check default values for parameters
-    table = t.table
+    table = m.flow.insts[0].table
     trial = table.rows[0]
     comp_inst = trial.ph_exec[0].component
     assert comp_inst.spec.type.name == 'circle'
@@ -214,7 +214,7 @@ def test_trial_component_instances():
     mm = metamodel_for_language('pyflies')
     m = mm.model_from_file(join(this_folder, 'test_trial_component_parameters.pf'))
 
-    test = m.routine_types[0]
+    test = m.flow.insts[0]
     trial = test.table.rows[0]
     assert trial.ph_exec[0].component.params[1].value == 'left'
     assert trial.ph_exec[1].component.params[0].value.y == 50

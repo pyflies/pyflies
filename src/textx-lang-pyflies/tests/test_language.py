@@ -1,6 +1,7 @@
 import pytest
 import os
 from os.path import join, dirname, abspath
+from textx import metamodel_for_language
 
 import pyflies
 from pyflies.lang.common import (ModelElement, Symbol, BaseValue,
@@ -16,7 +17,6 @@ this_folder = dirname(abspath(__file__))
 
 class CTable(ModelElement, ScopeProvider):
     pass
-
 
 def test_time_references():
     """Test for pyflies time references"""
@@ -340,24 +340,26 @@ def test_scope_providers():
 
 def test_conditions_table():
 
-    class CTable(ModelElement, ScopeProvider):
-        pass
-
-    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
+    test Test {
         | position | color | congruency  | response |
         |----------+-------+-------------+----------|
         | left     | green | congruent   | left     |
         | left     | red   | incongruent | right    |
         | right    | green | incongruent | left     |
         | right    | red   | congruent   | right    |
+    }
+    flow {
+        execute Test
+    }
     ''')
-    assert m.t[0].t.variables == ['position', 'color', 'congruency', 'response']
+
     # We have 4 rows in the table
-    assert len(m.t[0].t.cond_specs) == 4
-    c = m.t[0].t.cond_specs[1]
-    red = c.var_exps[1].eval()  # This evaluates to symbol `red`
+    assert m.routine_types[0].table_spec.variables == ['position', 'color', 'congruency', 'response']
+
+    red = m.flow.insts[0].table[1][1]
     assert type(red) is Symbol
     assert red.name == 'red'
 
@@ -367,16 +369,20 @@ def test_conditions_table_expansion():
     Test that iterations and loops are expanded properly.
     """
 
-    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
-        positions = [left, right]
-        colors = [green, red]
+    positions = [left, right]
+    colors = [green, red]
 
+    test First {
         // Unexpanded table with loops
         | position       | color       | response  |
         |----------------+-------------+-----------|
         | positions loop | colors loop | positions |
+    }
+
+    test First_exp {
 
         // This should be the result of expansion
         | position | color | response |
@@ -385,14 +391,16 @@ def test_conditions_table_expansion():
         | left     | red   | right    |
         | right    | green | left     |
         | right    | red   | right    |
+    }
 
-
+    test Second {
         // Lets change order a bit. Make color top loop and position inner loop
         | color       | response  | position       |
         |-------------+-----------+----------------|
         | colors loop | positions | positions loop |
+    }
 
-
+    test Second_exp {
         // This should be the result of expansion
         | color | response | position |
         |-------+----------+----------|
@@ -400,14 +408,22 @@ def test_conditions_table_expansion():
         | green | right    | right    |
         | red   | left     | left     |
         | red   | right    | right    |
+    }
+
+    flow {
+        execute First
+        execute First_exp
+        execute Second
+        execute Second_exp 
+    }
     ''')
 
     # position and color will loop making color a nested loop of the position
     # response will cycle
-    assert m.t[0].table == m.t[1].table
+    assert m.flow.insts[0].table == m.flow.insts[1].table
 
     # In this case position is inner loop of color. response still cycles.
-    assert m.t[2].table == m.t[3].table
+    assert m.flow.insts[2].table == m.flow.insts[3].table
 
 
 def test_conditions_table_no_loop_expansion():
@@ -415,18 +431,23 @@ def test_conditions_table_no_loop_expansion():
     Test that iterations without loops are expanded properly.
     """
 
-    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
-        positions = [left, right]
-        colors = [green, red, blue]
+    positions = [left, right]
+    colors = [green, red, blue]
 
+    test Test {
         // Unexpanded table with iterations only
         | position | color  | response  |
         |----------+--------+-----------|
         | (0, 10)  | colors | positions |
+    }
+    flow {
+        execute Test
+    }
     ''')
-    assert m.t[0].t.to_str() == \
+    assert str(m.flow.insts[0].table) == \
         '''
 | position | color | response |
 |----------+-------+----------|
@@ -442,16 +463,19 @@ def test_conditions_table_no_loop_no_sequence_expansion():
     Test that iterations without loops and sequences are expanded properly.
     """
 
-    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
+    test Test {
         // Unexpanded table without loops and sequences
         | position | color | response |
         |----------+-------+----------|
         | (0, 10)  | 2 + 4 | 6 - 2    |
         | (0, 10)  | 2 + 5 | 6 - 2    |
+    }
+    flow { execute Test }
     ''')
-    assert m.t[0].t.to_str() == \
+    assert str(m.flow.insts[0].table) == \
         '''
 | position | color | response |
 |----------+-------+----------|
@@ -466,25 +490,30 @@ def test_conditions_table_str_representation():
     Test that tables are properly formatted when converted to string
     representation.
     """
-    mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
+
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
-        positions = [left, right]
-        colors = [green, red]
+    positions = [left, right]
+    colors = [green, red]
+
+    test Test {
 
         | position       | color       | congruency                                         | response  |
         |----------------+-------------+----------------------------------------------------+-----------|
         | positions loop | colors loop | congruent if response == position else incongruent | positions |
+    }
+    flow {execute Test}
     ''')  # noqa
 
-    assert m.t[0].t.to_str(expanded=False) == \
+    assert m.routine_types[0].table_spec.to_str() == \
         '''
 | position       | color       | congruency                                         | response  |
 |----------------+-------------+----------------------------------------------------+-----------|
 | positions loop | colors loop | congruent if response == position else incongruent | positions |
         '''.strip()  # noqa
 
-    assert m.t[0].t.to_str() == \
+    assert str(m.flow.insts[0].table) == \
         '''
 | position | color | congruency  | response |
 |----------+-------+-------------+----------|
@@ -495,11 +524,14 @@ def test_conditions_table_str_representation():
         '''.strip()
 
     m = mm.model_from_str('''
+    test Test {
         | position | order          |
         |----------+----------------|
         | order    | [1, 2, 3] loop |
+    }
+    flow {execute Test}
     ''')
-    assert m.t[0].t.to_str() == '''
+    assert str(m.flow.insts[0].table) == '''
 | position | order |
 |----------+-------|
 | 1        | 1     |
@@ -513,13 +545,16 @@ def test_conditions_table_condition_cyclic_reference():
     Test that table expression with cyclic references raise exception.
     """
 
-    mm = get_meta('cond_table.tx')
+    mm = metamodel_for_language('pyflies')
 
     with pytest.raises(PyFliesException, match=r'Cyclic dependency.*'):
         mm.model_from_str('''
+        test Test{
             | position | color    |
             |----------+----------|
             | color    | position |
+        }
+        flow {execute Test}
         ''')
 
 
@@ -528,7 +563,7 @@ def test_conditions_table_phases_evaluation():
     Test that evaluated table has attached appropriate components specifications
     for each trial phase.
     """
-    mm = get_meta('test_type.tx')
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_str('''
         positions = [left, right]
@@ -545,9 +580,10 @@ def test_conditions_table_phases_evaluation():
               error -> sound(freq 500)
               correct -> sound(freq 1000)
         }
+        flow { execute Example }
     ''')
 
-    t = m.test.table
+    t = m.flow.insts[0].table
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
@@ -580,12 +616,52 @@ def test_conditions_table_phases_evaluation():
     assert st.component.params[1].value == 'green'
 
 
+def test_routine_parameters():
+    """
+    Test that screens and tests can accept parameters.
+    """
+    mm = metamodel_for_language('pyflies')
+
+    m = mm.model_from_str(r'''
+
+    test showImages {
+
+        | index | image                          |
+        |-------+--------------------------------|
+        | 1..10 | "{{image_type}}/{{index}}.png" |
+        |  1..2 | index * 5                      |
+
+        fix -> cross() for 400..1000 choose
+        exec -> image(file image)
+                key()
+    }
+
+    screen break {
+        Take a short break
+    }
+
+    screen instruction {
+        You will be presented with images of {{image_type}}
+    }
+
+    flow {
+        show instruction(image_type 'houses')
+        repeat 3 time showImages(image_type 'houses')
+    }
+    ''')
+
+    import pudb;pudb.set_trace()
+    s = m.flow.insts[1].table
+
+
+
+
 def test_experiment_structure():
     """
     Test full experiment structure
     """
 
-    mm = get_meta('pyflies.tx', classes=model_classes)
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
     assert len(m.routine_types) == 3
@@ -619,12 +695,12 @@ def test_experiment_time_calculations():
     Test full experiment relative/absolute time calculations.
     """
 
-    mm = get_meta('pyflies.tx', classes=model_classes)
+    mm = metamodel_for_language('pyflies')
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routine_types[0].table
+    t = m.flow.insts[1].table
 
     trial = t[0]
     comps = trial.ph_exec

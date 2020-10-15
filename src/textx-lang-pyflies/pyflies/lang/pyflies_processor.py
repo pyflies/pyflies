@@ -19,10 +19,6 @@ def processor(model, metamodel):
         test.instantiate_default_components()
 
     # Evaluate flow
-    # Result will be a nested lists of evaluated test/screen instances
-
-
-    # Expand tables and calc phases
-    for table in get_children_of_type('ConditionsTable', model):
-        table.expand()
-        table.calc_phases()
+    # Result will be model.flow.insts list with ScreenInst/TestInst
+    if hasattr(model, 'flow') and model.flow:
+        model.flow.eval()

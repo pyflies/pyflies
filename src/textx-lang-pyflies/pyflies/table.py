@@ -1,9 +1,9 @@
-from typing import List
+from itertools import cycle, repeat, product
 import pyflies
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
-from .lang.pyflies import ModelElement
 from .evaluated import EvaluatedBase
+from .lang.common import ModelElement, LoopExpression
 
 
 def get_column_widths(variables, rows):
@@ -43,38 +43,108 @@ def row_to_str(row, column_widths=None):
     return str_row
 
 
-class TableInst(EvaluatedBase):
-    """
-    Instance of a table with expanded conditions table and evaluated phases
-    """
-
-
-class ExpTable(ModelElement):
+class ConditionsTableInst(EvaluatedBase, ModelElement):
     """
     Represents fully expanded and evaluated Condition table.
     """
-    def __init__(self, table_inst):
-        self.parent = table_inst
+    def __init__(self, spec, context):
+        super().__init__(spec, context)
         self.column_widths = None
         self.rows = []
+        self.expand(context)
+
+    def expand(self, context):
+        for cond_spec in self.spec:
+            cond_template = []
+            loops = []
+            loops_idx = []
+
+            # First check to see if there is loops and if sequences
+            # This will influence the interpretation of the row
+            has_loops = any([type(v) is LoopExpression for v in cond_spec])
+            has_sequences = any([isinstance(v.resolve(context), list) for v in cond_spec])
+            should_repeat = has_loops or has_sequences
+            if not has_loops and has_sequences:
+                # There are sequences but no loops. We shall do iteration for
+                # the length of the longest sequence. Other sequences will
+                # cycle. Base values will repeat.
+                max_len = max([len(x.resolve(context))
+                               for x in cond_spec if isinstance(x.resolve(context), list)])
+
+            # Create cond template which will be used to instantiate concrete
+            # expanded table rows.
+            for idx, var_exp in enumerate(cond_spec):
+                if type(var_exp) is LoopExpression:
+                    loops.append(var_exp.exp.resolve(context))
+                    loops_idx.append(idx)
+                    cond_template.append(None)
+                else:
+                    # If not a loop expression then cycle if list-like
+                    # expression (e.g. List or Range) or repeat otherwise
+                    var_exp_resolved = var_exp.resolve(context)
+                    if isinstance(var_exp_resolved, list):
+                        if has_loops or len(var_exp_resolved) < max_len:
+                            cond_template.append(cycle(var_exp_resolved))
+                        else:
+                            cond_template.append(iter(var_exp_resolved))
+                    else:
+                        if should_repeat:
+                            cond_template.append(repeat(var_exp_resolved))
+                        else:
+                            cond_template.append(iter([var_exp_resolved]))
+
+            assert len(cond_template) == len(cond_spec)
+
+            # Evaluate template making possibly new rows if there are loop
+            # expressions
+            if loops:
+                loops = product(*loops)
+                for loop_vals in loops:
+
+                    # Evaluate looping variables. We start with all variables
+                    # in postponed state to enable postponing evaluation of all
+                    # expressions that uses postponed table variables (i.e.
+                    # referencing forward column value)
+                    row = [None] * len(cond_template)
+                    for idx, loop_val in zip(loops_idx, loop_vals):
+                        row[idx] = loop_val
+
+                    for idx, cond_i in enumerate(cond_template):
+                        if cond_i is not None:
+                            row[idx] = next(cond_i)
+
+                    row = ConditionsTableInstRow(self, row)
+                    row.eval(context)
+            else:
+                # No looping - just evaluate all expressions until all
+                # iterators are exhausted
+                try:
+                    while True:
+                        row = ConditionsTableInstRow(
+                            self, [next(x) for x in cond_template])
+                        row.eval(context)
+                except StopIteration:
+                    pass
+
+        self.calculate_column_widths()
 
     def calculate_column_widths(self):
-        self.column_widths = get_column_widths(self.parent.variables, self.rows)
+        self.column_widths = get_column_widths(self.spec.variables, self.rows)
 
-    def calc_phases(self):
+    def calc_phases(self, context):
         """
         Evaluates condition components specification from the associated condition
         table for each trial phase.  After evaluation each row will have
         connected appropriate, evaluated components instances.
         """
         for row in self.rows:
-            row.calc_phases()
+            row.calc_phases(context)
 
     def header_str(self):
-        return header_str(self.parent.variables, self.column_widths)
+        return header_str(self.spec.variables, self.column_widths)
 
     def __str__(self):
-        return table_to_str(self.parent.variables, self.rows, self.column_widths)
+        return table_to_str(self.spec.variables, self.rows, self.column_widths)
 
     def __getitem__(self, idx):
         return self.rows[idx]
@@ -86,8 +156,8 @@ class ExpTable(ModelElement):
         return self.rows == other.rows
 
 
-class ExpTableRow(ModelElement, ScopeProvider):
-    def __init__(self, table: ExpTable, exps: List['pyflies.model.Expression']):
+class ConditionsTableInstRow(ModelElement, ScopeProvider):
+    def __init__(self, table, exps):
         self.parent = table
         self.exps = exps
         table.rows.append(self)
@@ -97,7 +167,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
         # resolving and variable calculation.
         from .lang.pyflies import VariableAssignment
         self.vars = []
-        for name, value in zip(self.parent.parent.variables, self.exps):
+        for name, value in zip(self.parent.spec.variables, self.exps):
             self.vars.append(VariableAssignment(self, name=name, value=value))
 
         # Trial phases
@@ -109,25 +179,25 @@ class ExpTableRow(ModelElement, ScopeProvider):
         # All comp time spec together
         self.comp_times = []
 
-    def calc_phases(self):
+    def calc_phases(self, context):
         """
         Evaluate condition components specification for each phase of this trial.
         If condition is True evaluate components specs and attach to this row.
         """
         for phase in ['fix', 'exec', 'error', 'correct']:
-            context = self.get_context({phase: True})
+            row_context = dict(context)
+            row_context.update(self.get_context(context))
+            row_context.update({phase: True})
 
-            test = self.parent.parent.parent
+            test = self.parent.spec.parent
             # Evaluate test variables in the context of this row
-            test.eval(context)
-
-            # Keep full context on the row for debugging purposes
-            # e.g. export to log
-            self.var_vals.update(self.get_context())
+            test.eval(row_context)
+            # Update row context with test variable
+            row_context.update(test.get_context())
 
             for cond_comp in test.components_cond:
                 try:
-                    cond_val = cond_comp.condition.eval(context)
+                    cond_val = cond_comp.condition.eval(row_context)
                 except PyFliesException:
                     cond_val = False
 
@@ -135,7 +205,7 @@ class ExpTableRow(ModelElement, ScopeProvider):
                     comp_insts = []
                     last_comp = None
                     for comp_time in cond_comp.comp_times:
-                        comp_time_inst = comp_time.eval(context, last_comp)
+                        comp_time_inst = comp_time.eval(row_context, last_comp)
                         comp_insts.append(comp_time_inst)
                         self.comp_times.append(comp_time_inst)
                         last_comp = comp_time

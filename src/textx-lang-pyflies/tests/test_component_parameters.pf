@@ -22,3 +22,7 @@ test TestModel {
       error -> sound(freq 300)
       correct -> sound(freq 700)
 }
+
+flow {
+     execute TestModel
+}

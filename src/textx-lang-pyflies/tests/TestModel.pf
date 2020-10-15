@@ -43,6 +43,7 @@ screen intro {
     Press SPACE or touch/click the screen to continue
 }
 
+
 screen real {
     Real block
     ----------

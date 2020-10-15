@@ -10,14 +10,14 @@ colors = [green, red]
 responses = positions
 
 test Simon {
-    conditions {
+
       | position       | color       | congruency                                         | response                          |
       |----------------+-------------+----------------------------------------------------+-----------------------------------|
       | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
-    }
 
-    /* Since this is a relatively small condition table we could just
-       spell it out like:
+
+      /* Since this is a relatively small condition table we could just
+         spell it out like:
 
       | position | color | congruency  | response |
       |----------+-------+-------------+----------|
@@ -26,16 +26,15 @@ test Simon {
       | right    | green | incongruent | left     |
       | right    | red   | congruent   | right    |
 
-      instead of using expressions in table cells.
-    */
+        instead of using expressions in table cells.
+      */
 
-    trial {
-        fix -> cross() for 2000..4000 choose
-        exec -> rectangle(position position, color color, fillColor color)
-                key(valid response)
-        error -> sound(freq 1000) for 300
-        correct -> sound(freq 500) for 300
-    }
+      fix -> cross() for 2000..4000 choose
+      exec -> rectangle(position position, color color, fillColor color)
+              key(valid response)
+      error -> sound(freq 1000) for 300
+      correct -> sound(freq 500) for 300
+
 }
 
 screen Practice {

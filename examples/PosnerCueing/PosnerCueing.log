@@ -44,8 +44,8 @@ Trial 1
 
   Variables:
     positions = [left, right]
-    cue_display = 1484
-    cross_display = 2804
+    cue_display = 1144
+    cross_display = 2244
     cue = left
     position = left
     congruency = congruent
@@ -57,9 +57,9 @@ Trial 1
             at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1484 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2804 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2804 key(valid press) for 0
+            at 1144 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2244 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2244 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -72,8 +72,8 @@ Trial 2
 
   Variables:
     positions = [left, right]
-    cue_display = 1354
-    cross_display = 2654
+    cue_display = 1154
+    cross_display = 2468
     cue = left
     position = right
     congruency = incongruent
@@ -85,9 +85,9 @@ Trial 2
             at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1354 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2654 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2654 key(valid press) for 0
+            at 1154 rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2468 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2468 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -100,8 +100,8 @@ Trial 3
 
   Variables:
     positions = [left, right]
-    cue_display = 1482
-    cross_display = 2599
+    cue_display = 1224
+    cross_display = 2527
     cue = right
     position = left
     congruency = incongruent
@@ -113,9 +113,9 @@ Trial 3
             at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1482 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2599 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2599 key(valid press) for 0
+            at 1224 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2527 cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2527 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:
@@ -128,8 +128,8 @@ Trial 4
 
   Variables:
     positions = [left, right]
-    cue_display = 1187
-    cross_display = 2216
+    cue_display = 1353
+    cross_display = 2398
     cue = right
     position = right
     congruency = congruent
@@ -141,9 +141,9 @@ Trial 4
             at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1187 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2216 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2216 key(valid press) for 0
+            at 1353 rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2398 cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2398 key(valid press) for 0
     error:
             at 0 sound(freq 1000) for 300
     correct:

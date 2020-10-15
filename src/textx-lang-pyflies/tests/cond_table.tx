@@ -6,10 +6,8 @@ Model:
 ;
 
 CTable:
-    '{'
-        t=ConditionsTable
-        components_cond*=ComponentTime
-    '}'
+    t=ConditionsTable
+    components_cond*=ComponentTime
 ;
 
 // Special rule for comments

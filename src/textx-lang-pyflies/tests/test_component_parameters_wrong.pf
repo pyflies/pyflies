@@ -3,13 +3,10 @@ Model for testing of component pameter wrong reference.
 """
 
 test TestModel {
-	conditions {
-      | direction | response |
-      |-----------+----------|
-      | left      | left     |
-    }
-	
-	trial {
-        exec -> sound(freq 100, position (50,50))   // position is wrong param for this comp. type
-	}
+
+    | direction | response |
+    |-----------+----------|
+    | left      | left     |
+
+    exec -> sound(freq 100, position (50,50))   // position is wrong param for this comp. type
 }

@@ -6,19 +6,18 @@ directions = [left, right]
 congruencies = [incongruent, congruent]
 
 test EriksenFlanker {
-	conditions {
-      | direction       | category          | response  |
-      |-----------------+-------------------+-----------|
-      | directions loop | congruencies loop | direction |
-    }
-	
-	trial {
-		fix -> cross() for 1000..3000 choose
-        exec -> image(file "images/{direction}-{category}.png")
-                key(valid response)
-		error -> sound(freq 300) for 500
-		correct -> sound(freq 700) for 300
-	}
+
+    | direction       | category          | response  |
+    |-----------------+-------------------+-----------|
+    | directions loop | congruencies loop | direction |
+
+
+    fix -> cross() for 1000..3000 choose
+    exec -> image(file "images/{direction}-{category}.png")
+            key(valid response)
+    error -> sound(freq 300) for 500
+    correct -> sound(freq 700) for 300
+
 }
 
 screen intro {

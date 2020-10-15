@@ -346,14 +346,12 @@ def test_conditions_table():
     mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
 
     m = mm.model_from_str('''
-        {
-            | position | color | congruency  | response |
-            |----------+-------+-------------+----------|
-            | left     | green | congruent   | left     |
-            | left     | red   | incongruent | right    |
-            | right    | green | incongruent | left     |
-            | right    | red   | congruent   | right    |
-        }
+        | position | color | congruency  | response |
+        |----------+-------+-------------+----------|
+        | left     | green | congruent   | left     |
+        | left     | red   | incongruent | right    |
+        | right    | green | incongruent | left     |
+        | right    | red   | congruent   | right    |
     ''')
     assert m.t[0].t.variables == ['position', 'color', 'congruency', 'response']
     # We have 4 rows in the table
@@ -375,35 +373,33 @@ def test_conditions_table_expansion():
         positions = [left, right]
         colors = [green, red]
 
-        {   // Unexpanded table with loops
-            | position       | color       | response  |
-            |----------------+-------------+-----------|
-            | positions loop | colors loop | positions |
-        }
+        // Unexpanded table with loops
+        | position       | color       | response  |
+        |----------------+-------------+-----------|
+        | positions loop | colors loop | positions |
 
-        {   // This should be the result of expansion
-            | position | color | response |
-            |----------+-------+----------|
-            | left     | green | left     |
-            | left     | red   | right    |
-            | right    | green | left     |
-            | right    | red   | right    |
-        }
+        // This should be the result of expansion
+        | position | color | response |
+        |----------+-------+----------|
+        | left     | green | left     |
+        | left     | red   | right    |
+        | right    | green | left     |
+        | right    | red   | right    |
 
-        {   // Lets change order a bit. Make color top loop and position inner loop
-            | color       | response  | position       |
-            |-------------+-----------+----------------|
-            | colors loop | positions | positions loop |
-        }
 
-        {   // This should be the result of expansion
-            | color | response | position |
-            |-------+----------+----------|
-            | green | left     | left     |
-            | green | right    | right    |
-            | red   | left     | left     |
-            | red   | right    | right    |
-        }
+        // Lets change order a bit. Make color top loop and position inner loop
+        | color       | response  | position       |
+        |-------------+-----------+----------------|
+        | colors loop | positions | positions loop |
+
+
+        // This should be the result of expansion
+        | color | response | position |
+        |-------+----------+----------|
+        | green | left     | left     |
+        | green | right    | right    |
+        | red   | left     | left     |
+        | red   | right    | right    |
     ''')
 
     # position and color will loop making color a nested loop of the position
@@ -425,11 +421,10 @@ def test_conditions_table_no_loop_expansion():
         positions = [left, right]
         colors = [green, red, blue]
 
-        {   // Unexpanded table with iterations only
-            | position | color  | response  |
-            |----------+--------+-----------|
-            | (0, 10)  | colors | positions |
-        }
+        // Unexpanded table with iterations only
+        | position | color  | response  |
+        |----------+--------+-----------|
+        | (0, 10)  | colors | positions |
     ''')
     assert m.t[0].t.to_str() == \
         '''
@@ -450,12 +445,11 @@ def test_conditions_table_no_loop_no_sequence_expansion():
     mm = get_meta('cond_table.tx', classes=model_classes + [CTable, Model])
 
     m = mm.model_from_str('''
-        {   // Unexpanded table without loops and sequences
-            | position | color | response |
-            |----------+-------+----------|
-            | (0, 10)  | 2 + 4 | 6 - 2    |
-            | (0, 10)  | 2 + 5 | 6 - 2    |
-        }
+        // Unexpanded table without loops and sequences
+        | position | color | response |
+        |----------+-------+----------|
+        | (0, 10)  | 2 + 4 | 6 - 2    |
+        | (0, 10)  | 2 + 5 | 6 - 2    |
     ''')
     assert m.t[0].t.to_str() == \
         '''
@@ -478,11 +472,9 @@ def test_conditions_table_str_representation():
         positions = [left, right]
         colors = [green, red]
 
-        {
         | position       | color       | congruency                                         | response  |
         |----------------+-------------+----------------------------------------------------+-----------|
         | positions loop | colors loop | congruent if response == position else incongruent | positions |
-        }
     ''')  # noqa
 
     assert m.t[0].t.to_str(expanded=False) == \
@@ -503,11 +495,9 @@ def test_conditions_table_str_representation():
         '''.strip()
 
     m = mm.model_from_str('''
-        {
         | position | order          |
         |----------+----------------|
         | order    | [1, 2, 3] loop |
-        }
     ''')
     assert m.t[0].t.to_str() == '''
 | position | order |
@@ -527,11 +517,9 @@ def test_conditions_table_condition_cyclic_reference():
 
     with pytest.raises(PyFliesException, match=r'Cyclic dependency.*'):
         mm.model_from_str('''
-            {
             | position | color    |
             |----------+----------|
             | color    | position |
-            }
         ''')
 
 
@@ -547,18 +535,15 @@ def test_conditions_table_phases_evaluation():
         colors = [green, red]
 
         test Example {
-            conditions {
               | position       | color       | response  |
               |----------------+-------------+-----------|
               | positions loop | colors loop | positions |
-            }
-            trial {
-                fix -> cross() for 200..500 choose
-                exec -> circle(position position, color color) for 300..700 choose
-                error and color == green -> sound(freq 300)
-                error -> sound(freq 500)
-                correct -> sound(freq 1000)
-            }
+
+              fix -> cross() for 200..500 choose
+              exec -> circle(position position, color color) for 300..700 choose
+              error and color == green -> sound(freq 300)
+              error -> sound(freq 500)
+              correct -> sound(freq 1000)
         }
     ''')
 

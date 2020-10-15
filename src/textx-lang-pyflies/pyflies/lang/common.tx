@@ -21,7 +21,7 @@ Type: 'int' | 'float' | 'string' | 'bool' | 'symbol' | 'list' | 'point' | 'color
 
 
 // Expressions
-Expression: IfExpression | LoopExpression | OrExpression;
+Expression[skipws]: IfExpression | LoopExpression | OrExpression;
 IfExpression: if_true=OrExpression 'if' cond=OrExpression 'else' if_false=OrExpression;
 OrExpression: op=AndExpression ('or' op=AndExpression)*;
 AndExpression: op=NotExpression ('and' op=NotExpression)*;

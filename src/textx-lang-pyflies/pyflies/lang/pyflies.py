@@ -33,6 +33,11 @@ class VariableAssignment(ModelElement):
 
 
 class Condition(ModelElement):
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
+        # Unpack table expressions
+        self.var_exps = [te.exp for te in self.var_exps]
+
     def __getitem__(self, idx):
         return self.var_exps[idx]
 

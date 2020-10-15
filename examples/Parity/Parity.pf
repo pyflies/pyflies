@@ -10,19 +10,18 @@ numbers = 1..9
 parities = [odd, even]
 
 test Parity {
-    conditions {
-        | number       | parity   | response |
-        |--------------+----------+----------|
-        | numbers loop | parities | parities |
-    }
 
-    trial {
-        fix -> cross() for 1000..3000 choose
-        exec -> text(content number)
-                key(valid response)
-        correct -> sound(freq 500) for 300
-        error -> sound(freq 1000) for 300
-    }
+    | number       | parity   | response |
+    |--------------+----------+----------|
+    | numbers loop | parities | parities |
+
+
+    fix -> cross() for 1000..3000 choose
+    exec -> text(content number)
+            key(valid response)
+    correct -> sound(freq 500) for 300
+    error -> sound(freq 1000) for 300
+ 
 }
 
 screen Intro {

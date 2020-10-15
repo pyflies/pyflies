@@ -83,7 +83,9 @@ class ComponentParamInst(EvaluatedBase):
         test = get_parent_of_type("Test", self.spec)
         cond_var_names = test.table_spec.variables
 
-        self.is_constant = not any([r.name in cond_var_names for r in unresolvable_refs(spec.value)])
+        self.value = spec.value
+        self.is_constant = not any([r.name in cond_var_names
+                                    for r in unresolvable_refs(self.value, self.get_scope())])
 
         if not self.is_constant and context is None:
             # Use default value

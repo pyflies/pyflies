@@ -19,11 +19,11 @@ Variables:
 Test: Parity
 --------------------------------------------------------------------------
 Components with param values:
-Parity_cross_0 = <ComponentType:cross>(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Parity_text_1 = <ComponentType:text>(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Parity_key_2 = <ComponentType:key>(valid space, )
-Parity_sound_3 = <ComponentType:sound>(freq 500 constant, )
-Parity_sound_4 = <ComponentType:sound>(freq 1000 constant, )
+Parity_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Parity_text_1 = text(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+Parity_key_2 = key(valid space, )
+Parity_sound_3 = sound(freq 500 constant, )
+Parity_sound_4 = sound(freq 1000 constant, )
 
 Conditions:
 
@@ -56,7 +56,7 @@ Trial 1
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1627
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2006
     exec:
             at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -80,7 +80,7 @@ Trial 2
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1366
     exec:
             at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -104,7 +104,7 @@ Trial 3
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1294
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2515
     exec:
             at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -128,7 +128,7 @@ Trial 4
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2511
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1040
     exec:
             at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -152,7 +152,7 @@ Trial 5
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2377
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2730
     exec:
             at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -176,7 +176,7 @@ Trial 6
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1715
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1209
     exec:
             at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -200,7 +200,7 @@ Trial 7
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1465
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2252
     exec:
             at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -224,7 +224,7 @@ Trial 8
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2855
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1873
     exec:
             at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -248,7 +248,7 @@ Trial 9
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2119
+            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1512
     exec:
             at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0

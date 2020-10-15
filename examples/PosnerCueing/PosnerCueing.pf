@@ -8,23 +8,22 @@ http://en.wikipedia.org/wiki/Posner_cueing_task
 positions = [left, right]
 
 test Posner {
-    conditions {
-        | cue            | position       | congruency                                    | response |
-        |----------------+----------------+-----------------------------------------------+----------|
-        | positions loop | positions loop | congruent if cue == position else incongruent | press    |
-    }
-    trial {
-        cue_display = 1000..1500 choose
-        cross_display = cue_display + 1000..1500 choose
-        exec -> cross()
-                rectangle(position left, size 20)
-                rectangle(position right, size 20)
-                at cue_display rectangle(position cue, size 18)
-                at cross_display cross(position position)
-                key(valid response)
-                // mouse(target cross)
-        error -> sound(freq 1000) for 300
-    }
+
+    | cue            | position       | congruency                                    | response |
+    |----------------+----------------+-----------------------------------------------+----------|
+    | positions loop | positions loop | congruent if cue == position else incongruent | press    |
+
+    cue_display = 1000..1500 choose
+    cross_display = cue_display + 1000..1500 choose
+    exec -> cross()
+            rectangle(position left, size 20)
+            rectangle(position right, size 20)
+            at cue_display rectangle(position cue, size 18)
+            at cross_display cross(position position)
+            key(valid response)
+            // mouse(target cross)
+    error -> sound(freq 1000) for 300
+
 }
 
 screen Practice {

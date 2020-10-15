@@ -31,33 +31,38 @@ VariableAssignment:
 
 Test:
   "test" name=ID "{"
-    'conditions' '{'
-        table_spec=ConditionsTable
-    '}'
+      table_spec=ConditionsTable
 
-    'trial' '{'
-        vars*=VariableAssignment
-        components_cond+=ComponentsCondition
-    '}'
+      vars*=VariableAssignment
+      components_cond+=ComponentsCondition
+
   "}"
 ;
 
-ConditionsTable:
+ConditionsTable[noskipws]:
     // Condition table is given in orgmode table format. Various editor plugins
     // exists to support convenient editing of this table format.
 
+    (/\s*/ Comment? /\s*/)*
     // Variable names are in the first line of condition specification
-    '|' variables+=WORD['|'] '|'
-    /\|(-*\+)+-*\|/
+    '|' variables+=TableVarName['|'] WSNoNL '|' WSWithNL
+    WSNoNL /\|(-*\+)+-*\|/ WSWithNL
 
     // The rest of the description are condition specifications, one per line
     // The order of condition values match the param name positions.
     cond_specs+=Condition
 ;
 
-Condition:
-  '|' var_exps+=Expression['|'] '|'
+WSWithNL: /[ \t]*\n/;
+WSNoNL: /[ \t]*/;
+
+TableVarName: WSNoNL- WORD WSNoNL-;
+TableExpression[ws=' \t']: exp=Expression;
+
+Condition[noskipws]:
+    WSNoNL '|' WSNoNL var_exps+=TableExpression[/[ \t]*\|[ \t]*/] WSNoNL '|' WSWithNL
 ;
+
 
 ComponentsCondition:
   // Condition components is given in the form of
@@ -98,7 +103,8 @@ Repeatable:
     Block | TestRef
 ;
 
-TestRef: test=[Test];
+TestRef: test=[Test] ('(' args*=Argument[','] ')')?;
+Argument: name=ID '=' value=Expression;
 
 Block:
     '{'
@@ -109,7 +115,7 @@ Block:
 FullRandom: 'full' 'random';
 
 Show:
-  'show' screen = [Screen]
+  'show' screen = [Screen] ('(' args*=Argument[','] ')')?
 ;
 
 Flow:
@@ -120,8 +126,10 @@ Flow:
 
 Screen:
   'screen' name=ID "{"
-  /*    content=/(.|\n)*?(?=})/  */
-      content=/[^}]*/
+      /*    content=/(.|\n)*?(?=})/  */
+      // Everything until closing curly brackets but also
+      // collect string interpolation {{...}}
+      content=/([^}]*(}})?)*/
   '}'
 ;
 

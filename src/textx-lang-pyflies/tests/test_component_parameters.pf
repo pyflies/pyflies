@@ -9,10 +9,13 @@ test TestModel {
 	
       duration = 500 if direction == left else 200
       dur = duration
+      a = 45 + 78
+      b = a
       fix -> mycross:cross(position (0,0))
       exec -> circle(radius 100, position (0, 40))
               circle(position position)    // position depends on trial condition
               sound(freq dur)              // freq depends on trial condition
+              sound(freq b)                // This is constant as it doesn't change across trials
               image(file "testfile.png")
               rectangle(size 200 + 300 / 2, position left)
               rectangle(size 100, position left)

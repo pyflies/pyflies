@@ -404,10 +404,10 @@ def test_conditions_table_expansion():
 
     # position and color will loop making color a nested loop of the position
     # response will cycle
-    assert m.t[0].t == m.t[1].t
+    assert m.t[0].table == m.t[1].table
 
     # In this case position is inner loop of color. response still cycles.
-    assert m.t[2].t == m.t[3].t
+    assert m.t[2].table == m.t[3].table
 
 
 def test_conditions_table_no_loop_expansion():
@@ -588,26 +588,30 @@ def test_experiment_structure():
     mm = get_meta('pyflies.tx', classes=model_classes)
 
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
-    assert len(m.routines) == 3
-    assert m.routines[1].__class__.__name__ == 'Screen'
+    assert len(m.routine_types) == 3
+    assert m.routine_types[1].__class__.__name__ == 'ScreenType'
     assert m.description == 'Model for testing purposes.\n'
-    assert len(m.flow.statements) == 3
+    assert len(m.flow.block.statements) == 4
 
     # Practice run
-    ptest = m.flow.statements[1]
-    assert ptest.practice
-    assert ptest.random
-    assert not ptest.full_random
-    assert ptest.runs == 1
+    ptest = m.flow.block.statements[1]
+    assert [x.value.eval() for x in ptest.what.args if x.name == 'practice'][0]
+    assert ptest.times == 0 and ptest._with is None
 
     # Block repeat
-    rtest = m.flow.statements[2]
-    assert rtest.runs == 3
-    assert not rtest.random and not rtest.full_random and not rtest.practice
+    rtest = m.flow.block.statements[2]
+    assert rtest.times == 3
+    assert not rtest.what.random
+
     # Inner test
     itest = rtest.what.statements[1]
-    assert itest.runs == 5
-    assert not itest.random and itest.full_random and not itest.practice
+    assert itest.times == 5
+
+    # Random repeat
+    rtest = m.flow.block.statements[3]
+    assert rtest.times == 2
+    assert rtest.what.random
+
 
 
 def test_experiment_time_calculations():
@@ -620,7 +624,7 @@ def test_experiment_time_calculations():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routines[0].table
+    t = m.routine_types[0].table
 
     trial = t[0]
     comps = trial.ph_exec

@@ -114,7 +114,7 @@ class ConditionsTable(ModelElement):
     def expand(self):
         """
         Expands the table taking into account `loop` messages for looping, and
-        ranges and list for cycling.
+        ranges and lists for cycling.
         """
 
         from pyflies.table import ExpTable, ExpTableRow
@@ -130,14 +130,14 @@ class ConditionsTable(ModelElement):
             # First check to see if there is loops and if sequences
             # This will influence the interpretation of the row
             has_loops = any([type(v) is LoopExpression for v in cond_spec])
-            has_sequences = any([isinstance(v.resolve(), Sequence) for v in cond_spec])
+            has_sequences = any([isinstance(v.resolve(), list) for v in cond_spec])
             should_repeat = has_loops or has_sequences
             if not has_loops and has_sequences:
                 # There are sequences but no loops. We shall do iteration for
                 # the length of the longest sequence. Other sequences will
                 # cycle. Base values will repeat.
                 max_len = max([len(x.resolve())
-                               for x in cond_spec if isinstance(x.resolve(), Sequence)])
+                               for x in cond_spec if isinstance(x.resolve(), list)])
 
             # Create cond template which will be used to instantiate concrete
             # expanded table rows.
@@ -150,16 +150,16 @@ class ConditionsTable(ModelElement):
                     # If not a loop expression then cycle if list-like
                     # expression (e.g. List or Range) or repeat otherwise
                     var_exp_resolved = var_exp.resolve()
-                    if isinstance(var_exp_resolved, Sequence):
+                    if isinstance(var_exp_resolved, list):
                         if has_loops or len(var_exp_resolved) < max_len:
                             cond_template.append(cycle(var_exp_resolved))
                         else:
                             cond_template.append(iter(var_exp_resolved))
                     else:
                         if should_repeat:
-                            cond_template.append(repeat(var_exp))
+                            cond_template.append(repeat(var_exp_resolved))
                         else:
-                            cond_template.append(iter([var_exp]))
+                            cond_template.append(iter([var_exp_resolved]))
 
             assert len(cond_template) == len(cond_spec)
 
@@ -234,7 +234,7 @@ class ConditionsTable(ModelElement):
             raise PyFliesException('Cannot evaluate components on unexpanded table.')
 
 
-class Test(ModelElement, ScopeProvider):
+class TestType(ModelElement, ScopeProvider):
     def instantiate_default_components(self):
         """
         Create component instances with default values.
@@ -252,7 +252,7 @@ class Test(ModelElement, ScopeProvider):
         self.table.calc_phases()
 
     def __repr__(self):
-        return '<Test:{}>'.format(self.name)
+        return '<TestType:{}>'.format(self.name)
 
 
 classes = list(map(

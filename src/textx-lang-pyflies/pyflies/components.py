@@ -37,7 +37,7 @@ class ComponentInst(EvaluatedBase):
     """
     def __init__(self, spec, context=None):
         super().__init__(spec, context)
-        test = get_parent_of_type("Test", self.spec)
+        test = get_parent_of_type("TestType", self.spec)
         if test is None:
             # We are using testing meta-model
             test_name = 'testing'
@@ -80,12 +80,12 @@ class ComponentParamInst(EvaluatedBase):
         super().__init__(spec, context)
 
         # Find out if this param is dependent on trial condition variables
-        test = get_parent_of_type("Test", self.spec)
+        test = get_parent_of_type("TestType", self.spec)
         cond_var_names = test.table_spec.variables
 
         self.value = spec.value
         self.is_constant = not any([r.name in cond_var_names
-                                    for r in unresolvable_refs(self.value, self.get_scope())])
+                                    for r in unresolvable_refs(self.value)])
 
         if not self.is_constant and context is None:
             # Use default value

@@ -3,6 +3,7 @@ import pyflies
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
 from .lang.pyflies import ModelElement
+from .evaluated import EvaluatedBase
 
 
 def get_column_widths(variables, rows):
@@ -42,12 +43,18 @@ def row_to_str(row, column_widths=None):
     return str_row
 
 
+class TableInst(EvaluatedBase):
+    """
+    Instance of a table with expanded conditions table and evaluated phases
+    """
+
+
 class ExpTable(ModelElement):
     """
     Represents fully expanded and evaluated Condition table.
     """
-    def __init__(self, cond_table):
-        self.parent = cond_table
+    def __init__(self, table_inst):
+        self.parent = table_inst
         self.column_widths = None
         self.rows = []
 

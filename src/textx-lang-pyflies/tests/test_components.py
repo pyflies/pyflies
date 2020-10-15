@@ -20,7 +20,7 @@ def test_components_variable_assignments():
     m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
 
     # Get expanded table
-    t = m.routines[0].table
+    t = m.routine_types[0].table
 
     # Duration is 100 where direction is left, and 200 where direction is right
     trial = t[0]
@@ -81,7 +81,7 @@ def test_component_timing_definition():
 
     mm = metamodel_for_language('pyflies')
     m = mm.model_from_file(join(this_folder, 'test_component_timing_definition.pf'))
-    comp_times = m.routines[0].components_cond[0].comp_times
+    comp_times = m.routine_types[0].components_cond[0].comp_times
 
     # Time, duration and params can be expressions
     # at a + 100 c:circle(position 0, radius 5 + 15) for a + b * a + 140
@@ -132,7 +132,7 @@ def test_components_param_type_referencing_and_default():
 
     m = mm.model_from_file(join(this_folder, 'test_component_parameters.pf'))
 
-    t = m.routines[0]
+    t = m.routine_types[0]
 
     comp_time = t.components_cond[0].comp_times[0]
 
@@ -173,7 +173,7 @@ def test_default_component_instances():
     mm = metamodel_for_language('pyflies')
     m = mm.model_from_file(join(this_folder, 'test_component_parameters.pf'))
 
-    test = m.routines[0]
+    test = m.routine_types[0]
     assert test.components
 
     # Cross
@@ -193,11 +193,18 @@ def test_default_component_instances():
     assert comp.params[0].value.x == 0
     assert comp.params[0].value.y == 0
 
-    # Sound
+    # Non-constant param with transitive reference to condition table
     comp = test.components[3]
     assert comp.name == 'TestModel_sound_3'
     assert comp.params[0].type.name == 'freq'
     assert not comp.params[0].is_constant
+
+    # Constant parameter with transitive reference to local scope
+    comp = test.components[4]
+    assert comp.name == 'TestModel_sound_4'
+    assert comp.params[0].type.name == 'freq'
+    assert comp.params[0].is_constant
+    assert comp.params[0].value == 123
 
 
 def test_trial_component_instances():
@@ -207,7 +214,7 @@ def test_trial_component_instances():
     mm = metamodel_for_language('pyflies')
     m = mm.model_from_file(join(this_folder, 'test_trial_component_parameters.pf'))
 
-    test = m.routines[0]
+    test = m.routine_types[0]
     trial = test.table.rows[0]
     assert trial.ph_exec[0].component.params[1].value == 'left'
     assert trial.ph_exec[1].component.params[0].value.y == 50

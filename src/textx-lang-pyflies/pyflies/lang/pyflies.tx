@@ -12,13 +12,13 @@ import components
 PyFliesModel:
   (description=Description)?
   vars*=VariableAssignment
-  routines+=Routine
+  routine_types+=RoutineType
   (flow=Flow)?
   targets*=Target
 ;
 
-Routine:
-  Test | Screen
+RoutineType:
+  TestType | ScreenType
 ;
 
 VariableAssignment:
@@ -29,7 +29,7 @@ VariableAssignment:
     Test specification
 */
 
-Test:
+TestType:
   "test" name=ID "{"
       table_spec=ConditionsTable
 
@@ -72,7 +72,7 @@ ComponentsCondition:
 
 
 /*
-    Components spec
+    Components instance time specifications
 */
 
 TimeReference: (relative_to=[ComponentTime|ID|...comp_times] ':')?
@@ -90,48 +90,43 @@ WORD:
 ;
 
 
-Statement:
-    Repeat | Show
+Flow:
+  'flow' block=Block
 ;
-
-Repeat:
-  'repeat' what=Repeatable runs=INT ('times' | 'time')?
-    full_random?=FullRandom random?='random' ('as'? practice?='practice')?
-;
-
-Repeatable:
-    Block | TestRef
-;
-
-TestRef: test=[Test] ('(' args*=Argument[','] ')')?;
-Argument: name=ID '=' value=Expression;
 
 Block:
-    '{'
+    random?='random' '{'
         statements*=Statement
     '}'
 ;
 
-FullRandom: 'full' 'random';
-
-Show:
-  'show' screen = [Screen] ('(' args*=Argument[','] ')')?
+Statement:
+    Repeat | Show
 ;
 
-Flow:
-  'flow' '{'
-    statements *= Statement
-  '}'
+Argument: name=ID value=Expression;
+
+Repeat:
+    // Repeating for the given count of times
+    'repeat' times=INT ('times' | 'time')? what=Repeatable
+    |
+    // execute is just an alias for repeating 1 time
+    'execute' what=Repeatable
+    |
+    // Repeating with the condition table
+    'repeat' what=Repeatable
+    'with' with_random?='random' _with=ConditionsTable
 ;
 
-Screen:
-  'screen' name=ID "{"
-      /*    content=/(.|\n)*?(?=})/  */
-      // Everything until closing curly brackets but also
-      // collect string interpolation {{...}}
-      content=/([^}]*(}})?)*/
-  '}'
-;
+Repeatable: Block | Routine;
+Routine: Test | Screen;
+
+Test: type=[TestType] ('(' args*=Argument[','] ')')?;
+
+
+Show: 'show' screen=Screen ('for' duration=Expression)?;
+Screen: type=[ScreenType] ('(' args*=Argument[','] ')')?;
+
 
 Target:
   'target' name=ID '{'
@@ -141,4 +136,14 @@ Target:
 
 Setting:
   name=ID '=' value=BASETYPE
+;
+
+
+ScreenType:
+    'screen' name=ID "{"
+    /*    content=/(.|\n)*?(?=})/  */
+    // Everything until closing curly brackets but also
+    // collect string interpolation {{...}}
+    content=/([^}]*(}})?)*/
+    '}'
 ;

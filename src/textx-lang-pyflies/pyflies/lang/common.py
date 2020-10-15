@@ -57,16 +57,19 @@ def reduce_exp(obj):
 
     inner_reduce_exp(obj)
 
-def unresolvable_refs(exp, scope=None):
+def unresolvable_refs(exp):
     """
-    Find all variable refs in the given expression that can't be resolved in
-    the given scope.
+    Find all variable refs in the given expression that can't be resolved.
     """
     unresolvable = []
     var_refs = get_children_of_type("VariableRef", exp)
     while var_refs:
         var_ref = var_refs.pop()
-        resolved_ref = var_ref.resolve(scope)
+        scope = var_ref.get_scope()
+        if scope is None:
+            continue
+        resolved_ref = {v.name: v.value
+                        for v in scope.vars}.get(var_ref.name, var_ref)
         if resolved_ref is var_ref:
             unresolvable.append(var_ref)
         else:
@@ -337,13 +340,13 @@ class VariableRef(ExpressionElement):
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
 
-    def resolve(self, scope=None):
+    def resolve(self, context=None):
         """
-        Resolve variable in the provided scope.  If scope is not given find it.
+        Resolve variable in the provided context.  If context is not given find it.
         """
-        if scope is None:
-            scope = self.get_scope()
-        resolved = scope.get(self.name)
+        if context is None:
+            context = self.get_context()
+        resolved = context.get(self.name)
         if resolved is not None:
             return resolved
         return self

@@ -60,19 +60,24 @@ flow {
   show intro
 
   // Perform practice test serie
-  repeat TestModel 1 time random as practice
+  execute TestModel(practice true)
 
     
   // Just to show that we can repeat not only a single test but also
   // a block
-  repeat {
+  repeat 3 times {
     show real 
 
     // Perform real test serie (collects data).
-    // `full random` means that all 5 * 4 trials will
-    // be in random order
-    repeat TestModel 5 times full random
-  } 3 times
+    repeat 5 times TestModel(random true)
+  }
+
+  // Just to show that each block of statements can be randomized
+  repeat 2 times random {
+         show real
+         show intro
+         execute TestModel
+  }
 
 }
 

@@ -9,7 +9,7 @@ class ComponentTimeInst(EvaluatedBase):
     Represents an evaluated instance of component-time specification
     """
     def __init__(self, spec, context=None, last_comp=None):
-        super().__init__(spec, context)
+        super().__init__(spec)
         spec.inst = self
         self.at = spec.at.eval(context).time
         if spec.at.relative_op == '-':
@@ -36,7 +36,7 @@ class ComponentInst(EvaluatedBase):
     An evaluated instance of a component.
     """
     def __init__(self, spec, context=None):
-        super().__init__(spec, context)
+        super().__init__(spec)
         test = get_parent_of_type("TestType", self.spec)
         if test is None:
             # We are using testing meta-model
@@ -77,7 +77,7 @@ class ComponentInst(EvaluatedBase):
 
 class ComponentParamInst(EvaluatedBase):
     def __init__(self, spec, context=None):
-        super().__init__(spec, context)
+        super().__init__(spec)
 
         # Find out if this param is dependent on trial condition variables
         test = get_parent_of_type("TestType", self.spec)

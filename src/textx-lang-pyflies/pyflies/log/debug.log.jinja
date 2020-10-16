@@ -7,7 +7,7 @@
 {%- endmacro %}
 {% macro context_str(context) -%}
   {% if context %}
-Variables:
+  Variables:
   {% for var_name, var_value in context.items() %}
     {{var_name}} = {{var_value}}
   {% endfor %}
@@ -33,25 +33,35 @@ Components with param values:
 
 Conditions:
 
-{{test.table}}
+{{test.table_spec}}
 
+{% endfor %}
 
-Detailed with components for each trial:
-{% for row in test.table %}
-
+{% if m.flow %}
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+{% for inst in m.flow.insts %}
+  {% if inst.__class__.__name__ == 'ScreenInst' %}
+{{loop.index}}. SCREEN  {{inst.name}}
+----------------------------------------------------------------------------
+{{inst.content}}
+  {% else %}
+{{loop.index}}. TEST {{inst.name}}
+----------------------------------------------------------------------------
+    {% for row in inst.table %}
 Trial {{loop.index}}
-{{test.table.header_str()-}}
+{{inst.table.header_str()-}}
 {{row}}
 
-  {{context_str(row.get_context())}}
+{{context_str(row.get_context())}}
   Phases:
     fix:
-{{list_str(row.ph_fix)}}    exec:
-{{list_str(row.ph_exec)}}    error:
-{{list_str(row.ph_error)}}    correct:
-{{list_str(row.ph_correct)}}
+    {{list_str(row.ph_fix)}}    exec:
+    {{list_str(row.ph_exec)}}    error:
+    {{list_str(row.ph_error)}}    correct:
+    {{list_str(row.ph_correct)}}
+    {% endfor %}
+  {% endif %}
 {% endfor %}
-
---------------------------------------------------------------------------
-{% endfor %}
-
+{% endif %}

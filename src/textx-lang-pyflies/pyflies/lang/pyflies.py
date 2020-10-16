@@ -180,8 +180,8 @@ class Repeat(ModelElement):
                 context = dict(context)
                 context.update(zip(cond_var_names, row))
                 insts.extend(self.what.eval(context))
-        elif self.times == 0:
-            times = 1
+        else:
+            times = 1 if self.times == 0 else self.times
             for idx in range(times):
                 insts.extend(self.what.eval(context))
 
@@ -202,7 +202,7 @@ class Test(ModelElement):
 
 class TestInst(EvaluatedBase):
     def __init__(self, spec, context):
-        super().__init__(spec, context)
+        super().__init__(spec)
         self.table = spec.table_spec.eval(context)
         self.table.calc_phases(context)
 
@@ -216,6 +216,7 @@ class Screen(ModelElement):
 
 class ScreenInst(EvaluatedBase):
     def __init__(self, spec, duration, context):
+        super().__init__(spec)
         self.content = spec.content.format(**context)
         self.duration = duration
 

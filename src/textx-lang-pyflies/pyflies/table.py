@@ -48,7 +48,7 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
     Represents fully expanded and evaluated Condition table.
     """
     def __init__(self, spec, context):
-        super().__init__(spec, context)
+        super().__init__(spec)
         self.column_widths = None
         self.rows = []
         self.expand(context)
@@ -184,7 +184,8 @@ class ConditionsTableInstRow(ModelElement, ScopeProvider):
         Evaluate condition components specification for each phase of this trial.
         If condition is True evaluate components specs and attach to this row.
         """
-        for phase in ['fix', 'exec', 'error', 'correct']:
+        phases = ['fix', 'exec', 'error', 'correct']
+        for phase in phases:
             row_context = dict(context)
             row_context.update(self.get_context(context))
             row_context.update({phase: True})
@@ -192,8 +193,11 @@ class ConditionsTableInstRow(ModelElement, ScopeProvider):
             test = self.parent.spec.parent
             # Evaluate test variables in the context of this row
             test.eval(row_context)
+
             # Update row context with test variable
             row_context.update(test.get_context())
+            # Save context for logging purposes
+            self.var_vals.update({k:v for k,v in row_context.items() if k not in phases})
 
             for cond_comp in test.components_cond:
                 try:

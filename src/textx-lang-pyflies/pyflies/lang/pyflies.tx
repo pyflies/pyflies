@@ -80,7 +80,7 @@ TimeReference: (relative_to=[ComponentTime|ID|...comp_times] ':')?
                (relative_op=SignOperator)? time=AdditiveExpression;
 
 ComponentTime:
-    ('at' at=TimeReference)? (name=ID ':')? component=Component ('for' duration=AdditiveExpression)?;
+    ('at' at=TimeReference)? (name=ID ':')? component=Component ('for' duration=Expression)?;
 
 Component: type=[ComponentType|ID|+m:comp_types] '(' params*=ComponentParam[',']  ')';
 ComponentParam: type=[ParamType|ID|+m:..~type.~extends*.param_types] value=Expression;

@@ -199,7 +199,8 @@ class Show(ModelElement):
 class Test(ModelElement):
     def eval(self, context):
         context = dict(context)
-        context.update({a.name: a.value for a in self.args})
+        context.update({'practice': False})
+        context.update({a.name: a.value.eval(context) for a in self.args})
         return [TestInst(self.type, context)]
 
 
@@ -221,7 +222,7 @@ class ScreenInst(EvaluatedBase):
     def __init__(self, spec, duration, context):
         super().__init__(spec)
         self.content = jinja2.Template(spec.content).render(**context)
-        self.duration = duration
+        self.duration = duration.eval() if duration is not None else None
 
 
 class Flow(ModelElement):

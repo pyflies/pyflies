@@ -12,7 +12,7 @@ test TestModel {
       | directions loop | congruencies loop | direction |
 
       duration = 100 if direction == left else 200
-      fix -> cross() for 1000..3000 choose
+      fix -> cross() for 100 if practice else 500
       exec -> at 50 circle(radius 100, position left if direction == right else right) for 1000..2000 choose
               // This component has name for later referencing
               at .100 mysound:sound(freq 100) for 400
@@ -54,11 +54,10 @@ screen real {
 }
 
 
-
 flow {
 
   // Show introduction
-  show intro
+  show intro for 5000
 
   // Perform practice test serie
   execute TestModel(practice true)

@@ -616,47 +616,6 @@ def test_conditions_table_phases_evaluation():
     assert st.component.params[1].value == 'green'
 
 
-def test_routine_parameters():
-    """
-    Test that screens and tests can accept parameters.
-    """
-    mm = metamodel_for_language('pyflies')
-
-    m = mm.model_from_str(r'''
-
-    test showImages {
-
-        | index | image                          |
-        |-------+--------------------------------|
-        | 1..10 | "{{image_type}}/{{index}}.png" |
-        |  1..2 | index * 5                      |
-
-        fix -> cross() for 400..1000 choose
-        exec -> image(file image)
-                key()
-    }
-
-    screen break {
-        Take a short break
-    }
-
-    screen instruction {
-        You will be presented with images of {{image_type}}
-        Here is a number -> {{myval}}
-    }
-
-    flow {
-        show instruction(image_type 'houses', myval 2 + 3)
-        repeat 3 times showImages(image_type 'houses')
-    }
-    ''')
-
-    import pudb;pudb.set_trace()
-    s = m.flow.insts[1].table
-
-
-
-
 def test_experiment_structure():
     """
     Test full experiment structure
@@ -690,6 +649,24 @@ def test_experiment_structure():
     assert rtest.what.random
 
 
+def test_flow_instances_expansion():
+    """
+    Test that flow instances are correctly created.
+    """
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
+
+    assert len(m.flow.insts) == 2 + 3 * 6 + 2 * 3
+
+    # screen duration
+    assert m.flow.insts[0].duration == 5000
+
+    # Test arguments
+    # This test has practice = True
+    assert m.flow.insts[1].table[0].ph_fix[0].duration == 100
+    # This test has practice = False
+    assert m.flow.insts[3].table[0].ph_fix[0].duration == 500
+
 
 def test_experiment_time_calculations():
     """
@@ -709,3 +686,58 @@ def test_experiment_time_calculations():
     assert comps[2].at == 300
     assert comps[3].at == 650
     assert comps[4].at == 550
+
+
+def test_routine_parameters():
+    """
+    Test that screens and tests can accept parameters.
+    """
+    mm = metamodel_for_language('pyflies')
+
+    m = mm.model_from_file(join(this_folder, 'test_routine_parameters.pf'))
+
+    # Test that screen is rendered
+    assert m.flow.insts[0].content.strip() == r'''
+    You will be presented with images of houses
+    Here is a number -> 5
+    '''.strip()
+
+    # We have test and a screen repeated 3 times
+    assert len(m.flow.insts) == 7
+    test = m.flow.insts[1].table[5][0] == 6
+    test = m.flow.insts[1].table[5][1] == 'houses/6.png'
+
+    assert m.flow.insts[6].content.strip() == r'''
+    Block 3 is over.
+    Take a short break
+    '''.strip()
+
+
+def test_repeat_with():
+    """
+    test `repeat` with a `with` table
+    """
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'test_repeat_with.pf'))
+
+    # We have one screen and one test for each row of the repeat/with table
+    assert len(m.flow.insts) == 4
+
+    assert m.flow.insts[1].table[0][1] == 'houses/1.png'
+    assert m.flow.insts[3].table[0][1] == 'faces/1.png'
+
+    assert m.flow.insts[0].content.strip() == r'''
+       You will be presented with images of houses.
+       Here is 11.0.
+    '''.strip()
+
+    assert m.flow.insts[2].content.strip() == r'''
+       You will be presented with images of faces.
+       Here is 8.
+    '''.strip()
+
+
+def test_jinja_filters_in_screens():
+    """
+    Test that Jinja filters are working as expected
+    """

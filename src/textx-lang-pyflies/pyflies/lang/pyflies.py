@@ -4,6 +4,7 @@ Custom classes for pyflies.tx
 import sys
 import inspect
 import random
+import jinja2
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 
@@ -173,6 +174,7 @@ class Block(ModelElement):
 class Repeat(ModelElement):
     def eval(self, context):
         insts = []
+        context = dict(context)
         if self._with:
             table = self._with.eval(context)
             cond_var_names = self._with.variables
@@ -183,6 +185,7 @@ class Repeat(ModelElement):
         else:
             times = 1 if self.times == 0 else self.times
             for idx in range(times):
+                context['repeat_index'] = idx + 1
                 insts.extend(self.what.eval(context))
 
         return insts
@@ -210,14 +213,14 @@ class TestInst(EvaluatedBase):
 class Screen(ModelElement):
     def eval(self, context=None, duration=0):
         context = dict(context)
-        context.update({a.name: a.value for a in self.args})
+        context.update({a.name: a.value.eval(context) for a in self.args})
         return [ScreenInst(self.type, duration, context)]
 
 
 class ScreenInst(EvaluatedBase):
     def __init__(self, spec, duration, context):
         super().__init__(spec)
-        self.content = spec.content.format(**context)
+        self.content = jinja2.Template(spec.content).render(**context)
         self.duration = duration
 
 

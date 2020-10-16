@@ -4,6 +4,7 @@ Custom classes for common.tx
 import sys
 import inspect
 import random
+import jinja2
 from operator import or_, and_, not_, eq, ne, lt, gt, le, ge, add, sub, mul, truediv, neg
 from functools import reduce
 from itertools import cycle, repeat, product
@@ -167,14 +168,16 @@ class BaseValue(ExpressionElement):
 class String(ExpressionElement):
     def eval(self, context=None):
         context = self.get_context(context)
-        try:
-            return self.value.format(**context)
-        except KeyError as k:
-            raise PyFliesException('Undefined variable "{}"'.format(k.args[0]))
-        except AttributeError:
-            if '{' in self.value.replace('{{', ''):
-                raise PyFliesException('Undefined variables in "{}"'.format(self.value))
-            return self.value
+
+        # Check for unexisting variables
+        for sp in self.value.split('{{'):
+            if '}}' in sp:
+                # This is variable. Check if exists.
+                var_name = sp.split('}}')[0]
+                if var_name not in context:
+                    raise PyFliesException('Undefined variable "{}"'.format(var_name))
+
+        return jinja2.Template(self.value).render(**context)
 
     def __str__(self):
         return self.value

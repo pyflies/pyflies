@@ -163,7 +163,7 @@ def test_string_interpolation():
     b = "some string"
     Pi = 3.14
 
-    "this is {a} interpolation {b} {Pi}"
+    "this is {{a}} interpolation {{b}} {{Pi}}"
     ''')
     assert m.exp.eval() == 'this is 5 interpolation some string 3.14'
 
@@ -171,13 +171,13 @@ def test_string_interpolation():
         m = mm.model_from_str('''
         a = 5
 
-        "this is {a} interpolation {b}"
+        "this is {{a}} interpolation {{b}}"
         ''')
         m.exp.eval()
 
     with pytest.raises(PyFliesException, match=r'.*Undefined variable.*'):
         m = mm.model_from_str('''
-        "this is {a} interpolation {b}"
+        "this is {{a}} interpolation {{b}}"
         ''')
         m.exp.eval()
 
@@ -642,11 +642,12 @@ def test_routine_parameters():
 
     screen instruction {
         You will be presented with images of {{image_type}}
+        Here is a number -> {{myval}}
     }
 
     flow {
-        show instruction(image_type 'houses')
-        repeat 3 time showImages(image_type 'houses')
+        show instruction(image_type 'houses', myval 2 + 3)
+        repeat 3 times showImages(image_type 'houses')
     }
     ''')
 

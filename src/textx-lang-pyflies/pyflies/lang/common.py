@@ -343,13 +343,11 @@ class VariableRef(ExpressionElement):
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
 
-    def resolve(self, context=None):
+    def resolve(self):
         """
-        Resolve variable in the provided context.  If context is not given find it.
+        Resolve variable in its scope.
         """
-        if context is None:
-            context = self.get_context()
-        resolved = context.get(self.name)
+        resolved = self.get_scope().get(self.name)
         if resolved is not None:
             return resolved
         return self

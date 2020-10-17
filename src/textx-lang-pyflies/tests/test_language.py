@@ -558,6 +558,24 @@ def test_conditions_table_condition_cyclic_reference():
         ''')
 
 
+def test_undefined_loop_variable():
+    """
+    Test that table expression with undefined loop variable raises exception.
+    """
+
+    mm = metamodel_for_language('pyflies')
+
+    with pytest.raises(PyFliesException, match=r'Undefined variable "myvar"'):
+        mm.model_from_str('''
+        test Test{
+            | undefined_var |
+            |---------------|
+            | myvar loop    |
+        }
+        flow {execute Test}
+        ''')
+
+
 def test_conditions_table_phases_evaluation():
     """
     Test that evaluated table has attached appropriate components specifications

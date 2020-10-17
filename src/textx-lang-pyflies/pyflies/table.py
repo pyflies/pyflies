@@ -3,7 +3,7 @@ import pyflies
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
 from .evaluated import EvaluatedBase
-from .lang.common import ModelElement, LoopExpression
+from .lang.common import ModelElement, LoopExpression, VariableRef
 
 
 def get_column_widths(variables, rows):
@@ -78,7 +78,11 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
             # expanded table rows.
             for idx, var_exp in enumerate(cond_spec):
                 if type(var_exp) is LoopExpression:
-                    loops.append(var_exp.exp.resolve())
+                    var_exp_resolved = var_exp.exp.resolve()
+                    if type(var_exp_resolved) is VariableRef:
+                        raise PyFliesException('Undefined variable "{}"'
+                                               .format(var_exp_resolved.name))
+                    loops.append(var_exp_resolved)
                     loops_idx.append(idx)
                     cond_template.append(None)
                 else:

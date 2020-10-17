@@ -42,6 +42,7 @@ Conditions:
 ----------------------------------- FLOW -----------------------------------
 ----------------------------------------------------------------------------
 {% for inst in m.flow.insts %}
+  {% set outer_loop = loop %} 
   {% if inst.__class__.__name__ == 'ScreenInst' %}
 {{loop.index}}. SCREEN  {{inst.name}}
 ----------------------------------------------------------------------------
@@ -51,7 +52,7 @@ Conditions:
 {{loop.index}}. TEST {{inst.name}}
 ----------------------------------------------------------------------------
     {% for row in inst.table %}
-Trial {{loop.index}}
+Trial {{outer_loop.index}}:{{loop.index}}
 {{inst.table.header_str()-}}
 {{row}}
 

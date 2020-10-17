@@ -56,7 +56,7 @@ Trial {{outer_loop.index}}:{{loop.index}}
 {{inst.table.header_str()-}}
 {{row}}
 
-{{context_str(row.get_context())}}
+{{context_str(row.get_context_noncond())}}
   Phases:
     fix:
     {{list_str(row.ph_fix)}}    exec:

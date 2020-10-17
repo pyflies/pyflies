@@ -61,17 +61,12 @@ Trial 2:1
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2718
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3051
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -90,17 +85,12 @@ Trial 2:2
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2354
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2662
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -119,17 +109,12 @@ Trial 2:3
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2126
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2821
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -148,17 +133,12 @@ Trial 2:4
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2698
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3050
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -190,18 +170,13 @@ Trial 4:1
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2064
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3682
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -220,18 +195,13 @@ Trial 4:2
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3495
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3509
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -250,18 +220,13 @@ Trial 4:3
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2487
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2346
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -280,18 +245,13 @@ Trial 4:4
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 1
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3142
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2487
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -310,18 +270,13 @@ Trial 4:5
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 2
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3443
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3596
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -340,18 +295,13 @@ Trial 4:6
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 2
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2365
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2108
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -370,18 +320,13 @@ Trial 4:7
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 2
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2477
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3640
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -400,18 +345,13 @@ Trial 4:8
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 2
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2704
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3775
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -430,18 +370,13 @@ Trial 4:9
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 3
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3086
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3837
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -460,18 +395,13 @@ Trial 4:10
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 3
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3634
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3830
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -490,18 +420,13 @@ Trial 4:11
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 3
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2032
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2958
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -520,18 +445,13 @@ Trial 4:12
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 3
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3398
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3972
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -550,18 +470,13 @@ Trial 4:13
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 4
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2449
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3386
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -580,18 +495,13 @@ Trial 4:14
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 4
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2279
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3432
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -610,18 +520,13 @@ Trial 4:15
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 4
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3204
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3207
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -640,18 +545,13 @@ Trial 4:16
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 4
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3652
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3245
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -670,18 +570,13 @@ Trial 4:17
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 5
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3351
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3373
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -700,18 +595,13 @@ Trial 4:18
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 5
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3287
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2564
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -730,18 +620,13 @@ Trial 4:19
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 5
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2788
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2583
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -760,18 +645,13 @@ Trial 4:20
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 5
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2324
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3286
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -790,18 +670,13 @@ Trial 4:21
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 6
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2553
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3792
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -820,18 +695,13 @@ Trial 4:22
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 6
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3636
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2931
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -850,18 +720,13 @@ Trial 4:23
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 6
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2047
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3636
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -880,18 +745,13 @@ Trial 4:24
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 6
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3930
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3851
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -910,18 +770,13 @@ Trial 4:25
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 7
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3948
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3771
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -940,18 +795,13 @@ Trial 4:26
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 7
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3810
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3271
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -970,18 +820,13 @@ Trial 4:27
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 7
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3247
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2293
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1000,18 +845,13 @@ Trial 4:28
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 7
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3237
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2059
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1030,18 +870,13 @@ Trial 4:29
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 8
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2253
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2716
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1060,18 +895,13 @@ Trial 4:30
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 8
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3959
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2789
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1090,18 +920,13 @@ Trial 4:31
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 8
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2527
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2647
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1120,18 +945,13 @@ Trial 4:32
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 8
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2274
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3751
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1150,18 +970,13 @@ Trial 4:33
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 9
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3404
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2360
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1180,18 +995,13 @@ Trial 4:34
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 9
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2175
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3132
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1210,18 +1020,13 @@ Trial 4:35
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 9
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3482
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3851
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1240,18 +1045,13 @@ Trial 4:36
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 9
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3561
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3323
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1270,18 +1070,13 @@ Trial 4:37
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 10
-    position = left
-    color = green
-    congruency = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3373
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3944
     exec:
                 at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1300,18 +1095,13 @@ Trial 4:38
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 10
-    position = left
-    color = red
-    congruency = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2145
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2539
     exec:
                 at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
@@ -1330,18 +1120,13 @@ Trial 4:39
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 10
-    position = right
-    color = green
-    congruency = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2537
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3958
     exec:
                 at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
@@ -1360,18 +1145,13 @@ Trial 4:40
     colors = [green, red]
     responses = [left, right]
     repetitions = 1
-    repetition = 10
-    position = right
-    color = red
-    congruency = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2579
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3341
     exec:
                 at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0

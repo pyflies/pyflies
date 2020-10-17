@@ -59,16 +59,13 @@ Trial 2:1
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 1
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2408
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1252
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -85,16 +82,13 @@ Trial 2:2
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 2
-    parity = even
-    response = even
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1830
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1482
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -111,16 +105,13 @@ Trial 2:3
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 3
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1733
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1394
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -137,16 +128,13 @@ Trial 2:4
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 4
-    parity = even
-    response = even
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2369
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1580
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -163,16 +151,13 @@ Trial 2:5
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 5
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2285
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1099
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -189,16 +174,13 @@ Trial 2:6
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 6
-    parity = even
-    response = even
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2546
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2768
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -215,16 +197,13 @@ Trial 2:7
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 7
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1610
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2013
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -241,16 +220,13 @@ Trial 2:8
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 8
-    parity = even
-    response = even
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1725
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2435
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -267,16 +243,13 @@ Trial 2:9
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 9
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2458
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2519
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -309,16 +282,13 @@ Trial 4:1
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 1
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1418
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1768
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -335,16 +305,13 @@ Trial 4:2
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 2
-    parity = even
-    response = even
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1691
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2747
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -361,16 +328,13 @@ Trial 4:3
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 3
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1041
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2680
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -387,16 +351,13 @@ Trial 4:4
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 4
-    parity = even
-    response = even
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2238
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1645
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -413,16 +374,13 @@ Trial 4:5
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 5
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2903
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2904
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -439,16 +397,13 @@ Trial 4:6
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 6
-    parity = even
-    response = even
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2583
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2833
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -465,16 +420,13 @@ Trial 4:7
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 7
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2799
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2740
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -491,16 +443,13 @@ Trial 4:8
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 8
-    parity = even
-    response = even
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1450
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1697
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -517,16 +466,13 @@ Trial 4:9
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 9
-    parity = odd
-    response = odd
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1413
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -546,16 +492,13 @@ Trial 5:1
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 1
-    parity = odd
-    response = odd
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1622
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1732
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -572,16 +515,13 @@ Trial 5:2
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 2
-    parity = even
-    response = even
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1825
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1414
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -598,16 +538,13 @@ Trial 5:3
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 3
-    parity = odd
-    response = odd
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1971
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1286
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -624,16 +561,13 @@ Trial 5:4
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 4
-    parity = even
-    response = even
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2554
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1571
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -650,16 +584,13 @@ Trial 5:5
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 5
-    parity = odd
-    response = odd
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1515
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2265
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -676,16 +607,13 @@ Trial 5:6
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 6
-    parity = even
-    response = even
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1714
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2918
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -702,16 +630,13 @@ Trial 5:7
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 7
-    parity = odd
-    response = odd
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2392
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1027
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0
@@ -728,16 +653,13 @@ Trial 5:8
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 8
-    parity = even
-    response = even
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1280
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2437
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid even) for 0
@@ -754,16 +676,13 @@ Trial 5:9
   Variables:
     numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     parities = [odd, even]
-    number = 9
-    parity = odd
-    response = odd
     repeat_index = 2
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2641
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid odd) for 0

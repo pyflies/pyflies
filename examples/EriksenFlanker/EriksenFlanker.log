@@ -60,17 +60,13 @@ Trial 2:1
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1693
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1943
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -88,17 +84,13 @@ Trial 2:2
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1818
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1711
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -116,17 +108,13 @@ Trial 2:3
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1295
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1390
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -144,17 +132,13 @@ Trial 2:4
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = True
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1994
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1796
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -185,17 +169,13 @@ Trial 4:1
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1994
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1119
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -213,17 +193,13 @@ Trial 4:2
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2080
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1299
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -241,17 +217,13 @@ Trial 4:3
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1805
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1785
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -269,17 +241,13 @@ Trial 4:4
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 1
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1620
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1842
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -297,17 +265,13 @@ Trial 4:5
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 2
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2615
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2015
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -325,17 +289,13 @@ Trial 4:6
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 2
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2770
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1673
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -353,17 +313,13 @@ Trial 4:7
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 2
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1578
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2847
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -381,17 +337,13 @@ Trial 4:8
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 2
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2354
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2470
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -409,17 +361,13 @@ Trial 4:9
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 3
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1631
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1141
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -437,17 +385,13 @@ Trial 4:10
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 3
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1002
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2808
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -465,17 +409,13 @@ Trial 4:11
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 3
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1207
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2129
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -493,17 +433,13 @@ Trial 4:12
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 3
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3000
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1120
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -521,17 +457,13 @@ Trial 4:13
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 4
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1486
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2197
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -549,17 +481,13 @@ Trial 4:14
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 4
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2831
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2126
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -577,17 +505,13 @@ Trial 4:15
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 4
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2920
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1320
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -605,17 +529,13 @@ Trial 4:16
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 4
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1403
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1693
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -633,17 +553,13 @@ Trial 4:17
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 5
-    direction = left
-    category = incongruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1828
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2158
     exec:
                 at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -661,17 +577,13 @@ Trial 4:18
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 5
-    direction = left
-    category = congruent
-    response = left
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2931
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1485
     exec:
                 at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
@@ -689,17 +601,13 @@ Trial 4:19
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 5
-    direction = right
-    category = incongruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2209
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2727
     exec:
                 at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
@@ -717,17 +625,13 @@ Trial 4:20
     directions = [left, right]
     congruencies = [incongruent, congruent]
     repeats = 1
-    repeat = 5
-    direction = right
-    category = congruent
-    response = right
     repeat_index = 1
     practice = False
     random = True
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1462
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1722
     exec:
                 at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0

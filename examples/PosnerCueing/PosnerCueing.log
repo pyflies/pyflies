@@ -60,12 +60,8 @@ Trial 2:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1237
-    cross_display = 2445
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1013
+    cross_display = 2220
     repeat_index = 1
     practice = True
     random = True
@@ -76,9 +72,9 @@ Trial 2:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1236 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2691 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2691 key(valid press) for 0
+            at 1093 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2371 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2371 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -90,12 +86,8 @@ Trial 2:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1463
-    cross_display = 2912
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1475
+    cross_display = 2795
     repeat_index = 1
     practice = True
     random = True
@@ -106,9 +98,9 @@ Trial 2:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1122 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2602 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2602 key(valid press) for 0
+            at 1360 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2702 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2702 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -120,12 +112,8 @@ Trial 2:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1404
-    cross_display = 2434
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1186
+    cross_display = 2382
     repeat_index = 1
     practice = True
     random = True
@@ -136,9 +124,9 @@ Trial 2:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1496 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2858 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2858 key(valid press) for 0
+            at 1435 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2699 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2699 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -150,12 +138,8 @@ Trial 2:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1351
-    cross_display = 2802
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1004
+    cross_display = 2050
     repeat_index = 1
     practice = True
     random = True
@@ -166,9 +150,9 @@ Trial 2:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1385 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2662 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2662 key(valid press) for 0
+            at 1209 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2690 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2690 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -193,12 +177,8 @@ Trial 4:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1188
-    cross_display = 2346
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1264
+    cross_display = 2549
     repeat_index = 1
     practice = False
     random = True
@@ -209,9 +189,9 @@ Trial 4:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1072 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2297 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2297 key(valid press) for 0
+            at 1463 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2756 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2756 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -223,12 +203,8 @@ Trial 4:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1253
-    cross_display = 2528
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1088
+    cross_display = 2174
     repeat_index = 1
     practice = False
     random = True
@@ -239,9 +215,9 @@ Trial 4:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1443 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2677 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2677 key(valid press) for 0
+            at 1445 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2667 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2667 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -253,12 +229,8 @@ Trial 4:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1439
-    cross_display = 2554
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1322
+    cross_display = 2710
     repeat_index = 1
     practice = False
     random = True
@@ -269,9 +241,9 @@ Trial 4:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1149 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2428 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2428 key(valid press) for 0
+            at 1190 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2509 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2509 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -283,12 +255,8 @@ Trial 4:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1145
-    cross_display = 2449
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1443
+    cross_display = 2929
     repeat_index = 1
     practice = False
     random = True
@@ -299,9 +267,9 @@ Trial 4:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1229 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2476 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2476 key(valid press) for 0
+            at 1410 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2897 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2897 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -316,12 +284,8 @@ Trial 5:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1174
-    cross_display = 2596
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1271
+    cross_display = 2629
     repeat_index = 2
     practice = False
     random = True
@@ -332,9 +296,9 @@ Trial 5:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1447 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2891 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2891 key(valid press) for 0
+            at 1019 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2321 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2321 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -346,12 +310,8 @@ Trial 5:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1029
-    cross_display = 2125
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1247
+    cross_display = 2425
     repeat_index = 2
     practice = False
     random = True
@@ -362,9 +322,9 @@ Trial 5:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1182 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2553 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2553 key(valid press) for 0
+            at 1113 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2367 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2367 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -376,12 +336,8 @@ Trial 5:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1207
-    cross_display = 2473
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1456
+    cross_display = 2923
     repeat_index = 2
     practice = False
     random = True
@@ -392,9 +348,9 @@ Trial 5:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1256 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2577 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2577 key(valid press) for 0
+            at 1078 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2129 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2129 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -406,12 +362,8 @@ Trial 5:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1312
-    cross_display = 2314
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1022
+    cross_display = 2367
     repeat_index = 2
     practice = False
     random = True
@@ -422,9 +374,9 @@ Trial 5:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1348 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2403 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2403 key(valid press) for 0
+            at 1482 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2559 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2559 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -439,12 +391,8 @@ Trial 6:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1080
-    cross_display = 2505
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1104
+    cross_display = 2214
     repeat_index = 3
     practice = False
     random = True
@@ -455,9 +403,9 @@ Trial 6:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1379 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2761 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2761 key(valid press) for 0
+            at 1247 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2258 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2258 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -469,12 +417,8 @@ Trial 6:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1460
-    cross_display = 2665
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1010
+    cross_display = 2304
     repeat_index = 3
     practice = False
     random = True
@@ -485,9 +429,9 @@ Trial 6:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1093 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2094 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2094 key(valid press) for 0
+            at 1091 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2435 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2435 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -499,12 +443,8 @@ Trial 6:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1163
-    cross_display = 2499
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1284
+    cross_display = 2338
     repeat_index = 3
     practice = False
     random = True
@@ -515,9 +455,9 @@ Trial 6:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1311 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2364 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2364 key(valid press) for 0
+            at 1275 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2352 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2352 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -529,12 +469,8 @@ Trial 6:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1236
-    cross_display = 2491
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1296
+    cross_display = 2749
     repeat_index = 3
     practice = False
     random = True
@@ -545,9 +481,9 @@ Trial 6:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1068 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2234 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2234 key(valid press) for 0
+            at 1287 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2451 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2451 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -562,12 +498,8 @@ Trial 7:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1097
-    cross_display = 2452
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1417
+    cross_display = 2794
     repeat_index = 4
     practice = False
     random = True
@@ -578,9 +510,9 @@ Trial 7:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1347 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2461 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2461 key(valid press) for 0
+            at 1007 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2271 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2271 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -592,12 +524,8 @@ Trial 7:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1088
-    cross_display = 2165
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1243
+    cross_display = 2644
     repeat_index = 4
     practice = False
     random = True
@@ -608,9 +536,9 @@ Trial 7:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1117 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2192 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2192 key(valid press) for 0
+            at 1481 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2965 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2965 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -622,12 +550,8 @@ Trial 7:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1408
-    cross_display = 2762
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1287
+    cross_display = 2595
     repeat_index = 4
     practice = False
     random = True
@@ -638,9 +562,9 @@ Trial 7:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1490 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2793 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2793 key(valid press) for 0
+            at 1492 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2501 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2501 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -652,12 +576,8 @@ Trial 7:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1395
-    cross_display = 2815
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1193
+    cross_display = 2391
     repeat_index = 4
     practice = False
     random = True
@@ -668,9 +588,9 @@ Trial 7:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1452 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2544 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2544 key(valid press) for 0
+            at 1074 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2388 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2388 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -685,12 +605,8 @@ Trial 8:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1365
-    cross_display = 2835
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1024
+    cross_display = 2363
     repeat_index = 5
     practice = False
     random = True
@@ -701,9 +617,9 @@ Trial 8:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1277 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2351 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2351 key(valid press) for 0
+            at 1070 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2140 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2140 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -715,12 +631,8 @@ Trial 8:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1302
-    cross_display = 2704
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1340
+    cross_display = 2633
     repeat_index = 5
     practice = False
     random = True
@@ -731,9 +643,9 @@ Trial 8:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1044 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2466 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2466 key(valid press) for 0
+            at 1412 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2527 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2527 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -745,12 +657,8 @@ Trial 8:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1345
-    cross_display = 2731
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1079
+    cross_display = 2087
     repeat_index = 5
     practice = False
     random = True
@@ -761,9 +669,9 @@ Trial 8:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1022 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2465 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2465 key(valid press) for 0
+            at 1481 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2869 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2869 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -775,12 +683,8 @@ Trial 8:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1222
-    cross_display = 2421
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1166
+    cross_display = 2311
     repeat_index = 5
     practice = False
     random = True
@@ -791,9 +695,9 @@ Trial 8:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1380 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2729 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2729 key(valid press) for 0
+            at 1258 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2566 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2566 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -808,12 +712,8 @@ Trial 9:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1015
-    cross_display = 2336
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1366
+    cross_display = 2866
     repeat_index = 6
     practice = False
     random = True
@@ -824,9 +724,9 @@ Trial 9:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1350 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2557 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2557 key(valid press) for 0
+            at 1356 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2600 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2600 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -838,12 +738,8 @@ Trial 9:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1404
-    cross_display = 2690
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1449
+    cross_display = 2705
     repeat_index = 6
     practice = False
     random = True
@@ -854,9 +750,9 @@ Trial 9:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1419 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2612 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2612 key(valid press) for 0
+            at 1001 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2429 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2429 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -868,12 +764,8 @@ Trial 9:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1167
-    cross_display = 2428
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1381
+    cross_display = 2612
     repeat_index = 6
     practice = False
     random = True
@@ -884,9 +776,9 @@ Trial 9:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1380 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2544 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2544 key(valid press) for 0
+            at 1422 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2710 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2710 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -898,12 +790,8 @@ Trial 9:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1262
-    cross_display = 2692
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1132
+    cross_display = 2214
     repeat_index = 6
     practice = False
     random = True
@@ -914,9 +802,9 @@ Trial 9:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1056 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2286 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2286 key(valid press) for 0
+            at 1330 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2422 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2422 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -931,12 +819,8 @@ Trial 10:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1223
-    cross_display = 2486
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1363
+    cross_display = 2588
     repeat_index = 7
     practice = False
     random = True
@@ -947,9 +831,9 @@ Trial 10:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1455 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2572 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2572 key(valid press) for 0
+            at 1336 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2508 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2508 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -961,12 +845,8 @@ Trial 10:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1193
-    cross_display = 2308
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1286
+    cross_display = 2532
     repeat_index = 7
     practice = False
     random = True
@@ -977,9 +857,9 @@ Trial 10:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1328 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2384 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2384 key(valid press) for 0
+            at 1316 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2528 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2528 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -991,12 +871,8 @@ Trial 10:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1306
-    cross_display = 2363
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1131
+    cross_display = 2516
     repeat_index = 7
     practice = False
     random = True
@@ -1007,9 +883,9 @@ Trial 10:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1353 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2444 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2444 key(valid press) for 0
+            at 1127 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2134 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2134 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1021,12 +897,8 @@ Trial 10:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1021
-    cross_display = 2225
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1337
+    cross_display = 2343
     repeat_index = 7
     practice = False
     random = True
@@ -1037,9 +909,9 @@ Trial 10:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1484 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2661 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2661 key(valid press) for 0
+            at 1086 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2111 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2111 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1054,12 +926,8 @@ Trial 11:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1023
-    cross_display = 2374
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1341
+    cross_display = 2731
     repeat_index = 8
     practice = False
     random = True
@@ -1070,9 +938,9 @@ Trial 11:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1041 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2302 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2302 key(valid press) for 0
+            at 1113 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2118 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2118 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1084,12 +952,8 @@ Trial 11:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1274
-    cross_display = 2480
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1298
+    cross_display = 2632
     repeat_index = 8
     practice = False
     random = True
@@ -1100,9 +964,9 @@ Trial 11:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1336 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2446 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2446 key(valid press) for 0
+            at 1365 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2572 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2572 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1114,12 +978,8 @@ Trial 11:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1029
-    cross_display = 2301
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1226
+    cross_display = 2417
     repeat_index = 8
     practice = False
     random = True
@@ -1130,9 +990,9 @@ Trial 11:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1242 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2279 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2279 key(valid press) for 0
+            at 1377 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2701 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2701 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1144,12 +1004,8 @@ Trial 11:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1421
-    cross_display = 2793
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1174
+    cross_display = 2220
     repeat_index = 8
     practice = False
     random = True
@@ -1160,9 +1016,9 @@ Trial 11:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1468 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2805 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2805 key(valid press) for 0
+            at 1025 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2482 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2482 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1177,12 +1033,8 @@ Trial 12:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1102
-    cross_display = 2551
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1359
+    cross_display = 2496
     repeat_index = 9
     practice = False
     random = True
@@ -1193,9 +1045,9 @@ Trial 12:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1119 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2502 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2502 key(valid press) for 0
+            at 1219 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2620 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2620 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1207,12 +1059,8 @@ Trial 12:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1161
-    cross_display = 2219
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
+    cue_display = 1189
+    cross_display = 2258
     repeat_index = 9
     practice = False
     random = True
@@ -1223,9 +1071,9 @@ Trial 12:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1000 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2043 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2043 key(valid press) for 0
+            at 1079 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2544 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2544 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1237,12 +1085,8 @@ Trial 12:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1103
-    cross_display = 2329
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1188
+    cross_display = 2410
     repeat_index = 9
     practice = False
     random = True
@@ -1253,9 +1097,9 @@ Trial 12:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1072 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2074 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2074 key(valid press) for 0
+            at 1083 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2450 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2450 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1267,12 +1111,8 @@ Trial 12:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1130
-    cross_display = 2349
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1379
+    cross_display = 2731
     repeat_index = 9
     practice = False
     random = True
@@ -1283,9 +1123,9 @@ Trial 12:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1242 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2382 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2382 key(valid press) for 0
+            at 1314 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2533 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2533 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1300,12 +1140,8 @@ Trial 13:1
 
   Variables:
     positions = [left, right]
-    cue_display = 1012
-    cross_display = 2350
-    cue = left
-    position = left
-    congruency = congruent
-    response = press
+    cue_display = 1178
+    cross_display = 2351
     repeat_index = 10
     practice = False
     random = True
@@ -1316,9 +1152,9 @@ Trial 13:1
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1185 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2597 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2597 key(valid press) for 0
+            at 1426 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2442 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2442 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1330,12 +1166,8 @@ Trial 13:2
 
   Variables:
     positions = [left, right]
-    cue_display = 1087
+    cue_display = 1411
     cross_display = 2501
-    cue = left
-    position = right
-    congruency = incongruent
-    response = press
     repeat_index = 10
     practice = False
     random = True
@@ -1346,9 +1178,9 @@ Trial 13:2
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1203 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2253 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2253 key(valid press) for 0
+            at 1411 cue:rectangle(position left, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2540 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2540 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1360,12 +1192,8 @@ Trial 13:3
 
   Variables:
     positions = [left, right]
-    cue_display = 1121
-    cross_display = 2594
-    cue = right
-    position = left
-    congruency = incongruent
-    response = press
+    cue_display = 1483
+    cross_display = 2630
     repeat_index = 10
     practice = False
     random = True
@@ -1376,9 +1204,9 @@ Trial 13:3
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1428 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2869 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2869 key(valid press) for 0
+            at 1375 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2619 target:cross(position left, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2619 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -1390,12 +1218,8 @@ Trial 13:4
 
   Variables:
     positions = [left, right]
-    cue_display = 1256
-    cross_display = 2700
-    cue = right
-    position = right
-    congruency = congruent
-    response = press
+    cue_display = 1182
+    cross_display = 2316
     repeat_index = 10
     practice = False
     random = True
@@ -1406,9 +1230,9 @@ Trial 13:4
                 at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position left, size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 rectangle(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 1093 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
-            at 2129 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
-            at 2129 key(valid press) for 0
+            at 1152 cue:rectangle(position right, size 18, color #ffffff, fillColor #ffffff) for 0
+            at 2183 target:cross(position right, size 20, color #ffffff, fillColor #ffffff) for 0
+            at 2183 key(valid press) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:

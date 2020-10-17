@@ -222,6 +222,12 @@ class ConditionsTableInstRow(ModelElement, ScopeProvider):
                     setattr(self, f'ph_{phase}', comp_insts)
                     break
 
+    def get_context_noncond(self):
+        """
+        Returns row context without the row columns. Used in debug log reporting.
+        """
+        return {k:v for k,v in self.get_context().items() if k not in self.parent.spec.variables}
+
     def __str__(self):
         return row_to_str(self, self.parent.column_widths)
 

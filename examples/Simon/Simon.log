@@ -6,18 +6,25 @@ http://en.wikipedia.org/wiki/Simon_effect
 
 """
 
-Tests: [<Test:Simon>]
-Screens: [<Screen:Practice>, <Screen:Real>]
+Tests: Simon
+Screens: Practice, Real
 
-Variables:
+  Variables:
     positions = [left, right]
     colors = [green, red]
     responses = [left, right]
+    repetitions = 1
 
 
 
 Test: Simon
 --------------------------------------------------------------------------
+Conditions:
+
+| repetition          | position       | color       | congruency                                         | response                          |
+|---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
+| 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
+
 Components with param values:
 Simon_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
 Simon_rectangle_1 = rectangle(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 0) constant, )
@@ -25,120 +32,1351 @@ Simon_key_2 = key(valid space, )
 Simon_sound_3 = sound(freq 1000 constant, )
 Simon_sound_4 = sound(freq 500 constant, )
 
-Conditions:
 
-| position | color | congruency  | response |
-|----------+-------+-------------+----------|
-| left     | green | congruent   | left     |
-| left     | red   | incongruent | right    |
-| right    | green | incongruent | left     |
-| right    | red   | congruent   | right    |
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+ 
+1. SCREEN  Practice
+----------------------------------------------------------------------------
+Simon test
+    ----------
+    
+    You will be presented with a colored rectangle positioned
+    left or right.
+    Press LEFT for the GREEN rectangle and right for the red.
+    
+    Press SPACE for the practice block.
 
-
-Detailed with components for each trial:
-
-Trial 1
-| position | color | congruency  | response |
-|----------+-------+-------------+----------|
-| left     | green | congruent   | left     |
+ 
+2. TEST Simon
+----------------------------------------------------------------------------
+Trial 2:1
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | left     | green | congruent   | left     |
 
   Variables:
     positions = [left, right]
     colors = [green, red]
     responses = [left, right]
+    repetitions = 1
+    repetition = 1
     position = left
     color = green
     congruency = congruent
     response = left
+    repeat_index = 1
+    practice = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3161
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2718
     exec:
-            at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
     error:
-            at 0 sound(freq 1000) for 300
+                at 0 sound(freq 1000) for 300
     correct:
-            at 0 sound(freq 500) for 300
+                at 0 sound(freq 500) for 300
 
-
-Trial 2
-| position | color | congruency  | response |
-|----------+-------+-------------+----------|
-| left     | red   | incongruent | right    |
+Trial 2:2
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | left     | red   | incongruent | right    |
 
   Variables:
     positions = [left, right]
     colors = [green, red]
     responses = [left, right]
+    repetitions = 1
+    repetition = 1
     position = left
     color = red
     congruency = incongruent
     response = right
+    repeat_index = 1
+    practice = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3288
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2354
     exec:
-            at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
     error:
-            at 0 sound(freq 1000) for 300
+                at 0 sound(freq 1000) for 300
     correct:
-            at 0 sound(freq 500) for 300
+                at 0 sound(freq 500) for 300
 
-
-Trial 3
-| position | color | congruency  | response |
-|----------+-------+-------------+----------|
-| right    | green | incongruent | left     |
+Trial 2:3
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | right    | green | incongruent | left     |
 
   Variables:
     positions = [left, right]
     colors = [green, red]
     responses = [left, right]
+    repetitions = 1
+    repetition = 1
     position = right
     color = green
     congruency = incongruent
     response = left
+    repeat_index = 1
+    practice = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3040
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2126
     exec:
-            at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
             at 0 key(valid left) for 0
     error:
-            at 0 sound(freq 1000) for 300
+                at 0 sound(freq 1000) for 300
     correct:
-            at 0 sound(freq 500) for 300
+                at 0 sound(freq 500) for 300
 
-
-Trial 4
-| position | color | congruency  | response |
-|----------+-------+-------------+----------|
-| right    | red   | congruent   | right    |
+Trial 2:4
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | right    | red   | congruent   | right    |
 
   Variables:
     positions = [left, right]
     colors = [green, red]
     responses = [left, right]
+    repetitions = 1
+    repetition = 1
     position = right
     color = red
     congruency = congruent
     response = right
+    repeat_index = 1
+    practice = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2049
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2698
     exec:
-            at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
             at 0 key(valid right) for 0
     error:
-            at 0 sound(freq 1000) for 300
+                at 0 sound(freq 1000) for 300
     correct:
-            at 0 sound(freq 500) for 300
+                at 0 sound(freq 500) for 300
 
+ 
+3. SCREEN  Real
+----------------------------------------------------------------------------
+Simon test
+    ----------
+    
+    Now a REAL testing will be performed.
+    
+    Press SPACE for the real block.
 
---------------------------------------------------------------------------
+ 
+4. TEST Simon
+----------------------------------------------------------------------------
+Trial 4:1
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 1
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2064
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:2
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 1
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3495
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:3
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 1
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2487
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:4
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 1          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 1
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3142
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:5
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 2          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 2
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3443
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:6
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 2          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 2
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2365
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:7
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 2          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 2
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2477
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:8
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 2          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 2
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2704
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:9
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 3          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 3
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3086
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:10
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 3          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 3
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3634
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:11
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 3          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 3
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2032
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:12
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 3          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 3
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3398
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:13
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 4          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 4
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2449
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:14
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 4          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 4
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2279
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:15
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 4          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 4
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3204
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:16
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 4          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 4
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3652
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:17
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 5          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 5
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3351
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:18
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 5          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 5
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3287
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:19
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 5          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 5
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2788
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:20
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 5          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 5
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2324
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:21
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 6          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 6
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2553
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:22
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 6          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 6
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3636
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:23
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 6          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 6
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2047
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:24
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 6          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 6
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3930
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:25
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 7          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 7
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3948
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:26
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 7          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 7
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3810
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:27
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 7          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 7
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3247
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:28
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 7          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 7
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3237
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:29
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 8          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 8
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2253
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:30
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 8          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 8
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3959
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:31
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 8          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 8
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2527
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:32
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 8          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 8
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2274
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:33
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 9          | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 9
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3404
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:34
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 9          | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 9
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2175
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:35
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 9          | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 9
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3482
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:36
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 9          | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 9
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3561
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:37
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 10         | left     | green | congruent   | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 10
+    position = left
+    color = green
+    congruency = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3373
+    exec:
+                at 0 rectangle(position left, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:38
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 10         | left     | red   | incongruent | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 10
+    position = left
+    color = red
+    congruency = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2145
+    exec:
+                at 0 rectangle(position left, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:39
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 10         | right    | green | incongruent | left     |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 10
+    position = right
+    color = green
+    congruency = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2537
+    exec:
+                at 0 rectangle(position right, color green, fillColor green, size (20, 0)) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+
+Trial 4:40
+| repetition | position | color | congruency  | response |
+|------------+----------+-------+-------------+----------|
+| 10         | right    | red   | congruent   | right    |
+
+  Variables:
+    positions = [left, right]
+    colors = [green, red]
+    responses = [left, right]
+    repetitions = 1
+    repetition = 10
+    position = right
+    color = red
+    congruency = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2579
+    exec:
+                at 0 rectangle(position right, color red, fillColor red, size (20, 0)) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 1000) for 300
+    correct:
+                at 0 sound(freq 500) for 300
+

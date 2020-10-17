@@ -4,16 +4,17 @@ Eriksen flanker test.
 
 directions = [left, right]
 congruencies = [incongruent, congruent]
+repeats = 1
 
 test EriksenFlanker {
 
-    | direction       | category          | response  |
-    |-----------------+-------------------+-----------|
-    | directions loop | congruencies loop | direction |
+    | repeat          | direction       | category          | response  |
+    |-----------------+-----------------+-------------------+-----------|
+    | 1..repeats loop | directions loop | congruencies loop | direction |
 
 
     fix -> cross() for 1000..3000 choose
-    exec -> image(file "images/{direction}-{category}.png")
+    exec -> image(file "images/{{direction}}-{{category}}.png")
             key(valid response)
     error -> sound(freq 300) for 500
     correct -> sound(freq 700) for 300
@@ -52,12 +53,12 @@ flow {
   show intro
 
   // Perform practice test serie
-  repeat EriksenFlanker 1 time full random as practice
+  execute EriksenFlanker(practice true, random true)
 
   show real 
   
   // Perform real test serie (collects data)
-  repeat EriksenFlanker 5 times full random
+  execute EriksenFlanker(repeats 5, random true)
 
 }
 

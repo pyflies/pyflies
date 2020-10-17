@@ -18,8 +18,8 @@ test Posner {
     exec -> cross()
             rectangle(position left, size 20)
             rectangle(position right, size 20)
-            at cue_display rectangle(position cue, size 18)
-            at cross_display cross(position position)
+            at cue_display cue:rectangle(position cue, size 18)
+            at cross_display target:cross(position position)
             key(valid response)
             // mouse(target cross)
     error -> sound(freq 1000) for 300
@@ -51,9 +51,10 @@ screen Real {
 
 flow {
     show Practice
-    repeat Posner 1 time full random as practice
+    execute Posner(practice true, random true)
+
     show Real
-    repeat Posner 10 times full random
+    repeat 10 times Posner(random true)
 }
 
 target PsychoPy {

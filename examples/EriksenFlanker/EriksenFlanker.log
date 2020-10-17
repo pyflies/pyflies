@@ -3,17 +3,24 @@ Eriksen flanker test.
 
 """
 
-Tests: [<Test:EriksenFlanker>]
-Screens: [<Screen:intro>, <Screen:real>]
+Tests: EriksenFlanker
+Screens: intro, real
 
-Variables:
+  Variables:
     directions = [left, right]
     congruencies = [incongruent, congruent]
+    repeats = 1
 
 
 
 Test: EriksenFlanker
 --------------------------------------------------------------------------
+Conditions:
+
+| repeat          | direction       | category          | response  |
+|-----------------+-----------------+-------------------+-----------|
+| 1..repeats loop | directions loop | congruencies loop | direction |
+
 Components with param values:
 EriksenFlanker_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
 EriksenFlanker_image_1 = image(file default path constant, ori 0 constant, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
@@ -21,112 +28,711 @@ EriksenFlanker_key_2 = key(valid space, )
 EriksenFlanker_sound_3 = sound(freq 300 constant, )
 EriksenFlanker_sound_4 = sound(freq 700 constant, )
 
-Conditions:
 
-| direction | category    | response |
-|-----------+-------------+----------|
-| left      | incongruent | left     |
-| left      | congruent   | left     |
-| right     | incongruent | right    |
-| right     | congruent   | right    |
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+ 
+1. SCREEN  intro
+----------------------------------------------------------------------------
+Welcome
+    -------
 
+    In the following test you will be presented with a line of 5 arrow pointing
+    left or right. You should respond by the direction of the *middle arrow* as
+    fast as possible by pressing left or right arrow on the keyboard or
+    touching/clicking on appropriate button on the screen.
 
-Detailed with components for each trial:
+    You will first do a practice run with 4 trials. After that a real run with
+    20 trial will be performed.
 
-Trial 1
-| direction | category    | response |
-|-----------+-------------+----------|
-| left      | incongruent | left     |
+    Press SPACE or touch/click the screen to continue
+
+ 
+2. TEST EriksenFlanker
+----------------------------------------------------------------------------
+Trial 2:1
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | left      | incongruent | left     |
 
   Variables:
     directions = [left, right]
     congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
     direction = left
     category = incongruent
     response = left
+    repeat_index = 1
+    practice = True
+    random = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2136
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1693
     exec:
-            at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
     error:
-            at 0 sound(freq 300) for 500
+                at 0 sound(freq 300) for 500
     correct:
-            at 0 sound(freq 700) for 300
+                at 0 sound(freq 700) for 300
 
-
-Trial 2
-| direction | category    | response |
-|-----------+-------------+----------|
-| left      | congruent   | left     |
+Trial 2:2
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | left      | congruent   | left     |
 
   Variables:
     directions = [left, right]
     congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
     direction = left
     category = congruent
     response = left
+    repeat_index = 1
+    practice = True
+    random = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1313
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1818
     exec:
-            at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid left) for 0
     error:
-            at 0 sound(freq 300) for 500
+                at 0 sound(freq 300) for 500
     correct:
-            at 0 sound(freq 700) for 300
+                at 0 sound(freq 700) for 300
 
-
-Trial 3
-| direction | category    | response |
-|-----------+-------------+----------|
-| right     | incongruent | right    |
+Trial 2:3
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | right     | incongruent | right    |
 
   Variables:
     directions = [left, right]
     congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
     direction = right
     category = incongruent
     response = right
+    repeat_index = 1
+    practice = True
+    random = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1747
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1295
     exec:
-            at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
     error:
-            at 0 sound(freq 300) for 500
+                at 0 sound(freq 300) for 500
     correct:
-            at 0 sound(freq 700) for 300
+                at 0 sound(freq 700) for 300
 
-
-Trial 4
-| direction | category    | response |
-|-----------+-------------+----------|
-| right     | congruent   | right    |
+Trial 2:4
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | right     | congruent   | right    |
 
   Variables:
     directions = [left, right]
     congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
     direction = right
     category = congruent
     response = right
+    repeat_index = 1
+    practice = True
+    random = True
 
   Phases:
     fix:
-            at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1596
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1994
     exec:
-            at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
             at 0 key(valid right) for 0
     error:
-            at 0 sound(freq 300) for 500
+                at 0 sound(freq 300) for 500
     correct:
-            at 0 sound(freq 700) for 300
+                at 0 sound(freq 700) for 300
 
+ 
+3. SCREEN  real
+----------------------------------------------------------------------------
+Real block
+    ----------
+    
+    Now a real block of trials will be performed.
 
---------------------------------------------------------------------------
+    Press SPACE or touch/click the screen to continue
+
+ 
+4. TEST EriksenFlanker
+----------------------------------------------------------------------------
+Trial 4:1
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
+    direction = left
+    category = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1994
+    exec:
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:2
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
+    direction = left
+    category = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2080
+    exec:
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:3
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
+    direction = right
+    category = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1805
+    exec:
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:4
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 1      | right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 1
+    direction = right
+    category = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1620
+    exec:
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:5
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 2      | left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 2
+    direction = left
+    category = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2615
+    exec:
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:6
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 2      | left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 2
+    direction = left
+    category = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2770
+    exec:
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:7
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 2      | right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 2
+    direction = right
+    category = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1578
+    exec:
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:8
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 2      | right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 2
+    direction = right
+    category = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2354
+    exec:
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:9
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 3      | left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 3
+    direction = left
+    category = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1631
+    exec:
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:10
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 3      | left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 3
+    direction = left
+    category = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1002
+    exec:
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:11
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 3      | right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 3
+    direction = right
+    category = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1207
+    exec:
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:12
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 3      | right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 3
+    direction = right
+    category = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 3000
+    exec:
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:13
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 4      | left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 4
+    direction = left
+    category = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1486
+    exec:
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:14
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 4      | left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 4
+    direction = left
+    category = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2831
+    exec:
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:15
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 4      | right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 4
+    direction = right
+    category = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2920
+    exec:
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:16
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 4      | right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 4
+    direction = right
+    category = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1403
+    exec:
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:17
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 5      | left      | incongruent | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 5
+    direction = left
+    category = incongruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1828
+    exec:
+                at 0 image(file images/left-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:18
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 5      | left      | congruent   | left     |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 5
+    direction = left
+    category = congruent
+    response = left
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2931
+    exec:
+                at 0 image(file images/left-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid left) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:19
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 5      | right     | incongruent | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 5
+    direction = right
+    category = incongruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2209
+    exec:
+                at 0 image(file images/right-incongruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+
+Trial 4:20
+| repeat | direction | category    | response |
+|--------+-----------+-------------+----------|
+| 5      | right     | congruent   | right    |
+
+  Variables:
+    directions = [left, right]
+    congruencies = [incongruent, congruent]
+    repeats = 1
+    repeat = 5
+    direction = right
+    category = congruent
+    response = right
+    repeat_index = 1
+    practice = False
+    random = True
+
+  Phases:
+    fix:
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1462
+    exec:
+                at 0 image(file images/right-congruent.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+            at 0 key(valid right) for 0
+    error:
+                at 0 sound(freq 300) for 500
+    correct:
+                at 0 sound(freq 700) for 300
+

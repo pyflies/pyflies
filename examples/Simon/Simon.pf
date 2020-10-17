@@ -8,12 +8,13 @@ http://en.wikipedia.org/wiki/Simon_effect
 positions = [left, right]
 colors = [green, red]
 responses = positions
+repetitions = 1
 
 test Simon {
 
-      | position       | color       | congruency                                         | response                          |
-      |----------------+-------------+----------------------------------------------------+-----------------------------------|
-      | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
+      | repetition          | position       | color       | congruency                                         | response                          |
+      |---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
+      | 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
 
 
       /* Since this is a relatively small condition table we could just
@@ -59,9 +60,10 @@ screen Real {
 
 flow {
     show Practice
-    repeat Simon 1 time random as practice
+    execute Simon(practice true)
+
     show Real
-    repeat Simon 10 times full random
+    execute Simon(repetitions 10, random true)
 }
 
 target PsychoPy {

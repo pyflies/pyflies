@@ -50,8 +50,10 @@ screen Real {
 
 flow {
     show Intro
-    repeat Parity 1 time random as practice
+    execute Parity(practice true, random true)
+
     show Real
-    repeat Parity 2 times full random
+    // repeat test 2 times, each repetion will be randomized
+    repeat 2 times Parity(random true)
 }
 

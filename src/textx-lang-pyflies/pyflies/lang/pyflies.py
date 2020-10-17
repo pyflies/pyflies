@@ -174,7 +174,6 @@ class Block(ModelElement):
 class Repeat(ModelElement):
     def eval(self, context):
         insts = []
-        context = dict(context)
         if self._with:
             table = self._with.eval(context)
             cond_var_names = self._with.variables
@@ -185,7 +184,9 @@ class Repeat(ModelElement):
         else:
             times = 1 if self.times == 0 else self.times
             for idx in range(times):
-                context['repeat_index'] = idx + 1
+                context = dict(context)
+                if times > 1 or not 'repeat_index' in context:
+                    context['repeat_index'] = idx + 1
                 insts.extend(self.what.eval(context))
 
         return insts

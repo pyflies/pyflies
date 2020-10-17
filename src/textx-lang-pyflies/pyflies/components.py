@@ -72,7 +72,10 @@ class ComponentInst(EvaluatedBase):
             return getattr(self.spec, name)
 
     def __repr__(self):
-        return '{}({})'.format(self.spec.type.name, ', '.join([str(x) for x in self.params]))
+        return '{}{}({})'.format('{}:'.format(self.spec.parent.name)
+                                 if self.spec.parent.name else '',
+                                 self.spec.type.name,
+                                 ', '.join([str(x) for x in self.params]))
 
 
 class ComponentParamInst(EvaluatedBase):

@@ -123,7 +123,7 @@ class ExpressionElement(ModelElement):
     def resolve(self, context=None):
         """
         If this expression element is resolvable (e.g. VariableRef), try to
-        resolve in the current context.  This is a default implementation that
+        resolve in the current scope.  This is a default implementation that
         return self.  All resolvable elements should override.
         """
         return self
@@ -199,7 +199,8 @@ class Sequence(ExpressionElement):
 
 class List(Sequence):
     def reduce(self):
-        return List(self.parent, values=[x.reduce() for x in self.values])
+        self.values = [x.reduce() for x in self.values]
+        return super().reduce()
 
     def eval(self, context=None):
         res = []
@@ -216,11 +217,17 @@ class List(Sequence):
 
 class Range(List):
     def reduce(self):
-        self.values = [BaseValue(self, value=x) for x in self.eval()]
+        self.lower = self.lower if type(self.lower) is int else self.lower.reduce()
+        self.upper = self.upper if type(self.upper) is int else self.upper.reduce()
         return self
 
     def eval(self, context=None):
-        return list(range(self.lower, self.upper + 1))
+        lower = self.lower if type(self.lower) is int else self.lower.eval(context)
+        upper = self.upper if type(self.upper) is int else self.upper.eval(context)
+        return list(range(lower, upper + 1))
+
+    def resolve(self, context):
+        return List(self.parent, values=[BaseValue(self, value=x) for x in self.eval(context)])
 
     def __str__(self):
         return '{}..{}'.format(self.lower, self.upper)
@@ -343,13 +350,20 @@ class VariableRef(ExpressionElement):
             # If variable is not defined consider it a symbol
             return Symbol(self.parent, name=self.name)
 
-    def resolve(self):
+    def resolve(self, context=None):
         """
-        Resolve variable in its scope.
+        Resolve variable in its scope.  If context is provided create BaseValue
+        or List for the provided value to enable further proper eval.
         """
         resolved = self.get_scope().get(self.name)
         if resolved is not None:
             return resolved
+        if context and self.name in context:
+            val = context[self.name]
+            if type(val) is list:
+                return List(self.parent, values=val)
+            else:
+                return BaseValue(self.parent, value=val)
         return self
 
     def __repr__(self):

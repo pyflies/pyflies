@@ -63,22 +63,21 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
             # First check to see if there is loops and if sequences
             # This will influence the interpretation of the row
             has_loops = any([type(v) is LoopExpression for v in cond_spec])
-            has_sequences = any([isinstance(v.resolve(), Sequence)
-                                 for v in cond_spec])
+            resolved_specs = [s.resolve(context) for s in cond_spec]
+            sequence_specs = [x for x in resolved_specs if isinstance(x, Sequence)]
+            has_sequences = bool(sequence_specs)
             should_repeat = has_loops or has_sequences
             if not has_loops and has_sequences:
                 # There are sequences but no loops. We shall do iteration for
                 # the length of the longest sequence. Other sequences will
                 # cycle. Base values will repeat.
-                max_len = max([len(x.resolve())
-                               for x in cond_spec
-                               if isinstance(x.resolve(), Sequence)])
+                max_len = max((len(x) for x in sequence_specs))
 
             # Create cond template which will be used to instantiate concrete
             # expanded table rows.
             for idx, var_exp in enumerate(cond_spec):
                 if type(var_exp) is LoopExpression:
-                    var_exp_resolved = var_exp.exp.resolve()
+                    var_exp_resolved = var_exp.exp.resolve(context)
                     if type(var_exp_resolved) is VariableRef:
                         raise PyFliesException('Undefined variable "{}"'
                                                .format(var_exp_resolved.name))
@@ -88,9 +87,7 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
                 else:
                     # If not a loop expression then cycle if list-like
                     # expression (e.g. List or Range) or repeat otherwise
-                    var_exp_resolved = var_exp.resolve()
-                    if type(var_exp_resolved) is list:
-                        import pudb;pudb.set_trace()
+                    var_exp_resolved = var_exp.resolve(context)
                     if isinstance(var_exp_resolved, Sequence):
                         if has_loops or len(var_exp_resolved) < max_len:
                             cond_template.append(cycle(var_exp_resolved))

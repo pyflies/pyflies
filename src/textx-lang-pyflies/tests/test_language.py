@@ -99,9 +99,6 @@ def test_compound_types():
     meval = m.exp.eval()
     assert meval == list(range(10, 21))
 
-    # Test that a single range element is an evaluatable expression
-    assert m.exp[0].eval() == 10
-
 
 def test_expresions_messages():
     """

@@ -8,7 +8,8 @@ BaseValue: value=Color | value=Point | value=STRICTFLOAT | value=INT | value=BOO
 String: value=STRING;
 
 CompoundTypeValue: Range | List;
-Range: lower=INT '..' upper=INT;
+Range: lower=RangeIndex '..' upper=RangeIndex;
+RangeIndex: INT | VariableRef;
 List: '[' values*=Expression[','] ']';
 
 VariableRef: name=VariableName;

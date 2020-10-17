@@ -357,6 +357,8 @@ class VariableRef(ExpressionElement):
         """
         resolved = self.get_scope().get(self.name)
         if resolved is not None:
+            if hasattr(resolved, 'resolve'):
+                return resolved.resolve(context)
             return resolved
         if context and self.name in context:
             val = context[self.name]

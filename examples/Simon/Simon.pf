@@ -32,7 +32,7 @@ test Simon {
 
       fix -> cross() for 2000..4000 choose
       exec -> rectangle(position position, color color, fillColor color)
-              key(valid response)
+              keyboard(valid response)
       error -> sound(freq 1000) for 300
       correct -> sound(freq 500) for 300
 
@@ -69,4 +69,5 @@ flow {
 target PsychoPy {
   left = left
   right = right
+  soundBackend = 'backend_sounddevice.SoundDeviceSound'
 }

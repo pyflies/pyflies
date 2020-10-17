@@ -223,7 +223,7 @@ class ScreenInst(EvaluatedBase):
     def __init__(self, spec, duration, context):
         super().__init__(spec)
         self.content = jinja2.Template(spec.content).render(**context)
-        self.duration = duration.eval() if duration is not None else None
+        self.duration = duration.eval() if duration is not None else 0
 
 
 class Flow(ModelElement):

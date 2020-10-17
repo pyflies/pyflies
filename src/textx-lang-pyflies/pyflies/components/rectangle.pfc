@@ -5,5 +5,5 @@ Visual stimuli in the form of rectangle
 {
     // override size to be of point type
     // 0 for height means 'keep aspect ratio'
-    param size:[symbol, point] = (20, 0)
+    param size:[symbol, point] = (20, 20)
 }

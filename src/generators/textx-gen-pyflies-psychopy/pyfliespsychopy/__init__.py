@@ -1,6 +1,7 @@
 import re
 import click
 import datetime
+import pprint
 from os.path import basename, splitext, join, dirname
 from textx import generator
 from textxjinja import textx_jinja_generator
@@ -59,9 +60,12 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
     filters = {
         'comp_type': comp_type,
         'param_used': param_used,
+        'params_used': params_used,
         'param_name': param_name,
         'param_value': param_value,
+        'default_params': default_params,
         'striptabs': striptabs,
+        'pprint_trial': pprint_trial,
         'type': typ,
         'name': name,
         'color': color,
@@ -73,7 +77,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
 
     now = datetime.datetime.now()
     now = now.strftime('%Y-%m-%d %H:%M:%S')
-    config = {'m': model, 'settings': settings, 'now': now}
+    config = {'m': model, 's': settings, 'now': now}
 
     # call the generator
     textx_jinja_generator(template_file, output_file, config, overwrite, filters)
@@ -83,6 +87,42 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
 
 def striptabs(s):
     return re.sub(r'^[ \t]+', '', s, flags=re.M)
+
+
+def pretty(obj, indent=0):
+    p = ''
+    sindent = ' ' * indent
+    if isinstance(obj, dict):
+        p += '{' + ',\n{}'.format(sindent).join(["'{}': {}".format(k, pretty(v, indent + 4))
+                                                 for k, v in obj.items()]) + '}'
+    elif isinstance(obj, list):
+        p += '[\n{}'.format(sindent) + \
+            ',\n{}'.format(sindent).join([pretty(x, indent + 4) for x in obj]) + ']'
+    else:
+        p += str(obj)
+    return p
+
+def pprint_trial(trial):
+    trial_data = {}
+    for phase in ['ph_fix', 'ph_exec', 'ph_error', 'ph_correct']:
+        phase_comps = getattr(trial, phase)
+        if phase_comps:
+            trial_data[phase] = []
+            for comp_time in phase_comps:
+                cdata = {
+                    'inst': comp_time.component.name,
+                    'type': '\'%s\'' % comp_time.component.type.extends[0].name,
+                    'at': duration(comp_time.at),
+                    'duration': duration(comp_time.duration)
+                }
+                cdata['params'] = {}
+                for param in comp_time.component.params:
+                    if not param.is_constant:
+                        cdata['params'][param_name(param)] = param_value(param)
+                trial_data[phase].append(cdata)
+
+    a = pretty(trial_data, 8)
+    return a
 
 
 def typ(obj):
@@ -136,10 +176,10 @@ def comp_type(comp):
         'cross': 'visual.ShapeStim',
         'line': 'visual.Line',
         'image': 'visual.ImageStim',
-        'sound': settings['soundBackend'],
-        'audio': settings['soundBackend'],
+        'sound': 'sound.%s' % settings['soundBackend'],
+        'audio': 'sound.%s' % settings['soundBackend'],
         'mouse': 'event.Mouse',
-        'key': 'event.Key',
+        'keyboard': 'keyboard.Keyboard',
     }.get(comp.type.name)
 
     assert target_comp is not None, \
@@ -148,17 +188,46 @@ def comp_type(comp):
     return target_comp
 
 
+def default_params(comp):
+    """
+    Return a string of default parameters used by the component
+    """
+    dparam = []
+    if comp.type.does_extend('visual'):
+        dparam.append('win=win')
+        dparam.append('name=\'{}\''.format(comp.name))
+
+    return '{}{}'.format(', '.join(dparam), ', ' if dparam else '')
+
+
+def params_used(params):
+    """
+    Filter list and return only used params for the component
+    """
+    return [p for p in params if param_used(p)]
+
+
 def param_used(param):
     """
     A predicate to tell if the given parameter is used by the PsychoPy.
     """
     comp = param.parent.type.name
-    if comp == 'text':
+    return {
         # fillColor is not used for text
-        return {
+        'text': {
             'fillColor': False,
+        }.get(param.name, True),
+
+        'image': {
+            'fillColor': False,
+            'color': False,
+        }.get(param.name, True),
+
+        # valid response is not used by Keyboard component
+        'keyboard': {
+            'valid': False,
         }.get(param.name, True)
-    return True
+    }.get(comp, True)
 
 
 def param_name(param):
@@ -181,6 +250,7 @@ def param_name(param):
 
         'from': 'start',
         'to': 'end',
+        'content': 'text',
 
         'file': {
             'image': 'image',
@@ -207,19 +277,16 @@ def param_value(param):
         # By default return as is if not recognized
         # as coordinate by param name and comp type
         return {
-            # If parameter is 'size' treat as coordinate if
-            # not text
-            'size': {
-                'text': param.value
-            }.get(comp, coord(param.value))
+            # If parameter is 'size' treat as coordinate
+            'size': coord(param.value)
         }.get(param.name, param.value)
 
     elif type(param.value) in [str, Symbol]:
         # Strings and symbols map to quoted strings
         return "'{}'".format(param.value)
 
-    elif type(param.value) is tuple:
-        # For points resolved through default settings
+    elif type(param.value) in [tuple, bool]:
+        # For bools and points resolved through default settings
         return param.value
 
     raise PyFliesException('Unrecognized parameter '

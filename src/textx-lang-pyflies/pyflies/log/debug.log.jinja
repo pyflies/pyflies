@@ -17,8 +17,8 @@
 {{m.description}}
 """
 
-Tests: {{tests}}
-Screens: {{screens}}
+Tests: {{tests|map(attribute='name')|join(', ')}}
+Screens: {{screens|map(attribute='name')|join(', ')}}
 
 {{context_str(m.get_context())}}
 
@@ -26,14 +26,14 @@ Screens: {{screens}}
 
 Test: {{test.name}}
 --------------------------------------------------------------------------
+Conditions:
+
+{{test.table_spec}}
+
 Components with param values:
 {% for component in test.components %}
 {{component.name}} = {{component.type.name}}({% for param in component.params %}{{param.name}} {{param.value}}{% if param.is_constant %} constant{% endif %}, {% endfor %})
 {% endfor %}
-
-Conditions:
-
-{{test.table_spec}}
 
 {% endfor %}
 

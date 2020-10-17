@@ -46,7 +46,7 @@ ConditionsTable[noskipws]:
     (/\s*/ Comment? /\s*/)*
     // Variable names are in the first line of condition specification
     '|' variables+=TableVarName['|'] WSNoNL '|' WSWithNL
-    WSNoNL /\|(-*\+)+-*\|/ WSWithNL
+    WSNoNL /\|(-*\+)*-+\|/ WSWithNL
 
     // The rest of the description are condition specifications, one per line
     // The order of condition values match the param name positions.

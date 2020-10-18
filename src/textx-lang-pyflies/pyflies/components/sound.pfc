@@ -1,4 +1,4 @@
-component sound
+component sound extends audible
 """
 Plays sound of the given frequency
 """

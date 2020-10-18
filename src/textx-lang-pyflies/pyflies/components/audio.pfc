@@ -1,4 +1,4 @@
-component audio
+component audio extends audible
 """
 Plays audio loaded from the given file
 """

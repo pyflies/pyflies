@@ -27,3 +27,17 @@ The definition of parameters used by all visual stimuli
     Default is white.
     """
 }
+
+abstract component audible
+"""
+This is an abstract component that should be inherited by all components
+that play sounds.
+"""
+{}
+
+abstract component input
+"""
+This is an abstract component that should be inherited by all components
+that accepts input from the subject.
+"""
+{}

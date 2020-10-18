@@ -67,7 +67,6 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
         'striptabs': striptabs,
         'pprint_trial': pprint_trial,
         'type': typ,
-        'name': name,
         'color': color,
         'point': point,
         'coord': coord,
@@ -127,14 +126,6 @@ def pprint_trial(trial):
 
 def typ(obj):
     return obj.__class__.__name__
-
-
-def name(obj):
-    t = typ(obj)
-    return {
-        'Screen': '{}_screen'.format(obj.name),
-        'Test': '{}_test'.format(obj.name),
-    }.get(t, obj.name)
 
 
 def color(obj):

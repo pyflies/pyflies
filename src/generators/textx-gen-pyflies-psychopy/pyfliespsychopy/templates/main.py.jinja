@@ -8,7 +8,7 @@ If routine is of test type than we have arbitrary number of components.
 {% macro init_component(comp) %}
 {{comp|comp_type}}({{comp|default_params}}{% if comp.type.name == 'cross' %} vertices='cross',{% endif %}
 
-  {% for param in comp.params|params_used %}
+  {% for param in comp.params|params_constant|params_used %}
       {{param|param_name}} = {{param|param_value}}{% if not loop.last %},{% endif %}
 
   {% endfor %})

@@ -61,6 +61,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
         'comp_type': comp_type,
         'param_used': param_used,
         'params_used': params_used,
+        'params_constant': params_constant,
         'param_name': param_name,
         'param_value': param_value,
         'default_params': default_params,
@@ -190,6 +191,12 @@ def default_params(comp):
 
     return '{}{}'.format(', '.join(dparam), ', ' if dparam else '')
 
+
+def params_constant(params):
+    """
+    Filter list of parameters and return only constant.
+    """
+    return [p for p in params if p.is_constant]
 
 def params_used(params):
     """

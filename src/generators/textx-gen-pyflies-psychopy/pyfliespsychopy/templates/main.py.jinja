@@ -6,19 +6,17 @@ textual stimulus that need to be shown to the user.
 If routine is of test type than we have arbitrary number of components.
 -#}
 {% macro init_component(comp) %}
-{{comp|comp_type}}({{comp|default_params}}{% if comp.type.name == 'cross' %} vertices='cross',{% endif %}
-
-  {% for param in comp.params|params_constant|params_used %}
-      {{param|param_name}} = {{param|param_value}}{% if not loop.last %},{% endif %}
-
-  {% endfor %})
+{{comp|comp_type}}({{comp|comp_default_params}})
+  {% if comp.type.name == 'mouse' %}
+{{comp.name}}.mouseClock = core.Clock()
+  {% endif %}
 {% endmacro %}
 
 {%- macro init_routine_components(routine) -%}
 # Initialize components for {{routine.name}} {{routine|type|replace("Type", "")|lower}}
 {{routine.name}}_clock = core.Clock()
 {% if routine|type == 'ScreenType' -%}
-{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}',
+{{routine.name}} = visual.TextStim(win=win, name='{{routine.name}}', height=0.05,
     text=r'''{{routine.content}}''')
 {% else %}
   {% for component in routine.components -%}
@@ -175,6 +173,8 @@ def execute_test(test_trials, test_components):
             # update/draw components on each frame
             for component in components:
                 cinst = component['inst']
+                ctype = component['type']
+
                 if cinst.status == NOT_STARTED \
                     and tThisFlip >= component['at'] - frameTolerance:
                     # keep track of start time/frame for later
@@ -182,22 +182,52 @@ def execute_test(test_trials, test_components):
                     cinst.tStart = t  # local t and not account for scr refresh
                     cinst.tStartRefresh = tThisFlipGlobal  # on global time
                     win.timeOnFlip(cinst, 'tStartRefresh')  # time at next scr refresh
-                    cinst.status == STARTED
+                    cinst.status = STARTED
 
                     # Set component parameters for this trial
                     for pname, pval in component['params'].items():
                         setattr(cinst, pname, pval)
 
-                    # If component is audible set duration and start playing
-                    if component['type'] == 'audible':
-                        cinst.secs = component['duration']
+                    # If component is audible start playing
+                    if 'audible' in ctype:
                         cinst.play()
+                    elif 'mouse' in ctype:
+                        cinst.mouseClock.reset()
+                        # if button is down already this ISN'T a new click
+                        prevButtonState = cinst.getPressed()
 
                     # Display component on the next flip
-                    if hasattr(cinst, 'setAutoDraw'):
+                    if 'visual' in ctype:
                         cinst.setAutoDraw(True)
 
-                if component['duration'] > 0 and cinst.status == STARTED:
+                if 'keyboard' in ctype and cinst.status == STARTED:
+                    pass
+                elif 'mouse' in ctype and tThisFlip >= component['at'] - frameTolerance:
+                    buttons = cinst.getPressed()
+                    if buttons != prevButtonState:  # button state changed?
+                        prevButtonState = buttons
+                        if sum(buttons) > 0:  # state changed to a new click
+                            # If target object(s) are/is defined
+                            # check if the mouse was inside our 'clickable' objects
+                            # If we don't have targets, then any click is valid
+                            gotValidClick = True
+                            # gotValidClick = False
+                            # for obj in [target]:
+                            #     if obj.contains(resp):
+                            #         gotValidClick = True
+                            #         cinst.clicked_name.append(obj.name)
+                            x, y = cinst.getPos()
+                            cinst.x.append(x)
+                            cinst.y.append(y)
+                            buttons = cinst.getPressed()
+                            cinst.leftButton.append(buttons[0])
+                            cinst.midButton.append(buttons[1])
+                            cinst.rightButton.append(buttons[2])
+                            cinst.time.append(cinst.mouseClock.getTime())
+                            if gotValidClick:  # abort routine on response
+                                continueTest = False
+
+                elif component['duration'] > 0 and cinst.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
                     if tThisFlipGlobal > cinst.tStartRefresh \
                         + component['duration']-frameTolerance:
@@ -208,10 +238,9 @@ def execute_test(test_trials, test_components):
                         win.timeOnFlip(cinst, 'tStopRefresh')  # time at next scr refresh
 
                         # If component is audible stop playing
-                        if component['type'] == 'audible':
+                        if 'audible' in ctype:
                             cinst.stop()
-
-                        if hasattr(cinst, 'setAutoDraw'):
+                        elif 'visual' in ctype:
                             cinst.setAutoDraw(False)
 
             # check for quit (typically the Esc key)
@@ -231,22 +260,54 @@ def execute_test(test_trials, test_components):
             if continueTest:  # don't flip if this test is over or we'll get a blank screen
                 win.flip()
 
+        # At the end of the phase stop all components
+        for component in components:
+            cinst = component['inst']
+            ctype = component['type']
+            if 'visual' in ctype:
+                cinst.setAutoDraw(False)
+            # If component is audible stop playing
+            elif 'audible' in ctype:
+                cinst.stop()
+
     # Run trials
+    phases = ['ph_fix', 'ph_exec', 'ph_correct', 'ph_error']
     for trial in test_trials:
-        for component in test_components:
-            component.tStart = None
-            component.tStop = None
-            component.tStartRefresh = None
-            component.tStopRefresh = None
-            if hasattr(component, 'status'):
-                component.status = NOT_STARTED
+        # Initialize components for this trial
+        for component in [c for phase in phases for c in trial.get(phase, [])]:
+            cinst = component['inst']
+            cparams = component['params']
+            ctype = component['type']
+            cinst.tStart = None
+            cinst.tStop = None
+            cinst.tStartRefresh = None
+            cinst.tStopRefresh = None
+            if hasattr(cinst, 'status'):
+                cinst.status = NOT_STARTED
+
+            # Set component parameters for this trial
+            for pname, pval in cparams.items():
+                setattr(cinst, pname, pval)
+
+            # If component is audible set duration
+            if 'audible' in ctype:
+                cinst.secs = component['duration']
+            elif 'mouse' in ctype:
+                cinst.x = []
+                cinst.y = []
+                cinst.leftButton = []
+                cinst.midButton = []
+                cinst.rightButton = []
+                cinst.time = []
+                cinst.clicked_name = []
 
         for phase in ['ph_fix', 'ph_exec']:
-            correct = execute_phase(trial[phase], should_record=phase=='ph_exec')
+            if phase in trial:
+                correct = execute_phase(trial[phase], should_record=phase=='ph_exec')
 
-        if correct:
+        if correct and 'ph_correct' in trial:
             execute_phase(trial['ph_correct'])
-        else:
+        elif 'ph_error' in trial:
             execute_phase(trial['ph_error'])
 
 # Create some handy timers

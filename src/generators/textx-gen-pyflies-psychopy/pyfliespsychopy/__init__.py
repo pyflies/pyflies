@@ -2,6 +2,7 @@ import re
 import click
 import datetime
 import pprint
+from itertools import chain
 from os.path import basename, splitext, join, dirname
 from textx import generator
 from textxjinja import textx_jinja_generator
@@ -25,7 +26,7 @@ default_settings = {
     'resolution': (1024, 768),
     'background': 'black',
     'frameTolerance': 0.001,
-    'soundBackend': 'sound.backend_ptb.SoundPTB',
+    'soundBackend': 'backend_ptb.SoundPTB',
 }
 
 # Settings from the model target configuration
@@ -59,18 +60,9 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
 
     filters = {
         'comp_type': comp_type,
-        'param_used': param_used,
-        'params_used': params_used,
-        'params_constant': params_constant,
-        'param_name': param_name,
-        'param_value': param_value,
-        'default_params': default_params,
-        'striptabs': striptabs,
+        'comp_default_params': comp_default_params,
         'pprint_trial': pprint_trial,
         'type': typ,
-        'color': color,
-        'point': point,
-        'coord': coord,
         'duration': duration,
 
     }
@@ -84,10 +76,6 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
 
 
 # Jinja filters and mappings pyFlies -> PsychoPy
-
-def striptabs(s):
-    return re.sub(r'^[ \t]+', '', s, flags=re.M)
-
 
 def pretty(obj, indent=0):
     p = ''
@@ -111,7 +99,9 @@ def pprint_trial(trial):
             for comp_time in phase_comps:
                 cdata = {
                     'inst': comp_time.component.name,
-                    'type': '\'%s\'' % comp_time.component.type.extends[0].name,
+                    'type': '\'{}.{}\''.format(
+                        comp_time.component.type.extends[0].name,
+                        comp_time.component.type.name),
                     'at': duration(comp_time.at),
                     'duration': duration(comp_time.duration)
                 }
@@ -180,17 +170,30 @@ def comp_type(comp):
     return target_comp
 
 
+def as_str(o):
+    return '\'{}\''.format(o)
+
 def default_params(comp):
     """
-    Return a string of default parameters used by the component
+    Returns a string of default parameters used by the component
     """
-    dparam = []
+    dparams = []
     if comp.type.does_extend('visual'):
-        dparam.append('win=win')
-        dparam.append('name=\'{}\''.format(comp.name))
+        dparams = [('win', 'win'), ('name', as_str(comp.name))]
+        if comp.type.name == 'cross':
+            dparams.append(('vertices', as_str('cross')))
+    return dparams
 
-    return '{}{}'.format(', '.join(dparam), ', ' if dparam else '')
 
+def comp_default_params(comp):
+    """
+    Returns a string of default component parameters for component initialization.
+    """
+    return ', '.join(['{}={}'.format(name, value)
+                      for name, value in
+                      chain(default_params(comp),
+                            ((param_name(p), param_value(p))
+                             for p in params_used(params_constant(comp.params))))])
 
 def params_constant(params):
     """
@@ -224,7 +227,11 @@ def param_used(param):
         # valid response is not used by Keyboard component
         'keyboard': {
             'valid': False,
-        }.get(param.name, True)
+        }.get(param.name, True),
+
+        'mouse': {
+            'target': False,
+        }.get(param.name, True),
     }.get(comp, True)
 
 
@@ -232,6 +239,10 @@ def param_name(param):
     """
     Mapping of component parameter names.
     """
+    # For injected parameters we won't do any mapping
+    if not hasattr(param, 'parent'):
+        return param.name
+
     comp = param.parent.type.name
     return {
         'position': 'pos',
@@ -265,6 +276,10 @@ def param_value(param):
     """
     Mapping of component parameter values.
     """
+    # For injected parameters we won't do any mapping
+    if not hasattr(param, 'parent'):
+        return param.value
+
     value = param.value
     comp = param.parent.type.name
 
@@ -281,7 +296,7 @@ def param_value(param):
 
     elif type(param.value) in [str, Symbol]:
         # Strings and symbols map to quoted strings
-        return "'{}'".format(param.value)
+        return as_str(param.value)
 
     elif type(param.value) in [tuple, bool]:
         # For bools and points resolved through default settings

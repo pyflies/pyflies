@@ -1,7 +1,7 @@
 from textx import get_parent_of_type, get_children_of_type
 from .evaluated import EvaluatedBase
 from .exceptions import PyFliesException
-from .lang.common import unresolvable_refs
+from .lang.common import unresolvable_refs, String
 
 
 class ComponentTimeInst(EvaluatedBase):
@@ -87,8 +87,13 @@ class ComponentParamInst(EvaluatedBase):
         cond_var_names = test.table_spec.variables
 
         self.value = spec.value
-        self.is_constant = not any([r.name in cond_var_names
-                                    for r in unresolvable_refs(self.value)])
+        if isinstance(self.value, String):
+            # Special handling of strings. If there is a variable reference
+            # consider it non-constant
+            self.is_constant = not '{{' in self.value.value
+        else:
+            self.is_constant = not any([r.name in cond_var_names
+                                        for r in unresolvable_refs(self.value)])
 
         if not self.is_constant and context is None:
             # Use default value

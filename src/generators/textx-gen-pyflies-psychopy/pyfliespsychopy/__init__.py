@@ -65,6 +65,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
         'type': typ,
         'duration': duration,
         'mouse_targets': mouse_targets,
+        'keyboard_keys': keyboard_keys,
     }
 
     now = datetime.datetime.now()
@@ -309,18 +310,30 @@ def param_value(param):
 
 def mouse_targets(comp):
     """
-    Return a list of target components names for this mouse.  Targets are given
-    as `target` param which may be a list of a string.
+    Return a list of target components names for this mouse.
     """
     target_param = [c for c in comp.params if c.name == 'target']
-    if not target_param:
-        return []
-    value = target_param[0].value
-    if type(value) is list:
-        return [v.name for v in value]
-    elif value.name != 'none':
-        return [value.name]
+    if target_param:
+        value = target_param[0].value
+        if type(value) is list:
+            return [v.name for v in value]
+        elif value.name != 'none':
+            return [value.name]
     return []
 
+
+def keyboard_keys(comp):
+    """
+    Return a list of valid keyboard keys.
+    """
+    q = as_str('quit')
+    valid_param = [c for c in comp.params if c.name == 'valid']
+    if valid_param:
+        value = valid_param[0].value
+        if type(value) is list:
+            return [as_str(v.name) for v in value] + [q]
+        elif value.name != 'none':
+            return [as_str(value.name), q]
+    return [q]
 
 

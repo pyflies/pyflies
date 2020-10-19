@@ -64,7 +64,7 @@ def pyflies_generate_psychopy(metamodel, model, output_path, overwrite, debug,
         'pprint_trial': pprint_trial,
         'type': typ,
         'duration': duration,
-
+        'mouse_targets': mouse_targets,
     }
 
     now = datetime.datetime.now()
@@ -305,3 +305,22 @@ def param_value(param):
     raise PyFliesException('Unrecognized parameter '
                            'type "{}" for parameter "{}"'
                            .format(type(param.value), param.name))
+
+
+def mouse_targets(comp):
+    """
+    Return a list of target components names for this mouse.  Targets are given
+    as `target` param which may be a list of a string.
+    """
+    target_param = [c for c in comp.params if c.name == 'target']
+    if not target_param:
+        return []
+    value = target_param[0].value
+    if type(value) is list:
+        return [v.name for v in value]
+    elif value.name != 'none':
+        return [value.name]
+    return []
+
+
+

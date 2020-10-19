@@ -9,6 +9,7 @@ If routine is of test type than we have arbitrary number of components.
 {{comp|comp_type}}({{comp|comp_default_params}})
   {% if comp.type.name == 'mouse' %}
 {{comp.name}}.mouseClock = core.Clock()
+{{comp.name}}.targets = [{{comp|mouse_targets|join(', ')}}]
   {% endif %}
 {% endmacro %}
 
@@ -202,7 +203,7 @@ def execute_test(test_trials, test_components):
 
                 if 'keyboard' in ctype and cinst.status == STARTED:
                     pass
-                elif 'mouse' in ctype and tThisFlip >= component['at'] - frameTolerance:
+                elif 'mouse' in ctype and cinst.status == STARTED:
                     buttons = cinst.getPressed()
                     if buttons != prevButtonState:  # button state changed?
                         prevButtonState = buttons
@@ -210,13 +211,12 @@ def execute_test(test_trials, test_components):
                             # If target object(s) are/is defined
                             # check if the mouse was inside our 'clickable' objects
                             # If we don't have targets, then any click is valid
-                            gotValidClick = True
-                            # gotValidClick = False
-                            # for obj in [target]:
-                            #     if obj.contains(resp):
-                            #         gotValidClick = True
-                            #         cinst.clicked_name.append(obj.name)
                             x, y = cinst.getPos()
+                            gotValidClick = not bool(cinst.targets)
+                            for obj in cinst.targets:
+                                if obj.contains(x, y):
+                                    gotValidClick = True
+                                    cinst.clicked_name.append(obj.name)
                             cinst.x.append(x)
                             cinst.y.append(y)
                             buttons = cinst.getPressed()

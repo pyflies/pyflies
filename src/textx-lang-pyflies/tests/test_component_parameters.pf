@@ -12,13 +12,15 @@ test TestModel {
       a = 45 + 78
       b = a
       fix -> mycross:cross(position (0,0))
-      exec -> circle(radius 100, position (0, 40))
-              circle(position position)    // position depends on trial condition
+      exec -> cue:circle(radius 100, position (0, 40))
+              target:circle(position position)    // position depends on trial condition
               sound(freq dur)              // freq depends on trial condition
               sound(freq b)                // This is constant as it doesn't change across trials
               image(file "testfile.png")
               rectangle(size 200 + 300 / 2, position left)
               rectangle(size 100, position left)
+              mouse(target target)             // Mouse target is component name
+              mouse(target [target, cue])      // Multiple mouse targets 
       error -> sound(freq 300)
       correct -> sound(freq 700)
 }

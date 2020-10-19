@@ -186,7 +186,7 @@ def test_default_component_instances():
     # Circle
     comp = test.components[2]
     assert comp.spec.type.name == 'circle'
-    assert comp.name == 'TestModel_circle_2'
+    assert comp.name == 'TestModel_target'
     assert not comp.params[0].is_constant
     # For params which depends on condition variables default value (defined in
     # the param type) will be used
@@ -205,6 +205,18 @@ def test_default_component_instances():
     assert comp.params[0].type.name == 'freq'
     assert comp.params[0].is_constant
     assert comp.params[0].value == 123
+
+    # Mouse target is referenced component
+    comp = test.components[8]
+    assert comp.name == 'TestModel_mouse_8'
+    assert comp.params[0].name == 'target'
+    assert comp.params[0].value == test.components[2]
+
+    # Mouse target may be a list
+    comp = test.components[9]
+    assert comp.name == 'TestModel_mouse_9'
+    assert comp.params[0].name == 'target'
+    assert comp.params[0].value == [test.components[2], test.components[1]]
 
 
 def test_trial_component_instances():

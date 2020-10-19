@@ -84,9 +84,8 @@ class ScopeProvider:
                 if type(exp) is PostponedEval:
                     try:
                         value = exp.exp.eval(context)
-                        if type(value) in [bool, int, float, str, list, Symbol, Point]:
-                            context[name] = value
-                            self.var_vals[name] = value
+                        context[name] = value
+                        self.var_vals[name] = value
                         resolved = True
                     except Postpone:
                         pass

@@ -141,6 +141,7 @@ class ConditionsTable(ModelElement):
 
 
 class TestType(ModelElement, ScopeProvider):
+
     def instantiate_default_components(self):
         """
         Create component instances with default values.
@@ -152,6 +153,16 @@ class TestType(ModelElement, ScopeProvider):
                 comp_spec = ctimes.component
                 component = ComponentInst(comp_spec)
                 components.append(component)
+
+                # Add named components to this scope to be referencable from
+                # expressions
+                if component.spec.parent.name:
+                    assgn = VariableAssignment(self, name=component.spec.parent.name,
+                                               value=None)
+                    assgn.value = BaseValue(parent=assgn, value=component)
+                    self.vars.append(assgn)
+                    self.var_vals[component.spec.parent.name] = component
+
         self.components = components
 
     def __repr__(self):

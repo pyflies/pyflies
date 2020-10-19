@@ -219,6 +219,8 @@ class Test(ModelElement):
 class TestInst(EvaluatedBase):
     def __init__(self, spec, context):
         super().__init__(spec)
+        self.practice = context.get('practice', False)
+        self.random = context.get('random', False)
         self.table = spec.table_spec.eval(context)
         self.table.calc_phases(context)
 

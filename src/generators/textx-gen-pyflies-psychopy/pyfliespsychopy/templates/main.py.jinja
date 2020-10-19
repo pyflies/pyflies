@@ -64,19 +64,20 @@ Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, L
 """
 from __future__ import absolute_import, division
 
-from psychopy import locale_setup
-from psychopy import prefs
-from psychopy import gui, visual, sound, core, data, event, logging, clock
-from psychopy.constants import (NOT_STARTED, STARTED, PLAYING, PAUSED,
-                                STOPPED, FINISHED, PRESSED, RELEASED, FOREVER)
+import os  # handy system and path functions
+import sys  # to get file system encoding
+from random import sample
 
 import numpy as np  # whole numpy lib is available, prepend 'np.'
 from numpy import (sin, cos, tan, log, log10, pi, average,
                    sqrt, std, deg2rad, rad2deg, linspace, asarray)
 from numpy.random import random, randint, normal, shuffle
-import os  # handy system and path functions
-import sys  # to get file system encoding
 
+from psychopy import locale_setup
+from psychopy import prefs
+from psychopy import gui, visual, sound, core, data, event, logging, clock
+from psychopy.constants import (NOT_STARTED, STARTED, PLAYING, PAUSED,
+                                STOPPED, FINISHED, PRESSED, RELEASED, FOREVER)
 from psychopy.hardware import keyboard
 
 
@@ -149,7 +150,7 @@ def execute_screen(screen, duration):
         core.quit()
 
 
-def execute_test(test_trials, test_components):
+def execute_test(test_trials, test_components, random=False, practice=False):
     """
     Execute given test.  Run components with the given timing and collect
     responses.
@@ -272,7 +273,7 @@ def execute_test(test_trials, test_components):
 
     # Run trials
     phases = ['ph_fix', 'ph_exec', 'ph_correct', 'ph_error']
-    for trial in test_trials:
+    for trial in sample(test_trials, len(test_trials)) if random else test_trials:
         # Initialize components for this trial
         for component in [c for phase in phases for c in trial.get(phase, [])]:
             cinst = component['inst']
@@ -319,7 +320,9 @@ routineTimer = core.CountdownTimer()  # to track time remaining of each (non-sli
 # Experiment flow
 {% for inst in m.flow.insts %}
   {% if inst|type == "TestInst" %}
-execute_test({{inst.name}}_{{loop.index}}, {{inst.spec.name}}_components)
+execute_test({{inst.name}}_{{loop.index}}, {{inst.spec.name}}_components
+             {%- if inst.random %}, random=True{% endif %}
+             {%- if inst.practice %}, practice=True{% endif %})
   {% else %}
 execute_screen({{inst.name}}, {{inst.duration|duration}})
   {% endif %}

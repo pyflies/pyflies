@@ -51,6 +51,9 @@ Components with param values:
   {% else %}
 {{loop.index}}. TEST {{inst.name}}
 ----------------------------------------------------------------------------
+Condition table (random={{inst.random}}, practice={{inst.practice}})
+{{inst.table}}
+
     {% for row in inst.table %}
 Trial {{outer_loop.index}}:{{loop.index}}
 {{inst.table.header_str()-}}

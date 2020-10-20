@@ -212,6 +212,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
                         # if button is down already this ISN'T a new click
                         prevButtonState = cinst.getPressed()
                     elif 'keyboard' in ctype:
+                        cinst.getKeys()
                         cinst.clock.reset()
                         cinst.start()
 
@@ -226,6 +227,7 @@ def execute_test(test_trials, test_components, random=False, practice=False):
                     if keys:
                         correct_keys = get_param(component, 'correct')
                         correct_response = not correct_keys or keys[0].name in correct_keys
+                        continueTest = False
 
                 elif 'mouse' in ctype and cinst.status == STARTED:
                     buttons = cinst.getPressed()

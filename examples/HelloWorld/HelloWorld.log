@@ -1,0 +1,207 @@
+"""
+A simple hello world example that will print
+10 hello messages in succession and quit.
+
+To generate PsychoPy code call PsychoPy generator
+textx generate HelloWorld.pf --target psychopy --overwrite
+
+"""
+
+Tests: Hello
+Screens: 
+
+
+
+
+Test: Hello
+--------------------------------------------------------------------------
+Conditions:
+
+| order | who                      |
+|-------+--------------------------|
+| 1..10 | Hello, person {{order}}! |
+
+Components with param values:
+Hello_text_0 = text(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+
+
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+ 
+1. TEST Hello
+----------------------------------------------------------------------------
+Condition table (random=False, practice=False)
+| order | who               |
+|-------+-------------------|
+| 1     | Hello, person 1!  |
+| 2     | Hello, person 2!  |
+| 3     | Hello, person 3!  |
+| 4     | Hello, person 4!  |
+| 5     | Hello, person 5!  |
+| 6     | Hello, person 6!  |
+| 7     | Hello, person 7!  |
+| 8     | Hello, person 8!  |
+| 9     | Hello, person 9!  |
+| 10    | Hello, person 10! |
+
+Trial 1:1
+| order | who               |
+|-------+-------------------|
+| 1     | Hello, person 1!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 1!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:2
+| order | who               |
+|-------+-------------------|
+| 2     | Hello, person 2!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 2!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:3
+| order | who               |
+|-------+-------------------|
+| 3     | Hello, person 3!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 3!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:4
+| order | who               |
+|-------+-------------------|
+| 4     | Hello, person 4!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 4!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:5
+| order | who               |
+|-------+-------------------|
+| 5     | Hello, person 5!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 5!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:6
+| order | who               |
+|-------+-------------------|
+| 6     | Hello, person 6!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 6!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:7
+| order | who               |
+|-------+-------------------|
+| 7     | Hello, person 7!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 7!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:8
+| order | who               |
+|-------+-------------------|
+| 8     | Hello, person 8!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 8!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:9
+| order | who               |
+|-------+-------------------|
+| 9     | Hello, person 9!  |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 9!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    
+Trial 1:10
+| order | who               |
+|-------+-------------------|
+| 10    | Hello, person 10! |
+
+  Variables:
+    repeat_index = 1
+    practice = False
+
+  Phases:
+    fix:
+        exec:
+                at 0 text(content Hello, person 10!, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+    error:
+        correct:
+    

@@ -1,0 +1,36 @@
+"""
+A simple hello world example that will print
+10 hello messages in succession and quit.
+
+To generate PsychoPy code call PsychoPy generator
+textx generate HelloWorld.pf --target psychopy --overwrite
+"""
+
+test Hello {
+
+     // In this table we specify condition variables. This table can be conveniently
+     // edited in editors supporting orgmode tables (emacs, vscode with pyflies plugin etc.)
+     // For values we can use literal values or expressions. We can have as many columns and
+     // rows as we want.
+     // See here how `order` column is using range expression (1..10).
+     // It will be expanded and 10 rows will be created. In each row `who` variable will
+     // contain evaluated string with `order` filled in the proper place.
+     // To investigate expanded table and other useful info call `log` generator on this file
+     // textx generate HelloWorld.pf --target log --overwrite
+
+     | order | who                        |
+     |-------+----------------------------|
+     | 1..10 | "Hello, person {{order}}!" |
+
+     // Here we define component for each trial phase. In this case we use only `exec`
+     // phase (others are `fix`, `correct` and `error`).
+     // We show text component with content `who` from the condition table and the
+     // duration of the component is 400 ms
+
+     exec -> text(content who) for 400
+}
+
+flow {
+     // And in the flow we just execute Hello test once
+     execute Hello
+}

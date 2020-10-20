@@ -22,6 +22,10 @@ default_settings = {
     'right': (0.5, 0),
     'up': (0, 0.5),
     'down': (0, -0.5),
+    'kleft': 'left',
+    'kright': 'right',
+    'kup': 'up',
+    'kdown': 'down',
     'fullScreen': False,
     'resolution': (1024, 768),
     'background': 'black',
@@ -291,8 +295,8 @@ def param_value(param):
         # By default return as is if not recognized
         # as coordinate by param name and comp type
         return {
-            # If parameter is 'size' treat as coordinate
-            'size': coord(param.value)
+            'size': coord(param.value),
+            'radius': coord(param.value),
         }.get(param.name, param.value)
 
     elif type(param.value) in [str, Symbol]:
@@ -331,7 +335,7 @@ def keyboard_keys(comp):
     if valid_param:
         value = valid_param[0].value
         if type(value) is list:
-            return [as_str(v.name) for v in value] + [q]
+            return [as_str(str(v)) for v in value] + [q]
         elif value.name != 'none':
             return [as_str(value.name), q]
     return [q]

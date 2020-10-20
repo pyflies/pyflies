@@ -62,6 +62,10 @@ class ComponentInst(EvaluatedBase):
             self._params[p.type.name] = p.eval(context)
 
     @property
+    def model_name(self):
+        return self.parent.name
+
+    @property
     def params(self):
         return list(self._params.values())
 

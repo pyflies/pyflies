@@ -9,9 +9,9 @@ test TestModel {
     |-----------+----------+----------|
     | left      | (0, 50)  | left     |
 	
-    exec -> at a + 100 c:circle(position 0, radius 5 + 15) for a + b * a + 140
-            at .+100 c:circle(position 0, radius 20) for 200
-            at +100 c:circle(position 0, radius 20) for 200
-            c:circle(position 0, radius 20) for 200
-            at 100 c:circle(position 0, radius 20)
+    exec -> at a + 100 c1:circle(position 0, radius 5 + 15) for a + b * a + 140
+            at .+100 c2:circle(position 0, radius 20) for 200
+            at +100 c3:circle(position 0, radius 20) for 200
+            c4:circle(position 0, radius 20) for 200
+            at 100 c5:circle(position 0, radius 20)
 }

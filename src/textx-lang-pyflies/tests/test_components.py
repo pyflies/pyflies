@@ -88,7 +88,7 @@ def test_component_timing_definition():
     comp = comp_times[0].eval()
     assert comp.duration == 200
     assert comp.at == 110
-    assert comp.component.name == 'TestModel_c'
+    assert comp.component.name == 'TestModel_c1'
     assert comp.component.params[0].name == 'position'
     assert comp.component.params[0].value == 0
     assert comp.component.params[1].name == 'radius'
@@ -235,3 +235,19 @@ def test_trial_component_instances():
     trial = test.table.rows[1]
     assert trial.ph_exec[0].component.params[1].value == 'up'
     assert trial.ph_exec[2].component.params[0].value == 200
+
+
+def test_component_name_must_be_unique():
+    """
+    Check that component name must be unique in the scope.
+    """
+
+    mm = metamodel_for_language('pyflies')
+
+    # Condition variable with the same name
+    with pytest.raises(PyFliesException, match=r'Cannot name component'):
+        mm.model_from_file(join(this_folder, 'test_component_name_unique_1.pf'))
+
+    # Component with the same name
+    with pytest.raises(PyFliesException, match=r'Cannot name component'):
+        mm.model_from_file(join(this_folder, 'test_component_name_unique_2.pf'))

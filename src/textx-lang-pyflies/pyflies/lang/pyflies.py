@@ -161,7 +161,14 @@ class TestType(ModelElement, ScopeProvider):
                                                value=None)
                     assgn.value = BaseValue(parent=assgn, value=component)
                     self.vars.append(assgn)
-                    self.var_vals[component.spec.parent.name] = component
+
+                    # Check if we have name clash
+                    comp_name = component.spec.parent.name
+                    if comp_name in self.var_vals or comp_name in self.table_spec.variables:
+                        raise PyFliesException(
+                            'Cannot name component "{}" as that '
+                            'variable already exists in the scope'.format(comp_name))
+                    self.var_vals[comp_name] = component
 
         self.components = components
 

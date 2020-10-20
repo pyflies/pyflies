@@ -23,24 +23,36 @@ def resolve_params(model, param_dict):
             else:
                 return
 
-        def resolve_value(attr):
-            if type(attr.value) is list:
-                for idx, e in enumerate(attr.value):
-                    if type(e) is Symbol:
-                        if e.name in param_dict:
-                            attr.value[idx] = param_dict[e.name]
-                        else:
-                            unresolved.add(attr.value.name)
-            if type(attr.value) is Symbol:
-                if attr.value.name in param_dict:
-                    attr.value = param_dict[attr.value.name]
-                else:
-                    unresolved.add(attr.value.name)
+        def map_symbol(comp_type, symbol):
+            """
+            Map the given symbol to the value from the settings.  Check first
+            for component specific mapping.
+            """
+            comp_val = '{}.{}'.format(comp_type, symbol.name)
+            if comp_val in param_dict:
+                return param_dict[comp_val]
+            elif symbol.name in param_dict:
+                return param_dict[symbol.name]
+            else:
+                unresolved.add(symbol.name)
 
+        def resolve_value(comp_type, param):
+            if type(param.value) is list:
+                new_values = []
+                for e in param.value:
+                    if type(e) is Symbol:
+                        new_value = map_symbol(comp_type, e)
+                        new_values.append(new_value if new_value is not None else e)
+                param.value = new_values
+            if type(param.value) is Symbol:
+                new_value = map_symbol(comp_type, param.value)
+                if new_value is not None:
+                    param.value = new_value 
 
         for attr in attrs:
             if attr.__class__.__name__ == 'ComponentParamInst':
-                resolve_value(attr)
+                comp_type = attr.spec.parent.type.name
+                resolve_value(comp_type, attr)
             else:
                 recursive_resolve(attr)
     recursive_resolve(model)

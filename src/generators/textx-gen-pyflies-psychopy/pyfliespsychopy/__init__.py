@@ -22,10 +22,13 @@ default_settings = {
     'right': (0.5, 0),
     'up': (0, 0.5),
     'down': (0, -0.5),
-    'kleft': 'left',
-    'kright': 'right',
-    'kup': 'up',
-    'kdown': 'down',
+
+    # In the context of keyboard component map directions to keys
+    'keyboard.left': 'left',
+    'keyboard.right': 'right',
+    'keyboard.up': 'up',
+    'keyboard.down': 'down',
+
     'fullScreen': False,
     'resolution': (1024, 768),
     'background': 'black',

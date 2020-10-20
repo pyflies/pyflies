@@ -23,14 +23,26 @@ def resolve_params(model, param_dict):
             else:
                 return
 
+        def resolve_value(attr):
+            if type(attr.value) is list:
+                for idx, e in enumerate(attr.value):
+                    if type(e) is Symbol:
+                        if e.name in param_dict:
+                            attr.value[idx] = param_dict[e.name]
+                        else:
+                            unresolved.add(attr.value.name)
+            if type(attr.value) is Symbol:
+                if attr.value.name in param_dict:
+                    attr.value = param_dict[attr.value.name]
+                else:
+                    unresolved.add(attr.value.name)
+
+
         for attr in attrs:
             if attr.__class__.__name__ == 'ComponentParamInst':
-                if type(attr.value) is Symbol:
-                    if attr.value.name in param_dict:
-                        attr.value = param_dict[attr.value.name]
-                    else:
-                        unresolved.add(attr.value.name)
-            recursive_resolve(attr)
+                resolve_value(attr)
+            else:
+                recursive_resolve(attr)
     recursive_resolve(model)
 
     return unresolved

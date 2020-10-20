@@ -8,16 +8,18 @@ repeats = 1
 
 test EriksenFlanker {
 
-    | repeat          | direction       | category          | response  |
-    |-----------------+-----------------+-------------------+-----------|
-    | 1..repeats loop | directions loop | congruencies loop | direction |
+    | repeat          | direction       | category          |
+    |-----------------+-----------------+-------------------|
+    | 1..repeats loop | directions loop | congruencies loop |
 
 
     fix -> cross() for 1000..3000 choose
-    exec -> image(file "images/{{direction}}-{{category}}.png")
-            key(valid response)
-    error -> sound(freq 300) for 500
-    correct -> sound(freq 700) for 300
+    exec -> image(file "images/{{direction}}-{{category}}.png", size 100)
+            keyboard(valid directions, correct direction)
+    correct -> circle(fillColor green, color green, radius 100) for 300
+    error -> circle(fillColor red, color green, radius 100) for 300
+    //error -> sound(freq 300) for 500
+    //correct -> sound(freq 700) for 300
 
 }
 
@@ -63,6 +65,5 @@ flow {
 }
 
 target PsychoPy {
-  left = left
-  right = right
+//  soundBackend = 'backend_sounddevice.SoundDeviceSound'
 }

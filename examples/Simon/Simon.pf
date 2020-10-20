@@ -12,7 +12,7 @@ repetitions = 1
 
 test Simon {
 
-      | repetition          | position       | color       | congruency                                         | response                          |
+      | repetition          | position       | color       | congruency                                         | expected                          |
       |---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
       | 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
 
@@ -30,11 +30,13 @@ test Simon {
         instead of using expressions in table cells.
       */
 
-      fix -> cross() for 2000..4000 choose
+      fix -> cross() for 1000..2000 choose
       exec -> rectangle(position position, color color, fillColor color)
-              keyboard(valid response)
-      error -> sound(freq 1000) for 300
-      correct -> sound(freq 500) for 300
+              keyboard(valid positions, correct expected)
+      error -> circle(radius 100, fillColor red, color red) for 100
+      correct -> circle(radius 100, fillColor green, color green) for 100
+      //error -> sound(freq 1000) for 300
+      //correct -> sound(freq 500) for 300
 
 }
 
@@ -66,8 +68,3 @@ flow {
     execute Simon(repetitions 10, random true)
 }
 
-target PsychoPy {
-  left = left
-  right = right
-  soundBackend = 'backend_sounddevice.SoundDeviceSound'
-}

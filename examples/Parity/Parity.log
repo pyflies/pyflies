@@ -27,9 +27,8 @@ Conditions:
 Components with param values:
 Parity_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
 Parity_text_1 = text(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Parity_key_2 = key(valid space, )
-Parity_sound_3 = sound(freq 500 constant, )
-Parity_sound_4 = sound(freq 1000 constant, )
+Parity_sound_2 = sound(freq 500 constant, )
+Parity_sound_3 = sound(freq 1000 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -51,6 +50,19 @@ Parity classification
  
 2. TEST Parity
 ----------------------------------------------------------------------------
+Condition table (random=True, practice=True)
+| number | parity | response |
+|--------+--------+----------|
+| 1      | odd    | odd      |
+| 2      | even   | even     |
+| 3      | odd    | odd      |
+| 4      | even   | even     |
+| 5      | odd    | odd      |
+| 6      | even   | even     |
+| 7      | odd    | odd      |
+| 8      | even   | even     |
+| 9      | odd    | odd      |
+
 Trial 2:1
 | number | parity | response |
 |--------+--------+----------|
@@ -65,10 +77,9 @@ Trial 2:1
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1252
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2753
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -88,10 +99,9 @@ Trial 2:2
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1482
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1386
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -111,10 +121,9 @@ Trial 2:3
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1394
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1626
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -134,10 +143,9 @@ Trial 2:4
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1580
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2802
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -157,10 +165,9 @@ Trial 2:5
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1099
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1858
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -180,10 +187,9 @@ Trial 2:6
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2768
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2599
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -203,10 +209,9 @@ Trial 2:7
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2013
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2577
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -226,10 +231,9 @@ Trial 2:8
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2435
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1417
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -249,10 +253,9 @@ Trial 2:9
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2519
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1303
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -274,6 +277,19 @@ Parity classification
  
 4. TEST Parity
 ----------------------------------------------------------------------------
+Condition table (random=True, practice=False)
+| number | parity | response |
+|--------+--------+----------|
+| 1      | odd    | odd      |
+| 2      | even   | even     |
+| 3      | odd    | odd      |
+| 4      | even   | even     |
+| 5      | odd    | odd      |
+| 6      | even   | even     |
+| 7      | odd    | odd      |
+| 8      | even   | even     |
+| 9      | odd    | odd      |
+
 Trial 4:1
 | number | parity | response |
 |--------+--------+----------|
@@ -288,10 +304,9 @@ Trial 4:1
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1768
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1368
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -311,10 +326,9 @@ Trial 4:2
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2747
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2318
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -334,10 +348,9 @@ Trial 4:3
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2680
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1578
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -357,10 +370,9 @@ Trial 4:4
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1645
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1755
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -380,10 +392,9 @@ Trial 4:5
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2904
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2291
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -403,10 +414,9 @@ Trial 4:6
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2833
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2561
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -426,10 +436,9 @@ Trial 4:7
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2740
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2611
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -449,10 +458,9 @@ Trial 4:8
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1697
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2250
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -472,10 +480,9 @@ Trial 4:9
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2528
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -484,6 +491,19 @@ Trial 4:9
  
 5. TEST Parity
 ----------------------------------------------------------------------------
+Condition table (random=True, practice=False)
+| number | parity | response |
+|--------+--------+----------|
+| 1      | odd    | odd      |
+| 2      | even   | even     |
+| 3      | odd    | odd      |
+| 4      | even   | even     |
+| 5      | odd    | odd      |
+| 6      | even   | even     |
+| 7      | odd    | odd      |
+| 8      | even   | even     |
+| 9      | odd    | odd      |
+
 Trial 5:1
 | number | parity | response |
 |--------+--------+----------|
@@ -498,10 +518,9 @@ Trial 5:1
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1732
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2396
     exec:
                 at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -521,10 +540,9 @@ Trial 5:2
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1414
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1655
     exec:
                 at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -544,10 +562,9 @@ Trial 5:3
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1286
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1092
     exec:
                 at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -567,10 +584,9 @@ Trial 5:4
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1571
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1301
     exec:
                 at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -590,10 +606,9 @@ Trial 5:5
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2265
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1853
     exec:
                 at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -613,10 +628,9 @@ Trial 5:6
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2918
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2456
     exec:
                 at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -636,10 +650,9 @@ Trial 5:7
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1027
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2411
     exec:
                 at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -659,10 +672,9 @@ Trial 5:8
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2437
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1423
     exec:
                 at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid even) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:
@@ -682,10 +694,9 @@ Trial 5:9
 
   Phases:
     fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2118
+                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1482
     exec:
                 at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid odd) for 0
     error:
                 at 0 sound(freq 1000) for 300
     correct:

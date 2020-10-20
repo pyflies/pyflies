@@ -22,7 +22,7 @@ test showImages {
 
     fix ->  cross() for 400..1000 choose
     exec -> image(file image)
-            key()
+            keyboard()
 }
 
 screen instruction {

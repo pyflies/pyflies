@@ -11,16 +11,21 @@ parities = [odd, even]
 
 test Parity {
 
-    | number       | parity   | response |
-    |--------------+----------+----------|
-    | numbers loop | parities | parities |
+    | number       | parity   |
+    |--------------+----------|
+    | numbers loop | parities |
 
 
     fix -> cross() for 1000..3000 choose
     exec -> text(content number)
-            key(valid response)
-    correct -> sound(freq 500) for 300
-    error -> sound(freq 1000) for 300
+            keyboard(valid parities, correct parity)
+
+    error -> circle(radius 100, fillColor red, color red) for 100
+    correct -> circle(radius 100, fillColor green, color green) for 100
+
+    // Sound playing in PsychoPy is messy in Linux at the moment
+    // correct -> sound(freq 500) for 300
+    // error -> sound(freq 1000) for 300
  
 }
 
@@ -57,3 +62,8 @@ flow {
     repeat 2 times Parity(random true)
 }
 
+target PsychoPy {
+       odd = 'left'
+       even = 'right'
+//  soundBackend = 'backend_sounddevice.SoundDeviceSound'
+}

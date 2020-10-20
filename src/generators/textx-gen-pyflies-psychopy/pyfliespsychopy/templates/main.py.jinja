@@ -91,7 +91,7 @@ os.chdir(_thisDir)
 psychopyVersion = '2020.1.3'
 expName = '{{expName}}'
 expInfo = {'participant': '', 'session': '001'}
-dlg = gui.DlgFromDict(dictionary=expInfo, sort_keys=False, title=expName)
+dlg = gui.DlgFromDict(dictionary=expInfo, sortKeys=False, title=expName)
 if dlg.OK == False:
     core.quit()  # user pressed cancel
 expInfo['date'] = data.getDateStr()  # add a simple timestamp

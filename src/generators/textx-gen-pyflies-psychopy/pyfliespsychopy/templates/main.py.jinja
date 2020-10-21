@@ -7,6 +7,9 @@ If routine is of test type than we have arbitrary number of components.
 -#}
 {% macro init_component(comp) %}
 {{comp|comp_type}}({{comp|comp_default_params}})
+{{comp.name}}.model_name = {% if comp.model_name %}'{{comp.model_name}}'{% else %}None{% endif %}
+
+{{comp.name}}.cname = '{{comp.name}}'
   {% if comp.type.name == 'mouse' %}
 {{comp.name}}.mouseClock = core.Clock()
 {{comp.name}}.targets = [{{comp|mouse_targets|join(', ')}}]
@@ -227,6 +230,9 @@ def execute_test(test_trials, test_components, random=False, practice=False):
                     if keys:
                         correct_keys = get_param(component, 'correct')
                         correct_response = not correct_keys or keys[0].name in correct_keys
+                        cinst.key_name = keys[0].name
+                        cinst.key_rt = keys[0].rt
+                        cinst.key_correct = correct_response
                         continueTest = False
 
                 elif 'mouse' in ctype and cinst.status == STARTED:
@@ -253,10 +259,10 @@ def execute_test(test_trials, test_components, random=False, practice=False):
                             if gotValidClick:  # abort routine on response
                                 continueTest = False
 
-                elif component['duration'] > 0 and cinst.status == STARTED:
+                if component['duration'] > 0 and cinst.status == STARTED:
                     # is it time to stop? (based on global clock, using actual start)
                     if tThisFlipGlobal > cinst.tStartRefresh \
-                        + component['duration']-frameTolerance:
+                        + component['duration'] - frameTolerance:
                         # keep track of stop time/frame for later
                         cinst.tStop = t  # not accounting for scr refresh
                         cinst.frameNStop = frameN  # exact frame index
@@ -276,14 +282,17 @@ def execute_test(test_trials, test_components, random=False, practice=False):
             # check if all components have finished
             if not continueTest:
                 break
-            continueTest = False  # will revert to True if at least one component still running
+            # will revert to True if at least one component still running
+            continueTest = False
             for thisComponent in [c['inst'] for c in components]:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueTest = True
-                    break  # at least one component has not yet finished
+                    # at least one component has not yet finished
+                    break
 
             # refresh the screen
-            if continueTest:  # don't flip if this test is over or we'll get a blank screen
+            # don't flip if this test is over or we'll get a blank screen
+            if continueTest:
                 win.flip()
 
         # At the end of the phase stop all components
@@ -295,6 +304,46 @@ def execute_test(test_trials, test_components, random=False, practice=False):
             # If component is audible stop playing
             elif 'audible' in ctype:
                 cinst.stop()
+
+        # Register interesting data
+        for component in components:
+            cinst = component['inst']
+            ctype = component['type']
+
+            def datap(attr, name=None):
+                name = attr if name is None else name
+                cname = cinst.model_name if cinst.model_name else cinst.cname
+                col_name = '{}.{}'.format(cname, name)
+                value = getattr(cinst, attr)
+                if type(value) is list:
+                    value = value[0]
+                return (col_name, value)
+
+            # component parameters for this trial
+            for pname, pval in component['params'].items():
+                cname = cinst.model_name if cinst.model_name else cinst.cname
+                thisExp.addData('{}.{}'.format(cname, pname), pval)
+
+            if 'keyboard' in ctype:
+                thisExp.addData(*datap('key_name', 'name'))
+                thisExp.addData(*datap('key_rt', 'rt'))
+                thisExp.addData(*datap('key_correct', 'correct'))
+            elif 'mouse' in ctype:
+                for dname in ['x', 'y', 'leftButton', 'midButton',
+                              'rightButton', 'time', 'clicked_name']:
+                    thisExp.addData(*datap(dname))
+                thisExp.addData(*datap('tStart', 'started'))
+                thisExp.addData(*datap('tStopped', 'stopped'))
+
+            elif cinst.model_name is not None:
+                # If we defined name for component in the model we shall record
+                # its start/stop times/frames
+                thisExp.addData(*datap('tStartRefresh', 'started'))
+                thisExp.addData(*datap('frameNStart', 'startFrame'))
+                thisExp.addData(*datap('tStopRefresh', 'stopped'))
+                thisExp.addData(*datap('frameNStop', 'stopFrame'))
+
+        thisExp.nextEntry()
 
         return correct_response
 
@@ -310,6 +359,8 @@ def execute_test(test_trials, test_components, random=False, practice=False):
             cinst.tStop = None
             cinst.tStartRefresh = None
             cinst.tStopRefresh = None
+            cinst.frameNStart = None
+            cinst.frameNStop = None
             if hasattr(cinst, 'status'):
                 cinst.status = NOT_STARTED
 

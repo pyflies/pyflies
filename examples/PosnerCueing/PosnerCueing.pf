@@ -10,10 +10,10 @@ positions = [left, right]
 test Posner {
 
     // 3 times more congruent trials than incongruent
-    | ord       | cue_pos        | target_pos                      | congruency  |
-    |-----------+----------------+---------------------------------+-------------|
-    | 1         | positions loop | left if cue == right else right | incongruent |
-    | 1..3 loop | positions loop | cue                             | congruent   |
+    | ord       | cue_pos        | target_pos                          | congruency  |
+    |-----------+----------------+-------------------------------------+-------------|
+    | 1         | positions loop | left if cue_pos == right else right | incongruent |
+    | 1..3 loop | positions loop | cue_pos                             | congruent   |
 
     cue_display = 1000..1500 choose
     target_display = cue_display + 1000..1500 choose
@@ -22,9 +22,10 @@ test Posner {
             rectangle(position right, size 20, color white, fillColor black)
             at cue_display cue:rectangle(position cue_pos, size 18,
                                          color white, fillColor black)
-            at target_display target:rectangle(position position, size 20,
+                                         for target_display - cue_display
+            at target_display target:rectangle(position target_pos, size 20,
                                                color white, fillColor white)
-            keyboard(valid positions, correct position)
+            keyboard(valid positions, correct target_pos)
             //mouse(target target)
      correct -> circle(fillColor green, color green, radius 100) for 300
      error -> circle(fillColor red, color green, radius 100) for 300

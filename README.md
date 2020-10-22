@@ -1,7 +1,7 @@
 # pyFlies
 
 [pyFlies](http://igordejanovic.github.io/pyFlies/) is a Domain-Specific Language
-(DSL) for reaction time experiments specification. It is meant to be highly
+(DSL) for behavior science experiments specification. It is meant to be highly
 readable and simple to learn.
 
 A code for various run-time platforms can be generated from the experiment

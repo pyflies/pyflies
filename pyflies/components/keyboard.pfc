@@ -1,0 +1,19 @@
+component keyboard extends input
+"""
+Component for implementing keyboard input
+"""
+{
+    param valid:[symbol, list] = space
+    """
+    What is considered a valid keystroke in the trial.
+    Can be a list of valid keys.
+    """
+
+    param correct:[symbol, list] = space
+    """
+    What is a correct response for this trial.
+    Can be a single key or a list of keys.
+    If this parameter is provided, must be found in valid list of keys.
+    If not given any key from the list of valid keys is considered correct.
+    """
+}

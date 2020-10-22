@@ -1,0 +1,29 @@
+test showImages {
+
+    | index | image                          |
+    |-------+--------------------------------|
+    | 1..10 | "{{image_type}}/{{index}}.png" |
+    |  1..2 | index * 5                      |
+
+    fix -> cross() for 400..1000 choose
+    exec -> image(file image)
+            keyboard()
+}
+
+screen break {
+    Block {{repeat_index}} is over.
+    Take a short break
+}
+
+screen instruction {
+    You will be presented with images of {{image_type}}
+    Here is a number -> {{myval}}
+}
+
+flow {
+    show instruction(image_type 'houses', myval 2 + 3)
+    repeat 3 times {
+           execute showImages(image_type 'houses')
+           show break
+    }
+}

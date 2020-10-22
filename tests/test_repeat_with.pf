@@ -1,0 +1,26 @@
+test showImages {
+
+    | index | image                          |
+    |-------+--------------------------------|
+    | 1..10 | "{{image_type}}/{{index}}.png" |
+
+    fix -> cross() for 400..1000 choose
+    exec -> image(file image)
+            keyboard()
+}
+
+screen intro {
+       You will be presented with images of {{image_type}}.
+       Here is {{some_var}}.
+}
+
+flow {
+    repeat {
+           show intro
+           execute showImages
+    } with
+    | image_type | some_var  |
+    |------------+-----------|
+    | houses     | 5  + 12/2 |
+    | faces      | 8         |
+}

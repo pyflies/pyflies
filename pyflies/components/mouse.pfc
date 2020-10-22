@@ -1,0 +1,11 @@
+component mouse extends input
+"""
+Component for implementing mouse input
+"""
+{
+    param target:[symbol, list] = none
+    """
+    A component name or a list of component names which represents valid targets.
+    If target is none than any click is valid.
+    """
+}

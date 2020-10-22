@@ -1,0 +1,15 @@
+component line extends visual
+"""
+Visual stimuli representing line between two points
+"""
+{
+    param from:[symbol, point] = (-50, 0)
+    """
+    The start point of the line shape
+    """
+
+    param to:[symbol, point] = (50, 0)
+    """
+    The end point of the line shape
+    """
+}

@@ -60,3 +60,6 @@ docs/_build/
 .directory
 site
 tags
+data
+notes
+venv

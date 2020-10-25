@@ -15,7 +15,6 @@ test showImages {
 
     // images will be stored in folders "houses" and "faces"
     // In each folder images will be named 1.png, 2.png ... 10.png
-
     | trial_no   | image                             |
     |------------+-----------------------------------|
     | 1..10 loop | "{{image_type}}/{{trial_no}}.png" |
@@ -38,7 +37,7 @@ screen break {
 flow {
     repeat {
         show instruction
-
+        
         // 3 same blocks
         repeat 3 times {
             execute showImages

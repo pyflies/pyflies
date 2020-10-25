@@ -6,27 +6,26 @@ Eriksen flanker test.
 Tests: EriksenFlanker
 Screens: intro, real
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-
+Variables:
+  directions = [left, right]
+  congruencies = [incongruent, congruent]
+  repeats = 1
 
 
 Test: EriksenFlanker
---------------------------------------------------------------------------
-Conditions:
+  --------------------------------------------------------------------------
+  Conditions:
 
-| repeat          | direction       | category          |
-|-----------------+-----------------+-------------------|
-| 1..repeats loop | directions loop | congruencies loop |
+  | repeat          | direction       | category          |
+  |-----------------+-----------------+-------------------|
+  | 1..repeats loop | directions loop | congruencies loop |
 
-Components with param values:
-EriksenFlanker_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-EriksenFlanker_image_1 = image(file default path, size 60 constant, ori 0 constant, position (0, 0) constant, color #ffffff constant, fillColor #ffffff constant, )
-EriksenFlanker_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
-EriksenFlanker_circle_3 = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
-EriksenFlanker_circle_4 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  Components with param values:
+  EriksenFlanker_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  EriksenFlanker_image_1 = image(file default path, size 100 constant, ori 0 constant, position (0, 0) constant, color #ffffff constant, fillColor #ffffff constant, )
+  EriksenFlanker_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
+  EriksenFlanker_circle_3 = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  EriksenFlanker_circle_4 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -34,641 +33,784 @@ EriksenFlanker_circle_4 = circle(fillColor red constant, color green constant, r
 ----------------------------------------------------------------------------
  
 1. SCREEN  intro
-----------------------------------------------------------------------------
-Welcome
-    -------
+  ----------------------------------------------------------------------------
 
-    In the following test you will be presented with a line of 5 arrow pointing
-    left or right. You should respond by the direction of the *middle arrow* as
-    fast as possible by pressing left or right arrow on the keyboard or
-    touching/clicking on appropriate button on the screen.
-
-    You will first do a practice run with 4 trials. After that a real run with
-    20 trial will be performed.
-
-    Press SPACE or touch/click the screen to continue
-
+  Welcome
+  -------
+  In the following test you will be presented with a line of 5 arrow pointing
+  left or right. You should respond by the direction of the *middle arrow* as
+  fast as possible by pressing left or right arrow on the keyboard or
+  touching/clicking on appropriate button on the screen.
+  You will first do a practice run with 4 trials. After that a real run with
+  20 trial will be performed.
+  Press SPACE or touch/click the screen to continue
  
 2. TEST EriksenFlanker
-----------------------------------------------------------------------------
-Condition table (random=True, practice=True)
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | incongruent |
-| 1      | left      | congruent   |
-| 1      | right     | incongruent |
-| 1      | right     | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 2:1
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | incongruent |
+  Condition table (random=True, practice=True)
+  | repeat | direction | category    |
+  |--------+-----------+-------------|
+  | 1      | left      | incongruent |
+  | 1      | left      | congruent   |
+  | 1      | right     | incongruent |
+  | 1      | right     | congruent   |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = True
-    random = True
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | left      | incongruent |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1892
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = True
+        random = True
 
-Trial 2:2
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | congruent   |
+      Phases:
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = True
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1630
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1362
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:3
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | right     | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2735
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 2:4
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | right     | congruent   |
+    TRIAL 2:2
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | left      | congruent   |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = True
-    random = True
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = True
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2106
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2102
+
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 2:3
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | right     | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2148
+
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 2:4
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | right     | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2439
+
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 3. SCREEN  real
-----------------------------------------------------------------------------
-Real block
-    ----------
-    
-    Now a real block of trials will be performed.
+  ----------------------------------------------------------------------------
 
-    Press SPACE or touch/click the screen to continue
-
+  Real block
+  ----------
+  Now a real block of trials will be performed.
+  Press SPACE or touch/click the screen to continue
  
 4. TEST EriksenFlanker
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | incongruent |
-| 1      | left      | congruent   |
-| 1      | right     | incongruent |
-| 1      | right     | congruent   |
-| 2      | left      | incongruent |
-| 2      | left      | congruent   |
-| 2      | right     | incongruent |
-| 2      | right     | congruent   |
-| 3      | left      | incongruent |
-| 3      | left      | congruent   |
-| 3      | right     | incongruent |
-| 3      | right     | congruent   |
-| 4      | left      | incongruent |
-| 4      | left      | congruent   |
-| 4      | right     | incongruent |
-| 4      | right     | congruent   |
-| 5      | left      | incongruent |
-| 5      | left      | congruent   |
-| 5      | right     | incongruent |
-| 5      | right     | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 4:1
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | incongruent |
+  Condition table (random=True, practice=False)
+  | repeat | direction | category    |
+  |--------+-----------+-------------|
+  | 1      | left      | incongruent |
+  | 1      | left      | congruent   |
+  | 1      | right     | incongruent |
+  | 1      | right     | congruent   |
+  | 2      | left      | incongruent |
+  | 2      | left      | congruent   |
+  | 2      | right     | incongruent |
+  | 2      | right     | congruent   |
+  | 3      | left      | incongruent |
+  | 3      | left      | congruent   |
+  | 3      | right     | incongruent |
+  | 3      | right     | congruent   |
+  | 4      | left      | incongruent |
+  | 4      | left      | congruent   |
+  | 4      | right     | incongruent |
+  | 4      | right     | congruent   |
+  | 5      | left      | incongruent |
+  | 5      | left      | congruent   |
+  | 5      | right     | incongruent |
+  | 5      | right     | congruent   |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 4:1
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | left      | incongruent |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1832
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-Trial 4:2
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | left      | congruent   |
+      Phases:
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1964
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1854
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-Trial 4:3
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | right     | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2194
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:4
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 1      | right     | congruent   |
+    TRIAL 4:2
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | left      | congruent   |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1061
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Phases:
 
-Trial 4:5
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 2      | left      | incongruent |
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1939
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2310
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:6
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 2      | left      | congruent   |
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1782
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+    TRIAL 4:3
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | right     | incongruent |
 
-Trial 4:7
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 2      | right     | incongruent |
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+      Phases:
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2866
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2954
 
-Trial 4:8
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 2      | right     | congruent   |
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1594
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:9
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 3      | left      | incongruent |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+    TRIAL 4:4
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 1      | right     | congruent   |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1574
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-Trial 4:10
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 3      | left      | congruent   |
+      Phases:
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2868
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1265
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
 
-Trial 4:11
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 3      | right     | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1113
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:12
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 3      | right     | congruent   |
+    TRIAL 4:5
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 2      | left      | incongruent |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2291
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Phases:
 
-Trial 4:13
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 4      | left      | incongruent |
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1628
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1240
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:14
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 4      | left      | congruent   |
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1468
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+    TRIAL 4:6
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 2      | left      | congruent   |
 
-Trial 4:15
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 4      | right     | incongruent |
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+      Phases:
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1157
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1834
 
-Trial 4:16
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 4      | right     | congruent   |
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1019
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:17
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 5      | left      | incongruent |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+    TRIAL 4:7
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 2      | right     | incongruent |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2649
-    exec:
-                at 0 image(file images/left-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-Trial 4:18
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 5      | left      | congruent   |
+      Phases:
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1190
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2085
-    exec:
-                at 0 image(file images/left-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
 
-Trial 4:19
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 5      | right     | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1812
-    exec:
-                at 0 image(file images/right-incongruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-Trial 4:20
-| repeat | direction | category    |
-|--------+-----------+-------------|
-| 5      | right     | congruent   |
+    TRIAL 4:8
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 2      | right     | congruent   |
 
-  Variables:
-    directions = [left, right]
-    congruencies = [incongruent, congruent]
-    repeats = 1
-    repeat_index = 1
-    practice = False
-    random = True
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1656
-    exec:
-                at 0 image(file images/right-congruent.png, size 60, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1248
+
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:9
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 3      | left      | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2224
+
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:10
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 3      | left      | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2071
+
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:11
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 3      | right     | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2973
+
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:12
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 3      | right     | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2190
+
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:13
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 4      | left      | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1662
+
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:14
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 4      | left      | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2859
+
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:15
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 4      | right     | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1340
+
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:16
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 4      | right     | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1310
+
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:17
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 5      | left      | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2960
+
+        exec:
+          at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:18
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 5      | left      | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1431
+
+        exec:
+          at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:19
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 5      | right     | incongruent |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2351
+
+        exec:
+          at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+
+
+    TRIAL 4:20
+      
+      | repeat | direction | category    |
+      |--------+-----------+-------------|
+      | 5      | right     | congruent   |
+
+      Variables:
+        directions = [left, right]
+        congruencies = [incongruent, congruent]
+        repeats = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1309
+
+        exec:
+          at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 

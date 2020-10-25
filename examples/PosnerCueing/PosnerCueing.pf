@@ -17,6 +17,7 @@ test Posner {
 
     cue_display = 1000..1500 choose
     target_display = cue_display + 1000..1500 choose
+
     exec -> //cross() for cue_display
             rectangle(position left, size 20, color white, fillColor black)
             rectangle(position right, size 20, color white, fillColor black)
@@ -27,6 +28,7 @@ test Posner {
                                                color white, fillColor white)
             keyboard(valid positions, correct target_pos)
             //mouse(target target)
+    
      correct -> circle(fillColor green, color green, radius 100) for 300
      error -> circle(fillColor red, color green, radius 100) for 300
 //    error -> sound(freq 1000) for 300

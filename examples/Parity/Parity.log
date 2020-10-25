@@ -10,25 +10,25 @@ ordinal sequences is spatially organized. Cognition, 87(3), B87-95.
 Tests: Parity
 Screens: Intro, Real
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-
+Variables:
+  numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  parities = [odd, even]
 
 
 Test: Parity
---------------------------------------------------------------------------
-Conditions:
+  --------------------------------------------------------------------------
+  Conditions:
 
-| number       | parity   | response |
-|--------------+----------+----------|
-| numbers loop | parities | parities |
+  | number       | parity   |
+  |--------------+----------|
+  | numbers loop | parities |
 
-Components with param values:
-Parity_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Parity_text_1 = text(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Parity_sound_2 = sound(freq 500 constant, )
-Parity_sound_3 = sound(freq 1000 constant, )
+  Components with param values:
+  Parity_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  Parity_text_1 = text(content default text, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  Parity_keyboard_2 = keyboard(valid [odd, even] constant, correct space, )
+  Parity_circle_3 = circle(radius 100 constant, fillColor red constant, color red constant, position (0, 0) constant, size 20 constant, )
+  Parity_circle_4 = circle(radius 100 constant, fillColor green constant, color green constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -36,669 +36,858 @@ Parity_sound_3 = sound(freq 1000 constant, )
 ----------------------------------------------------------------------------
  
 1. SCREEN  Intro
-----------------------------------------------------------------------------
-Parity classification
-    ---------------------
+  ----------------------------------------------------------------------------
 
-    This is a practice block.
-
-    You will be presented with a digit.
-    Press LEFT for odd and RIGHT for even digit.
-
-    Press ENTER key for the start.
-
+  Parity classification
+  ---------------------
+  This is a practice block.
+  You will be presented with a digit.
+  Press LEFT for odd and RIGHT for even digit.
+  Press ENTER key for the start.
  
 2. TEST Parity
-----------------------------------------------------------------------------
-Condition table (random=True, practice=True)
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
-| 2      | even   | even     |
-| 3      | odd    | odd      |
-| 4      | even   | even     |
-| 5      | odd    | odd      |
-| 6      | even   | even     |
-| 7      | odd    | odd      |
-| 8      | even   | even     |
-| 9      | odd    | odd      |
+  ----------------------------------------------------------------------------
 
-Trial 2:1
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
+  Condition table (random=True, practice=True)
+  | number | parity |
+  |--------+--------|
+  | 1      | odd    |
+  | 2      | even   |
+  | 3      | odd    |
+  | 4      | even   |
+  | 5      | odd    |
+  | 6      | even   |
+  | 7      | odd    |
+  | 8      | even   |
+  | 9      | odd    |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | number | parity |
+      |--------+--------|
+      | 1      | odd    |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2753
-    exec:
-                at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
 
-Trial 2:2
-| number | parity | response |
-|--------+--------+----------|
-| 2      | even   | even     |
+      Phases:
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1369
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1386
-    exec:
-                at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        exec:
+          at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-Trial 2:3
-| number | parity | response |
-|--------+--------+----------|
-| 3      | odd    | odd      |
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1626
-    exec:
-                at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
 
-Trial 2:4
-| number | parity | response |
-|--------+--------+----------|
-| 4      | even   | even     |
+    TRIAL 2:2
+      
+      | number | parity |
+      |--------+--------|
+      | 2      | even   |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2802
-    exec:
-                at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Phases:
 
-Trial 2:5
-| number | parity | response |
-|--------+--------+----------|
-| 5      | odd    | odd      |
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2964
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+        exec:
+          at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1858
-    exec:
-                at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-Trial 2:6
-| number | parity | response |
-|--------+--------+----------|
-| 6      | even   | even     |
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2599
-    exec:
-                at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+    TRIAL 2:3
+      
+      | number | parity |
+      |--------+--------|
+      | 3      | odd    |
 
-Trial 2:7
-| number | parity | response |
-|--------+--------+----------|
-| 7      | odd    | odd      |
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+      Phases:
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2577
-    exec:
-                at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1511
 
-Trial 2:8
-| number | parity | response |
-|--------+--------+----------|
-| 8      | even   | even     |
+        exec:
+          at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1417
-    exec:
-                at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-Trial 2:9
-| number | parity | response |
-|--------+--------+----------|
-| 9      | odd    | odd      |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = True
-    random = True
+    TRIAL 2:4
+      
+      | number | parity |
+      |--------+--------|
+      | 4      | even   |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1303
-    exec:
-                at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2583
+
+        exec:
+          at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:5
+      
+      | number | parity |
+      |--------+--------|
+      | 5      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2838
+
+        exec:
+          at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:6
+      
+      | number | parity |
+      |--------+--------|
+      | 6      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1449
+
+        exec:
+          at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:7
+      
+      | number | parity |
+      |--------+--------|
+      | 7      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1900
+
+        exec:
+          at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:8
+      
+      | number | parity |
+      |--------+--------|
+      | 8      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2743
+
+        exec:
+          at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:9
+      
+      | number | parity |
+      |--------+--------|
+      | 9      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2585
+
+        exec:
+          at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
  
 3. SCREEN  Real
-----------------------------------------------------------------------------
-Parity classification
-    ---------------------
+  ----------------------------------------------------------------------------
 
-    Now a REAL testing will be performed.
-
-    You will be presented with a digit.
-    Press LEFT for odd and RIGHT for even digit.
-
-    Press ENTER key for the start.
-
+  Parity classification
+  ---------------------
+  Now a REAL testing will be performed.
+  You will be presented with a digit.
+  Press LEFT for odd and RIGHT for even digit.
+  Press ENTER key for the start.
  
 4. TEST Parity
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
-| 2      | even   | even     |
-| 3      | odd    | odd      |
-| 4      | even   | even     |
-| 5      | odd    | odd      |
-| 6      | even   | even     |
-| 7      | odd    | odd      |
-| 8      | even   | even     |
-| 9      | odd    | odd      |
+  ----------------------------------------------------------------------------
 
-Trial 4:1
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
+  Condition table (random=True, practice=False)
+  | number | parity |
+  |--------+--------|
+  | 1      | odd    |
+  | 2      | even   |
+  | 3      | odd    |
+  | 4      | even   |
+  | 5      | odd    |
+  | 6      | even   |
+  | 7      | odd    |
+  | 8      | even   |
+  | 9      | odd    |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 4:1
+      
+      | number | parity |
+      |--------+--------|
+      | 1      | odd    |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1368
-    exec:
-                at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
 
-Trial 4:2
-| number | parity | response |
-|--------+--------+----------|
-| 2      | even   | even     |
+      Phases:
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1498
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2318
-    exec:
-                at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        exec:
+          at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-Trial 4:3
-| number | parity | response |
-|--------+--------+----------|
-| 3      | odd    | odd      |
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1578
-    exec:
-                at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
 
-Trial 4:4
-| number | parity | response |
-|--------+--------+----------|
-| 4      | even   | even     |
+    TRIAL 4:2
+      
+      | number | parity |
+      |--------+--------|
+      | 2      | even   |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1755
-    exec:
-                at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Phases:
 
-Trial 4:5
-| number | parity | response |
-|--------+--------+----------|
-| 5      | odd    | odd      |
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2369
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+        exec:
+          at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2291
-    exec:
-                at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-Trial 4:6
-| number | parity | response |
-|--------+--------+----------|
-| 6      | even   | even     |
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2561
-    exec:
-                at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+    TRIAL 4:3
+      
+      | number | parity |
+      |--------+--------|
+      | 3      | odd    |
 
-Trial 4:7
-| number | parity | response |
-|--------+--------+----------|
-| 7      | odd    | odd      |
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+      Phases:
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2611
-    exec:
-                at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2612
 
-Trial 4:8
-| number | parity | response |
-|--------+--------+----------|
-| 8      | even   | even     |
+        exec:
+          at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2250
-    exec:
-                at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-Trial 4:9
-| number | parity | response |
-|--------+--------+----------|
-| 9      | odd    | odd      |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 1
-    practice = False
-    random = True
+    TRIAL 4:4
+      
+      | number | parity |
+      |--------+--------|
+      | 4      | even   |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2528
-    exec:
-                at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2711
+
+        exec:
+          at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:5
+      
+      | number | parity |
+      |--------+--------|
+      | 5      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1943
+
+        exec:
+          at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:6
+      
+      | number | parity |
+      |--------+--------|
+      | 6      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2617
+
+        exec:
+          at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:7
+      
+      | number | parity |
+      |--------+--------|
+      | 7      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1415
+
+        exec:
+          at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:8
+      
+      | number | parity |
+      |--------+--------|
+      | 8      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2284
+
+        exec:
+          at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:9
+      
+      | number | parity |
+      |--------+--------|
+      | 9      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1042
+
+        exec:
+          at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
  
 5. TEST Parity
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
-| 2      | even   | even     |
-| 3      | odd    | odd      |
-| 4      | even   | even     |
-| 5      | odd    | odd      |
-| 6      | even   | even     |
-| 7      | odd    | odd      |
-| 8      | even   | even     |
-| 9      | odd    | odd      |
+  ----------------------------------------------------------------------------
 
-Trial 5:1
-| number | parity | response |
-|--------+--------+----------|
-| 1      | odd    | odd      |
+  Condition table (random=True, practice=False)
+  | number | parity |
+  |--------+--------|
+  | 1      | odd    |
+  | 2      | even   |
+  | 3      | odd    |
+  | 4      | even   |
+  | 5      | odd    |
+  | 6      | even   |
+  | 7      | odd    |
+  | 8      | even   |
+  | 9      | odd    |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 5:1
+      
+      | number | parity |
+      |--------+--------|
+      | 1      | odd    |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2396
-    exec:
-                at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
 
-Trial 5:2
-| number | parity | response |
-|--------+--------+----------|
-| 2      | even   | even     |
+      Phases:
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1592
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1655
-    exec:
-                at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        exec:
+          at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-Trial 5:3
-| number | parity | response |
-|--------+--------+----------|
-| 3      | odd    | odd      |
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1092
-    exec:
-                at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
 
-Trial 5:4
-| number | parity | response |
-|--------+--------+----------|
-| 4      | even   | even     |
+    TRIAL 5:2
+      
+      | number | parity |
+      |--------+--------|
+      | 2      | even   |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1301
-    exec:
-                at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Phases:
 
-Trial 5:5
-| number | parity | response |
-|--------+--------+----------|
-| 5      | odd    | odd      |
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2308
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+        exec:
+          at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1853
-    exec:
-                at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-Trial 5:6
-| number | parity | response |
-|--------+--------+----------|
-| 6      | even   | even     |
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2456
-    exec:
-                at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+    TRIAL 5:3
+      
+      | number | parity |
+      |--------+--------|
+      | 3      | odd    |
 
-Trial 5:7
-| number | parity | response |
-|--------+--------+----------|
-| 7      | odd    | odd      |
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+      Phases:
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2411
-    exec:
-                at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1081
 
-Trial 5:8
-| number | parity | response |
-|--------+--------+----------|
-| 8      | even   | even     |
+        exec:
+          at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1423
-    exec:
-                at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-Trial 5:9
-| number | parity | response |
-|--------+--------+----------|
-| 9      | odd    | odd      |
 
-  Variables:
-    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    parities = [odd, even]
-    repeat_index = 2
-    practice = False
-    random = True
+    TRIAL 5:4
+      
+      | number | parity |
+      |--------+--------|
+      | 4      | even   |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1482
-    exec:
-                at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-    error:
-                at 0 sound(freq 1000) for 300
-    correct:
-                at 0 sound(freq 500) for 300
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1230
+
+        exec:
+          at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 5:5
+      
+      | number | parity |
+      |--------+--------|
+      | 5      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1601
+
+        exec:
+          at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 5:6
+      
+      | number | parity |
+      |--------+--------|
+      | 6      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1429
+
+        exec:
+          at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 5:7
+      
+      | number | parity |
+      |--------+--------|
+      | 7      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2467
+
+        exec:
+          at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 5:8
+      
+      | number | parity |
+      |--------+--------|
+      | 8      | even   |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1552
+
+        exec:
+          at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct even) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 5:9
+      
+      | number | parity |
+      |--------+--------|
+      | 9      | odd    |
+
+      Variables:
+        numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        parities = [odd, even]
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2164
+
+        exec:
+          at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [odd, even], correct odd) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 

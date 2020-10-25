@@ -9,28 +9,27 @@ http://en.wikipedia.org/wiki/Simon_effect
 Tests: Simon
 Screens: Practice, Real
 
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-
+Variables:
+  positions = [left, right]
+  colors = [green, red]
+  responses = [left, right]
+  repetitions = 1
 
 
 Test: Simon
---------------------------------------------------------------------------
-Conditions:
+  --------------------------------------------------------------------------
+  Conditions:
 
-| repetition          | position       | color       | congruency                                         | expected                          |
-|---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
-| 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
+  | repetition          | position       | color       | congruency                                         | expected                          |
+  |---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
+  | 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
 
-Components with param values:
-Simon_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-Simon_rectangle_1 = rectangle(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 20) constant, )
-Simon_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
-Simon_circle_3 = circle(radius 100 constant, fillColor red constant, color red constant, position (0, 0) constant, size 20 constant, )
-Simon_circle_4 = circle(radius 100 constant, fillColor green constant, color green constant, position (0, 0) constant, size 20 constant, )
+  Components with param values:
+  Simon_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  Simon_rectangle_1 = rectangle(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 20) constant, )
+  Simon_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
+  Simon_circle_3 = circle(radius 100 constant, fillColor red constant, color red constant, position (0, 0) constant, size 20 constant, )
+  Simon_circle_4 = circle(radius 100 constant, fillColor green constant, color green constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -38,1177 +37,1441 @@ Simon_circle_4 = circle(radius 100 constant, fillColor green constant, color gre
 ----------------------------------------------------------------------------
  
 1. SCREEN  Practice
-----------------------------------------------------------------------------
-Simon test
-    ----------
-    
-    You will be presented with a colored rectangle positioned
-    left or right.
-    Press LEFT for the GREEN rectangle and right for the red.
-    
-    Press SPACE for the practice block.
+  ----------------------------------------------------------------------------
 
+  Simon test
+  ----------
+  You will be presented with a colored rectangle positioned
+  left or right.
+  Press LEFT for the GREEN rectangle and right for the red.
+  Press SPACE for the practice block.
  
 2. TEST Simon
-----------------------------------------------------------------------------
-Condition table (random=False, practice=True)
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | green | incongruent | left     |
-| 1          | left     | red   | incongruent | right    |
-| 1          | right    | green | incongruent | left     |
-| 1          | right    | red   | incongruent | right    |
+  ----------------------------------------------------------------------------
 
-Trial 2:1
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | green | incongruent | left     |
+  Condition table (random=False, practice=True)
+  | repetition | position | color | congruency  | expected |
+  |------------+----------+-------+-------------+----------|
+  | 1          | left     | green | incongruent | left     |
+  | 1          | left     | red   | incongruent | right    |
+  | 1          | right    | green | incongruent | left     |
+  | 1          | right    | red   | incongruent | right    |
 
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = True
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | left     | green | incongruent | left     |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1199
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = True
 
-Trial 2:2
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | red   | incongruent | right    |
+      Phases:
 
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = True
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1089
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1616
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:3
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | right    | green | incongruent | left     |
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
 
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = True
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1250
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
-Trial 2:4
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | right    | red   | incongruent | right    |
+    TRIAL 2:2
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | left     | red   | incongruent | right    |
 
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = True
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = True
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1814
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1882
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:3
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1139
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 2:4
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1470
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 
  
 3. SCREEN  Real
-----------------------------------------------------------------------------
-Simon test
-    ----------
-    
-    Now a REAL testing will be performed.
-    
-    Press SPACE for the real block.
+  ----------------------------------------------------------------------------
 
+  Simon test
+  ----------
+  Now a REAL testing will be performed.
+  Press SPACE for the real block.
  
 4. TEST Simon
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | green | incongruent | left     |
-| 1          | left     | red   | incongruent | right    |
-| 1          | right    | green | incongruent | left     |
-| 1          | right    | red   | incongruent | right    |
-| 2          | left     | green | incongruent | left     |
-| 2          | left     | red   | incongruent | right    |
-| 2          | right    | green | incongruent | left     |
-| 2          | right    | red   | incongruent | right    |
-| 3          | left     | green | incongruent | left     |
-| 3          | left     | red   | incongruent | right    |
-| 3          | right    | green | incongruent | left     |
-| 3          | right    | red   | incongruent | right    |
-| 4          | left     | green | incongruent | left     |
-| 4          | left     | red   | incongruent | right    |
-| 4          | right    | green | incongruent | left     |
-| 4          | right    | red   | incongruent | right    |
-| 5          | left     | green | incongruent | left     |
-| 5          | left     | red   | incongruent | right    |
-| 5          | right    | green | incongruent | left     |
-| 5          | right    | red   | incongruent | right    |
-| 6          | left     | green | incongruent | left     |
-| 6          | left     | red   | incongruent | right    |
-| 6          | right    | green | incongruent | left     |
-| 6          | right    | red   | incongruent | right    |
-| 7          | left     | green | incongruent | left     |
-| 7          | left     | red   | incongruent | right    |
-| 7          | right    | green | incongruent | left     |
-| 7          | right    | red   | incongruent | right    |
-| 8          | left     | green | incongruent | left     |
-| 8          | left     | red   | incongruent | right    |
-| 8          | right    | green | incongruent | left     |
-| 8          | right    | red   | incongruent | right    |
-| 9          | left     | green | incongruent | left     |
-| 9          | left     | red   | incongruent | right    |
-| 9          | right    | green | incongruent | left     |
-| 9          | right    | red   | incongruent | right    |
-| 10         | left     | green | incongruent | left     |
-| 10         | left     | red   | incongruent | right    |
-| 10         | right    | green | incongruent | left     |
-| 10         | right    | red   | incongruent | right    |
-
-Trial 4:1
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1276
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:2
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1975
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:3
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1551
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:4
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 1          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1420
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:5
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 2          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1504
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:6
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 2          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1719
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:7
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 2          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1222
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:8
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 2          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1197
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:9
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 3          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1382
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:10
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 3          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1389
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:11
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 3          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1091
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:12
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 3          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1045
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:13
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 4          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1004
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:14
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 4          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1526
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:15
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 4          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1871
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:16
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 4          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1441
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:17
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 5          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1859
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:18
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 5          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1686
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:19
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 5          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1670
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:20
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 5          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1271
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:21
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 6          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1245
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:22
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 6          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1983
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:23
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 6          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1817
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:24
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 6          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1185
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:25
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 7          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1370
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:26
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 7          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1237
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:27
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 7          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1444
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:28
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 7          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1865
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:29
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 8          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1428
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:30
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 8          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1016
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:31
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 8          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1302
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:32
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 8          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1840
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:33
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 9          | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1926
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:34
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 9          | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1376
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:35
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 9          | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1395
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:36
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 9          | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1213
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:37
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 10         | left     | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1329
-    exec:
-                at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:38
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 10         | left     | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1886
-    exec:
-                at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:39
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 10         | right    | green | incongruent | left     |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1538
-    exec:
-                at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
-
-Trial 4:40
-| repetition | position | color | congruency  | expected |
-|------------+----------+-------+-------------+----------|
-| 10         | right    | red   | incongruent | right    |
-
-  Variables:
-    positions = [left, right]
-    colors = [green, red]
-    responses = [left, right]
-    repetitions = 1
-    repeat_index = 1
-    practice = False
-    random = True
-
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1100
-    exec:
-                at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 1000
-            at 0 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
-    correct:
-                at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+  ----------------------------------------------------------------------------
+
+  Condition table (random=True, practice=False)
+  | repetition | position | color | congruency  | expected |
+  |------------+----------+-------+-------------+----------|
+  | 1          | left     | green | incongruent | left     |
+  | 1          | left     | red   | incongruent | right    |
+  | 1          | right    | green | incongruent | left     |
+  | 1          | right    | red   | incongruent | right    |
+  | 2          | left     | green | incongruent | left     |
+  | 2          | left     | red   | incongruent | right    |
+  | 2          | right    | green | incongruent | left     |
+  | 2          | right    | red   | incongruent | right    |
+  | 3          | left     | green | incongruent | left     |
+  | 3          | left     | red   | incongruent | right    |
+  | 3          | right    | green | incongruent | left     |
+  | 3          | right    | red   | incongruent | right    |
+  | 4          | left     | green | incongruent | left     |
+  | 4          | left     | red   | incongruent | right    |
+  | 4          | right    | green | incongruent | left     |
+  | 4          | right    | red   | incongruent | right    |
+  | 5          | left     | green | incongruent | left     |
+  | 5          | left     | red   | incongruent | right    |
+  | 5          | right    | green | incongruent | left     |
+  | 5          | right    | red   | incongruent | right    |
+  | 6          | left     | green | incongruent | left     |
+  | 6          | left     | red   | incongruent | right    |
+  | 6          | right    | green | incongruent | left     |
+  | 6          | right    | red   | incongruent | right    |
+  | 7          | left     | green | incongruent | left     |
+  | 7          | left     | red   | incongruent | right    |
+  | 7          | right    | green | incongruent | left     |
+  | 7          | right    | red   | incongruent | right    |
+  | 8          | left     | green | incongruent | left     |
+  | 8          | left     | red   | incongruent | right    |
+  | 8          | right    | green | incongruent | left     |
+  | 8          | right    | red   | incongruent | right    |
+  | 9          | left     | green | incongruent | left     |
+  | 9          | left     | red   | incongruent | right    |
+  | 9          | right    | green | incongruent | left     |
+  | 9          | right    | red   | incongruent | right    |
+  | 10         | left     | green | incongruent | left     |
+  | 10         | left     | red   | incongruent | right    |
+  | 10         | right    | green | incongruent | left     |
+  | 10         | right    | red   | incongruent | right    |
+
+  ---- Trials -----
+    
+    TRIAL 4:1
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1953
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:2
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1541
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:3
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1238
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:4
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 1          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1756
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:5
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 2          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1193
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:6
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 2          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1079
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:7
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 2          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1576
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:8
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 2          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1954
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:9
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 3          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1577
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:10
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 3          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1369
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:11
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 3          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1479
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:12
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 3          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1584
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:13
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 4          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1188
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:14
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 4          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1247
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:15
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 4          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1447
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:16
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 4          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1153
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:17
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 5          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1350
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:18
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 5          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1586
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:19
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 5          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1231
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:20
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 5          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1838
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:21
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 6          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1976
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:22
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 6          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1056
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:23
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 6          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1450
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:24
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 6          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2000
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:25
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 7          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1552
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:26
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 7          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1428
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:27
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 7          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1974
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:28
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 7          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1758
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:29
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 8          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1500
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:30
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 8          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1887
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:31
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 8          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1400
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:32
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 8          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1881
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:33
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 9          | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1064
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:34
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 9          | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1120
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:35
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 9          | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1633
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:36
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 9          | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1319
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:37
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 10         | left     | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1723
+
+        exec:
+          at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:38
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 10         | left     | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1586
+
+        exec:
+          at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:39
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 10         | right    | green | incongruent | left     |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1375
+
+        exec:
+          at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct left) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
+
+
+    TRIAL 4:40
+      
+      | repetition | position | color | congruency  | expected |
+      |------------+----------+-------+-------------+----------|
+      | 10         | right    | red   | incongruent | right    |
+
+      Variables:
+        positions = [left, right]
+        colors = [green, red]
+        responses = [left, right]
+        repetitions = 1
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1690
+
+        exec:
+          at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
+          at 0 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(radius 100, fillColor red, color red, position (0, 0), size 20) for 100
+
+        correct:
+          at 0 circle(radius 100, fillColor green, color green, position (0, 0), size 20) for 100
 

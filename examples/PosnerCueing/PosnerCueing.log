@@ -9,28 +9,27 @@ http://en.wikipedia.org/wiki/Posner_cueing_task
 Tests: Posner
 Screens: Practice, Real
 
-  Variables:
-    positions = [left, right]
-
+Variables:
+  positions = [left, right]
 
 
 Test: Posner
---------------------------------------------------------------------------
-Conditions:
+  --------------------------------------------------------------------------
+  Conditions:
 
-| ord       | cue_pos        | target_pos                          | congruency  |
-|-----------+----------------+-------------------------------------+-------------|
-| 1         | positions loop | left if cue_pos == right else right | incongruent |
-| 1..3 loop | positions loop | cue_pos                             | congruent   |
+  | ord       | cue_pos        | target_pos                          | congruency  |
+  |-----------+----------------+-------------------------------------+-------------|
+  | 1         | positions loop | left if cue_pos == right else right | incongruent |
+  | 1..3 loop | positions loop | cue_pos                             | congruent   |
 
-Components with param values:
-Posner_rectangle_0 = rectangle(position left constant, size 20 constant, color white constant, fillColor black constant, )
-Posner_rectangle_1 = rectangle(position right constant, size 20 constant, color white constant, fillColor black constant, )
-Posner_cue = rectangle(position (0, 0), size 18 constant, color white constant, fillColor black constant, )
-Posner_target = rectangle(position (0, 0), size 20 constant, color white constant, fillColor white constant, )
-Posner_keyboard_4 = keyboard(valid [left, right] constant, correct space, )
-Posner_circle_5 = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
-Posner_circle_6 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  Components with param values:
+  Posner_rectangle_0 = rectangle(position left constant, size 20 constant, color white constant, fillColor black constant, )
+  Posner_rectangle_1 = rectangle(position right constant, size 20 constant, color white constant, fillColor black constant, )
+  Posner_cue = rectangle(position (0, 0), size 18 constant, color white constant, fillColor black constant, )
+  Posner_target = rectangle(position (0, 0), size 20 constant, color white constant, fillColor white constant, )
+  Posner_keyboard_4 = keyboard(valid [left, right] constant, correct space, )
+  Posner_circle_5 = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  Posner_circle_6 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -38,1460 +37,1756 @@ Posner_circle_6 = circle(fillColor red constant, color green constant, radius 10
 ----------------------------------------------------------------------------
  
 1. SCREEN  Practice
-----------------------------------------------------------------------------
-Posner Cueing
-    -------------
+  ----------------------------------------------------------------------------
 
-    You will be presented with the two empty boxes positioned left and right from
-    the center of the screen. You should concentrate on the center of the screen
-    and wait for the cue. The cue will be presented as a box highlight. After some
-    time a cross shaped object will be presented in some of the squares. React as
-    fast as you can by pressing space button when you detect a cross shaped
-    object.
-
-    Press SPACE for practice block.
-
+  Posner Cueing
+  -------------
+  You will be presented with the two empty boxes positioned left and right from
+  the center of the screen. You should concentrate on the center of the screen
+  and wait for the cue. The cue will be presented as a box highlight. After some
+  time a cross shaped object will be presented in some of the squares. React as
+  fast as you can by pressing space button when you detect a cross shaped
+  object.
+  Press SPACE for practice block.
  
 2. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=True)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 2:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=True)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1374
-    target_display = 2499
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1349
+        target_display = 2829
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1202 cue:rectangle(position left, size 18, color white, fillColor black) for 1371
-            at 2573 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2573 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1060 cue:rectangle(position left, size 18, color white, fillColor black) for 1354
+          at 2414 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2414 keyboard(valid [left, right], correct right) for 0
 
-Trial 2:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1149
-    target_display = 2420
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1058
+        target_display = 2390
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1130 cue:rectangle(position right, size 18, color white, fillColor black) for 1017
-            at 2147 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2147 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1403 cue:rectangle(position right, size 18, color white, fillColor black) for 1106
+          at 2509 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2509 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1137
-    target_display = 2365
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1035
+        target_display = 2146
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1382 cue:rectangle(position left, size 18, color white, fillColor black) for 1348
-            at 2730 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2730 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1239 cue:rectangle(position left, size 18, color white, fillColor black) for 1101
+          at 2340 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2340 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1005
-    target_display = 2150
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1444
+        target_display = 2473
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1025 cue:rectangle(position right, size 18, color white, fillColor black) for 1434
-            at 2459 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2459 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1404 cue:rectangle(position right, size 18, color white, fillColor black) for 1449
+          at 2853 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2853 keyboard(valid [left, right], correct right) for 0
 
-Trial 2:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1405
-    target_display = 2414
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1330
+        target_display = 2462
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1486 cue:rectangle(position left, size 18, color white, fillColor black) for 1079
-            at 2565 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2565 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1286 cue:rectangle(position left, size 18, color white, fillColor black) for 1009
+          at 2295 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2295 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1132
-    target_display = 2232
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1494
+        target_display = 2808
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1292 cue:rectangle(position right, size 18, color white, fillColor black) for 1135
-            at 2427 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2427 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1255 cue:rectangle(position right, size 18, color white, fillColor black) for 1295
+          at 2550 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2550 keyboard(valid [left, right], correct right) for 0
 
-Trial 2:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1496
-    target_display = 2590
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1127
+        target_display = 2397
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1192 cue:rectangle(position left, size 18, color white, fillColor black) for 1383
-            at 2575 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2575 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1045 cue:rectangle(position left, size 18, color white, fillColor black) for 1223
+          at 2268 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2268 keyboard(valid [left, right], correct left) for 0
 
-Trial 2:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1221
-    target_display = 2707
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = True
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 2:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1322
+        target_display = 2606
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = True
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1191 cue:rectangle(position right, size 18, color white, fillColor black) for 1484
-            at 2675 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2675 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1301 cue:rectangle(position right, size 18, color white, fillColor black) for 1365
+          at 2666 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2666 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 3. SCREEN  Real
-----------------------------------------------------------------------------
-Posner Cueing
-    -------------
+  ----------------------------------------------------------------------------
 
-    Now a REAL testing will be performed.
-
-    Press SPACE to start the test.
-
+  Posner Cueing
+  -------------
+  Now a REAL testing will be performed.
+  Press SPACE to start the test.
  
 4. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 4:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=False)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1037
-    target_display = 2365
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 4:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1036
+        target_display = 2294
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1380 cue:rectangle(position left, size 18, color white, fillColor black) for 1473
-            at 2853 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2853 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1373 cue:rectangle(position left, size 18, color white, fillColor black) for 1318
+          at 2691 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2691 keyboard(valid [left, right], correct right) for 0
 
-Trial 4:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1020
-    target_display = 2060
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1021
+        target_display = 2479
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1306 cue:rectangle(position right, size 18, color white, fillColor black) for 1470
-            at 2776 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2776 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1068 cue:rectangle(position right, size 18, color white, fillColor black) for 1040
+          at 2108 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2108 keyboard(valid [left, right], correct left) for 0
 
-Trial 4:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1270
-    target_display = 2504
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1114
+        target_display = 2372
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1336 cue:rectangle(position left, size 18, color white, fillColor black) for 1478
-            at 2814 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2814 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1145 cue:rectangle(position left, size 18, color white, fillColor black) for 1030
+          at 2175 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2175 keyboard(valid [left, right], correct left) for 0
 
-Trial 4:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1387
-    target_display = 2783
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1477
+        target_display = 2837
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1364 cue:rectangle(position right, size 18, color white, fillColor black) for 1326
-            at 2690 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2690 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1364 cue:rectangle(position right, size 18, color white, fillColor black) for 1193
+          at 2557 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2557 keyboard(valid [left, right], correct right) for 0
 
-Trial 4:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1316
-    target_display = 2356
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1459
+        target_display = 2521
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1394 cue:rectangle(position left, size 18, color white, fillColor black) for 1296
-            at 2690 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2690 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1365 cue:rectangle(position left, size 18, color white, fillColor black) for 1021
+          at 2386 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2386 keyboard(valid [left, right], correct left) for 0
 
-Trial 4:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1384
-    target_display = 2405
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1156
+        target_display = 2215
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1124 cue:rectangle(position right, size 18, color white, fillColor black) for 1470
-            at 2594 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2594 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1023 cue:rectangle(position right, size 18, color white, fillColor black) for 1359
+          at 2382 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2382 keyboard(valid [left, right], correct right) for 0
 
-Trial 4:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1482
-    target_display = 2882
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1103
+        target_display = 2147
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1466 cue:rectangle(position left, size 18, color white, fillColor black) for 1028
-            at 2494 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2494 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1143 cue:rectangle(position left, size 18, color white, fillColor black) for 1238
+          at 2381 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2381 keyboard(valid [left, right], correct left) for 0
 
-Trial 4:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1446
-    target_display = 2872
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 1
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 4:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1267
+        target_display = 2633
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 1
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1136 cue:rectangle(position right, size 18, color white, fillColor black) for 1060
-            at 2196 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2196 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1278 cue:rectangle(position right, size 18, color white, fillColor black) for 1132
+          at 2410 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2410 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 5. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 5:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=False)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1182
-    target_display = 2242
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 5:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1307
+        target_display = 2605
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1269 cue:rectangle(position left, size 18, color white, fillColor black) for 1230
-            at 2499 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2499 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1125 cue:rectangle(position left, size 18, color white, fillColor black) for 1189
+          at 2314 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2314 keyboard(valid [left, right], correct right) for 0
 
-Trial 5:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1319
-    target_display = 2644
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1274
+        target_display = 2346
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1276 cue:rectangle(position right, size 18, color white, fillColor black) for 1218
-            at 2494 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2494 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1350 cue:rectangle(position right, size 18, color white, fillColor black) for 1367
+          at 2717 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2717 keyboard(valid [left, right], correct left) for 0
 
-Trial 5:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1230
-    target_display = 2601
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1104
+        target_display = 2247
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1287 cue:rectangle(position left, size 18, color white, fillColor black) for 1386
-            at 2673 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2673 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1013 cue:rectangle(position left, size 18, color white, fillColor black) for 1432
+          at 2445 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2445 keyboard(valid [left, right], correct left) for 0
 
-Trial 5:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1475
-    target_display = 2846
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1041
+        target_display = 2273
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1458 cue:rectangle(position right, size 18, color white, fillColor black) for 1005
-            at 2463 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2463 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1047 cue:rectangle(position right, size 18, color white, fillColor black) for 1413
+          at 2460 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2460 keyboard(valid [left, right], correct right) for 0
 
-Trial 5:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1193
-    target_display = 2271
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1178
+        target_display = 2668
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1011 cue:rectangle(position left, size 18, color white, fillColor black) for 1090
-            at 2101 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2101 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1018 cue:rectangle(position left, size 18, color white, fillColor black) for 1261
+          at 2279 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2279 keyboard(valid [left, right], correct left) for 0
 
-Trial 5:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1305
-    target_display = 2426
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1438
+        target_display = 2825
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1065 cue:rectangle(position right, size 18, color white, fillColor black) for 1244
-            at 2309 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2309 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1319 cue:rectangle(position right, size 18, color white, fillColor black) for 1304
+          at 2623 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2623 keyboard(valid [left, right], correct right) for 0
 
-Trial 5:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1115
-    target_display = 2268
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1082
+        target_display = 2214
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1125 cue:rectangle(position left, size 18, color white, fillColor black) for 1202
-            at 2327 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2327 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1159 cue:rectangle(position left, size 18, color white, fillColor black) for 1001
+          at 2160 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2160 keyboard(valid [left, right], correct left) for 0
 
-Trial 5:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1106
-    target_display = 2590
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 2
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 5:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1129
+        target_display = 2411
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 2
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1362 cue:rectangle(position right, size 18, color white, fillColor black) for 1385
-            at 2747 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2747 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1429 cue:rectangle(position right, size 18, color white, fillColor black) for 1467
+          at 2896 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2896 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 6. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 6:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=False)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1473
-    target_display = 2595
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 6:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1393
+        target_display = 2834
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1205 cue:rectangle(position left, size 18, color white, fillColor black) for 1167
-            at 2372 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2372 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1131 cue:rectangle(position left, size 18, color white, fillColor black) for 1310
+          at 2441 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2441 keyboard(valid [left, right], correct right) for 0
 
-Trial 6:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1217
-    target_display = 2507
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1060
+        target_display = 2060
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1083 cue:rectangle(position right, size 18, color white, fillColor black) for 1274
-            at 2357 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2357 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1366 cue:rectangle(position right, size 18, color white, fillColor black) for 1040
+          at 2406 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2406 keyboard(valid [left, right], correct left) for 0
 
-Trial 6:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1189
-    target_display = 2351
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1344
+        target_display = 2744
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1349 cue:rectangle(position left, size 18, color white, fillColor black) for 1222
-            at 2571 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2571 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1105 cue:rectangle(position left, size 18, color white, fillColor black) for 1181
+          at 2286 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2286 keyboard(valid [left, right], correct left) for 0
 
-Trial 6:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1138
-    target_display = 2490
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1323
+        target_display = 2792
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1294 cue:rectangle(position right, size 18, color white, fillColor black) for 1009
-            at 2303 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2303 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1483 cue:rectangle(position right, size 18, color white, fillColor black) for 1445
+          at 2928 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2928 keyboard(valid [left, right], correct right) for 0
 
-Trial 6:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1054
-    target_display = 2386
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1119
+        target_display = 2291
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1067 cue:rectangle(position left, size 18, color white, fillColor black) for 1365
-            at 2432 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2432 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1018 cue:rectangle(position left, size 18, color white, fillColor black) for 1102
+          at 2120 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2120 keyboard(valid [left, right], correct left) for 0
 
-Trial 6:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1023
-    target_display = 2435
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1481
+        target_display = 2529
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1332 cue:rectangle(position right, size 18, color white, fillColor black) for 1214
-            at 2546 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2546 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1170 cue:rectangle(position right, size 18, color white, fillColor black) for 1363
+          at 2533 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2533 keyboard(valid [left, right], correct right) for 0
 
-Trial 6:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1214
-    target_display = 2487
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1194
+        target_display = 2615
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1347 cue:rectangle(position left, size 18, color white, fillColor black) for 1303
-            at 2650 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2650 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1254 cue:rectangle(position left, size 18, color white, fillColor black) for 1087
+          at 2341 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2341 keyboard(valid [left, right], correct left) for 0
 
-Trial 6:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1403
-    target_display = 2586
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 3
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 6:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1040
+        target_display = 2040
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 3
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1283 cue:rectangle(position right, size 18, color white, fillColor black) for 1247
-            at 2530 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2530 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1408 cue:rectangle(position right, size 18, color white, fillColor black) for 1457
+          at 2865 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2865 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 7. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 7:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=False)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1472
-    target_display = 2933
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 7:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1456
+        target_display = 2526
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1436 cue:rectangle(position left, size 18, color white, fillColor black) for 1075
-            at 2511 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2511 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1154 cue:rectangle(position left, size 18, color white, fillColor black) for 1307
+          at 2461 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2461 keyboard(valid [left, right], correct right) for 0
 
-Trial 7:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1154
-    target_display = 2601
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1447
+        target_display = 2653
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1060 cue:rectangle(position right, size 18, color white, fillColor black) for 1200
-            at 2260 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2260 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1277 cue:rectangle(position right, size 18, color white, fillColor black) for 1472
+          at 2749 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2749 keyboard(valid [left, right], correct left) for 0
 
-Trial 7:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1110
-    target_display = 2409
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1061
+        target_display = 2162
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1447 cue:rectangle(position left, size 18, color white, fillColor black) for 1274
-            at 2721 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2721 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1176 cue:rectangle(position left, size 18, color white, fillColor black) for 1203
+          at 2379 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2379 keyboard(valid [left, right], correct left) for 0
 
-Trial 7:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1119
-    target_display = 2209
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1252
+        target_display = 2541
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1411 cue:rectangle(position right, size 18, color white, fillColor black) for 1161
-            at 2572 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2572 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1363 cue:rectangle(position right, size 18, color white, fillColor black) for 1053
+          at 2416 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2416 keyboard(valid [left, right], correct right) for 0
 
-Trial 7:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1216
-    target_display = 2345
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1033
+        target_display = 2448
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1400 cue:rectangle(position left, size 18, color white, fillColor black) for 1171
-            at 2571 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2571 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1265 cue:rectangle(position left, size 18, color white, fillColor black) for 1363
+          at 2628 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2628 keyboard(valid [left, right], correct left) for 0
 
-Trial 7:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1320
-    target_display = 2604
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1384
+        target_display = 2821
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1234 cue:rectangle(position right, size 18, color white, fillColor black) for 1419
-            at 2653 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2653 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1488 cue:rectangle(position right, size 18, color white, fillColor black) for 1440
+          at 2928 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2928 keyboard(valid [left, right], correct right) for 0
 
-Trial 7:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1180
-    target_display = 2548
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1180
+        target_display = 2251
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1344 cue:rectangle(position left, size 18, color white, fillColor black) for 1309
-            at 2653 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2653 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1268 cue:rectangle(position left, size 18, color white, fillColor black) for 1439
+          at 2707 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2707 keyboard(valid [left, right], correct left) for 0
 
-Trial 7:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1440
-    target_display = 2772
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 4
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 7:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1036
+        target_display = 2252
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 4
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1336 cue:rectangle(position right, size 18, color white, fillColor black) for 1101
-            at 2437 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2437 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1378 cue:rectangle(position right, size 18, color white, fillColor black) for 1460
+          at 2838 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2838 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
  
 8. TEST Posner
-----------------------------------------------------------------------------
-Condition table (random=True, practice=False)
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
-| 1   | right   | left       | incongruent |
-| 1   | left    | left       | congruent   |
-| 1   | right   | right      | congruent   |
-| 2   | left    | left       | congruent   |
-| 2   | right   | right      | congruent   |
-| 3   | left    | left       | congruent   |
-| 3   | right   | right      | congruent   |
+  ----------------------------------------------------------------------------
 
-Trial 8:1
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | right      | incongruent |
+  Condition table (random=True, practice=False)
+  | ord | cue_pos | target_pos | congruency  |
+  |-----+---------+------------+-------------|
+  | 1   | left    | right      | incongruent |
+  | 1   | right   | left       | incongruent |
+  | 1   | left    | left       | congruent   |
+  | 1   | right   | right      | congruent   |
+  | 2   | left    | left       | congruent   |
+  | 2   | right   | right      | congruent   |
+  | 3   | left    | left       | congruent   |
+  | 3   | right   | right      | congruent   |
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1484
-    target_display = 2695
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+  ---- Trials -----
+    
+    TRIAL 8:1
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | right      | incongruent |
 
-  Phases:
-    fix:
+      Variables:
+        positions = [left, right]
+        cue_display = 1287
+        target_display = 2342
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1286 cue:rectangle(position left, size 18, color white, fillColor black) for 1287
-            at 2573 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2573 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1042 cue:rectangle(position left, size 18, color white, fillColor black) for 1325
+          at 2367 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2367 keyboard(valid [left, right], correct right) for 0
 
-Trial 8:2
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | left       | incongruent |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1212
-    target_display = 2280
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:2
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | left       | incongruent |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1429
+        target_display = 2531
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1256 cue:rectangle(position right, size 18, color white, fillColor black) for 1027
-            at 2283 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2283 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1287 cue:rectangle(position right, size 18, color white, fillColor black) for 1409
+          at 2696 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2696 keyboard(valid [left, right], correct left) for 0
 
-Trial 8:3
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1459
-    target_display = 2910
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:3
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1136
+        target_display = 2470
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1044 cue:rectangle(position left, size 18, color white, fillColor black) for 1221
-            at 2265 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2265 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1239 cue:rectangle(position left, size 18, color white, fillColor black) for 1403
+          at 2642 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2642 keyboard(valid [left, right], correct left) for 0
 
-Trial 8:4
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 1   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1195
-    target_display = 2220
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:4
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 1   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1247
+        target_display = 2502
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1028 cue:rectangle(position right, size 18, color white, fillColor black) for 1417
-            at 2445 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2445 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1052 cue:rectangle(position right, size 18, color white, fillColor black) for 1406
+          at 2458 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2458 keyboard(valid [left, right], correct right) for 0
 
-Trial 8:5
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1349
-    target_display = 2531
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:5
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1445
+        target_display = 2860
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1208 cue:rectangle(position left, size 18, color white, fillColor black) for 1198
-            at 2406 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2406 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1416 cue:rectangle(position left, size 18, color white, fillColor black) for 1323
+          at 2739 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2739 keyboard(valid [left, right], correct left) for 0
 
-Trial 8:6
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 2   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1019
-    target_display = 2165
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:6
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 2   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1009
+        target_display = 2388
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1470 cue:rectangle(position right, size 18, color white, fillColor black) for 1031
-            at 2501 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2501 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1024 cue:rectangle(position right, size 18, color white, fillColor black) for 1151
+          at 2175 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2175 keyboard(valid [left, right], correct right) for 0
 
-Trial 8:7
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | left    | left       | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1323
-    target_display = 2511
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:7
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | left    | left       | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1214
+        target_display = 2403
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1199 cue:rectangle(position left, size 18, color white, fillColor black) for 1484
-            at 2683 target:rectangle(position left, size 20, color white, fillColor white) for 0
-            at 2683 keyboard(valid [left, right], correct left) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1121 cue:rectangle(position left, size 18, color white, fillColor black) for 1322
+          at 2443 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2443 keyboard(valid [left, right], correct left) for 0
 
-Trial 8:8
-| ord | cue_pos | target_pos | congruency  |
-|-----+---------+------------+-------------|
-| 3   | right   | right      | congruent   |
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
 
-  Variables:
-    positions = [left, right]
-    cue_display = 1238
-    target_display = 2524
-    cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
-    target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
-    repeat_index = 5
-    practice = False
-    random = True
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 
-  Phases:
-    fix:
+
+    TRIAL 8:8
+      
+      | ord | cue_pos | target_pos | congruency  |
+      |-----+---------+------------+-------------|
+      | 3   | right   | right      | congruent   |
+
+      Variables:
+        positions = [left, right]
+        cue_display = 1282
+        target_display = 2436
+        cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
+        target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
+        repeat_index = 5
+        practice = False
+        random = True
+
+      Phases:
+
+        fix:
+          
         exec:
-                at 0 rectangle(position left, size 20, color white, fillColor black) for 0
-            at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-            at 1480 cue:rectangle(position right, size 18, color white, fillColor black) for 1112
-            at 2592 target:rectangle(position right, size 20, color white, fillColor white) for 0
-            at 2592 keyboard(valid [left, right], correct right) for 0
-    error:
-                at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
-    correct:
-                at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
+          at 0 rectangle(position left, size 20, color white, fillColor black) for 0
+          at 0 rectangle(position right, size 20, color white, fillColor black) for 0
+          at 1425 cue:rectangle(position right, size 18, color white, fillColor black) for 1461
+          at 2886 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2886 keyboard(valid [left, right], correct right) for 0
+
+        error:
+          at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
+
+        correct:
+          at 0 circle(fillColor green, color green, radius 100, position (0, 0), size 20) for 300
 

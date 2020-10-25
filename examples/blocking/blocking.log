@@ -13,23 +13,22 @@ show either images of houses or faces. Each block will be repeated 3 times with
 Tests: showImages
 Screens: instruction, break
 
-  Variables:
-    image_types = [houses, faces]
-
+Variables:
+  image_types = [houses, faces]
 
 
 Test: showImages
---------------------------------------------------------------------------
-Conditions:
+  --------------------------------------------------------------------------
+  Conditions:
 
-| trial_no   | image                           |
-|------------+---------------------------------|
-| 1..10 loop | {{image_type}}/{{trial_no}}.png |
+  | trial_no   | image                           |
+  |------------+---------------------------------|
+  | 1..10 loop | {{image_type}}/{{trial_no}}.png |
 
-Components with param values:
-showImages_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-showImages_image_1 = image(file default path, ori 0 constant, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-showImages_key_2 = key(valid space constant, )
+  Components with param values:
+  showImages_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  showImages_image_1 = image(file default path, ori 0 constant, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  showImages_keyboard_2 = keyboard(valid space constant, correct space constant, )
 
 
 ----------------------------------------------------------------------------
@@ -37,1327 +36,1783 @@ showImages_key_2 = key(valid space constant, )
 ----------------------------------------------------------------------------
  
 1. SCREEN  instruction
-----------------------------------------------------------------------------
-Block set 1
-    You will be presented with images of houses
+  ----------------------------------------------------------------------------
 
+  Block set 1
+  You will be presented with images of houses
  
 2. TEST showImages
-----------------------------------------------------------------------------
-Trial 2:1
-| trial_no | image         |
-|----------+---------------|
-| 1        | houses/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image         |
+  |----------+---------------|
+  | 1        | houses/1.png  |
+  | 2        | houses/2.png  |
+  | 3        | houses/3.png  |
+  | 4        | houses/4.png  |
+  | 5        | houses/5.png  |
+  | 6        | houses/6.png  |
+  | 7        | houses/7.png  |
+  | 8        | houses/8.png  |
+  | 9        | houses/9.png  |
+  | 10       | houses/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 525
-    exec:
-                at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 2:2
-| trial_no | image         |
-|----------+---------------|
-| 2        | houses/2.png  |
+    TRIAL 2:1
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 1        | houses/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 897
-    exec:
-                at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 771
+
+        exec:
+          at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:3
-| trial_no | image         |
-|----------+---------------|
-| 3        | houses/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:2
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 2        | houses/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 892
-    exec:
-                at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 566
+
+        exec:
+          at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:4
-| trial_no | image         |
-|----------+---------------|
-| 4        | houses/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:3
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 3        | houses/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 498
-    exec:
-                at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 592
+
+        exec:
+          at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:5
-| trial_no | image         |
-|----------+---------------|
-| 5        | houses/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:4
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 4        | houses/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 523
-    exec:
-                at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 936
+
+        exec:
+          at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:6
-| trial_no | image         |
-|----------+---------------|
-| 6        | houses/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:5
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 5        | houses/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 429
-    exec:
-                at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 596
+
+        exec:
+          at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:7
-| trial_no | image         |
-|----------+---------------|
-| 7        | houses/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:6
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 6        | houses/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
-    exec:
-                at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 664
+
+        exec:
+          at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:8
-| trial_no | image         |
-|----------+---------------|
-| 8        | houses/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:7
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 7        | houses/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 690
-    exec:
-                at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 653
+
+        exec:
+          at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:9
-| trial_no | image         |
-|----------+---------------|
-| 9        | houses/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:8
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 8        | houses/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 825
-    exec:
-                at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 643
+
+        exec:
+          at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 2:10
-| trial_no | image         |
-|----------+---------------|
-| 10       | houses/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 1
-    practice = False
+    TRIAL 2:9
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 9        | houses/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 482
-    exec:
-                at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 2:10
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 10       | houses/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 463
+
+        exec:
+          at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 3. SCREEN  break
-----------------------------------------------------------------------------
-Block 1 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 1 finished.
+  Take a short break.
  
 4. TEST showImages
-----------------------------------------------------------------------------
-Trial 4:1
-| trial_no | image         |
-|----------+---------------|
-| 1        | houses/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image         |
+  |----------+---------------|
+  | 1        | houses/1.png  |
+  | 2        | houses/2.png  |
+  | 3        | houses/3.png  |
+  | 4        | houses/4.png  |
+  | 5        | houses/5.png  |
+  | 6        | houses/6.png  |
+  | 7        | houses/7.png  |
+  | 8        | houses/8.png  |
+  | 9        | houses/9.png  |
+  | 10       | houses/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 894
-    exec:
-                at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 4:2
-| trial_no | image         |
-|----------+---------------|
-| 2        | houses/2.png  |
+    TRIAL 4:1
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 1        | houses/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 912
-    exec:
-                at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 413
+
+        exec:
+          at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:3
-| trial_no | image         |
-|----------+---------------|
-| 3        | houses/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:2
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 2        | houses/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 968
-    exec:
-                at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 752
+
+        exec:
+          at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:4
-| trial_no | image         |
-|----------+---------------|
-| 4        | houses/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:3
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 3        | houses/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 583
-    exec:
-                at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 907
+
+        exec:
+          at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:5
-| trial_no | image         |
-|----------+---------------|
-| 5        | houses/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:4
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 4        | houses/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 407
-    exec:
-                at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 821
+
+        exec:
+          at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:6
-| trial_no | image         |
-|----------+---------------|
-| 6        | houses/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:5
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 5        | houses/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 969
-    exec:
-                at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 855
+
+        exec:
+          at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:7
-| trial_no | image         |
-|----------+---------------|
-| 7        | houses/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:6
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 6        | houses/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 594
-    exec:
-                at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 905
+
+        exec:
+          at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:8
-| trial_no | image         |
-|----------+---------------|
-| 8        | houses/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:7
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 7        | houses/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 649
-    exec:
-                at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 848
+
+        exec:
+          at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:9
-| trial_no | image         |
-|----------+---------------|
-| 9        | houses/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:8
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 8        | houses/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 872
-    exec:
-                at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 461
+
+        exec:
+          at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 4:10
-| trial_no | image         |
-|----------+---------------|
-| 10       | houses/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 2
-    practice = False
+    TRIAL 4:9
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 9        | houses/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 905
-    exec:
-                at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 749
+
+        exec:
+          at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 4:10
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 10       | houses/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 596
+
+        exec:
+          at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 5. SCREEN  break
-----------------------------------------------------------------------------
-Block 2 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 2 finished.
+  Take a short break.
  
 6. TEST showImages
-----------------------------------------------------------------------------
-Trial 6:1
-| trial_no | image         |
-|----------+---------------|
-| 1        | houses/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image         |
+  |----------+---------------|
+  | 1        | houses/1.png  |
+  | 2        | houses/2.png  |
+  | 3        | houses/3.png  |
+  | 4        | houses/4.png  |
+  | 5        | houses/5.png  |
+  | 6        | houses/6.png  |
+  | 7        | houses/7.png  |
+  | 8        | houses/8.png  |
+  | 9        | houses/9.png  |
+  | 10       | houses/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 682
-    exec:
-                at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 6:2
-| trial_no | image         |
-|----------+---------------|
-| 2        | houses/2.png  |
+    TRIAL 6:1
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 1        | houses/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 925
-    exec:
-                at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 841
+
+        exec:
+          at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:3
-| trial_no | image         |
-|----------+---------------|
-| 3        | houses/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:2
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 2        | houses/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 626
-    exec:
-                at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 522
+
+        exec:
+          at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:4
-| trial_no | image         |
-|----------+---------------|
-| 4        | houses/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:3
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 3        | houses/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 947
-    exec:
-                at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 919
+
+        exec:
+          at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:5
-| trial_no | image         |
-|----------+---------------|
-| 5        | houses/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:4
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 4        | houses/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 417
-    exec:
-                at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 841
+
+        exec:
+          at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:6
-| trial_no | image         |
-|----------+---------------|
-| 6        | houses/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:5
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 5        | houses/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 491
-    exec:
-                at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 639
+
+        exec:
+          at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:7
-| trial_no | image         |
-|----------+---------------|
-| 7        | houses/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:6
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 6        | houses/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 647
-    exec:
-                at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 898
+
+        exec:
+          at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:8
-| trial_no | image         |
-|----------+---------------|
-| 8        | houses/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:7
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 7        | houses/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 587
-    exec:
-                at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 932
+
+        exec:
+          at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:9
-| trial_no | image         |
-|----------+---------------|
-| 9        | houses/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:8
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 8        | houses/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 893
-    exec:
-                at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 566
+
+        exec:
+          at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 6:10
-| trial_no | image         |
-|----------+---------------|
-| 10       | houses/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = houses
-    order = 1
-    repeat_index = 3
-    practice = False
+    TRIAL 6:9
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 9        | houses/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 867
-    exec:
-                at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 622
+
+        exec:
+          at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 6:10
+      
+      | trial_no | image         |
+      |----------+---------------|
+      | 10       | houses/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = houses
+        order = 1
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 586
+
+        exec:
+          at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 7. SCREEN  break
-----------------------------------------------------------------------------
-Block 3 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 3 finished.
+  Take a short break.
  
 8. SCREEN  instruction
-----------------------------------------------------------------------------
-Block set 2
-    You will be presented with images of faces
+  ----------------------------------------------------------------------------
 
+  Block set 2
+  You will be presented with images of faces
  
 9. TEST showImages
-----------------------------------------------------------------------------
-Trial 9:1
-| trial_no | image        |
-|----------+--------------|
-| 1        | faces/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image        |
+  |----------+--------------|
+  | 1        | faces/1.png  |
+  | 2        | faces/2.png  |
+  | 3        | faces/3.png  |
+  | 4        | faces/4.png  |
+  | 5        | faces/5.png  |
+  | 6        | faces/6.png  |
+  | 7        | faces/7.png  |
+  | 8        | faces/8.png  |
+  | 9        | faces/9.png  |
+  | 10       | faces/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 481
-    exec:
-                at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 9:2
-| trial_no | image        |
-|----------+--------------|
-| 2        | faces/2.png  |
+    TRIAL 9:1
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 1        | faces/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 794
-    exec:
-                at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 992
+
+        exec:
+          at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:3
-| trial_no | image        |
-|----------+--------------|
-| 3        | faces/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:2
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 2        | faces/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 850
-    exec:
-                at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 687
+
+        exec:
+          at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:4
-| trial_no | image        |
-|----------+--------------|
-| 4        | faces/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:3
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 3        | faces/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 427
-    exec:
-                at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 886
+
+        exec:
+          at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:5
-| trial_no | image        |
-|----------+--------------|
-| 5        | faces/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:4
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 4        | faces/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 645
-    exec:
-                at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 910
+
+        exec:
+          at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:6
-| trial_no | image        |
-|----------+--------------|
-| 6        | faces/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:5
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 5        | faces/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 724
-    exec:
-                at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 551
+
+        exec:
+          at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:7
-| trial_no | image        |
-|----------+--------------|
-| 7        | faces/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:6
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 6        | faces/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 772
-    exec:
-                at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 882
+
+        exec:
+          at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:8
-| trial_no | image        |
-|----------+--------------|
-| 8        | faces/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:7
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 7        | faces/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 852
-    exec:
-                at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 791
+
+        exec:
+          at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:9
-| trial_no | image        |
-|----------+--------------|
-| 9        | faces/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:8
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 8        | faces/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 537
-    exec:
-                at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 674
+
+        exec:
+          at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 9:10
-| trial_no | image        |
-|----------+--------------|
-| 10       | faces/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 1
-    practice = False
+    TRIAL 9:9
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 9        | faces/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 920
-    exec:
-                at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 827
+
+        exec:
+          at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 9:10
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 10       | faces/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 496
+
+        exec:
+          at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 10. SCREEN  break
-----------------------------------------------------------------------------
-Block 1 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 1 finished.
+  Take a short break.
  
 11. TEST showImages
-----------------------------------------------------------------------------
-Trial 11:1
-| trial_no | image        |
-|----------+--------------|
-| 1        | faces/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image        |
+  |----------+--------------|
+  | 1        | faces/1.png  |
+  | 2        | faces/2.png  |
+  | 3        | faces/3.png  |
+  | 4        | faces/4.png  |
+  | 5        | faces/5.png  |
+  | 6        | faces/6.png  |
+  | 7        | faces/7.png  |
+  | 8        | faces/8.png  |
+  | 9        | faces/9.png  |
+  | 10       | faces/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 924
-    exec:
-                at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 11:2
-| trial_no | image        |
-|----------+--------------|
-| 2        | faces/2.png  |
+    TRIAL 11:1
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 1        | faces/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 926
-    exec:
-                at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 581
+
+        exec:
+          at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:3
-| trial_no | image        |
-|----------+--------------|
-| 3        | faces/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:2
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 2        | faces/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 464
-    exec:
-                at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 568
+
+        exec:
+          at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:4
-| trial_no | image        |
-|----------+--------------|
-| 4        | faces/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:3
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 3        | faces/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 632
-    exec:
-                at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 601
+
+        exec:
+          at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:5
-| trial_no | image        |
-|----------+--------------|
-| 5        | faces/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:4
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 4        | faces/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 940
-    exec:
-                at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 993
+
+        exec:
+          at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:6
-| trial_no | image        |
-|----------+--------------|
-| 6        | faces/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:5
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 5        | faces/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 934
-    exec:
-                at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 410
+
+        exec:
+          at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:7
-| trial_no | image        |
-|----------+--------------|
-| 7        | faces/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:6
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 6        | faces/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 432
-    exec:
-                at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 503
+
+        exec:
+          at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:8
-| trial_no | image        |
-|----------+--------------|
-| 8        | faces/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:7
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 7        | faces/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 928
-    exec:
-                at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 689
+
+        exec:
+          at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:9
-| trial_no | image        |
-|----------+--------------|
-| 9        | faces/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:8
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 8        | faces/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 713
-    exec:
-                at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 969
+
+        exec:
+          at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 11:10
-| trial_no | image        |
-|----------+--------------|
-| 10       | faces/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 2
-    practice = False
+    TRIAL 11:9
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 9        | faces/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 715
-    exec:
-                at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 578
+
+        exec:
+          at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 11:10
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 10       | faces/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 2
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 947
+
+        exec:
+          at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 12. SCREEN  break
-----------------------------------------------------------------------------
-Block 2 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 2 finished.
+  Take a short break.
  
 13. TEST showImages
-----------------------------------------------------------------------------
-Trial 13:1
-| trial_no | image        |
-|----------+--------------|
-| 1        | faces/1.png  |
+  ----------------------------------------------------------------------------
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+  Condition table (random=False, practice=False)
+  | trial_no | image        |
+  |----------+--------------|
+  | 1        | faces/1.png  |
+  | 2        | faces/2.png  |
+  | 3        | faces/3.png  |
+  | 4        | faces/4.png  |
+  | 5        | faces/5.png  |
+  | 6        | faces/6.png  |
+  | 7        | faces/7.png  |
+  | 8        | faces/8.png  |
+  | 9        | faces/9.png  |
+  | 10       | faces/10.png |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 688
-    exec:
-                at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
-        correct:
+  ---- Trials -----
     
-Trial 13:2
-| trial_no | image        |
-|----------+--------------|
-| 2        | faces/2.png  |
+    TRIAL 13:1
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 1        | faces/1.png  |
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 503
-    exec:
-                at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 635
+
+        exec:
+          at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:3
-| trial_no | image        |
-|----------+--------------|
-| 3        | faces/3.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:2
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 2        | faces/2.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 452
-    exec:
-                at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:4
-| trial_no | image        |
-|----------+--------------|
-| 4        | faces/4.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:3
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 3        | faces/3.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1000
-    exec:
-                at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 820
+
+        exec:
+          at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:5
-| trial_no | image        |
-|----------+--------------|
-| 5        | faces/5.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:4
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 4        | faces/4.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 520
-    exec:
-                at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 418
+
+        exec:
+          at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:6
-| trial_no | image        |
-|----------+--------------|
-| 6        | faces/6.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:5
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 5        | faces/5.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 407
-    exec:
-                at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 872
+
+        exec:
+          at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:7
-| trial_no | image        |
-|----------+--------------|
-| 7        | faces/7.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:6
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 6        | faces/6.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 573
-    exec:
-                at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 598
+
+        exec:
+          at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:8
-| trial_no | image        |
-|----------+--------------|
-| 8        | faces/8.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:7
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 7        | faces/7.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 547
-    exec:
-                at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 679
+
+        exec:
+          at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:9
-| trial_no | image        |
-|----------+--------------|
-| 9        | faces/9.png  |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:8
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 8        | faces/8.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 845
-    exec:
-                at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 538
+
+        exec:
+          at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
-Trial 13:10
-| trial_no | image        |
-|----------+--------------|
-| 10       | faces/10.png |
+          
 
-  Variables:
-    image_types = [houses, faces]
-    image_type = faces
-    order = 2
-    repeat_index = 3
-    practice = False
+    TRIAL 13:9
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 9        | faces/9.png  |
 
-  Phases:
-    fix:
-                at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 638
-    exec:
-                at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
-            at 0 key(valid space) for 0
-    error:
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 432
+
+        exec:
+          at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
         correct:
-    
+          
+
+    TRIAL 13:10
+      
+      | trial_no | image        |
+      |----------+--------------|
+      | 10       | faces/10.png |
+
+      Variables:
+        image_types = [houses, faces]
+        image_type = faces
+        order = 2
+        repeat_index = 3
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 534
+
+        exec:
+          at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid space, correct space) for 0
+
+        error:
+          
+        correct:
+          
  
 14. SCREEN  break
-----------------------------------------------------------------------------
-Block 3 finished.
-    Take a short break.
+  ----------------------------------------------------------------------------
 
+  Block 3 finished.
+  Take a short break.

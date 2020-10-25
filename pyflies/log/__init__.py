@@ -1,3 +1,4 @@
+import re
 from os.path import dirname, abspath, join, splitext
 from textx import generator
 from textxjinja import textx_jinja_generator
@@ -17,7 +18,18 @@ def pyflies_log_generator(metamodel, model, output_path, overwrite, debug, **cus
               'tests': tests,
               'screens': screens}
 
+    filters = {
+        'unindent': unindent
+    }
+
     if not output_path:
         output_path = splitext(model._tx_filename)[0] + '.log'
 
-    textx_jinja_generator(template_file, output_path, config, overwrite)
+    textx_jinja_generator(template_file, output_path, config, overwrite, filters=filters)
+
+
+def unindent(s):
+    """
+    Remove whitespaces from the beginning of each line of the string s.
+    """
+    return re.sub(r'\n\s+', r'\n', s)

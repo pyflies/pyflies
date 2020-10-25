@@ -1,16 +1,16 @@
 {% macro list_str(list) -%}
   {% if list %}
   {% for l in list %}
-            {{l}}
+{{l}}
   {% endfor %}
   {% endif %}
 {%- endmacro %}
 {% macro context_str(context) -%}
   {% if context %}
-  Variables:
-  {% for var_name, var_value in context.items() %}
-    {{var_name}} = {{var_value}}
-  {% endfor %}
+Variables:
+    {% for var_name, var_value in context.items() %}
+  {{var_name}} = {{var_value}}
+    {% endfor %}
   {% endif %}
 {%- endmacro %}
 """
@@ -21,10 +21,10 @@ Tests: {{tests|map(attribute='name')|join(', ')}}
 Screens: {{screens|map(attribute='name')|join(', ')}}
 
 {{context_str(m.get_context())}}
-
 {% for test in tests %}
 
 Test: {{test.name}}
+{% filter indent(width=2, indentfirst=True) %}
 --------------------------------------------------------------------------
 Conditions:
 
@@ -34,10 +34,11 @@ Components with param values:
 {% for component in test.components %}
 {{component.name}} = {{component.type.name}}({% for param in component.params %}{{param.name}} {{param.value}}{% if param.is_constant %} constant{% endif %}, {% endfor %})
 {% endfor %}
-
+{% endfilter %}
 {% endfor %}
 
 {% if m.flow %}
+
 ----------------------------------------------------------------------------
 ----------------------------------- FLOW -----------------------------------
 ----------------------------------------------------------------------------
@@ -45,28 +46,44 @@ Components with param values:
   {% set outer_loop = loop %} 
   {% if inst.__class__.__name__ == 'ScreenInst' %}
 {{loop.index}}. SCREEN  {{inst.name}}
+    {% filter indent(width=2, indentfirst=True) %}
 ----------------------------------------------------------------------------
-{{inst.content}}
 
+{{inst.content|unindent}}
+    {% endfilter %}
   {% else %}
 {{loop.index}}. TEST {{inst.name}}
+    {% filter indent(width=2, indentfirst=True) %}
 ----------------------------------------------------------------------------
+
 Condition table (random={{inst.random}}, practice={{inst.practice}})
 {{inst.table}}
 
+---- Trials -----
+    {% filter indent(width=2, indentfirst=True) %}
     {% for row in inst.table %}
-Trial {{outer_loop.index}}:{{loop.index}}
+
+TRIAL {{outer_loop.index}}:{{loop.index}}
+    {% filter indent(width=2, indentfirst=True) %}
+
 {{inst.table.header_str()-}}
 {{row}}
 
 {{context_str(row.get_context_noncond())}}
-  Phases:
-    fix:
-    {{list_str(row.ph_fix)}}    exec:
-    {{list_str(row.ph_exec)}}    error:
-    {{list_str(row.ph_error)}}    correct:
-    {{list_str(row.ph_correct)}}
+Phases:
+
+  fix:
+    {{list_str(row.ph_fix)|indent(width=4)}}
+  exec:
+    {{list_str(row.ph_exec)|indent(width=4)}}
+  error:
+    {{list_str(row.ph_error)|indent(width=4)}}
+  correct:
+    {{list_str(row.ph_correct)|indent(width=4)}}
+    {% endfilter %}
     {% endfor %}
+    {% endfilter %}
+    {% endfilter %}
   {% endif %}
 {% endfor %}
 {% endif %}

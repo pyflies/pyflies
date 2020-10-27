@@ -199,8 +199,9 @@ class ConditionsTableInstRow(ModelElement, ScopeProvider):
             # Evaluate test variables in the context of this row
             test.eval(row_context)
 
-            # Update row context with test variable
-            row_context.update(test.get_context())
+            # Update row context with test variables so that they
+            # shadow global variables.
+            row_context.update(test.get_scope().var_vals)
             # Save context for logging purposes
             self.var_vals.update({k: v for k, v in row_context.items()
                                   if k not in phases})

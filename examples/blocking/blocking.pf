@@ -16,7 +16,7 @@ test showImages {
     // images will be stored in folders "houses" and "faces"
     // In each folder images will be named 1.png, 2.png ... 10.png
     | trial_no   | image                             |
-    |------------+-----------------------------------|
+    | ---------- | --------------------------------- |
     | 1..10 loop | "{{image_type}}/{{trial_no}}.png" |
 
     fix ->  cross() for 400..1000 choose
@@ -45,7 +45,7 @@ flow {
         }
     } with
     | image_type       | order |
-    |------------------+-------|
+    | ---------------- | ----- |
     | image_types loop | 1..2  |
 
 }

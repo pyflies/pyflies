@@ -14,6 +14,7 @@ Variables:
   colors = [green, red]
   responses = [left, right]
   repetitions = 1
+  proba = black
 
 
 Test: Simon
@@ -22,14 +23,14 @@ Test: Simon
 
   | repetition          | position       | color       | congruency                                         | expected                          |
   |---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
-  | 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
+  | 1..repetitions loop | positions loop | colors loop | congruent if position == expected else incongruent | left if color == green else right |
 
   Components with param values:
-  Simon_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-  Simon_rectangle_1 = rectangle(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 20) constant, )
-  Simon_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
-  Simon_circle_3 = circle(radius 100 constant, fillColor red constant, color red constant, position (0, 0) constant, size 20 constant, )
-  Simon_circle_4 = circle(radius 100 constant, fillColor green constant, color green constant, position (0, 0) constant, size 20 constant, )
+  Simon_cross = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  Simon_rectangle = rectangle(position (0, 0), color #ffffff, fillColor #ffffff, size (20, 20) constant, )
+  Simon_keyboard = keyboard(valid [left, right] constant, correct space, )
+  Simon_circle = circle(radius 100 constant, fillColor red constant, color red constant, position (0, 0) constant, size 20 constant, )
+  Simon_circle_2 = circle(radius 100 constant, fillColor green constant, color green constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -52,10 +53,10 @@ Test: Simon
   Condition table (random=False, practice=True)
   | repetition | position | color | congruency  | expected |
   |------------+----------+-------+-------------+----------|
-  | 1          | left     | green | incongruent | left     |
+  | 1          | left     | green | congruent   | left     |
   | 1          | left     | red   | incongruent | right    |
   | 1          | right    | green | incongruent | left     |
-  | 1          | right    | red   | incongruent | right    |
+  | 1          | right    | red   | congruent   | right    |
 
   ---- Trials -----
     
@@ -63,20 +64,21 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 1          | left     | green | incongruent | left     |
+      | 1          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
         repetitions = 1
+        proba = black
         repeat_index = 1
         practice = True
 
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1089
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1556
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -100,13 +102,14 @@ Test: Simon
         colors = [green, red]
         responses = [left, right]
         repetitions = 1
+        proba = black
         repeat_index = 1
         practice = True
 
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1882
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1139
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -130,13 +133,14 @@ Test: Simon
         colors = [green, red]
         responses = [left, right]
         repetitions = 1
+        proba = black
         repeat_index = 1
         practice = True
 
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1139
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1801
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -153,20 +157,21 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 1          | right    | red   | incongruent | right    |
+      | 1          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
         repetitions = 1
+        proba = black
         repeat_index = 1
         practice = True
 
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1470
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1859
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -193,46 +198,46 @@ Test: Simon
   Condition table (random=True, practice=False)
   | repetition | position | color | congruency  | expected |
   |------------+----------+-------+-------------+----------|
-  | 1          | left     | green | incongruent | left     |
+  | 1          | left     | green | congruent   | left     |
   | 1          | left     | red   | incongruent | right    |
   | 1          | right    | green | incongruent | left     |
-  | 1          | right    | red   | incongruent | right    |
-  | 2          | left     | green | incongruent | left     |
+  | 1          | right    | red   | congruent   | right    |
+  | 2          | left     | green | congruent   | left     |
   | 2          | left     | red   | incongruent | right    |
   | 2          | right    | green | incongruent | left     |
-  | 2          | right    | red   | incongruent | right    |
-  | 3          | left     | green | incongruent | left     |
+  | 2          | right    | red   | congruent   | right    |
+  | 3          | left     | green | congruent   | left     |
   | 3          | left     | red   | incongruent | right    |
   | 3          | right    | green | incongruent | left     |
-  | 3          | right    | red   | incongruent | right    |
-  | 4          | left     | green | incongruent | left     |
+  | 3          | right    | red   | congruent   | right    |
+  | 4          | left     | green | congruent   | left     |
   | 4          | left     | red   | incongruent | right    |
   | 4          | right    | green | incongruent | left     |
-  | 4          | right    | red   | incongruent | right    |
-  | 5          | left     | green | incongruent | left     |
+  | 4          | right    | red   | congruent   | right    |
+  | 5          | left     | green | congruent   | left     |
   | 5          | left     | red   | incongruent | right    |
   | 5          | right    | green | incongruent | left     |
-  | 5          | right    | red   | incongruent | right    |
-  | 6          | left     | green | incongruent | left     |
+  | 5          | right    | red   | congruent   | right    |
+  | 6          | left     | green | congruent   | left     |
   | 6          | left     | red   | incongruent | right    |
   | 6          | right    | green | incongruent | left     |
-  | 6          | right    | red   | incongruent | right    |
-  | 7          | left     | green | incongruent | left     |
+  | 6          | right    | red   | congruent   | right    |
+  | 7          | left     | green | congruent   | left     |
   | 7          | left     | red   | incongruent | right    |
   | 7          | right    | green | incongruent | left     |
-  | 7          | right    | red   | incongruent | right    |
-  | 8          | left     | green | incongruent | left     |
+  | 7          | right    | red   | congruent   | right    |
+  | 8          | left     | green | congruent   | left     |
   | 8          | left     | red   | incongruent | right    |
   | 8          | right    | green | incongruent | left     |
-  | 8          | right    | red   | incongruent | right    |
-  | 9          | left     | green | incongruent | left     |
+  | 8          | right    | red   | congruent   | right    |
+  | 9          | left     | green | congruent   | left     |
   | 9          | left     | red   | incongruent | right    |
   | 9          | right    | green | incongruent | left     |
-  | 9          | right    | red   | incongruent | right    |
-  | 10         | left     | green | incongruent | left     |
+  | 9          | right    | red   | congruent   | right    |
+  | 10         | left     | green | congruent   | left     |
   | 10         | left     | red   | incongruent | right    |
   | 10         | right    | green | incongruent | left     |
-  | 10         | right    | red   | incongruent | right    |
+  | 10         | right    | red   | congruent   | right    |
 
   ---- Trials -----
     
@@ -240,13 +245,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 1          | left     | green | incongruent | left     |
+      | 1          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -254,7 +260,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1953
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1893
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -277,7 +283,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -285,7 +292,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1541
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1658
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -308,7 +315,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -316,7 +324,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1238
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1685
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -333,13 +341,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 1          | right    | red   | incongruent | right    |
+      | 1          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -347,7 +356,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1756
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1395
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -364,13 +373,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 2          | left     | green | incongruent | left     |
+      | 2          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -378,7 +388,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1193
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1292
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -401,7 +411,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -409,7 +420,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1079
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1556
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -432,7 +443,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -440,7 +452,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1576
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1186
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -457,13 +469,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 2          | right    | red   | incongruent | right    |
+      | 2          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -471,7 +484,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1954
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1416
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -488,13 +501,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 3          | left     | green | incongruent | left     |
+      | 3          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -502,7 +516,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1577
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1269
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -525,7 +539,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -533,7 +548,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1369
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1343
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -556,7 +571,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -564,7 +580,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1479
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1460
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -581,13 +597,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 3          | right    | red   | incongruent | right    |
+      | 3          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -595,7 +612,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1584
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1301
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -612,13 +629,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 4          | left     | green | incongruent | left     |
+      | 4          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -626,7 +644,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1188
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1055
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -649,7 +667,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -657,7 +676,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1247
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1868
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -680,7 +699,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -688,7 +708,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1447
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1563
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -705,13 +725,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 4          | right    | red   | incongruent | right    |
+      | 4          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -719,7 +740,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1153
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1244
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -736,13 +757,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 5          | left     | green | incongruent | left     |
+      | 5          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -750,7 +772,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1350
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1633
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -773,7 +795,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -781,7 +804,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1586
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1514
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -804,7 +827,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -812,7 +836,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1231
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1301
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -829,13 +853,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 5          | right    | red   | incongruent | right    |
+      | 5          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -843,7 +868,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1838
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1035
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -860,13 +885,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 6          | left     | green | incongruent | left     |
+      | 6          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -874,7 +900,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1976
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1949
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -897,7 +923,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -905,7 +932,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1056
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1883
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -928,7 +955,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -936,7 +964,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1450
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1639
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -953,13 +981,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 6          | right    | red   | incongruent | right    |
+      | 6          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -967,7 +996,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2000
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1807
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -984,13 +1013,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 7          | left     | green | incongruent | left     |
+      | 7          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -998,7 +1028,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1552
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1741
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1021,7 +1051,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1029,7 +1060,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1428
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1302
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1052,7 +1083,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1060,7 +1092,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1974
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1514
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1077,13 +1109,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 7          | right    | red   | incongruent | right    |
+      | 7          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1091,7 +1124,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1758
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1110
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1108,13 +1141,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 8          | left     | green | incongruent | left     |
+      | 8          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1122,7 +1156,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1500
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1978
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1145,7 +1179,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1153,7 +1188,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1887
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1179
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1176,7 +1211,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1184,7 +1220,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1400
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1742
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1201,13 +1237,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 8          | right    | red   | incongruent | right    |
+      | 8          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1215,7 +1252,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1881
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1561
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1232,13 +1269,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 9          | left     | green | incongruent | left     |
+      | 9          | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1246,7 +1284,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1064
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1073
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1269,7 +1307,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1277,7 +1316,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1120
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1422
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1300,7 +1339,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1308,7 +1348,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1633
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1000
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1325,13 +1365,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 9          | right    | red   | incongruent | right    |
+      | 9          | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1339,7 +1380,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1319
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1665
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1356,13 +1397,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 10         | left     | green | incongruent | left     |
+      | 10         | left     | green | congruent   | left     |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1370,7 +1412,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1723
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1000
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1393,7 +1435,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1401,7 +1444,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1586
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1047
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1424,7 +1467,8 @@ Test: Simon
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1432,7 +1476,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1375
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1021
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1449,13 +1493,14 @@ Test: Simon
       
       | repetition | position | color | congruency  | expected |
       |------------+----------+-------+-------------+----------|
-      | 10         | right    | red   | incongruent | right    |
+      | 10         | right    | red   | congruent   | right    |
 
       Variables:
         positions = [left, right]
         colors = [green, red]
         responses = [left, right]
-        repetitions = 1
+        repetitions = 10
+        proba = black
         repeat_index = 1
         practice = False
         random = True
@@ -1463,7 +1508,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1690
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1212
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0

@@ -9,12 +9,13 @@ positions = [left, right]
 colors = [green, red]
 responses = positions
 repetitions = 1
+proba = black
 
 test Simon {
 
       | repetition          | position       | color       | congruency                                         | expected                          |
-      |---------------------+----------------+-------------+----------------------------------------------------+-----------------------------------|
-      | 1..repetitions loop | positions loop | colors loop | congruent if position == response else incongruent | left if color == green else right |
+      | ------------------- | -------------- | ----------- | -------------------------------------------------- | --------------------------------- |
+      | 1..repetitions loop | positions loop | colors loop | congruent if position == expected else incongruent | left if color == green else right |
 
 
       /* Since this is a relatively small condition table we could just
@@ -67,4 +68,3 @@ flow {
     show Real
     execute Simon(repetitions 10, random true)
 }
-

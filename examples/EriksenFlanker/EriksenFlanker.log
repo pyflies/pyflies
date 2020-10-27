@@ -21,11 +21,11 @@ Test: EriksenFlanker
   | 1..repeats loop | directions loop | congruencies loop |
 
   Components with param values:
-  EriksenFlanker_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-  EriksenFlanker_image_1 = image(file default path, size 100 constant, ori 0 constant, position (0, 0) constant, color #ffffff constant, fillColor #ffffff constant, )
-  EriksenFlanker_keyboard_2 = keyboard(valid [left, right] constant, correct space, )
-  EriksenFlanker_circle_3 = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
-  EriksenFlanker_circle_4 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  EriksenFlanker_cross = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  EriksenFlanker_image = image(file default path, size 100 constant, ori 0 constant, position (0, 0) constant, color #ffffff constant, fillColor #ffffff constant, )
+  EriksenFlanker_keyboard = keyboard(valid [left, right] constant, correct space, )
+  EriksenFlanker_circle = circle(fillColor green constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
+  EriksenFlanker_circle_2 = circle(fillColor red constant, color green constant, radius 100 constant, position (0, 0) constant, size 20 constant, )
 
 
 ----------------------------------------------------------------------------
@@ -75,7 +75,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1630
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2029
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -105,7 +105,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2102
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2626
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -135,7 +135,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2148
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1673
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -165,7 +165,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2439
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2242
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -224,7 +224,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -232,7 +232,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1964
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1722
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -254,7 +254,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -262,7 +262,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1939
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1929
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -284,7 +284,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -292,7 +292,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2954
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1100
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -314,7 +314,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -322,7 +322,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2868
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1204
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -344,7 +344,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -352,7 +352,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1628
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1889
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -374,7 +374,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -382,7 +382,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1834
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1445
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -404,7 +404,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -412,7 +412,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1190
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2923
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -434,7 +434,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -442,7 +442,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1248
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2723
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -464,7 +464,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -472,7 +472,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2224
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1571
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -494,7 +494,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -502,7 +502,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2071
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2280
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -524,7 +524,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -532,7 +532,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2973
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2829
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -554,7 +554,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -562,7 +562,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2190
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1084
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -584,7 +584,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -592,7 +592,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1662
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2107
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -614,7 +614,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -622,7 +622,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2859
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1140
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -644,7 +644,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -652,7 +652,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1340
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1022
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -674,7 +674,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -682,7 +682,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1310
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1522
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -704,7 +704,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -712,7 +712,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2960
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2904
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -734,7 +734,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -742,7 +742,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1431
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1652
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -764,7 +764,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -772,7 +772,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2351
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1912
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -794,7 +794,7 @@ Test: EriksenFlanker
       Variables:
         directions = [left, right]
         congruencies = [incongruent, congruent]
-        repeats = 1
+        repeats = 5
         repeat_index = 1
         practice = False
         random = True
@@ -802,7 +802,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1309
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1634
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0

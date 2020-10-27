@@ -26,9 +26,9 @@ Test: showImages
   | 1..10 loop | {{image_type}}/{{trial_no}}.png |
 
   Components with param values:
-  showImages_cross_0 = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-  showImages_image_1 = image(file default path, ori 0 constant, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
-  showImages_keyboard_2 = keyboard(valid space constant, correct space constant, )
+  showImages_cross = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  showImages_image = image(file default path, ori 0 constant, position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  showImages_keyboard = keyboard(valid space constant, correct space constant, )
 
 
 ----------------------------------------------------------------------------
@@ -76,7 +76,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 771
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 513
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -103,7 +103,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 566
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 470
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -130,7 +130,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 592
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 987
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -157,7 +157,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 936
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 870
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -184,7 +184,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 596
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 666
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -211,7 +211,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 664
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 621
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -238,7 +238,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 653
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 607
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -265,7 +265,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 643
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 729
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -292,7 +292,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 663
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -319,7 +319,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 463
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 521
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -371,7 +371,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 413
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 764
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -398,7 +398,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 752
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 466
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -425,7 +425,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 907
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 519
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -452,7 +452,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 821
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 541
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -479,7 +479,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 855
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 713
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -506,7 +506,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 905
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -533,7 +533,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 848
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 436
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -560,7 +560,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 461
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 897
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -587,7 +587,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 749
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 689
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -614,7 +614,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 596
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 891
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -666,7 +666,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 841
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 997
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -693,7 +693,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 522
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 790
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -720,7 +720,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 919
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 463
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -747,7 +747,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 841
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 879
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -774,7 +774,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 639
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 794
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -801,7 +801,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 898
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 416
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -828,7 +828,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 932
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 831
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -855,7 +855,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 566
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 422
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -882,7 +882,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 622
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 933
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -909,7 +909,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 586
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 465
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -967,7 +967,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 992
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 807
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -994,7 +994,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 687
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 799
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1021,7 +1021,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 886
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 582
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1048,7 +1048,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 910
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 891
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1075,7 +1075,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 551
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 533
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1102,7 +1102,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 882
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 980
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1129,7 +1129,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 791
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 961
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1156,7 +1156,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 674
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 597
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1183,7 +1183,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 827
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 917
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1210,7 +1210,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 496
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 641
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1262,7 +1262,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 581
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 737
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1289,7 +1289,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 568
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 917
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1316,7 +1316,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 601
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 591
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1343,7 +1343,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 993
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 494
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1370,7 +1370,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 410
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 480
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1397,7 +1397,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 503
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 598
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1424,7 +1424,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 689
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 979
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1451,7 +1451,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 969
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 879
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1478,7 +1478,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 578
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 805
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1505,7 +1505,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 947
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 699
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1557,7 +1557,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 635
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 639
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1584,7 +1584,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 973
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1611,7 +1611,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 820
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 966
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1638,7 +1638,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 418
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 921
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1665,7 +1665,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 872
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 749
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1692,7 +1692,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 598
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 688
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1719,7 +1719,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 679
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 809
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1746,7 +1746,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 538
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1773,7 +1773,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 432
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 737
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1800,7 +1800,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 534
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 777
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0

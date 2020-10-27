@@ -143,7 +143,7 @@ ScreenType:
     'screen' name=ID "{"
     /*    content=/(.|\n)*?(?=})/  */
     // Everything until closing curly brackets but also
-    // collect string interpolation {{...}}
-    content=/([^}]*(}})?)*/
+    // collect string interpolation {{...}} and jinja statements {% %}
+    content=/(\}\}|%\}|[^\}])*/
     '}'
 ;

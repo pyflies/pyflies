@@ -45,16 +45,29 @@ class ComponentInst(EvaluatedBase):
             test_name = test.name
 
         # Calculate component name based on the value provided in the model or
-        # component index if name is not given
+        # component type and index if name is not given
         if spec.parent.name:
             self.name = '{}_{}'.format(test_name, spec.parent.name)
         else:
-            cc_index = spec.parent.parent.parent.components_cond.index(spec.parent.parent)
-            index = sum([len(x.comp_times)
-                         for x in spec.parent.parent.parent.components_cond[:cc_index]])
-            index += spec.parent.parent.comp_times.index(spec.parent)
+            components_cond = spec.parent.parent.parent.components_cond
+
+            # Current components condition is LHS -> RHS
+            cc_index = components_cond.index(spec.parent.parent)
+
+            # Calculate the number of the components of the same time until this
+            # components condition statement
+            index = sum([len([ct for ct in x.comp_times
+                              if ct.component.type is self.spec.type
+                              and not ct.component.parent.name])
+                         for x in components_cond[:cc_index]])
+            index += [ct for ct in spec.parent.parent.comp_times
+                      if ct.component.type is self.spec.type
+                      and not ct.component.parent.name].index(spec.parent)
+            if index == 1: index += 1
+
             # Calculate component instance name if not given in the model
-            self.name = '{}_{}_{}'.format(test_name, self.spec.type.name, index)
+            self.name = '{}_{}{}'.format(test_name, self.spec.type.name,
+                                         '_{}'.format(index) if index > 0 else '')
 
         # Instantiate parameters
         self._params = {}

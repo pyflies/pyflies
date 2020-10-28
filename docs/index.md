@@ -218,3 +218,8 @@ with `pyflies`.
 
 
 
+<a href="images/pyFliesGUI-generated.png" target="_blank"><img src="images/pyFliesGUI-generated.png"/></a>
+
+## Credits
+
+pyFlies icon is based on [Icon Fonts](http://www.onlinewebfonts.com/icon) licensed by CC BY 3.0.

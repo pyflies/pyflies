@@ -1,0 +1,21 @@
+# Component definitions
+
+---
+
+Components are internally defined using DSL for component specification.
+Currently this DSL is not exposed to end users but we have plan to do so in the
+future to support specification of additional components that are not provided
+by pyFlies. We must assert that making non-standard components will make
+experiment specification non-portable across different target generators but it
+could be invaluable in the situations where non-standard components are required
+and portability is not an issue.
+
+This page is generated on {{now}} from component descriptions during build so
+what is documented here is what pyFlies actually uses:
+
+{% for component in components %}
+## {{component.name}}
+
+{{component.content|indent(width=4, indentfirst=True)}}
+
+{% endfor %}

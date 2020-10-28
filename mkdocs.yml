@@ -5,15 +5,16 @@ site_author: Igor Dejanović
 
 repo_url: https://github.com/pyflies/pyflies
 theme: readthedocs
-extra_css: [style.css, css/version-select.css]
+extra_css: [style.css, js/version-select.css]
 
 pages:
 - Home: index.md
-- Getting started: getting_started.md
 - Test definition: test.md
 - Condition tables: condition-tables.md
 - Timing specification: timing.md
 - Components: components.md
+- Flow: flow.md
+- Metrics: metrics.md
 - About:
     - Release Notes: about/release_notes.md
     - Contributing: about/contributing.md

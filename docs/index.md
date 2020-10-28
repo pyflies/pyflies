@@ -27,7 +27,7 @@ and we plan to build generators for other targets.
    popular code editors today.
  * Written in Python programming language. Easy to extend. Generators are
    plugins which can be developed independently.
- * Fully open source. GPL license.
+ * Fully free and open source. GPL license.
    [Hosted on github](https://github.com/pyflies/pyflies). Easy to contribute to.
 
 <a href="images/Workflow.png" target="_blank"><img src="images/Workflow.png"/></a>
@@ -101,16 +101,24 @@ For all questions, feature requires and bug report please use [the GitHub issue 
 
 ### Editing specification
 
+Experiment is created and modified in a convenient to use editor.
+
 <a href="images/pyFliesGUI.png" target="_blank"><img src="images/pyFliesGUI.png"/></a>
 
 ### Generated log
+
+From an experiment specification a full log of the experiment flow is generated
+which can be used to investigate and debug the experiment.
 
 <a href="images/pyFliesGUI-log.png" target="_blank"><img src="images/pyFliesGUI-log.png"/></a>
 
 ### Generated PsychoPy code
 
+From an experiment specification Python code for PsychoPy is generated which is
+used to run the experiment.
+
 <a href="images/pyFliesGUI-generated.png" target="_blank"><img src="images/pyFliesGUI-generated.png"/></a>
 
 ## Credits
 
-pyFlies icon is based on [Icon Fonts](http://www.onlinewebfonts.com/icon) licensed by CC BY 3.0.
+pyFlies icon is based on an icon licensed by CC BY 3.0 from [Icon Fonts](http://www.onlinewebfonts.com/icon).

@@ -7,7 +7,7 @@ repo_url: https://github.com/pyflies/pyflies
 theme: readthedocs
 extra_css: [style.css, js/version-select.css]
 
-pages:
+nav:
 - Home: index.md
 - Test definition: test.md
 - Condition tables: condition-tables.md
@@ -22,4 +22,3 @@ pages:
 
 markdown_extensions:
     - admonition:
-

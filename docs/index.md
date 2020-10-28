@@ -119,6 +119,5 @@ used to run the experiment.
 
 <a href="images/pyFliesGUI-generated.png" target="_blank"><img src="images/pyFliesGUI-generated.png"/></a>
 
-## Credits
 
 pyFlies icon is based on an icon licensed by CC BY 3.0 from [Icon Fonts](http://www.onlinewebfonts.com/icon).

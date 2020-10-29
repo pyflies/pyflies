@@ -10,6 +10,7 @@ extra_css: [style.css, js/version-select.css]
 nav:
 - Home: index.md
 - Test definition: test.md
+- Types and expressions: types-expressions.md
 - Condition tables: condition-tables.md
 - Timing specification: timing.md
 - Components: components.md

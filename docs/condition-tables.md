@@ -19,7 +19,10 @@ table row.
     | numbers loop | parities |
 
 The header of the table contains variable names while the cells of the rest of
-the table contain [expressions]().
+the table contain [expressions](types-expressions.md#expressions).
+
+
+## Tables expansion
 
 Tables are usually, although not necessary, written in a compact form which is
 expanded during compilation. This compact representation is shorted, require

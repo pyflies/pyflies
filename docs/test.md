@@ -39,7 +39,7 @@ There are three variables defined in the header of the table of conditions:
 contains the direction of the target stimuli, `category` - holds information if
 the current trial is congruent or not.
 
-## Table expansion
+## Test table expansion
 
 Values of each trial variable is given as an expression in the table first
 non-header row. You can see that each expression is a `loop` expression which
@@ -56,13 +56,16 @@ For `repeats` value of `1`, as defined globally, this table expands as follow:
 We could as well write condition table in the expanded style but it would be
 less flexible as it would be harder to add new variables, to use `repetition`
 for total number of trials etc. For the details of condition table specification
-see [Condition Tables](condition-tables.md) section.
+and expansion see [Condition Tables](condition-tables.md) section.
 
 !!! tip
 
     Although, pyFlies specifications are just plain textual files and can be edited
     in any text editor, it is much more convenient to edit tables in editor that
     supports them, like provided [VS Code pyFlies extension]().
+
+
+## Components specification
 
 The second part of the test definition are mappings of components to trials.
 These mappings define the components (stimuli and inputs), their timings and

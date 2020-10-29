@@ -10,7 +10,7 @@ experiment specification non-portable across different target generators but it
 could be invaluable in the situations where non-standard components are required
 and portability is not an issue.
 
-This page is generated on 2020-10-28 19:33:00 from component descriptions during build so
+This page is generated on 2020-10-29 14:51:41 from component descriptions during build so
 what is documented here is what pyFlies actually uses:
 
 
@@ -124,9 +124,11 @@ what is documented here is what pyFlies actually uses:
     Visual stimuli in the form of rectangle
     """
     {
-        // override size to be of point type
-        // 0 for height means 'keep aspect ratio'
         param size:[symbol, point] = (20, 20)
+        """
+        Override `size` to be of point type representing width and height.
+        0 for height means 'keep aspect ratio'.
+        """
     }
 
 

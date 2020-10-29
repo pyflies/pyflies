@@ -16,6 +16,7 @@ nav:
 - Components: components.md
 - Screens: screens.md
 - Flow: flow.md
+- Running generators: generators.md
 - Metrics: metrics.md
 - About:
     - Release Notes: about/release_notes.md

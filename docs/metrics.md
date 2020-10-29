@@ -1,0 +1,18 @@
+# Metrics and units
+
+---
+
+Although it is not hard-coded in any way and can be interpreted by target code
+generator in arbitrary ways, we should defined some common ground to be able to
+port experiments between platforms.
+
+pyFlies uses the following metrics and units:
+
+- for coordinate system we assume that center of the screen is (0, 0) and the
+  screen extends 100 units in each direction where going up and right is
+  positive direction.
+
+- colors are in standard CSS format - `#<red two hex digits><green two hex
+  digits><blue two hex digits>`. E.g. `#a489f3`.
+  
+- for time unit we assume miliseconds.

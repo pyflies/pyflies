@@ -3,10 +3,10 @@
 ---
 
 Experiment flow is specified in the `flow` block given after all test/screens
-specification and consists of a series of statements for executing a test,
+specification and it consists of a series of statements for executing a test,
 showing a screen or repeating a test or a statement block.
 
-Here is an example of how experiment flow could look like:
+Here is an example of how experiment flow may look like:
 
     flow {
         show Intro for 5000
@@ -43,25 +43,25 @@ See the [looping section](#looping) for details on the `repeat` statement.
 ## Passing arguments to tests and screens
 
 As you may have notice in the above example, we may pass arguments to the
-screens and tests. These arguments will be available for expression evaluation
-in the tests/screens.
+screens and tests. These arguments will be available as variables in the context
+of the test/screen.
 
 For example:
 
         execute Parity(practice true, random true, some_param 42)
 
-Argument can have any name and any value type. There are two arguments from test
-execution of `bool` type that have special treatment: `practice` and `random`.
-Default values of both params is `false`.
+Argument can have any name and any value type. Two arguments of `bool` type have
+special meaning: `practice` and `random`. Default values of both those params is
+`false`. These params are applicable only to test execution.
 
 If `practice` is set to `true` then the execution will not record any data. If
 `random` is set to `true` then trials of the test will be randomized.
 
 
-## Looping
+## Repeating
 
-A flow definition may contain loops. Loop can be specified for a single test
-execution or for a block of statements. `repeat` keyword define the looping
+A flow definition may contain repeat loops. Loop can be specified for a single
+test execution or for a block of statements. `repeat` keyword define the looping
 statement. There are two form of `repeat`: `repeat <x> times` and `repeat with`.
 
 ### `repeat <x> times`
@@ -118,13 +118,14 @@ example, as:
 
     image_types = [houses, faces]
 
-used here to expand the table.
+used here to [expand the table](condition-tables.md#tables-expansion).
 
-For each row of the table the block of statement will be executed and variable
-defined in the table will be available (`image_type` and `order`). These
-variable will be propagated to all inner repeat loops and to all execution of
-tests and screens. This means that we can reference these two variable in the
-screen content and in the test expressions (e.g. component parameters in test
-definitions).
+For each row of the table the block of statement will be executed and variables
+defined in the table (`image_type` and `order`) will be available inside the
+block. These variables will be propagated to all inner repeat loops and to all
+execution of tests and screens. This means that we can reference these two
+variables in the screen content and in the test expressions (e.g. component
+parameters in test definitions).
 
-For a full experiment specification take a look at [blocking example]().
+For a full experiment specification take a look at the [blocking
+example](https://github.com/pyflies/pyflies/tree/main/examples/blocking).

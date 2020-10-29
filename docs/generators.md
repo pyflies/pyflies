@@ -3,9 +3,10 @@
 ---
 
 You can generate various content from pyFlies experiment specifications. pyFlies
-is built using [textX]() library and tool for DSL development in Python so you
-can query what generators are available using `textx` command line tools. To see
-all installed generators issue `textx list-generators` command:
+is built using [textX](https://github.com/textX/textX) library and tool for DSL
+development in Python so you can query what generators are available using
+`textx` command line tools. To see all installed generators issue `textx
+list-generators` command:
 
     $ textx list-generators                   
     any -> dot                    textX[2.3.0.dev0]             Generating dot visualizations from arbitrary models
@@ -20,11 +21,13 @@ is in `langauge -> target` format and you can see here that we have two
 pyFlies generators registered:
 
 - `pyflies -> log` -- produces log file from the `.pf` files and is builtin
-  generator of the [pyflies project](). This generator is useful for debugging
-  and overview of the course of your experiment.
+  generator of the [pyflies project](https://github.com/pyflies/pyflies). This
+  generator is useful for debugging and overview of the course of your
+  experiment.
   
 - `pyflies -> psychopy` -- this generator produces PsychoPy Python code from
-  `.pf` and this generator is provided by [pyflies-psychopy project]()
+  `.pf` and this generator is provided by [pyflies-psychopy
+  project](https://github.com/pyflies/pyflies-psychopy)
 
 
 To call generator use `textx generate` command:

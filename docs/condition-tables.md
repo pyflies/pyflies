@@ -6,8 +6,8 @@ Condition tables define one or more variables in each column and their values in
 each row. They are used to specify values of related variables given in a row
 representing a certain state.
 
-These tables are used in [test defintion](test.md) and for [repeat with]() form
-of repetition.
+These tables are used in [test defintion](test.md) and for [repeat
+with](flow.md#repeat-with) form of repetition.
 
 In the test definition each row of the table represent a single test trial.
 While in `repeat with` statement each row represent a single cycle through the
@@ -59,7 +59,7 @@ form will be:
 
 !!! tip
 
-    Use [log generator]() to produce expanded tables, and other interesting
+    Use [log generator](generators.md) to produce expanded tables, and other interesting
     information about your experiment.
 
 Now, lets expand the table a bit. Lets suppose that we want a new table variable
@@ -110,14 +110,14 @@ the current row. In compact form it is easy:
     | ----- | ----------------------- | ------------------ | -------------------------------------------- |
     | 1..8  | [red, green, blue] loop | [left, right] loop | congruent if color == green else incongruent |
 
-Notice the use of the [range type]() as the expression in the `index` column. If
-we have a sequence-like type (list or range) then the value will cycle, i.e. for
-each row the next value from the sequence will be used until the sequence is
-exhausted. After that the sequence will start from the beginning. So, we can say
-that `loop` expression take precedence. If the row has loop expressions they
-will be used, from left to right, to drive the row creation and the sequences
-will be fillers. If no loop exists in the row, sequences will expand until the
-longest is exhausted.
+Notice the use of the [range type](types-expressions.md) as the expression in
+the `index` column. If we have a sequence-like type (list or range) then the
+value will cycle, i.e. for each row the next value from the sequence will be
+used until the sequence is exhausted. After that the sequence will start from
+the beginning. So, we can say that `loop` expression take precedence. If the row
+has loop expressions they will be used, from left to right, to drive the row
+creation and the sequences will be fillers. If no loop exists in the row,
+sequences will expand until the longest is exhausted.
 
 Consider this example:
 

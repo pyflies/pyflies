@@ -16,7 +16,7 @@ pyFlies values can be of the following types:
   values directly. They are usually produced as a results of boolean expression
   evaluation. For example, an expression
   
-      direction == right
+        direction == right
       
   will have a `bool` value
   
@@ -26,8 +26,8 @@ pyFlies values can be of the following types:
 - `color` - specifies a color in standard CSS like notation where we have a `#`
   prefix and 6 hex digits, 3 groups of 2 digit where each group represents
   `red`, `green` and `blue` component of the color (e.g. `#455a45`). 
-- `string` - a string of characters enclosed with quotes (e.g. "Hello"). Strings
-  content is piped through [Jinja template
+- `string` - a string of characters enclosed with quotes (e.g. `"Hello"`).
+  Strings content is piped through [Jinja template
   engine](https://jinja.palletsprojects.com/) during evaluation so a powerful
   string interpolation is available. This interpolation is also done for
   [screens](screens.md).
@@ -36,14 +36,13 @@ pyFlies values can be of the following types:
   (e.g. `1..5`). Usually used for looping in table expansion, or producing a
   random value from a given range (e.g. `1..100 choose`).
 - `symbol` - is just a word which might get bound to a value if the variable of
-  with the same name is available in the context. If not, a symbol can be mapped
-  to a value by the compiler. Usually used to express abstract terms. For
-  example:
+  the same name is available in the context. If not, a symbol can be mapped to a
+  value by the compiler. Usually used to express abstract terms. For example:
   
         directions = [left, right]
       
     Here, values in the `directions` list are symbols whose meaning may be
-    determined by variables or by compiler.
+    determined by variables or by the compiler.
   
 !!! tip  
   
@@ -66,7 +65,8 @@ So, the form is always:
 
 ### loop
 
-`loop` expression is used in [table expansion](). Its form is:
+`loop` expression is used in [table
+expansion](condition-tables.md#tables-expansion). Its form is:
 
     <list of range> loop
     
@@ -77,8 +77,8 @@ For example:
 
 ### Logic
 
-Logic operators are: `or`, `not`, and `and`. They are used as standard infix
-binary operators:
+Logic operators are: `or`, `not`, and `and`. `or` and `and` are standard infix
+binary operators while `not` is an unary prefix operator:
 
     color == blue and not practice
 
@@ -88,8 +88,8 @@ binary operators:
 Comparison operator can compare value. They are used as standard infix binary
 operators. Following operators are supported:
 
-- `==` - equality
-- `!=` - inequality
+- `==` - equal
+- `!=` - not equal
 - `<=` - less or equals than
 - `>=` - greater or equals than
 - `>` - greater than
@@ -113,3 +113,9 @@ operations are given in a postfix form and are applicable only on lists and rang
 
         1..100 shuffle
 
+In the current implementation of the compiler all expressions are pre-evaluated
+by the compilation process. E.g. random values are predetermined in compile
+time, not run-time. This is done to make generator development easier as
+otherwise compiler would need to translate all expressions to the target
+language expressions. This is an implementation detail that might change in the
+future.

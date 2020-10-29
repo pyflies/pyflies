@@ -54,20 +54,25 @@ class ComponentInst(EvaluatedBase):
             # Current components condition is LHS -> RHS
             cc_index = components_cond.index(spec.parent.parent)
 
-            # Calculate the number of the components of the same time until this
+            # Calculate the number of the components of the same type until this
             # components condition statement
             index = sum([len([ct for ct in x.comp_times
                               if ct.component.type is self.spec.type
                               and not ct.component.parent.name])
                          for x in components_cond[:cc_index]])
+
+            # Add number of component of the same type up until this component
+            # for the same component condition statement
             index += [ct for ct in spec.parent.parent.comp_times
                       if ct.component.type is self.spec.type
                       and not ct.component.parent.name].index(spec.parent)
-            if index == 1: index += 1
+
+            # The index shall be 1 based
+            index += 1
 
             # Calculate component instance name if not given in the model
             self.name = '{}_{}{}'.format(test_name, self.spec.type.name,
-                                         '_{}'.format(index) if index > 0 else '')
+                                         '_{}'.format(index) if index > 1 else '')
 
         # Instantiate parameters
         self._params = {}

@@ -64,7 +64,8 @@ To verify that pyFlies is installed you can run:
 
     textx list-generators
     
-You can see in the output that the generator pyFlies -> PsychoPy is available.
+You can see in the output that [the generator pyflies ->
+psychopy](generators.md) is available.
 
 pyFlies specifications are pure text and can be edited by any textual editor but
 for a good experience (especially with tables) it is recommended that VS Code
@@ -83,19 +84,21 @@ for your operating system. In the list of extensions find pyFlies and click on
 
 ### Video tutorials
 
-The best way to start with pyFlies is by watching some of our video tutorials.
+The best way to start with pyFlies is by watching some of our video tutorials
+(to be done soon).
 
 
 ### Try examples
 
-Clone or [download](https://github.com/igordejanovic/pyFlies/archive/master.zip)
+Clone or [download](https://github.com/pyflies/pyflies/archive/main.zip)
 pyFlies repo. Unpack and load examples from `examples` folder in the editor or
 pyFlies GUI. Update experiment definition to your taste. Generate and run experiment.
 
 
 ### Discuss, ask questions
 
-For all questions, feature requires and bug report please use [the GitHub issue tracker]()
+For all questions, feature requires and bug report please use [the GitHub issue
+tracker](https://github.com/pyflies/pyflies/issues).
 
 ## Screenshots (click for a popup)
 

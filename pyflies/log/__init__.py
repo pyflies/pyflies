@@ -32,4 +32,4 @@ def unindent(s):
     """
     Remove whitespaces from the beginning of each line of the string s.
     """
-    return re.sub(r'\n\s+', r'\n', s)
+    return re.sub(r'\n[ \t]+', r'\n', s)

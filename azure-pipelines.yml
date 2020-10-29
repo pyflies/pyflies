@@ -42,8 +42,3 @@ steps:
 - script: |
     ./runtests.sh
   displayName: 'pytest'
-
-- task: PublishCodeCoverageResults@1
-  inputs:
-    #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
-    summaryFileLocation: 

@@ -2,7 +2,7 @@
 
 # pyFlies
 
-A Domain-Specific Language (DSL) for experiments specification in cognitive sciences
+A Domain-Specific Language (DSL) for experiments specification in psychology and neuroscience
 
 ---
 

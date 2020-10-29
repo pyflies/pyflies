@@ -1,6 +1,6 @@
 site_name: pyFlies
 
-site_description: A Domain-Specific Language (DSL) for specification of experiments in cognitive cognitive sciences
+site_description: A Domain-Specific Language (DSL) for experiments specification in psychology and neuroscience
 site_author: Igor Dejanović
 
 repo_url: https://github.com/pyflies/pyflies

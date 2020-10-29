@@ -18,6 +18,7 @@ nav:
 - Flow: flow.md
 - Running generators: generators.md
 - Metrics: metrics.md
+- Target configuration: target.md
 - About:
     - Release Notes: about/release_notes.md
     - Contributing: about/contributing.md

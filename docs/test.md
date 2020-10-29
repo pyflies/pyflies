@@ -107,9 +107,9 @@ durations when we have input components which terminate phases on user input.
 
 !!! tip
 
-    [Expressions](expressions.md) are used almost everywhere and they can range from
-    just a simple literal value to a more complex expressions using local and global
-    variables.
+    [Expressions](types-expressions.md#expressions) are used almost everywhere and
+    they can range from just a simple literal value to a more complex expressions
+    using local and global variables.
 
 In the `exec` phase we have two components `image` and `keyboard`. First
 component will display the given image, and the second will wait for the user

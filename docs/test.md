@@ -124,7 +124,7 @@ valid keys and correct response in abstract terms representing directions.
 pyFlies tries to capture the essence of the test and thus parameters and
 variables are defined in abstract terms. The detailed mapping is provided by the
 code generator and the default mappings can be overriden by the [`target`
-configuration](targets.md)
+configuration](target.md)
 
 At the end we specify what will happen in `correct` and `error` phases of the
 trial. We choose to show green or red circle but we could also choose to play

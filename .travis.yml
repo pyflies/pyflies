@@ -1,0 +1,25 @@
+language: python
+python:
+    - "3.4"
+    - "3.5"
+    - "3.6"
+    - "3.7"
+    - "3.8"
+
+before_install:
+    # Installing dev versions of dependencies
+    - cd ..
+    - git clone --depth=1 --branch=master git://github.com/textX/Arpeggio.git
+    - git clone --depth=1 --branch=master git://github.com/textX/textX-jinja.git
+    - git clone --depth=1 --branch=master git://github.com/textX/textX.git
+    - pip install -e Arpeggio textX textX-jinja
+    - cd pyflies
+
+install:
+    - ./install-test.sh
+
+script:
+    - ./runtests.sh
+
+after_success:
+    - coveralls

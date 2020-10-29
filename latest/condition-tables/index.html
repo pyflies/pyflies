@@ -57,14 +57,20 @@
                     <li class="toctree-l1"><a class="reference internal" href="../test/">Test definition</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../types-expressions/">Types and expressions</a>
+                    </li>
+                </ul>
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Condition tables</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tables-expansion">Tables expansion</a>
+    </li>
     </ul>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../timing.md">Timing specification</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing specification</a>
                     </li>
                 </ul>
                 <ul>
@@ -72,11 +78,19 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../flow.md">Flow</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../screens/">Screens</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../metrics.md">Metrics</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../generators/">Running generators</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics/">Metrics</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
@@ -128,8 +142,8 @@
 <p>Condition tables define one or more variables in each column and their values in
 each row. They are used to specify values of related variables given in a row
 representing a certain state.</p>
-<p>These tables are used in <a href="../test/">test defintion</a> and for <a href="">repeat with</a> form
-of repetition.</p>
+<p>These tables are used in <a href="../test/">test defintion</a> and for <a href="../flow/#repeat-with">repeat
+with</a> form of repetition.</p>
 <p>In the test definition each row of the table represent a single test trial.
 While in <code>repeat with</code> statement each row represent a single cycle through the
 repeat loop where the values of the variables will be from the corresponding
@@ -139,7 +153,8 @@ table row.</p>
 | numbers loop | parities |
 </code></pre>
 <p>The header of the table contains variable names while the cells of the rest of
-the table contain <a href="">expressions</a>.</p>
+the table contain <a href="../types-expressions/#expressions">expressions</a>.</p>
+<h2 id="tables-expansion">Tables expansion</h2>
 <p>Tables are usually, although not necessary, written in a compact form which is
 expanded during compilation. This compact representation is shorted, require
 less screen space and gives more flexibility in adding new variables.</p>
@@ -170,7 +185,7 @@ form will be:</p>
 </code></pre>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Use <a href="">log generator</a> to produce expanded tables, and other interesting
+<p>Use <a href="../generators/">log generator</a> to produce expanded tables, and other interesting
 information about your experiment.</p>
 </div>
 <p>Now, lets expand the table a bit. Lets suppose that we want a new table variable
@@ -215,14 +230,14 @@ the current row. In compact form it is easy:</p>
 | ----- | ----------------------- | ------------------ | -------------------------------------------- |
 | 1..8  | [red, green, blue] loop | [left, right] loop | congruent if color == green else incongruent |
 </code></pre>
-<p>Notice the use of the <a href="">range type</a> as the expression in the <code>index</code> column. If
-we have a sequence-like type (list or range) then the value will cycle, i.e. for
-each row the next value from the sequence will be used until the sequence is
-exhausted. After that the sequence will start from the beginning. So, we can say
-that <code>loop</code> expression take precedence. If the row has loop expressions they
-will be used, from left to right, to drive the row creation and the sequences
-will be fillers. If no loop exists in the row, sequences will expand until the
-longest is exhausted.</p>
+<p>Notice the use of the <a href="../types-expressions/">range type</a> as the expression in
+the <code>index</code> column. If we have a sequence-like type (list or range) then the
+value will cycle, i.e. for each row the next value from the sequence will be
+used until the sequence is exhausted. After that the sequence will start from
+the beginning. So, we can say that <code>loop</code> expression take precedence. If the row
+has loop expressions they will be used, from left to right, to drive the row
+creation and the sequences will be fillers. If no loop exists in the row,
+sequences will expand until the longest is exhausted.</p>
 <p>Consider this example:</p>
 <pre><code>| color              | direction     |
 | ------------------ | ------------- |
@@ -274,10 +289,10 @@ tools.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../components/" class="btn btn-neutral float-right" title="Components">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../timing/" class="btn btn-neutral float-right" title="Timing specification">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../test/" class="btn btn-neutral" title="Test definition"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../types-expressions/" class="btn btn-neutral" title="Types and expressions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -305,10 +320,10 @@ tools.</p>
           <a href="https://github.com/pyflies/pyflies/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../test/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../types-expressions/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../components/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../timing/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

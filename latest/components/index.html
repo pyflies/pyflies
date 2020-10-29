@@ -58,11 +58,15 @@
                     </li>
                 </ul>
                 <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../types-expressions/">Types and expressions</a>
+                    </li>
+                </ul>
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../condition-tables/">Condition tables</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../timing.md">Timing specification</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing specification</a>
                     </li>
                 </ul>
                 <ul class="current">
@@ -94,11 +98,19 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../flow.md">Flow</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../screens/">Screens</a>
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="" href="../metrics.md">Metrics</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../generators/">Running generators</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics/">Metrics</a>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">About</span></p>
@@ -145,7 +157,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="component-definitions">Component definitions</h1>
+                <h1 id="component-types">Component types</h1>
 <hr />
 <p>Components are internally defined using DSL for component specification.
 Currently this DSL is not exposed to end users but we have plan to do so in the
@@ -154,7 +166,7 @@ by pyFlies. We must assert that making non-standard components will make
 experiment specification non-portable across different target generators but it
 could be invaluable in the situations where non-standard components are required
 and portability is not an issue.</p>
-<p>This page is generated on 2020-10-28 19:33:00 from component descriptions during build so
+<p>This page is generated on 2020-10-29 14:51:41 from component descriptions during build so
 what is documented here is what pyFlies actually uses:</p>
 <h2 id="base">base</h2>
 <pre><code>// Base abstract components that define common properties
@@ -255,9 +267,11 @@ Visual stimuli representing line between two points
 Visual stimuli in the form of rectangle
 """
 {
-    // override size to be of point type
-    // 0 for height means 'keep aspect ratio'
     param size:[symbol, point] = (20, 20)
+    """
+    Override `size` to be of point type representing width and height.
+    0 for height means 'keep aspect ratio'.
+    """
 }
 </code></pre>
 <h2 id="image">image</h2>
@@ -342,10 +356,10 @@ Component for implementing mouse input
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../about/release_notes/" class="btn btn-neutral float-right" title="Release Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../screens/" class="btn btn-neutral float-right" title="Screens">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../condition-tables/" class="btn btn-neutral" title="Condition tables"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../timing/" class="btn btn-neutral" title="Timing specification"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -373,10 +387,10 @@ Component for implementing mouse input
           <a href="https://github.com/pyflies/pyflies/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../condition-tables/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../timing/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../about/release_notes/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../screens/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

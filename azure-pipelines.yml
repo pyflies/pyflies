@@ -4,14 +4,13 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
 trigger:
-- master
+- main
+- azure-pipelines
 
 pool:
   vmImage: 'ubuntu-latest'
 strategy:
   matrix:
-    Python35:
-      python.version: '3.5'
     Python36:
       python.version: '3.6'
     Python37:
@@ -27,10 +26,24 @@ steps:
 
 - script: |
     python -m pip install --upgrade pip
-    pip install -e .[test]
+    git clone --depth=1 --branch=master git://github.com/textX/Arpeggio.git
+    git clone --depth=1 --branch=master git://github.com/textX/textX-jinja.git
+    git clone --depth=1 --branch=master git://github.com/textX/textX.git
+    pip install -e Arpeggio
+    pip install -e textX
+    pip install -e textX-jinja
     pip install pytest pytest-azurepipelines
+  workingDirectory: $(Agent.BuildDirectory)
   displayName: 'Install dependencies'
+
+- script: pip install -e .[test]
+  displayName: 'Install pyflies' 
 
 - script: |
     ./runtests.sh
   displayName: 'pytest'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    #codeCoverageTool: 'JaCoCo' # Options: cobertura, jaCoCo
+    summaryFileLocation: 

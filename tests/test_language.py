@@ -602,26 +602,26 @@ def test_conditions_table_phases_evaluation():
     for trial in range(4):
         # fix
         s = t[trial].ph_fix[0]
-        assert s.component.name == 'Example_cross_0'
+        assert s.component.name == 'Example_cross'
         assert s.at == 0
         assert 200 <= s.duration <= 500
 
         # exec
         st = t[trial].ph_exec[0]
-        assert st.component.name == 'Example_circle_1'
+        assert st.component.name == 'Example_circle'
         assert st.at == 0
         assert 300 <= st.duration <= 700
 
         # error
         st = t[trial].ph_error[0]
-        assert st.component.name == 'Example_sound_2' \
-            if t[trial][1].name == 'green' else 'Example_sound_3'
+        assert st.component.name == 'Example_sound' \
+            if t[trial][1].name == 'green' else 'Example_sound_2'
         # Frequencies are 300 when color is green and 500 otherwise
         assert st.component.params[0].value == 300 if t[trial][1].name == 'green' else 500
 
         # Correct
         st = t[trial].ph_correct[0]
-        assert st.component.name == 'Example_sound_4'
+        assert st.component.name == 'Example_sound_3'
         assert st.component.params[0].name == 'freq'
         assert st.component.params[0].value == 1000
 
@@ -647,20 +647,20 @@ def test_experiment_structure():
     # Practice run
     ptest = m.flow.block.statements[1]
     assert [x.value.eval() for x in ptest.what.args if x.name == 'practice'][0]
-    assert ptest.times == 0 and ptest._with is None
+    assert ptest.times is None and ptest._with is None
 
     # Block repeat
     rtest = m.flow.block.statements[2]
-    assert rtest.times == 3
+    assert rtest.times.eval() == 3
     assert not rtest.what.random
 
     # Inner test
     itest = rtest.what.statements[1]
-    assert itest.times == 5
+    assert itest.times.eval() == 5
 
     # Random repeat
     rtest = m.flow.block.statements[3]
-    assert rtest.times == 2
+    assert rtest.times.eval() == 2
     assert rtest.what.random
 
 

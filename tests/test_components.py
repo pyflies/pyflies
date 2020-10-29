@@ -192,26 +192,26 @@ def test_default_component_instances():
 
     # Non-constant param with transitive reference to condition table
     comp = test.components[3]
-    assert comp.name == 'TestModel_sound_3'
+    assert comp.name == 'TestModel_sound'
     assert comp.params[0].type.name == 'freq'
     assert not comp.params[0].is_constant
 
     # Constant parameter with transitive reference to local scope
     comp = test.components[4]
-    assert comp.name == 'TestModel_sound_4'
+    assert comp.name == 'TestModel_sound_2'
     assert comp.params[0].type.name == 'freq'
     assert comp.params[0].is_constant
     assert comp.params[0].value == 123
 
     # Mouse target is referenced component
     comp = test.components[8]
-    assert comp.name == 'TestModel_mouse_8'
+    assert comp.name == 'TestModel_mouse'
     assert comp.params[0].name == 'target'
     assert comp.params[0].value == test.components[2]
 
     # Mouse target may be a list
     comp = test.components[9]
-    assert comp.name == 'TestModel_mouse_9'
+    assert comp.name == 'TestModel_mouse_2'
     assert comp.params[0].name == 'target'
     assert comp.params[0].value == [test.components[2], test.components[1]]
 

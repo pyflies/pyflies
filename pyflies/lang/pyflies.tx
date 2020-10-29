@@ -108,7 +108,7 @@ Argument: name=ID value=Expression;
 
 Repeat:
     // Repeating for the given count of times
-    'repeat' times=INT ('times' | 'time')? what=Repeatable
+    'repeat' times=Expression ('times' | 'time')? what=Repeatable
     |
     // execute is just an alias for repeating 1 time
     'execute' what=Repeatable

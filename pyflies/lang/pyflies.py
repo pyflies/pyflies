@@ -199,7 +199,10 @@ class Repeat(ModelElement):
                 context.update(zip(cond_var_names, row))
                 insts.extend(self.what.eval(context))
         else:
-            times = 1 if self.times == 0 else self.times
+            if self.times is None:
+                times = 1
+            else:
+                times = self.times.eval(context)
             for idx in range(times):
                 context = dict(context)
                 if times > 1 or 'repeat_index' not in context:

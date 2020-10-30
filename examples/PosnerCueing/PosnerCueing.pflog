@@ -41,12 +41,14 @@ Test: Posner
 
   Posner Cueing
   -------------
+
   You will be presented with the two empty boxes positioned left and right from
   the center of the screen. You should concentrate on the center of the screen
   and wait for the cue. The cue will be presented as a box highlight. After some
   time a cross shaped object will be presented in some of the squares. React as
   fast as you can by pressing space button when you detect a cross shaped
   object.
+
   Press SPACE for practice block.
  
 2. TEST Posner
@@ -74,8 +76,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1176
-        target_display = 2675
+        cue_display = 1034
+        target_display = 2140
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -89,9 +91,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1221 cue:rectangle(position left, size 18, color white, fillColor black) for 1237
-          at 2458 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2458 keyboard(valid [left, right], correct right) for 0
+          at 1132 cue:rectangle(position left, size 18, color white, fillColor black) for 1315
+          at 2447 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2447 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -108,8 +110,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1062
-        target_display = 2309
+        cue_display = 1068
+        target_display = 2472
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -123,9 +125,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1234 cue:rectangle(position right, size 18, color white, fillColor black) for 1405
-          at 2639 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2639 keyboard(valid [left, right], correct left) for 0
+          at 1432 cue:rectangle(position right, size 18, color white, fillColor black) for 1372
+          at 2804 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2804 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -142,8 +144,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1040
-        target_display = 2427
+        cue_display = 1046
+        target_display = 2258
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -157,9 +159,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1254 cue:rectangle(position left, size 18, color white, fillColor black) for 1081
-          at 2335 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2335 keyboard(valid [left, right], correct left) for 0
+          at 1057 cue:rectangle(position left, size 18, color white, fillColor black) for 1298
+          at 2355 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2355 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -176,8 +178,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1002
-        target_display = 2187
+        cue_display = 1080
+        target_display = 2110
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -191,9 +193,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1105 cue:rectangle(position right, size 18, color white, fillColor black) for 1119
-          at 2224 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2224 keyboard(valid [left, right], correct right) for 0
+          at 1398 cue:rectangle(position right, size 18, color white, fillColor black) for 1439
+          at 2837 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2837 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -210,8 +212,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1439
-        target_display = 2918
+        cue_display = 1035
+        target_display = 2330
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -225,9 +227,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1163 cue:rectangle(position left, size 18, color white, fillColor black) for 1024
-          at 2187 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2187 keyboard(valid [left, right], correct left) for 0
+          at 1029 cue:rectangle(position left, size 18, color white, fillColor black) for 1332
+          at 2361 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2361 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -244,8 +246,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1064
-        target_display = 2200
+        cue_display = 1008
+        target_display = 2301
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -259,9 +261,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1353 cue:rectangle(position right, size 18, color white, fillColor black) for 1083
-          at 2436 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2436 keyboard(valid [left, right], correct right) for 0
+          at 1478 cue:rectangle(position right, size 18, color white, fillColor black) for 1020
+          at 2498 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2498 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -278,8 +280,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1111
-        target_display = 2412
+        cue_display = 1370
+        target_display = 2757
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -293,9 +295,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1409 cue:rectangle(position left, size 18, color white, fillColor black) for 1214
-          at 2623 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2623 keyboard(valid [left, right], correct left) for 0
+          at 1273 cue:rectangle(position left, size 18, color white, fillColor black) for 1068
+          at 2341 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2341 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -312,8 +314,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1220
-        target_display = 2567
+        cue_display = 1365
+        target_display = 2576
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -327,9 +329,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1097 cue:rectangle(position right, size 18, color white, fillColor black) for 1089
-          at 2186 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2186 keyboard(valid [left, right], correct right) for 0
+          at 1056 cue:rectangle(position right, size 18, color white, fillColor black) for 1151
+          at 2207 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2207 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -343,7 +345,9 @@ Test: Posner
 
   Posner Cueing
   -------------
+
   Now a REAL testing will be performed.
+
   Press SPACE to start the test.
  
 4. TEST Posner
@@ -371,8 +375,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1257
-        target_display = 2701
+        cue_display = 1477
+        target_display = 2738
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -386,9 +390,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1148 cue:rectangle(position left, size 18, color white, fillColor black) for 1226
-          at 2374 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2374 keyboard(valid [left, right], correct right) for 0
+          at 1396 cue:rectangle(position left, size 18, color white, fillColor black) for 1375
+          at 2771 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2771 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -405,8 +409,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1215
-        target_display = 2537
+        cue_display = 1259
+        target_display = 2557
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -420,9 +424,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1297 cue:rectangle(position right, size 18, color white, fillColor black) for 1276
-          at 2573 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2573 keyboard(valid [left, right], correct left) for 0
+          at 1157 cue:rectangle(position right, size 18, color white, fillColor black) for 1353
+          at 2510 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2510 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -439,8 +443,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1358
-        target_display = 2545
+        cue_display = 1451
+        target_display = 2895
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -454,9 +458,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1092 cue:rectangle(position left, size 18, color white, fillColor black) for 1124
-          at 2216 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2216 keyboard(valid [left, right], correct left) for 0
+          at 1443 cue:rectangle(position left, size 18, color white, fillColor black) for 1453
+          at 2896 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2896 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -473,8 +477,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1025
-        target_display = 2128
+        cue_display = 1062
+        target_display = 2121
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -488,9 +492,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1265 cue:rectangle(position right, size 18, color white, fillColor black) for 1030
-          at 2295 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2295 keyboard(valid [left, right], correct right) for 0
+          at 1499 cue:rectangle(position right, size 18, color white, fillColor black) for 1005
+          at 2504 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2504 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -507,8 +511,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1053
-        target_display = 2069
+        cue_display = 1120
+        target_display = 2475
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -522,9 +526,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1296 cue:rectangle(position left, size 18, color white, fillColor black) for 1322
-          at 2618 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2618 keyboard(valid [left, right], correct left) for 0
+          at 1468 cue:rectangle(position left, size 18, color white, fillColor black) for 1384
+          at 2852 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2852 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -541,8 +545,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1063
-        target_display = 2114
+        cue_display = 1316
+        target_display = 2546
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -556,9 +560,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1409 cue:rectangle(position right, size 18, color white, fillColor black) for 1203
-          at 2612 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2612 keyboard(valid [left, right], correct right) for 0
+          at 1455 cue:rectangle(position right, size 18, color white, fillColor black) for 1481
+          at 2936 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2936 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -575,8 +579,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1162
-        target_display = 2633
+        cue_display = 1377
+        target_display = 2780
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -590,9 +594,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1273 cue:rectangle(position left, size 18, color white, fillColor black) for 1383
-          at 2656 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2656 keyboard(valid [left, right], correct left) for 0
+          at 1436 cue:rectangle(position left, size 18, color white, fillColor black) for 1095
+          at 2531 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2531 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -609,8 +613,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1438
-        target_display = 2817
+        cue_display = 1283
+        target_display = 2671
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 1
@@ -624,9 +628,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1278 cue:rectangle(position right, size 18, color white, fillColor black) for 1073
-          at 2351 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2351 keyboard(valid [left, right], correct right) for 0
+          at 1237 cue:rectangle(position right, size 18, color white, fillColor black) for 1346
+          at 2583 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2583 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -660,8 +664,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1385
-        target_display = 2712
+        cue_display = 1266
+        target_display = 2713
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -675,9 +679,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1127 cue:rectangle(position left, size 18, color white, fillColor black) for 1095
-          at 2222 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2222 keyboard(valid [left, right], correct right) for 0
+          at 1197 cue:rectangle(position left, size 18, color white, fillColor black) for 1234
+          at 2431 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2431 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -694,8 +698,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1008
-        target_display = 2373
+        cue_display = 1074
+        target_display = 2538
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -709,9 +713,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1127 cue:rectangle(position right, size 18, color white, fillColor black) for 1471
-          at 2598 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2598 keyboard(valid [left, right], correct left) for 0
+          at 1125 cue:rectangle(position right, size 18, color white, fillColor black) for 1462
+          at 2587 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2587 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -728,8 +732,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1347
-        target_display = 2768
+        cue_display = 1310
+        target_display = 2563
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -743,9 +747,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1494 cue:rectangle(position left, size 18, color white, fillColor black) for 1288
-          at 2782 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2782 keyboard(valid [left, right], correct left) for 0
+          at 1387 cue:rectangle(position left, size 18, color white, fillColor black) for 1052
+          at 2439 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2439 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -762,8 +766,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1149
-        target_display = 2649
+        cue_display = 1371
+        target_display = 2702
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -777,9 +781,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1144 cue:rectangle(position right, size 18, color white, fillColor black) for 1130
-          at 2274 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2274 keyboard(valid [left, right], correct right) for 0
+          at 1493 cue:rectangle(position right, size 18, color white, fillColor black) for 1066
+          at 2559 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2559 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -796,8 +800,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1230
-        target_display = 2328
+        cue_display = 1170
+        target_display = 2455
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -811,9 +815,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1039 cue:rectangle(position left, size 18, color white, fillColor black) for 1010
-          at 2049 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2049 keyboard(valid [left, right], correct left) for 0
+          at 1249 cue:rectangle(position left, size 18, color white, fillColor black) for 1405
+          at 2654 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2654 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -830,8 +834,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1251
-        target_display = 2507
+        cue_display = 1289
+        target_display = 2315
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -845,9 +849,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1067 cue:rectangle(position right, size 18, color white, fillColor black) for 1072
-          at 2139 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2139 keyboard(valid [left, right], correct right) for 0
+          at 1183 cue:rectangle(position right, size 18, color white, fillColor black) for 1424
+          at 2607 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2607 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -864,8 +868,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1294
-        target_display = 2777
+        cue_display = 1185
+        target_display = 2203
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -879,9 +883,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1076 cue:rectangle(position left, size 18, color white, fillColor black) for 1190
-          at 2266 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2266 keyboard(valid [left, right], correct left) for 0
+          at 1407 cue:rectangle(position left, size 18, color white, fillColor black) for 1272
+          at 2679 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2679 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -898,8 +902,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1211
-        target_display = 2360
+        cue_display = 1329
+        target_display = 2714
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 2
@@ -913,9 +917,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1142 cue:rectangle(position right, size 18, color white, fillColor black) for 1477
-          at 2619 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2619 keyboard(valid [left, right], correct right) for 0
+          at 1148 cue:rectangle(position right, size 18, color white, fillColor black) for 1232
+          at 2380 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2380 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -949,8 +953,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1113
-        target_display = 2589
+        cue_display = 1494
+        target_display = 2551
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -964,9 +968,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1370 cue:rectangle(position left, size 18, color white, fillColor black) for 1261
-          at 2631 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2631 keyboard(valid [left, right], correct right) for 0
+          at 1437 cue:rectangle(position left, size 18, color white, fillColor black) for 1329
+          at 2766 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2766 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -983,8 +987,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1149
-        target_display = 2281
+        cue_display = 1046
+        target_display = 2387
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -998,9 +1002,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1341 cue:rectangle(position right, size 18, color white, fillColor black) for 1051
-          at 2392 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2392 keyboard(valid [left, right], correct left) for 0
+          at 1374 cue:rectangle(position right, size 18, color white, fillColor black) for 1101
+          at 2475 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2475 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1017,8 +1021,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1171
-        target_display = 2556
+        cue_display = 1116
+        target_display = 2336
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1032,9 +1036,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1164 cue:rectangle(position left, size 18, color white, fillColor black) for 1048
-          at 2212 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2212 keyboard(valid [left, right], correct left) for 0
+          at 1013 cue:rectangle(position left, size 18, color white, fillColor black) for 1299
+          at 2312 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2312 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1051,8 +1055,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1497
-        target_display = 2958
+        cue_display = 1011
+        target_display = 2376
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1066,9 +1070,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1121 cue:rectangle(position right, size 18, color white, fillColor black) for 1100
-          at 2221 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2221 keyboard(valid [left, right], correct right) for 0
+          at 1473 cue:rectangle(position right, size 18, color white, fillColor black) for 1085
+          at 2558 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2558 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1085,8 +1089,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1357
-        target_display = 2754
+        cue_display = 1037
+        target_display = 2495
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1100,9 +1104,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1165 cue:rectangle(position left, size 18, color white, fillColor black) for 1024
-          at 2189 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2189 keyboard(valid [left, right], correct left) for 0
+          at 1359 cue:rectangle(position left, size 18, color white, fillColor black) for 1027
+          at 2386 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2386 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1119,8 +1123,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1013
-        target_display = 2148
+        cue_display = 1072
+        target_display = 2534
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1134,9 +1138,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1016 cue:rectangle(position right, size 18, color white, fillColor black) for 1409
-          at 2425 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2425 keyboard(valid [left, right], correct right) for 0
+          at 1009 cue:rectangle(position right, size 18, color white, fillColor black) for 1236
+          at 2245 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2245 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1153,8 +1157,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1190
-        target_display = 2412
+        cue_display = 1309
+        target_display = 2452
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1168,9 +1172,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1499 cue:rectangle(position left, size 18, color white, fillColor black) for 1407
-          at 2906 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2906 keyboard(valid [left, right], correct left) for 0
+          at 1486 cue:rectangle(position left, size 18, color white, fillColor black) for 1178
+          at 2664 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2664 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1187,8 +1191,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1478
-        target_display = 2776
+        cue_display = 1339
+        target_display = 2767
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 3
@@ -1202,9 +1206,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1195 cue:rectangle(position right, size 18, color white, fillColor black) for 1497
-          at 2692 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2692 keyboard(valid [left, right], correct right) for 0
+          at 1211 cue:rectangle(position right, size 18, color white, fillColor black) for 1093
+          at 2304 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2304 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1238,8 +1242,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1179
-        target_display = 2511
+        cue_display = 1088
+        target_display = 2090
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1253,9 +1257,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1086 cue:rectangle(position left, size 18, color white, fillColor black) for 1317
-          at 2403 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2403 keyboard(valid [left, right], correct right) for 0
+          at 1092 cue:rectangle(position left, size 18, color white, fillColor black) for 1480
+          at 2572 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2572 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1272,8 +1276,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1392
-        target_display = 2706
+        cue_display = 1007
+        target_display = 2341
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1287,9 +1291,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1259 cue:rectangle(position right, size 18, color white, fillColor black) for 1448
-          at 2707 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2707 keyboard(valid [left, right], correct left) for 0
+          at 1238 cue:rectangle(position right, size 18, color white, fillColor black) for 1436
+          at 2674 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2674 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1306,8 +1310,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1096
-        target_display = 2302
+        cue_display = 1233
+        target_display = 2636
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1321,9 +1325,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1109 cue:rectangle(position left, size 18, color white, fillColor black) for 1455
-          at 2564 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2564 keyboard(valid [left, right], correct left) for 0
+          at 1409 cue:rectangle(position left, size 18, color white, fillColor black) for 1090
+          at 2499 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2499 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1340,8 +1344,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1285
-        target_display = 2598
+        cue_display = 1085
+        target_display = 2457
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1355,9 +1359,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1367 cue:rectangle(position right, size 18, color white, fillColor black) for 1483
-          at 2850 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2850 keyboard(valid [left, right], correct right) for 0
+          at 1493 cue:rectangle(position right, size 18, color white, fillColor black) for 1482
+          at 2975 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2975 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1374,8 +1378,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1482
-        target_display = 2803
+        cue_display = 1088
+        target_display = 2416
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1389,9 +1393,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1049 cue:rectangle(position left, size 18, color white, fillColor black) for 1085
-          at 2134 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2134 keyboard(valid [left, right], correct left) for 0
+          at 1274 cue:rectangle(position left, size 18, color white, fillColor black) for 1363
+          at 2637 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2637 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1408,8 +1412,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1385
-        target_display = 2688
+        cue_display = 1314
+        target_display = 2423
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1423,9 +1427,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1168 cue:rectangle(position right, size 18, color white, fillColor black) for 1278
-          at 2446 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2446 keyboard(valid [left, right], correct right) for 0
+          at 1421 cue:rectangle(position right, size 18, color white, fillColor black) for 1077
+          at 2498 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2498 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1442,8 +1446,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1048
-        target_display = 2442
+        cue_display = 1473
+        target_display = 2869
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1457,9 +1461,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1188 cue:rectangle(position left, size 18, color white, fillColor black) for 1479
-          at 2667 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2667 keyboard(valid [left, right], correct left) for 0
+          at 1470 cue:rectangle(position left, size 18, color white, fillColor black) for 1024
+          at 2494 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2494 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1476,8 +1480,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1448
-        target_display = 2786
+        cue_display = 1262
+        target_display = 2417
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 4
@@ -1491,9 +1495,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1480 cue:rectangle(position right, size 18, color white, fillColor black) for 1297
-          at 2777 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2777 keyboard(valid [left, right], correct right) for 0
+          at 1197 cue:rectangle(position right, size 18, color white, fillColor black) for 1398
+          at 2595 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2595 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1527,8 +1531,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1399
-        target_display = 2494
+        cue_display = 1336
+        target_display = 2539
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1542,9 +1546,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1248 cue:rectangle(position left, size 18, color white, fillColor black) for 1126
-          at 2374 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2374 keyboard(valid [left, right], correct right) for 0
+          at 1154 cue:rectangle(position left, size 18, color white, fillColor black) for 1253
+          at 2407 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2407 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1561,8 +1565,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1194
-        target_display = 2328
+        cue_display = 1137
+        target_display = 2227
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1576,9 +1580,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1410 cue:rectangle(position right, size 18, color white, fillColor black) for 1158
-          at 2568 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2568 keyboard(valid [left, right], correct left) for 0
+          at 1265 cue:rectangle(position right, size 18, color white, fillColor black) for 1352
+          at 2617 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2617 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1595,8 +1599,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1294
-        target_display = 2568
+        cue_display = 1133
+        target_display = 2515
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1610,9 +1614,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1289 cue:rectangle(position left, size 18, color white, fillColor black) for 1418
-          at 2707 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2707 keyboard(valid [left, right], correct left) for 0
+          at 1263 cue:rectangle(position left, size 18, color white, fillColor black) for 1308
+          at 2571 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2571 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1629,8 +1633,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1467
-        target_display = 2633
+        cue_display = 1218
+        target_display = 2301
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1644,9 +1648,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1484 cue:rectangle(position right, size 18, color white, fillColor black) for 1372
-          at 2856 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2856 keyboard(valid [left, right], correct right) for 0
+          at 1492 cue:rectangle(position right, size 18, color white, fillColor black) for 1454
+          at 2946 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2946 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1663,8 +1667,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1193
-        target_display = 2489
+        cue_display = 1005
+        target_display = 2228
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1678,9 +1682,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1494 cue:rectangle(position left, size 18, color white, fillColor black) for 1305
-          at 2799 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2799 keyboard(valid [left, right], correct left) for 0
+          at 1265 cue:rectangle(position left, size 18, color white, fillColor black) for 1244
+          at 2509 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2509 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1697,8 +1701,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1297
-        target_display = 2406
+        cue_display = 1277
+        target_display = 2533
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1712,9 +1716,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1061 cue:rectangle(position right, size 18, color white, fillColor black) for 1008
-          at 2069 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2069 keyboard(valid [left, right], correct right) for 0
+          at 1102 cue:rectangle(position right, size 18, color white, fillColor black) for 1022
+          at 2124 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2124 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1731,8 +1735,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1491
-        target_display = 2772
+        cue_display = 1299
+        target_display = 2502
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1746,9 +1750,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1271 cue:rectangle(position left, size 18, color white, fillColor black) for 1279
-          at 2550 target:rectangle(position left, size 20, color white, fillColor white) for 0
-          at 2550 keyboard(valid [left, right], correct left) for 0
+          at 1272 cue:rectangle(position left, size 18, color white, fillColor black) for 1017
+          at 2289 target:rectangle(position left, size 20, color white, fillColor white) for 0
+          at 2289 keyboard(valid [left, right], correct left) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300
@@ -1765,8 +1769,8 @@ Test: Posner
 
       Variables:
         positions = [left, right]
-        cue_display = 1396
-        target_display = 2591
+        cue_display = 1164
+        target_display = 2365
         cue = cue:rectangle(position (0, 0), size 18, color white, fillColor black)
         target = target:rectangle(position (0, 0), size 20, color white, fillColor white)
         repeat_index = 5
@@ -1780,9 +1784,9 @@ Test: Posner
         exec:
           at 0 rectangle(position left, size 20, color white, fillColor black) for 0
           at 0 rectangle(position right, size 20, color white, fillColor black) for 0
-          at 1432 cue:rectangle(position right, size 18, color white, fillColor black) for 1127
-          at 2559 target:rectangle(position right, size 20, color white, fillColor white) for 0
-          at 2559 keyboard(valid [left, right], correct right) for 0
+          at 1499 cue:rectangle(position right, size 18, color white, fillColor black) for 1492
+          at 2991 target:rectangle(position right, size 20, color white, fillColor white) for 0
+          at 2991 keyboard(valid [left, right], correct right) for 0
 
         error:
           at 0 circle(fillColor red, color green, radius 100, position (0, 0), size 20) for 300

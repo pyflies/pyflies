@@ -1,5 +1,11 @@
 """
-Eriksen flanker test.
+Eriksen flanker task
+--------------------
+
+Eriksen, B. A.; Eriksen, C. W. (1974). "Effects of noise letters upon
+identification of a target letter in a non- search task". Perception and
+Psychophysics. 16: 143–149.
+
 
 """
 
@@ -37,12 +43,15 @@ Test: EriksenFlanker
 
   Welcome
   -------
+
   In the following test you will be presented with a line of 5 arrow pointing
   left or right. You should respond by the direction of the *middle arrow* as
   fast as possible by pressing left or right arrow on the keyboard or
   touching/clicking on appropriate button on the screen.
+
   You will first do a practice run with 4 trials. After that a real run with
   20 trial will be performed.
+
   Press SPACE or touch/click the screen to continue
  
 2. TEST EriksenFlanker
@@ -75,7 +84,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2029
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2904
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -105,7 +114,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2626
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1934
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -135,7 +144,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1673
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2556
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -165,7 +174,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2242
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1203
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -183,7 +192,9 @@ Test: EriksenFlanker
 
   Real block
   ----------
+
   Now a real block of trials will be performed.
+
   Press SPACE or touch/click the screen to continue
  
 4. TEST EriksenFlanker
@@ -232,7 +243,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1722
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1298
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -262,7 +273,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1929
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2536
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -292,7 +303,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1100
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1025
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -322,7 +333,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1204
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2676
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -352,7 +363,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1889
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1443
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -382,7 +393,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1445
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1563
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -412,7 +423,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2923
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1733
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -442,7 +453,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2723
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2804
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -472,7 +483,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1571
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1625
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -502,7 +513,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2280
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1159
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -532,7 +543,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2829
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1474
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -562,7 +573,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1084
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1089
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -592,7 +603,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2107
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1612
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -622,7 +633,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1140
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2317
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -652,7 +663,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1022
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2233
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -682,7 +693,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1522
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2308
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -712,7 +723,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2904
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2521
 
         exec:
           at 0 image(file images/left-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -742,7 +753,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1652
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1877
 
         exec:
           at 0 image(file images/left-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -772,7 +783,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1912
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1635
 
         exec:
           at 0 image(file images/right-incongruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0
@@ -802,7 +813,7 @@ Test: EriksenFlanker
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1634
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1963
 
         exec:
           at 0 image(file images/right-congruent.png, size 100, ori 0, position (0, 0), color #ffffff, fillColor #ffffff) for 0

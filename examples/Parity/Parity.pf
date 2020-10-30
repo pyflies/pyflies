@@ -12,7 +12,7 @@ parities = [odd, even]
 test Parity {
 
     | number       | parity   |
-    |--------------+----------|
+    | ------------ | -------- |
     | numbers loop | parities |
 
 

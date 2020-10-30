@@ -11,7 +11,7 @@ test Posner {
 
     // 3 times more congruent trials than incongruent
     | ord       | cue_pos        | target_pos                          | congruency  |
-    |-----------+----------------+-------------------------------------+-------------|
+    | --------- | -------------- | ----------------------------------- | ----------- |
     | 1         | positions loop | left if cue_pos == right else right | incongruent |
     | 1..3 loop | positions loop | cue_pos                             | congruent   |
 

@@ -15,6 +15,7 @@ Screens: instruction, break
 
 Variables:
   image_types = [houses, faces]
+  blocks_number = 3
 
 
 Test: showImages
@@ -68,6 +69,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -76,7 +78,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 513
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 506
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -95,6 +97,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -103,7 +106,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 470
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 991
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -122,6 +125,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -130,7 +134,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 987
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 532
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -149,6 +153,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -157,7 +162,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 870
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 855
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -176,6 +181,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -184,7 +190,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 666
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 616
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -203,6 +209,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -211,7 +218,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 621
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 790
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -230,6 +237,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -238,7 +246,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 607
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 808
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -257,6 +265,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -265,7 +274,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 729
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 788
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -284,6 +293,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -292,7 +302,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 663
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 684
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -311,6 +321,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 1
@@ -319,7 +330,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 521
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 721
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -363,6 +374,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -371,7 +383,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 764
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 853
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -390,6 +402,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -398,7 +411,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 466
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 429
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -417,6 +430,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -425,7 +439,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 519
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 882
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -444,6 +458,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -452,7 +467,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 541
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 766
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -471,6 +486,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -479,7 +495,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 713
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 796
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -498,6 +514,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -506,7 +523,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 400
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 405
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -525,6 +542,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -533,7 +551,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 436
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 426
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -552,6 +570,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -560,7 +579,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 897
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 683
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -579,6 +598,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -587,7 +607,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 689
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 701
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -606,6 +626,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 2
@@ -614,7 +635,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 891
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 988
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -658,6 +679,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -666,7 +688,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 997
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 527
 
         exec:
           at 0 image(file houses/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -685,6 +707,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -693,7 +716,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 790
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 471
 
         exec:
           at 0 image(file houses/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -712,6 +735,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -720,7 +744,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 463
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 481
 
         exec:
           at 0 image(file houses/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -739,6 +763,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -747,7 +772,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 879
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 892
 
         exec:
           at 0 image(file houses/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -766,6 +791,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -774,7 +800,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 794
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 678
 
         exec:
           at 0 image(file houses/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -793,6 +819,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -801,7 +828,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 416
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 441
 
         exec:
           at 0 image(file houses/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -820,6 +847,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -828,7 +856,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 831
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 675
 
         exec:
           at 0 image(file houses/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -847,6 +875,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -855,7 +884,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 422
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 690
 
         exec:
           at 0 image(file houses/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -874,6 +903,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -882,7 +912,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 933
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 920
 
         exec:
           at 0 image(file houses/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -901,6 +931,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = houses
         order = 1
         repeat_index = 3
@@ -909,7 +940,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 465
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 974
 
         exec:
           at 0 image(file houses/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -959,6 +990,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -967,7 +999,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 807
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 701
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -986,6 +1018,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -994,7 +1027,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 799
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 842
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1013,6 +1046,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1021,7 +1055,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 582
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 802
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1040,6 +1074,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1048,7 +1083,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 891
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 958
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1067,6 +1102,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1075,7 +1111,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 533
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 733
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1094,6 +1130,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1102,7 +1139,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 980
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 412
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1121,6 +1158,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1129,7 +1167,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 961
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 512
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1148,6 +1186,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1156,7 +1195,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 597
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 423
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1175,6 +1214,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1183,7 +1223,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 917
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 607
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1202,6 +1242,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 1
@@ -1210,7 +1251,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 641
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 702
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1254,6 +1295,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1262,7 +1304,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 737
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 765
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1281,6 +1323,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1289,7 +1332,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 917
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 909
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1308,6 +1351,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1316,7 +1360,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 591
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 926
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1335,6 +1379,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1343,7 +1388,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 494
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 855
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1362,6 +1407,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1370,7 +1416,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 480
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 998
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1389,6 +1435,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1397,7 +1444,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 598
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 577
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1416,6 +1463,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1424,7 +1472,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 979
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 436
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1443,6 +1491,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1451,7 +1500,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 879
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 952
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1470,6 +1519,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1478,7 +1528,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 805
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 446
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1497,6 +1547,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 2
@@ -1505,7 +1556,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 699
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 520
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1549,6 +1600,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1557,7 +1609,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 639
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 823
 
         exec:
           at 0 image(file faces/1.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1576,6 +1628,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1584,7 +1637,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 973
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 683
 
         exec:
           at 0 image(file faces/2.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1603,6 +1656,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1611,7 +1665,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 966
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 856
 
         exec:
           at 0 image(file faces/3.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1630,6 +1684,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1638,7 +1693,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 921
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 495
 
         exec:
           at 0 image(file faces/4.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1657,6 +1712,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1665,7 +1721,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 749
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 678
 
         exec:
           at 0 image(file faces/5.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1684,6 +1740,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1692,7 +1749,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 688
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 690
 
         exec:
           at 0 image(file faces/6.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1711,6 +1768,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1719,7 +1777,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 809
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 773
 
         exec:
           at 0 image(file faces/7.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1738,6 +1796,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1746,7 +1805,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 561
 
         exec:
           at 0 image(file faces/8.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1765,6 +1824,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1773,7 +1833,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 737
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 900
 
         exec:
           at 0 image(file faces/9.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -1792,6 +1852,7 @@ Test: showImages
 
       Variables:
         image_types = [houses, faces]
+        blocks_number = 3
         image_type = faces
         order = 2
         repeat_index = 3
@@ -1800,7 +1861,7 @@ Test: showImages
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 777
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 742
 
         exec:
           at 0 image(file faces/10.png, ori 0, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0

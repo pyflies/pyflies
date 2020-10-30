@@ -1,0 +1,209 @@
+"""
+A simple hello world example that will print
+10 hello messages in succession and quit.
+
+To generate PsychoPy code call PsychoPy generator
+textx generate HelloWorld.pf --target psychopy --overwrite
+
+"""
+
+Tests: MyTest
+Screens: AnExampleScreen
+
+Variables:
+  colors = [red, green, blue]
+  directions = [left, right]
+  is_congruent = incongruent
+
+
+Test: MyTest
+  --------------------------------------------------------------------------
+  Conditions:
+
+  | index | color       | direction       | congruency   |
+  |-------+-------------+-----------------+--------------|
+  | 1..8  | colors loop | directions loop | is_congruent |
+
+  Components with param values:
+
+
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+ 
+1. SCREEN  AnExampleScreen
+  ----------------------------------------------------------------------------
+
+  This is just a demonstration of parameter rendering inside screen.
+  Here is a param that renders as hello.
+
+  And here is some looping from 1 to 9
+  1. Hello world!
+  2. Hello world!
+  3. Hello world!
+  4. Hello world!
+  5. Hello world!
+  6. Hello world!
+  7. Hello world!
+  8. Hello world!
+  9. Hello world!
+
+ 
+2. TEST MyTest
+  ----------------------------------------------------------------------------
+
+  Condition table (random=False, practice=False)
+  | index | color | direction | congruency  |
+  |-------+-------+-----------+-------------|
+  | 1     | red   | left      | incongruent |
+  | 2     | red   | right     | incongruent |
+  | 3     | green | left      | congruent   |
+  | 4     | green | right     | congruent   |
+  | 5     | blue  | left      | incongruent |
+  | 6     | blue  | right     | incongruent |
+
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 1     | red   | left      | incongruent |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:2
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 2     | red   | right     | incongruent |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:3
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 3     | green | left      | congruent   |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:4
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 4     | green | right     | congruent   |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:5
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 5     | blue  | left      | incongruent |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:6
+      
+      | index | color | direction | congruency  |
+      |-------+-------+-----------+-------------|
+      | 6     | blue  | right     | incongruent |
+
+      Variables:
+        colors = [red, green, blue]
+        directions = [left, right]
+        is_congruent = incongruent
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          
+        exec:
+          
+        error:
+          
+        correct:
+          

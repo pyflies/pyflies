@@ -10,6 +10,7 @@ show either images of houses or faces. Each block will be repeated 3 times with
 """
 
 image_types = [houses, faces]
+blocks_number = 3
 
 test showImages {
 
@@ -39,7 +40,7 @@ flow {
         show instruction
         
         // 3 same blocks
-        repeat 3 times {
+        repeat blocks_number times {
             execute showImages
             show break for 1000
         }

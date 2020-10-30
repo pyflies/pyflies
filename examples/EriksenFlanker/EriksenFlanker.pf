@@ -1,5 +1,11 @@
 """
-Eriksen flanker test.
+Eriksen flanker task
+--------------------
+
+Eriksen, B. A.; Eriksen, C. W. (1974). "Effects of noise letters upon
+identification of a target letter in a non- search task". Perception and
+Psychophysics. 16: 143–149.
+
 """
 
 directions = [left, right]
@@ -14,8 +20,10 @@ test EriksenFlanker {
 
 
     fix -> cross() for 1000..3000 choose
+
     exec -> image(file "images/{{direction}}-{{category}}.png", size 100)
             keyboard(valid directions, correct direction)
+
     correct -> circle(fillColor green, color green, radius 100) for 300
     error -> circle(fillColor red, color green, radius 100) for 300
     //error -> sound(freq 300) for 500

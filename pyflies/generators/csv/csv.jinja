@@ -1,0 +1,4 @@
+{{table.spec.variables|join(',')}}
+{% for row in table %}
+{{row|map('csv_str')|join(',')}}
+{% endfor %}

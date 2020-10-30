@@ -151,21 +151,29 @@ any -&gt; dot                    textX[2.3.0.dev0]             Generating dot vi
 textX -&gt; dot                  textX[2.3.0.dev0]             Generating dot visualizations from textX grammars
 textX -&gt; PlantUML             textX[2.3.0.dev0]             Generating PlantUML visualizations from textX grammars
 pyflies -&gt; log                pyflies[0.4.0.dev0]           Generator for log/debug files.
+pyflies -&gt; csv                pyflies[0.4.0.dev0]           Generator for CSV files from pyFlies tables.
 pyflies -&gt; psychopy           pyflies-psychopy[0.1.0.dev0]  Generator for generating PsychoPy code from pyFlies descriptions
 </code></pre>
 <p>You will see all generators installed in your Python environment. First column
-is in <code>langauge -&gt; target</code> format and you can see here that we have two
+is in <code>langauge -&gt; target</code> format and you can see here that we have three
 pyFlies generators registered:</p>
 <ul>
 <li>
-<p><code>pyflies -&gt; log</code> -- produces log file from the <code>.pf</code> files and is builtin
+<p><code>pyflies -&gt; log</code> -- produces log files from <code>.pf</code> files and is builtin
   generator of the <a href="https://github.com/pyflies/pyflies">pyflies project</a>. This
   generator is useful for debugging and overview of the course of your
   experiment.</p>
 </li>
 <li>
+<p><code>pyflies -&gt; csv</code> -- produces CSV files from condition tables specified in
+  <code>.pf</code> files and is also a builtin generator provided by the <a href="https://github.com/pyflies/pyflies">pyflies
+  project</a>. This generator is useful if you
+  want a quick way to produce CSV condition files to be used in other experiment
+  tools.</p>
+</li>
+<li>
 <p><code>pyflies -&gt; psychopy</code> -- this generator produces PsychoPy Python code from
-  <code>.pf</code> and this generator is provided by <a href="https://github.com/pyflies/pyflies-psychopy">pyflies-psychopy
+  <code>.pf</code> and is provided by <a href="https://github.com/pyflies/pyflies-psychopy">pyflies-psychopy
   project</a></p>
 </li>
 </ul>

@@ -23,7 +23,7 @@ def pyflies_log_generator(metamodel, model, output_path, overwrite, debug, **cus
     }
 
     if not output_path:
-        output_path = splitext(model._tx_filename)[0] + '.log'
+        output_path = splitext(model._tx_filename)[0] + '.pflog'
 
     textx_jinja_generator(template_file, output_path, config, overwrite, filters=filters)
 

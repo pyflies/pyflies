@@ -1,4 +1,3 @@
-import re
 import click
 from os.path import dirname, abspath, join, splitext
 from textx import generator

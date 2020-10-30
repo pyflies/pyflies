@@ -12,8 +12,9 @@
 to be highly readable and simple to learn. A code for various run-time platforms
 can be generated from the experiment description.
 
+See the [official documentation](https://pyflies.github.io/pyflies/) for more.
+
 ![pyFlies in action](https://raw.githubusercontent.com/pyflies/pyflies/main/docs/images/pyFliesGUI.png)
 
-See the [official documentation](https://pyflies.github.io/pyflies/) for more.
 
 

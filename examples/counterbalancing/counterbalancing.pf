@@ -1,0 +1,64 @@
+"""
+This example shows how to create counterbalanced block of trials.
+
+It is based on PsychoPy tutorial:
+https://www.psychopy.org/builder/blocksCounterbalance.html
+
+We have blocks of trials where we display images to the subject. Each block will
+show either images of houses or faces. Each block will be repeated 3 times with
+10 trial with a short break in between.
+
+To counterbalance we have `group` variable used at the beginning to choose the
+group of participants (order of blocks). This variable will be passed in during
+compiling.
+
+From this expriment definition we generate two Python files, one for each group
+of subjects (see compile.sh):
+
+    textx generate counterbalancing.pf --target psychopy --overwrite --group A -o houses.py
+    textx generate counterbalancing.pf --target psychopy --overwrite -o faces.py
+
+
+"""
+
+image_types = [houses, faces] if group == 'A' else [faces, houses]
+blocks_number = 3
+
+test showImages {
+
+    // images should be stored in folders "houses" and "faces"
+    // In each folder images should be named 1.png, 2.png ... 10.png
+    | trial_no   | image                             |
+    | ---------- | --------------------------------- |
+    | 1..10 loop | "{{image_type}}/{{trial_no}}.png" |
+
+    fix ->  cross() for 400..1000 choose
+    exec -> image(file image)
+            keyboard()
+}
+
+screen instruction {
+    Block set {{order}}
+    You will be presented with images of {{image_type}}
+}
+
+screen break {
+    Block {{repeat_index}} finished.
+    Take a short break.
+}
+
+flow {
+    repeat {
+        show instruction
+        
+        // 3 same blocks
+        repeat blocks_number times {
+            execute showImages
+            show break for 1000
+        }
+    } with
+    | image_type       | order |
+    | ---------------- | ----- |
+    | image_types loop | 1..2  |
+
+}

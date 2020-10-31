@@ -1,4 +1,5 @@
 import re
+import datetime
 from os.path import dirname, abspath, join, splitext
 from textx import generator
 from textxjinja import textx_jinja_generator
@@ -14,7 +15,10 @@ def pyflies_log_generator(metamodel, model, output_path, overwrite, debug, **cus
     tests = [t for t in model.routine_types if t.__class__.__name__ == 'TestType']
     screens = [t for t in model.routine_types if t.__class__.__name__ == 'ScreenType']
 
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
     config = {'m': model,
+              'now': now,
               'tests': tests,
               'screens': screens}
 

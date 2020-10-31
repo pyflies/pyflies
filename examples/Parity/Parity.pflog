@@ -1,3 +1,4 @@
+Generated on 2020-10-31 11:44:48
 """
 A parity judgment task to assess the SNARC effect.
 
@@ -82,7 +83,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1263
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1170
 
         exec:
           at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -111,7 +112,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1594
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2304
 
         exec:
           at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -140,7 +141,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2832
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2928
 
         exec:
           at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -169,7 +170,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2358
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2608
 
         exec:
           at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -198,7 +199,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2485
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1558
 
         exec:
           at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -227,7 +228,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2579
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1190
 
         exec:
           at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -256,7 +257,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1609
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1342
 
         exec:
           at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -285,7 +286,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2859
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1034
 
         exec:
           at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -314,7 +315,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2265
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2343
 
         exec:
           at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -374,7 +375,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1661
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1436
 
         exec:
           at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -403,7 +404,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2379
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2861
 
         exec:
           at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -432,7 +433,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1667
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1846
 
         exec:
           at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -461,7 +462,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1545
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1329
 
         exec:
           at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -490,7 +491,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2047
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2809
 
         exec:
           at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -519,7 +520,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1412
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2694
 
         exec:
           at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -548,7 +549,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2924
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2866
 
         exec:
           at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -577,7 +578,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2858
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1780
 
         exec:
           at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -606,7 +607,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2312
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2088
 
         exec:
           at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -653,7 +654,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2708
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1583
 
         exec:
           at 0 text(content 1, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -682,7 +683,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1160
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2370
 
         exec:
           at 0 text(content 2, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -711,7 +712,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2897
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1239
 
         exec:
           at 0 text(content 3, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -740,7 +741,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1266
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1734
 
         exec:
           at 0 text(content 4, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -769,7 +770,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1742
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2404
 
         exec:
           at 0 text(content 5, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -798,7 +799,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2498
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1866
 
         exec:
           at 0 text(content 6, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -827,7 +828,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1763
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2476
 
         exec:
           at 0 text(content 7, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -856,7 +857,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2945
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1951
 
         exec:
           at 0 text(content 8, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0
@@ -885,7 +886,7 @@ Test: Parity
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 2578
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1018
 
         exec:
           at 0 text(content 9, position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 0

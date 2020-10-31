@@ -1,11 +1,20 @@
 """
-This example shows how to create block of trials
+This example shows how to create blocks of trials
 
-In this experiment we demonstrate how to do blocking.
+It is based on PsychoPy tutorial:
+https://www.psychopy.org/builder/blocksCounterbalance.html
 
-We have a block of trial where we display images to the subject. Each block will
+We have blocks of trials where we display images to the subject. Each block will
 show either images of houses or faces. Each block will be repeated 3 times with
 10 trial with a short break in between.
+
+To generate log and investigate the flow of the experiment do:
+
+   textx generate blocking.pf --overwrite --target log
+
+To generate PsychoPy script do:
+
+   textx generate blocking.pf --overwrite --target psychopy
 
 """
 

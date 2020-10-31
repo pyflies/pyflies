@@ -1,3 +1,4 @@
+Generated on 2020-10-31 11:44:45
 """
 A simple behavioural task to assess a Simon effect.
 
@@ -80,7 +81,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1396
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1298
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -111,7 +112,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1950
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1865
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -142,7 +143,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1580
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1449
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -173,7 +174,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1478
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1667
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -264,7 +265,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1918
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1481
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -296,7 +297,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1758
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1960
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -328,7 +329,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1190
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1289
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -360,7 +361,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1447
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1220
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -392,7 +393,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1757
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1016
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -424,7 +425,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1814
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1377
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -456,7 +457,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1478
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1326
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -488,7 +489,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1817
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1422
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -520,7 +521,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1280
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1755
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -552,7 +553,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1808
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1495
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -584,7 +585,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1804
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1971
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -616,7 +617,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1433
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1047
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -648,7 +649,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1859
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1610
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -680,7 +681,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1370
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1651
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -712,7 +713,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1313
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1274
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -744,7 +745,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1188
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1618
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -776,7 +777,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1973
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1836
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -808,7 +809,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1087
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1813
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -840,7 +841,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1858
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1535
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -872,7 +873,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1620
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1482
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -904,7 +905,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1921
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1000
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -936,7 +937,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1745
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1160
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -968,7 +969,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1666
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1467
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1000,7 +1001,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1820
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1716
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1032,7 +1033,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1520
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1965
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1064,7 +1065,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1219
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1679
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1096,7 +1097,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1861
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1134
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1128,7 +1129,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1639
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1672
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1160,7 +1161,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1239
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1027
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1192,7 +1193,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1044
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1656
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1224,7 +1225,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1204
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1211
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1256,7 +1257,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1637
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1194
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1288,7 +1289,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1075
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1542
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1320,7 +1321,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1449
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1334
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1352,7 +1353,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1403
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1911
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1384,7 +1385,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1929
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1993
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0
@@ -1416,7 +1417,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1683
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1985
 
         exec:
           at 0 rectangle(position left, color green, fillColor green, size (20, 20)) for 0
@@ -1448,7 +1449,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1820
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1169
 
         exec:
           at 0 rectangle(position left, color red, fillColor red, size (20, 20)) for 0
@@ -1480,7 +1481,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1477
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1662
 
         exec:
           at 0 rectangle(position right, color green, fillColor green, size (20, 20)) for 0
@@ -1512,7 +1513,7 @@ Test: Simon
       Phases:
 
         fix:
-          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1652
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 1735
 
         exec:
           at 0 rectangle(position right, color red, fillColor red, size (20, 20)) for 0

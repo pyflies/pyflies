@@ -81,7 +81,10 @@ class ScopeProvider:
             for name, exp in self.var_vals.items():
                 if type(exp) is PostponedEval:
                     try:
-                        value = exp.exp.eval(context)
+                        if hasattr(exp.exp, 'eval'):
+                            value = exp.exp.eval(context)
+                        else:
+                            value = exp.exp
                         context[name] = value
                         self.var_vals[name] = value
                         resolved = True

@@ -482,6 +482,48 @@ def test_conditions_table_no_loop_no_sequence_expansion():
         '''.strip()
 
 
+def test_condition_table_if_expression_loop_model_param():
+    """
+    Test that if expression in table loop is correctly evaluated in the context
+    of model parameters.  Can be used for counterbalancing.
+    """
+    mm = metamodel_for_language('pyflies')
+
+    mm_str = r'''
+    positions = [left, right] if group == 'A' else [right, left]
+
+    test Test {
+
+        | position       | range     | plain |
+        |----------------+-----------+-------|
+        | positions loop | 1..2 loop | 1     |
+    }
+    flow {execute Test}
+    '''
+
+    m = mm.model_from_str(mm_str, group='A')
+
+    assert str(m.flow.insts[0].table) == r'''
+| position | range | plain |
+|----------+-------+-------|
+| left     | 1     | 1     |
+| left     | 2     | 1     |
+| right    | 1     | 1     |
+| right    | 2     | 1     |
+    '''.strip()
+
+    m = mm.model_from_str(mm_str, group='B')
+
+    assert str(m.flow.insts[0].table) == r'''
+| position | range | plain |
+|----------+-------+-------|
+| right    | 1     | 1     |
+| right    | 2     | 1     |
+| left     | 1     | 1     |
+| left     | 2     | 1     |
+    '''.strip()
+
+
 def test_conditions_table_str_representation():
     """
     Test that tables are properly formatted when converted to string

@@ -27,6 +27,10 @@ def pyflies_language():
     mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
                              classes=pyflies_classes, builtin_models=builtin_models)
 
+    mm._tx_model_param_definitions.add(
+        "group", "A group identifier used in counterbalancing"
+    )
+
     # Here if necessary register object processors or scope providers
     # http://textx.github.io/textX/stable/metamodel/#object-processors
     # http://textx.github.io/textX/stable/scoping/

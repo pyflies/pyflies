@@ -2,7 +2,7 @@ from itertools import cycle, repeat, product
 from .exceptions import PyFliesException
 from .scope import ScopeProvider
 from .evaluated import EvaluatedBase
-from .lang.common import ModelElement, LoopExpression, VariableRef
+from .lang.common import ModelElement, LoopExpression, Symbol
 
 
 def get_column_widths(variables, rows):
@@ -76,11 +76,11 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
             # expanded table rows.
             for idx, var_exp in enumerate(cond_spec):
                 if type(var_exp) is LoopExpression:
-                    var_exp_resolved = var_exp.exp.resolve(context)
-                    if type(var_exp_resolved) is VariableRef:
+                    var_exp_eval = var_exp.exp.eval(context)
+                    if type(var_exp_eval) is Symbol:
                         raise PyFliesException('Undefined variable "{}"'
-                                               .format(var_exp_resolved.name))
-                    loops.append(var_exp_resolved)
+                                               .format(var_exp_eval.name))
+                    loops.append(var_exp_eval)
                     loops_idx.append(idx)
                     cond_template.append(None)
                 else:
@@ -103,6 +103,7 @@ class ConditionsTableInst(EvaluatedBase, ModelElement):
             # Evaluate template making possibly new rows if there are loop
             # expressions
             if loops:
+                # Evaluate all loop expressions
                 loops = product(*loops)
                 for loop_vals in loops:
 

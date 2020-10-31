@@ -249,8 +249,8 @@ class ScreenInst(EvaluatedBase):
 
 
 class Flow(ModelElement):
-    def eval(self):
-        context = self.get_context()
+    def eval(self, context=None):
+        context = self.get_context(context)
         self.insts = self.block.eval(context)
 
 

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Igor Dejanović">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Flow - pyFlies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../style.css" rel="stylesheet" />
+  <link href="../js/version-select.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Flow";
+    var mkdocs_page_input_path = "flow.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pyFlies</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../test/">Test definition</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../types-expressions/">Types and expressions</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../condition-tables/">Condition tables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing specification</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../components/">Components</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../screens/">Screens</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Flow</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#showing-screens">Showing screens</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#executing-tests">Executing tests</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#passing-arguments-to-tests-and-screens">Passing arguments to tests and screens</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#repeating">Repeating</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#repeat-x-times">repeat &lt;x&gt; times</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#repeat-with">repeat with</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../generators/">Running generators</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics/">Metrics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../target/">Target configuration</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/release_notes/">Release Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/contributing/">Contributing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/license/">License</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">pyFlies</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Flow</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/pyflies/pyflies/edit/master/docs/flow.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="experiment-flow">Experiment flow</h1>
+<hr />
+<p>Experiment flow is specified in the <code>flow</code> block given after all test/screens
+specification and it consists of a series of statements for executing a test,
+showing a screen or repeating a test or a statement block.</p>
+<p>Here is an example of how experiment flow may look like:</p>
+<pre><code>flow {
+    show Intro for 5000
+    execute Parity(practice true, random true)
+
+    show Real
+    // repeat test 2 times, each repetion will be randomized
+    repeat 2 times Parity(random true)
+}
+</code></pre>
+<h2 id="showing-screens">Showing screens</h2>
+<p>In the above example, we see that first the <code>Intro</code> screen is shown to the user
+for 5s. <code>for</code> definition is optional and if not given screen will be displayed
+until the user provide some input (keypress, mouse click etc.).</p>
+<p>We can <a href="#passing-arguments-to-tests-and-screens">pass arguments to screen</a> which
+can be used to introduce variable parts in the screen content. For details see
+the <a href="../screens/">screens section</a>.</p>
+<h2 id="executing-tests">Executing tests</h2>
+<p>Each test definition may be executed many times during the course of the test.
+Test is executed with <code>execute</code> statement after which we give the name of the
+test and optionally argument values. <code>execute</code> is just an alias of </p>
+<pre><code>repeat 1 time &lt;test name&gt;`
+</code></pre>
+<p>See the <a href="#looping">looping section</a> for details on the <code>repeat</code> statement.</p>
+<h2 id="passing-arguments-to-tests-and-screens">Passing arguments to tests and screens</h2>
+<p>As you may have notice in the above example, we may pass arguments to the
+screens and tests. These arguments will be available as variables in the context
+of the test/screen.</p>
+<p>For example:</p>
+<pre><code>    execute Parity(practice true, random true, some_param 42)
+</code></pre>
+<p>Argument can have any name and any value type. Two arguments of <code>bool</code> type have
+special meaning: <code>practice</code> and <code>random</code>. Default values of both those params is
+<code>false</code>. These params are applicable only to test execution.</p>
+<p>If <code>practice</code> is set to <code>true</code> then the execution will not record any data. If
+<code>random</code> is set to <code>true</code> then trials of the test will be randomized.</p>
+<h2 id="repeating">Repeating</h2>
+<p>A flow definition may contain repeat loops. Loop can be specified for a single
+test execution or for a block of statements. <code>repeat</code> keyword define the looping
+statement. There are two form of <code>repeat</code>: <code>repeat &lt;x&gt; times</code> and <code>repeat with</code>.</p>
+<h3 id="repeat-x-times"><code>repeat &lt;x&gt; times</code></h3>
+<p>This form of repeat is used to loop a test or a block of statements for the
+given number of times.</p>
+<p>Examples:</p>
+<pre><code>repeat 5 times Posner(random true)
+
+repeat 3 times {
+    screen Instructions for 10000
+    execute Posner
+}
+</code></pre>
+<p><code>repeat</code> blocks can be nested:</p>
+<pre><code>repeat 3 times {
+    screen Instructions for 10000
+    repeat 2 times {
+        screen InnerBlockInstructions
+        execute Posner
+    }
+}
+</code></pre>
+<h3 id="repeat-with"><code>repeat with</code></h3>
+<p>This form of looping is used when we have a condition table and we want to
+execute a test or a block of statements for each row of the table. Variables
+from the table are available inside the looping block.</p>
+<p>Example:</p>
+<pre><code>repeat {
+    show instruction
+
+    // 3 same blocks
+    repeat 3 times {
+        execute showImages
+        show break for 1000
+    }
+} with
+| image_type       | order |
+| ---------------- | ----- |
+| image_types loop | 1..2  |
+</code></pre>
+<p>In this example we have a <code>repeat with</code> outer loop with a condition table given
+after the <code>with</code> keyword. <code>image_types</code> is a global variable defined, for
+example, as:</p>
+<pre><code>image_types = [houses, faces]
+</code></pre>
+<p>used here to <a href="../condition-tables/#tables-expansion">expand the table</a>.</p>
+<p>For each row of the table the block of statement will be executed and variables
+defined in the table (<code>image_type</code> and <code>order</code>) will be available inside the
+block. These variables will be propagated to all inner repeat loops and to all
+execution of tests and screens. This means that we can reference these two
+variables in the screen content and in the test expressions (e.g. component
+parameters in test definitions).</p>
+<p>For a full experiment specification take a look at the <a href="https://github.com/pyflies/pyflies/tree/main/examples/blocking">blocking
+example</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../generators/" class="btn btn-neutral float-right" title="Running generators">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../screens/" class="btn btn-neutral" title="Screens"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/pyflies/pyflies/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../screens/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../generators/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

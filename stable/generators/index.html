@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Igor Dejanović">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Running generators - pyFlies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../style.css" rel="stylesheet" />
+  <link href="../js/version-select.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Running generators";
+    var mkdocs_page_input_path = "generators.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pyFlies</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../test/">Test definition</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../types-expressions/">Types and expressions</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../condition-tables/">Condition tables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing specification</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../components/">Components</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../screens/">Screens</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Running generators</a>
+    <ul class="current">
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics/">Metrics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../target/">Target configuration</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/release_notes/">Release Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/contributing/">Contributing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/license/">License</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">pyFlies</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Running generators</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/pyflies/pyflies/edit/master/docs/generators.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="running-generators">Running generators</h1>
+<hr />
+<p>You can generate various content from pyFlies experiment specifications. pyFlies
+is built using <a href="https://github.com/textX/textX">textX</a> library and tool for DSL
+development in Python so you can query what generators are available using
+<code>textx</code> command line tools. To see all installed generators issue <code>textx
+list-generators</code> command:</p>
+<pre><code>$ textx list-generators                   
+any -&gt; dot                    textX[2.3.0.dev0]             Generating dot visualizations from arbitrary models
+textX -&gt; dot                  textX[2.3.0.dev0]             Generating dot visualizations from textX grammars
+textX -&gt; PlantUML             textX[2.3.0.dev0]             Generating PlantUML visualizations from textX grammars
+pyflies -&gt; log                pyflies[0.4.0.dev0]           Generator for log/debug files.
+pyflies -&gt; csv                pyflies[0.4.0.dev0]           Generator for CSV files from pyFlies tables.
+pyflies -&gt; psychopy           pyflies-psychopy[0.1.0.dev0]  Generator for generating PsychoPy code from pyFlies descriptions
+</code></pre>
+<p>You will see all generators installed in your Python environment. First column
+is in <code>langauge -&gt; target</code> format and you can see here that we have three
+pyFlies generators registered:</p>
+<ul>
+<li>
+<p><code>pyflies -&gt; log</code> -- produces log files from <code>.pf</code> files and is builtin
+  generator of the <a href="https://github.com/pyflies/pyflies">pyflies project</a>. This
+  generator is useful for debugging and overview of the course of your
+  experiment.</p>
+</li>
+<li>
+<p><code>pyflies -&gt; csv</code> -- produces CSV files from condition tables specified in
+  <code>.pf</code> files and is also a builtin generator provided by the <a href="https://github.com/pyflies/pyflies">pyflies
+  project</a>. This generator is useful if you
+  want a quick way to produce CSV condition files to be used in other experiment
+  tools.</p>
+</li>
+<li>
+<p><code>pyflies -&gt; psychopy</code> -- this generator produces PsychoPy Python code from
+  <code>.pf</code> and is provided by <a href="https://github.com/pyflies/pyflies-psychopy">pyflies-psychopy
+  project</a></p>
+</li>
+</ul>
+<p>To call generator use <code>textx generate</code> command:</p>
+<pre><code>textx generate Posner.pf --target log --overwrite
+</code></pre>
+<p>Here we generate log output from <code>Posner.pf</code> pyflies experiment. We use
+<code>--overwrite</code> to overwrite existing log file.</p>
+<pre><code>textx generate Parity.pf --target psychopy --overwrite
+</code></pre>
+<p>This will generate PsychoPy Python code (<code>Parity.py</code>) from <code>Parity.pf</code> pyflies
+file.</p>
+<p>textX uses pluggable architecture for languages and generators. Additional
+generators may be developed independently of the pyFlies project and registered
+in the environment by mere installation with <code>pip</code>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../metrics/" class="btn btn-neutral float-right" title="Metrics">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../flow/" class="btn btn-neutral" title="Flow"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/pyflies/pyflies/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../flow/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../metrics/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

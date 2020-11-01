@@ -5,6 +5,7 @@
 
 trigger:
 - main
+- release/*
 - azure-pipelines
 
 pool:

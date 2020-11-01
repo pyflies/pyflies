@@ -62,7 +62,8 @@ and expansion see [Condition Tables](condition-tables.md) section.
 
     Although, pyFlies specifications are just plain textual files and can be edited
     in any text editor, it is much more convenient to edit tables in editor that
-    supports them, like provided [VS Code pyFlies extension]().
+    supports them, like 
+    [VS Code pyFlies extension](https://github.com/pyflies/vscode-pyflies).
 
 
 ## Components specification

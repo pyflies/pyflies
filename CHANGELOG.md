@@ -20,9 +20,25 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ### Changed
 
+## [0.4.0] (released: 2020-11-01)
 
-[Unreleased]: https://github.com/CHANGEME/textx-lang-pyflies/commits/master
+- Complete rework/redesign of the language:
+  - expressions, global and test level variables
+  - condition table expressions with expansion (loop, cycling)
+  - Markdown table syntax
+  - trial phases
+  - components description using components DSL
+  - flow definition with repetitions
+  - ...
 
+- Added log and csv generators.
+- [VS Code integration](https://github.com/pyflies/vscode-pyflies) and
+  [PsychoPy](https://github.com/pyflies/pyflies-psychopy) generator as a
+  separate projects.
+
+
+[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/pyflies/pyflies/compare/v0.3...0.4.0
 
 [keepachangelog]: https://keepachangelog.com/
 [semver]: https://semver.org/spec/v2.0.0.html

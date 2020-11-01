@@ -27,7 +27,7 @@ def pyflies_language():
     mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
                              classes=pyflies_classes, builtin_models=builtin_models)
 
-    mm._tx_model_param_definitions.add(
+    mm.model_param_defs.add(
         "group", "A group identifier used in counterbalancing"
     )
 

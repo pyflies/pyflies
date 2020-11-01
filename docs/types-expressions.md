@@ -68,7 +68,9 @@ So, the form is always:
 `loop` expression is used in [table
 expansion](condition-tables.md#tables-expansion). Its form is:
 
-    <list of range> loop
+    <expression> loop
+    
+where `expression` evaluates to list or range.
     
 For example:
 

@@ -14,7 +14,6 @@ can be generated from the experiment description.
 
 See the [official documentation](https://pyflies.github.io/pyflies/) for more.
 
-![pyFlies in action](https://raw.githubusercontent.com/pyflies/pyflies/main/docs/images/pyFliesGUI.png)
+Click on the image bellow to see an overview video.
 
-
-
+[![pyFlies Overview](https://img.youtube.com/vi/tSFdYYnQmjA/0.jpg)](https://www.youtube.com/watch?v=tSFdYYnQmjA)

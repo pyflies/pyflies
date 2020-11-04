@@ -32,6 +32,10 @@ and we plan to build generators for other targets.
 
 <a href="images/Workflow.png" target="_blank"><img src="images/Workflow.png"/></a>
 
+## Overview video
+
+[![pyFlies Overview](https://img.youtube.com/vi/tSFdYYnQmjA/0.jpg)](https://www.youtube.com/watch?v=tSFdYYnQmjA)
+
 ## Getting started
 
 ### Installation
@@ -78,8 +82,9 @@ for your operating system. In the list of extensions find pyFlies and click on
 
 !!! note
 
-    You can watch the process of installation in [this video](). In the video we
-    are using Linux but most of the information is valid for other OSes.
+    You can watch the process of installation in [this video]() (to be done
+    soon). In the video we are using Linux but most of the information is valid 
+    for other OSes.
 
 
 ### Video tutorials

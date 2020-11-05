@@ -13,16 +13,16 @@ Here is an example of how experiment flow may look like:
         execute Parity(practice true, random true)
 
         show Real
-        // repeat test 2 times, each repetion will be randomized
+        // repeat test 2 times, each repetition will be randomized
         repeat 2 times Parity(random true)
     }
     
 
 ## Showing screens
 
-In the above example, we see that first the `Intro` screen is shown to the user
-for 5s. `for` definition is optional and if not given screen will be displayed
-until the user provide some input (keypress, mouse click etc.).
+In the above example, we see that first the `Intro` screen is shown to the
+subject for 5s. `for` definition is optional and if not given screen will be
+displayed until the subject provide some input (keypress, mouse click etc.).
 
 We can [pass arguments to screen](#passing-arguments-to-tests-and-screens) which
 can be used to introduce variable parts in the screen content. For details see
@@ -35,34 +35,36 @@ Each test definition may be executed many times during the course of the test.
 Test is executed with `execute` statement after which we give the name of the
 test and optionally argument values. `execute` is just an alias of 
 
-    repeat 1 time <test name>`
+    repeat 1 time <test name>
 
 See the [looping section](#looping) for details on the `repeat` statement.
 
 
 ## Passing arguments to tests and screens
 
-As you may have notice in the above example, we may pass arguments to the
-screens and tests. These arguments will be available as variables in the context
-of the test/screen.
+As you may have notice in the above example, we may pass arguments to screens
+and tests. These arguments will be available as variables in the context of the
+test/screen.
 
 For example:
 
         execute Parity(practice true, random true, some_param 42)
 
 Argument can have any name and any value type. Two arguments of `bool` type have
-special meaning: `practice` and `random`. Default values of both those params is
-`false`. These params are applicable only to test execution.
+special meaning: `practice` and `random`. Default values of both those params
+are `false`. These params are applicable only to the test execution.
 
 If `practice` is set to `true` then the execution will not record any data. If
-`random` is set to `true` then trials of the test will be randomized.
+`random` is set to `true` then the order of trials in the test will be
+randomized.
 
 
 ## Repeating
 
-A flow definition may contain repeat loops. Loop can be specified for a single
-test execution or for a block of statements. `repeat` keyword define the looping
-statement. There are two form of `repeat`: `repeat <x> times` and `repeat with`.
+A flow definition may contain repeat loops. The repeat loop can be specified for
+a single test execution or for a block of statements. `repeat` keyword define
+the looping statement. There are two form of `repeat`: `repeat <x> times` and
+`repeat with`.
 
 ### `repeat <x> times`
 

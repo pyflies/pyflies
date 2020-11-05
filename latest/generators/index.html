@@ -143,10 +143,9 @@
                 <h1 id="running-generators">Running generators</h1>
 <hr />
 <p>You can generate various content from pyFlies experiment specifications. pyFlies
-is built using <a href="https://github.com/textX/textX">textX</a> library and tool for DSL
-development in Python so you can query what generators are available using
-<code>textx</code> command line tools. To see all installed generators issue <code>textx
-list-generators</code> command:</p>
+is built using <a href="https://github.com/textX/textX">textX</a> tool for DSL development
+in Python so you can query what generators are available using <code>textx</code> command
+line tools. To see all installed generators use <code>textx list-generators</code> command:</p>
 <pre><code>$ textx list-generators                   
 any -&gt; dot                    textX[2.3.0.dev0]             Generating dot visualizations from arbitrary models
 textX -&gt; dot                  textX[2.3.0.dev0]             Generating dot visualizations from textX grammars
@@ -160,7 +159,7 @@ is in <code>langauge -&gt; target</code> format and you can see here that we hav
 pyFlies generators registered:</p>
 <ul>
 <li>
-<p><code>pyflies -&gt; log</code> -- produces log files from <code>.pf</code> files and is builtin
+<p><code>pyflies -&gt; log</code> -- produces log files from <code>.pf</code> files and is a builtin
   generator of the <a href="https://github.com/pyflies/pyflies">pyflies project</a>. This
   generator is useful for debugging and overview of the course of your
   experiment.</p>

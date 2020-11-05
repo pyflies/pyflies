@@ -16,3 +16,10 @@ pyFlies assumes the following metrics and units:
   digits><blue two hex digits>`. E.g. `#a489f3`.
   
 - for time unit we assume miliseconds.
+
+
+!!! tip
+
+    In the VS Code editor you can use various extensions to make your editing experience
+    more pleasant. For example, for working with colors you can use 
+    [Color Manager](https://marketplace.visualstudio.com/items?itemName=RoyAction.color-manager)

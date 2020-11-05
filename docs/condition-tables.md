@@ -2,9 +2,9 @@
 
 ---
 
-Condition tables define one or more variables in each column and their values in
-each row. They are used to specify values of related variables given in a row
-representing a certain state.
+Condition tables define one or more variables in each column and their values
+for conditions in each row. They are used to specify values of related variables
+given in a row representing a certain state.
 
 These tables are used in [test defintion](test.md) and for [repeat
 with](flow.md#repeat-with) form of repetition.
@@ -18,34 +18,36 @@ table row.
     |--------------|----------|
     | numbers loop | parities |
 
-The header of the table contains variable names while the cells of the rest of
-the table contain [expressions](types-expressions.md#expressions).
+The header of the table contains variable names (`number` and `parity`) while
+the cells of the rest of the table contain
+[expressions](types-expressions.md#expressions).
 
 
 ## Tables expansion
 
 Tables are usually, although not necessary, written in a compact form which is
-expanded during compilation. This compact representation is shorted, require
-less screen space and gives more flexibility in adding new variables.
+expanded during compilation. This compact representation is shorter, require
+less screen space and gives more flexibility in adding new variables and
+altering the number of conditions.
 
 !!! note
 
-    Tables are written in pure text and can be edited with any editor but for a
-    convenience pyFlies VS Code editor has auto-formatting and navigation
-    capabilities which makes editing much more pleasant.
+    Tables are written in pure text and can be edited with any text editor 
+    but for a convenience pyFlies VS Code editor has auto-formatting and 
+    navigation capabilities which makes editing much more pleasant.
 
 To understand table expansion lets look at some examples. Lets say we want to
-loop through several color and for each color to loop through some direction to
-explore all possible variations. We can do that in the following way:
+loop through several colors and for each color to loop through some directions
+to explore all possible options. We can do that in the following way:
 
     | color                   | direction          |
     | ----------------------- | ------------------ |
     | [red, green, blue] loop | [left, right] loop |
 
 
-The expression in both columns are `loop` expression over list of symbols. Loop
-expression are evaluated and nested from left to right, so the table in expanded
-form will be:
+Expressions in both columns are `loop` expressions over list of symbols. Loop
+expressions are evaluated and nested from left to right, so the table in
+expanded form will be:
 
     | color | direction |
     | ----- | --------- |
@@ -70,10 +72,10 @@ called `congruency` that has value `congruent` if color is `green` and
     | ----------------------- | ------------------ | -------------------------------------------- |
     | [red, green, blue] loop | [left, right] loop | congruent if color == green else incongruent |
 
-See how we referenced `color` variable in the `congruency` column and compare
+See how we referenced `color` variable in the `congruency` column and compared
 its value with the symbol `green`.
 
-now the expanded table will be:
+Now, the expanded table will be:
 
     | color | direction | congruency  |
     | ----- | --------- | ----------- |
@@ -116,7 +118,7 @@ value will cycle, i.e. for each row the next value from the sequence will be
 used until the sequence is exhausted. After that the sequence will start from
 the beginning. So, we can say that `loop` expression take precedence. If the row
 has loop expressions they will be used, from left to right, to drive the row
-creation and the sequences will be fillers. If no loop exists in the row,
+creation and other sequences will be fillers. If no loop exists in the row,
 sequences will expand until the longest is exhausted.
 
 Consider this example:
@@ -161,7 +163,7 @@ will expand to:
     
 So, the first row will expand and then the second.
 
-Now, you can see that creating table of condition is easy and very powerful.
+Now, you can see that creating table of conditions is easy and very powerful.
 
 !!! tip
 

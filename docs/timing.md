@@ -18,7 +18,7 @@ Timing information can be specified in the following places:
         at .+200 rectangle()
   
   
-    This is the general form of timing expression:
+    This is the general form of the timing expression:
   
         at <target:><.><+ or -><miliseconds>
        

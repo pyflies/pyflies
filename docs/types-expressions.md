@@ -3,10 +3,10 @@
 ---
 
 pyFlies has a type system with a some usual types you can find in other
-languages, but also some types that are useful in the context of cognitive
-experiments specification. Operations on these types can form complex
-expressions. You can use expressions in various places of your experiment
-specification.
+languages, but also some types that are useful in the context of experiments
+specification. Operations on these types can form complex expressions. You can
+use expressions in various places of your experiment specification.
+
 
 ## Types
 
@@ -23,7 +23,7 @@ pyFlies values can be of the following types:
 - `int` - is an integer number (e.g. `42`)
 - `float` - is a float number (e.g. `3.44`)
 - `point` - specifies a location in two dimensional space (e.g. `(2, 5)`)
-- `color` - specifies a color in standard CSS like notation where we have a `#`
+- `color` - specifies a color in a standard CSS like notation where we have a `#`
   prefix and 6 hex digits, 3 groups of 2 digit where each group represents
   `red`, `green` and `blue` component of the color (e.g. `#455a45`). 
 - `string` - a string of characters enclosed with quotes (e.g. `"Hello"`).
@@ -54,7 +54,7 @@ pyFlies values can be of the following types:
 
 ### if
 
-This expression is used to provide a value that depend on a condition.
+An expression used to provide a value that depend on a condition.
 For example:
 
     left if cue_pos == right else right
@@ -70,7 +70,7 @@ expansion](condition-tables.md#tables-expansion). Its form is:
 
     <expression> loop
     
-where `expression` evaluates to list or range.
+where `expression` evaluates to a list or range.
     
 For example:
 
@@ -80,14 +80,14 @@ For example:
 ### Logic
 
 Logic operators are: `or`, `not`, and `and`. `or` and `and` are standard infix
-binary operators while `not` is an unary prefix operator:
+binary operators while `not` is a standard unary prefix operator:
 
     color == blue and not practice
 
 
 ### Comparison
 
-Comparison operator can compare value. They are used as standard infix binary
+Comparison operators can compare values. They are used as standard infix binary
 operators. Following operators are supported:
 
 - `==` - equal
@@ -97,26 +97,29 @@ operators. Following operators are supported:
 - `>` - greater than
 - `<` - less than
 
+
 ### Arithmetic operators
 
-Standard arithmetic operators are supported: `+`, `-`, `*`, `/`.
+Standard arithmetic operators are supported: `+`, `-`, `*`, `/` and they work as
+usual.
 
 
 ### Randomization
 
 Randomization is supported with `choose` and `shuffle` operations. These
-operations are given in a postfix form and are applicable only on lists and ranges.
+operations are given in a postfix form and are applicable only to lists and ranges.
 
 - `choose` will choose a random element from list/range. For example: 
 
         [red, green, blue] choose
+        1..100 choose
       
-- `shuffle` will produce a list where elements are in random order. For example:
+- `shuffle` will produce a list where elements are in a random order. For example:
 
         1..100 shuffle
 
 In the current implementation of the compiler all expressions are pre-evaluated
-by the compilation process. E.g. random values are predetermined in compile
+by the compilation process. E.g. random values are predetermined at compile
 time, not run-time. This is done to make generator development easier as
 otherwise compiler would need to translate all expressions to the target
 language expressions. This is an implementation detail that might change in the

@@ -5,7 +5,7 @@
 Target configuration is optional and is used to configure target generator.
 
 It is specified at the end of the experiment and there can be multiple target
-configuration as we might have generators for different platforms.
+configurations as we might have generators for different platforms.
 
 The content of the target block is given in:
 
@@ -49,5 +49,5 @@ different contexts.
         keyboard.right = right
     }
 
-Here, we want symbol `left` to be mapped to left position on screen but in the
-context of keyboard component it will map to key `left`.
+Here, we want symbol `left` to be mapped to the left position on screen but in
+the context of the keyboard component it will map to key `left`.

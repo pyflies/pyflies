@@ -21,12 +21,12 @@ The example represents the definition of the Eriksen Flanker task published in:
     identification of a target letter in a non- search task". Perception and
     Psychophysics. 16: 143–149.
 
-The target is flanked by non-target stimuli which correspond either to
-the same directional response as the target (congruent flankers), to the
-opposite response (incongruent flankers). In this example we are using arrows
-which points to the left or to the right. The surrounding non-target stimuli
-will be congruent (points to the same direction), or incongruent (points to the
-opposite direction).
+The target is flanked by non-target stimuli which correspond either to the same
+directional response as the target (congruent flankers), or to the opposite
+response (incongruent flankers). In this example we are using arrows which
+points to the left or to the right. The surrounding non-target stimuli will be
+congruent (point to the same direction), or incongruent (point to the opposite
+direction).
 
 Before the test we have three variables defined which we shall use in the test:
 `directions` - a list of directions, `congruencies` - a list of congruencies as
@@ -34,18 +34,13 @@ each trial can be either congruent or inconguruent, and `repeats` - a number of
 repeats we shall use to change the total number of trials during the test run.
 
 
-There are three variables defined in the header of the table of conditions:
-`repeat` - used to control total number of trials per test run, `direction` -
-contains the direction of the target stimuli, `category` - holds information if
-the current trial is congruent or not.
-
 ## Test table expansion
 
 Values of each trial variable is given as an expression in the table first
 non-header row. You can see that each expression is a `loop` expression which
 will loop over the given sequence to expand the table. Loops are evaluated from
 left to right, leftmost loop being the top-level outer loop while the rightmost
-loop being the inner loop. We could also have a sequence without the loop in
+loop being the inner loop. We could also have a sequence without the loop, in
 which case the sequence would cycle, or any other expression involving global
 and trail variables and literal values.
 
@@ -70,7 +65,7 @@ and expansion see [Condition Tables](condition-tables.md) section.
 
 The second part of the test definition are mappings of components to trials.
 These mappings define the components (stimuli and inputs), their timings and
-conditions under which they should be shown to the user.
+conditions under which they should be shown to the subject.
 
 These mappings are given in the form:
 
@@ -84,7 +79,7 @@ components on the right side are used in the trial.
 
 ## Trial phases
 
-For better organization, each trial execution is separated in the three phases:
+For better organization, each trial execution is separated in three phases:
 `fix`, `exec` and `error/correct`. The phases are executed in succession and for
 each execution builtin boolean variables `fix`, `exec`, `error`, `correct` get
 value of `true` for corresponding phase, thus those variables can be used in LHS
@@ -95,8 +90,8 @@ expressions to match the phase.
 
 In the above example we have `fix -> cross..`. LHS condition is just `fix`
 variable which will be `true` during `fix` phase of each trial. Thus, `cross`
-component will be shown to the user during each `fix` phase. If we wanted, for
-example, to show `cross` only for `odd` trials we could write:
+component will be shown to the subject during each `fix` phase. If we wanted,
+for example, to show `cross` only for `odd` trials we could write:
 
     fix and parity == odd -> cross() for 1000
 

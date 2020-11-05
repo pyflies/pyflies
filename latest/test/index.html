@@ -161,26 +161,22 @@ more details.</p>
 identification of a target letter in a non- search task". Perception and
 Psychophysics. 16: 143–149.
 </code></pre>
-<p>The target is flanked by non-target stimuli which correspond either to
-the same directional response as the target (congruent flankers), to the
-opposite response (incongruent flankers). In this example we are using arrows
-which points to the left or to the right. The surrounding non-target stimuli
-will be congruent (points to the same direction), or incongruent (points to the
-opposite direction).</p>
+<p>The target is flanked by non-target stimuli which correspond either to the same
+directional response as the target (congruent flankers), or to the opposite
+response (incongruent flankers). In this example we are using arrows which
+points to the left or to the right. The surrounding non-target stimuli will be
+congruent (point to the same direction), or incongruent (point to the opposite
+direction).</p>
 <p>Before the test we have three variables defined which we shall use in the test:
 <code>directions</code> - a list of directions, <code>congruencies</code> - a list of congruencies as
 each trial can be either congruent or inconguruent, and <code>repeats</code> - a number of
 repeats we shall use to change the total number of trials during the test run.</p>
-<p>There are three variables defined in the header of the table of conditions:
-<code>repeat</code> - used to control total number of trials per test run, <code>direction</code> -
-contains the direction of the target stimuli, <code>category</code> - holds information if
-the current trial is congruent or not.</p>
 <h2 id="test-table-expansion">Test table expansion</h2>
 <p>Values of each trial variable is given as an expression in the table first
 non-header row. You can see that each expression is a <code>loop</code> expression which
 will loop over the given sequence to expand the table. Loops are evaluated from
 left to right, leftmost loop being the top-level outer loop while the rightmost
-loop being the inner loop. We could also have a sequence without the loop in
+loop being the inner loop. We could also have a sequence without the loop, in
 which case the sequence would cycle, or any other expression involving global
 and trail variables and literal values.</p>
 <p>For <code>repeats</code> value of <code>1</code>, as defined globally, this table expands as follow:</p>
@@ -199,7 +195,7 @@ supports them, like
 <h2 id="components-specification">Components specification</h2>
 <p>The second part of the test definition are mappings of components to trials.
 These mappings define the components (stimuli and inputs), their timings and
-conditions under which they should be shown to the user.</p>
+conditions under which they should be shown to the subject.</p>
 <p>These mappings are given in the form:</p>
 <pre><code>    &lt;condition&gt; -&gt; &lt;list of components with timings&gt;
 </code></pre>
@@ -207,7 +203,7 @@ conditions under which they should be shown to the user.</p>
 evaluated to <code>true</code> in the context of the current trial means that the
 components on the right side are used in the trial.</p>
 <h2 id="trial-phases">Trial phases</h2>
-<p>For better organization, each trial execution is separated in the three phases:
+<p>For better organization, each trial execution is separated in three phases:
 <code>fix</code>, <code>exec</code> and <code>error/correct</code>. The phases are executed in succession and for
 each execution builtin boolean variables <code>fix</code>, <code>exec</code>, <code>error</code>, <code>correct</code> get
 value of <code>true</code> for corresponding phase, thus those variables can be used in LHS
@@ -215,8 +211,8 @@ expressions to match the phase.</p>
 <p><img alt="Trial phases" src="../images/trial-phases.png" /></p>
 <p>In the above example we have <code>fix -&gt; cross..</code>. LHS condition is just <code>fix</code>
 variable which will be <code>true</code> during <code>fix</code> phase of each trial. Thus, <code>cross</code>
-component will be shown to the user during each <code>fix</code> phase. If we wanted, for
-example, to show <code>cross</code> only for <code>odd</code> trials we could write:</p>
+component will be shown to the subject during each <code>fix</code> phase. If we wanted,
+for example, to show <code>cross</code> only for <code>odd</code> trials we could write:</p>
 <pre><code>fix and parity == odd -&gt; cross() for 1000
 </code></pre>
 <p>Notice the part of the definition <code>for 1000</code>. Each component can optionally

@@ -161,10 +161,9 @@
                 <h1 id="types-and-expressions">Types and expressions</h1>
 <hr />
 <p>pyFlies has a type system with a some usual types you can find in other
-languages, but also some types that are useful in the context of cognitive
-experiments specification. Operations on these types can form complex
-expressions. You can use expressions in various places of your experiment
-specification.</p>
+languages, but also some types that are useful in the context of experiments
+specification. Operations on these types can form complex expressions. You can
+use expressions in various places of your experiment specification.</p>
 <h2 id="types">Types</h2>
 <p>pyFlies values can be of the following types:</p>
 <ul>
@@ -179,7 +178,7 @@ specification.</p>
 <li><code>int</code> - is an integer number (e.g. <code>42</code>)</li>
 <li><code>float</code> - is a float number (e.g. <code>3.44</code>)</li>
 <li><code>point</code> - specifies a location in two dimensional space (e.g. <code>(2, 5)</code>)</li>
-<li><code>color</code> - specifies a color in standard CSS like notation where we have a <code>#</code>
+<li><code>color</code> - specifies a color in a standard CSS like notation where we have a <code>#</code>
   prefix and 6 hex digits, 3 groups of 2 digit where each group represents
   <code>red</code>, <code>green</code> and <code>blue</code> component of the color (e.g. <code>#455a45</code>). </li>
 <li><code>string</code> - a string of characters enclosed with quotes (e.g. <code>"Hello"</code>).
@@ -209,7 +208,7 @@ Manager</a>.</p>
 </div>
 <h2 id="expressions">Expressions</h2>
 <h3 id="if">if</h3>
-<p>This expression is used to provide a value that depend on a condition.
+<p>An expression used to provide a value that depend on a condition.
 For example:</p>
 <pre><code>left if cue_pos == right else right
 </code></pre>
@@ -221,17 +220,17 @@ For example:</p>
 expansion</a>. Its form is:</p>
 <pre><code>&lt;expression&gt; loop
 </code></pre>
-<p>where <code>expression</code> evaluates to list or range.</p>
+<p>where <code>expression</code> evaluates to a list or range.</p>
 <p>For example:</p>
 <pre><code>[left, right, up, down] loop
 </code></pre>
 <h3 id="logic">Logic</h3>
 <p>Logic operators are: <code>or</code>, <code>not</code>, and <code>and</code>. <code>or</code> and <code>and</code> are standard infix
-binary operators while <code>not</code> is an unary prefix operator:</p>
+binary operators while <code>not</code> is a standard unary prefix operator:</p>
 <pre><code>color == blue and not practice
 </code></pre>
 <h3 id="comparison">Comparison</h3>
-<p>Comparison operator can compare value. They are used as standard infix binary
+<p>Comparison operators can compare values. They are used as standard infix binary
 operators. Following operators are supported:</p>
 <ul>
 <li><code>==</code> - equal</li>
@@ -242,24 +241,26 @@ operators. Following operators are supported:</p>
 <li><code>&lt;</code> - less than</li>
 </ul>
 <h3 id="arithmetic-operators">Arithmetic operators</h3>
-<p>Standard arithmetic operators are supported: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.</p>
+<p>Standard arithmetic operators are supported: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> and they work as
+usual.</p>
 <h3 id="randomization">Randomization</h3>
 <p>Randomization is supported with <code>choose</code> and <code>shuffle</code> operations. These
-operations are given in a postfix form and are applicable only on lists and ranges.</p>
+operations are given in a postfix form and are applicable only to lists and ranges.</p>
 <ul>
 <li>
 <p><code>choose</code> will choose a random element from list/range. For example: </p>
 <pre><code>[red, green, blue] choose
+1..100 choose
 </code></pre>
 </li>
 <li>
-<p><code>shuffle</code> will produce a list where elements are in random order. For example:</p>
+<p><code>shuffle</code> will produce a list where elements are in a random order. For example:</p>
 <pre><code>1..100 shuffle
 </code></pre>
 </li>
 </ul>
 <p>In the current implementation of the compiler all expressions are pre-evaluated
-by the compilation process. E.g. random values are predetermined in compile
+by the compilation process. E.g. random values are predetermined at compile
 time, not run-time. This is done to make generator development easier as
 otherwise compiler would need to translate all expressions to the target
 language expressions. This is an implementation detail that might change in the

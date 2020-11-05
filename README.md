@@ -8,12 +8,12 @@
 # pyFlies
 
 [pyFlies](http://igordejanovic.github.io/pyFlies/) is a Domain-Specific Language
-(DSL) for experiments specification in psychology and neuroscience. It is meant
-to be highly readable and simple to learn. A code for various run-time platforms
-can be generated from the experiment description.
+(DSL) for designing experiments in psychology. It is meant to be highly readable
+and simple to learn. A code for various run-time platforms can be generated from
+the experiment description.
 
 See the [official documentation](https://pyflies.github.io/pyflies/) for more.
 
-Click on the image bellow to see an overview video.
+Click on the image bellow to see a short (~3 min) overview video.
 
 [![pyFlies Overview](https://img.youtube.com/vi/tSFdYYnQmjA/0.jpg)](https://www.youtube.com/watch?v=tSFdYYnQmjA)

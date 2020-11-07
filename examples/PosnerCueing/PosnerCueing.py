@@ -2698,7 +2698,7 @@ execute_test(Posner_8, Posner_components, random=True)
 win.flip()
 
 # these shouldn't be strictly necessary (should auto-save)
-thisExp.saveAsWideText(filename+'.csv', delim='auto')
+thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
 # make sure everything is closed down

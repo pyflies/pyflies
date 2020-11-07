@@ -1305,7 +1305,7 @@ execute_test(EriksenFlanker_4, EriksenFlanker_components, random=True)
 win.flip()
 
 # these shouldn't be strictly necessary (should auto-save)
-thisExp.saveAsWideText(filename+'.csv', delim='auto')
+thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
 # make sure everything is closed down

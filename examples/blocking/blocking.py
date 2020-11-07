@@ -1927,7 +1927,7 @@ execute_screen(break, break_14, 1.0)
 win.flip()
 
 # these shouldn't be strictly necessary (should auto-save)
-thisExp.saveAsWideText(filename+'.csv', delim='auto')
+thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
 logging.flush()
 # make sure everything is closed down

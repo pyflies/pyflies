@@ -12,7 +12,7 @@ Three shapes are circles and the fourth is a square and it is the target
 shape the subject is instructed to click on.
 One of the distractors may sometimes be in different color.
 
-This example is bases on experiment done by Sebastiaan Mathôt in OpenSesame tutorial
+This example is based on experiment done by Sebastiaan Mathôt in OpenSesame tutorial
 https://www.youtube.com/watch?v=K2dcG_7Hs3Y
     
 """

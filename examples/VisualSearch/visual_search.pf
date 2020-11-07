@@ -1,0 +1,44 @@
+"""
+Work in progress: 
+This experiment relies on three features that will be available in the next version:
+- subtraction for lists and ranges (GitHub issue #7)
+- index access for lists and ranges (GitHub issue #8)
+- `color` is changing to be parameter representing both fill color and edge color while
+  those two will now be `outlineColor` and `fillColor` if needed to be controlled
+  separately (GitHub issue #9)
+
+In this experiment we have 4 shapes displayed up, down, left and right on the screen.
+Three shapes are circles and the fourth is a square and it is the target 
+shape the subject is instructed to click on.
+One of the distractors may sometimes be in different color.
+
+This example is bases on experiment done by Sebastiaan Mathôt in OpenSesame tutorial
+https://www.youtube.com/watch?v=K2dcG_7Hs3Y
+    
+"""
+positions = [up, down, left, right]
+colors = [blue, yellow]
+color_rnd = colors choose
+
+test Visual {
+
+    | block     | target_pos     | distractor_pos                  | distractor_color |
+    | --------- | -------------- | ------------------------------- | ---------------- |
+    | 1..5 loop | positions loop | (positions - target_pos) choose | colors choose    |
+
+    fix -> circle(radius 2) for 500
+    exec-> 
+        target:rectangle(size 10, position target_pos, color blue)
+
+        // This is a distractor that might be of different color
+        circle(size 10, position distractor_pos, color distractor_color)
+
+        // And these two are distractors of the same color
+        circle(size 10, position (positions - target_pos - distractor_pos)[0], color blue)
+        circle(size 10, position (positions - target_pos - distractor_pos)[1], color blue)
+        mouse(valid any, target target)
+}
+
+flow {
+    execute Visual(random true)
+}

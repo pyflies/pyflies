@@ -18,7 +18,6 @@ https://www.youtube.com/watch?v=K2dcG_7Hs3Y
 """
 positions = [up, down, left, right]
 colors = [blue, yellow]
-color_rnd = colors choose
 
 test Visual {
 

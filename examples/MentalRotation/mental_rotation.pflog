@@ -1,0 +1,346 @@
+Generated on 2020-11-09 17:59:55
+"""
+None
+"""
+
+Tests: MentalRotation
+Screens: Intro
+
+Variables:
+  images = [1]
+  categories = [mirrored, not_mirrored]
+  orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+
+
+Test: MentalRotation
+  --------------------------------------------------------------------------
+  Conditions:
+
+  | ord        | image_no    | is_mirrored       |
+  |------------+-------------+-------------------|
+  | 1..10 loop | images loop | categories choose |
+
+  Components with param values:
+  MentalRotation_cross = cross(position (0, 0) constant, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  MentalRotation_image = image(file default path, position left constant, ori 0, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  MentalRotation_image_2 = image(file default path, position right constant, ori 0, size 20 constant, color #ffffff constant, fillColor #ffffff constant, )
+  MentalRotation_keyboard = keyboard(valid [mirrored, not_mirrored] constant, correct space, )
+
+
+----------------------------------------------------------------------------
+----------------------------------- FLOW -----------------------------------
+----------------------------------------------------------------------------
+ 
+1. SCREEN  Intro
+  ----------------------------------------------------------------------------
+
+  Introduction
+  ------------
+
+  You will be presented with two images. 
+  Images might be the same or mirrored and both
+  images are rotated by arbitrary angle.
+
+  Press *LEFT* if images are the same.
+  Press *RIGHT* if images are mirrored.
+
+  Do that as fast as you can without sacrificing accuracy.
+ 
+2. TEST MentalRotation
+  ----------------------------------------------------------------------------
+
+  Condition table (random=False, practice=False)
+  | ord | image_no | is_mirrored  |
+  |-----+----------+--------------|
+  | 1   | 1        | mirrored     |
+  | 2   | 1        | not_mirrored |
+  | 3   | 1        | mirrored     |
+  | 4   | 1        | mirrored     |
+  | 5   | 1        | not_mirrored |
+  | 6   | 1        | not_mirrored |
+  | 7   | 1        | not_mirrored |
+  | 8   | 1        | not_mirrored |
+  | 9   | 1        | not_mirrored |
+  | 10  | 1        | not_mirrored |
+
+  ---- Trials -----
+    
+    TRIAL 2:1
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 1   | 1        | mirrored     |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_mirrored.png, position left, ori 90, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 240, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:2
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 2   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 180, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 120, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:3
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 3   | 1        | mirrored     |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_mirrored.png, position left, ori 270, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 330, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:4
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 4   | 1        | mirrored     |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_mirrored.png, position left, ori 150, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 30, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:5
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 5   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 150, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 30, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:6
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 6   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 0, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 270, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:7
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 7   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 240, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 210, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:8
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 8   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 330, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 300, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:9
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 9   | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 180, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 120, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          
+
+    TRIAL 2:10
+      
+      | ord | image_no | is_mirrored  |
+      |-----+----------+--------------|
+      | 10  | 1        | not_mirrored |
+
+      Variables:
+        images = [1]
+        categories = [mirrored, not_mirrored]
+        orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+        repeat_index = 1
+        practice = False
+
+      Phases:
+
+        fix:
+          at 0 cross(position (0, 0), size 20, color #ffffff, fillColor #ffffff) for 500
+
+        exec:
+          at 0 image(file images/1_not_mirrored.png, position left, ori 90, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 image(file images/1_not_mirrored.png, position right, ori 330, size 20, color #ffffff, fillColor #ffffff) for 0
+          at 0 keyboard(valid [mirrored, not_mirrored], correct not_mirrored) for 0
+
+        error:
+          
+        correct:
+          

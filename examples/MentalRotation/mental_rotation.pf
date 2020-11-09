@@ -1,0 +1,42 @@
+images = 1..3
+categories = [mirrored, not_mirrored]
+orientations = [0, 30, 90, 120, 150, 180, 210, 240, 270, 300, 330]
+
+test MentalRotation {
+
+    | ord       | image_no    | is_mirrored       |
+    | --------- | ----------- | ----------------- |
+    | 1..5 loop | images loop | categories choose |
+
+    fix -> cross() for 500
+    exec-> 
+        image(file "images/{{image_no}}_{{is_mirrored}}.png", position left, ori orientations choose)
+        image(file "images/{{image_no}}_not_mirrored.png", position right, ori orientations choose)
+        keyboard(valid categories, correct is_mirrored)
+    
+}
+
+screen Intro {
+    Introduction
+    ------------
+
+    You will be presented with two images. 
+    Images might be the same or mirrored and both
+    images are rotated by arbitrary angle.
+
+    Press *LEFT* if images are the same.
+    Press *RIGHT* if images are mirrored.
+
+    Do that as fast as you can without sacrificing accuracy.
+}
+
+flow {
+    show Intro
+    execute MentalRotation
+}
+
+target PsychoPy {
+    // Map pair categories to keyboard keys
+    mirrored = 'right'
+    not_mirrored = 'left'
+}

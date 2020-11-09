@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="347.44281mm"
+   height="174.32028mm"
+   viewBox="0 0 347.44281 174.32028"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
+   sodipodi:docname="1_mirrored.svg"
+   inkscape:export-filename="/home/igor/repos/pyflies/pyflies/examples/MentalRotation/images/1_not_mirrored.png"
+   inkscape:export-xdpi="36.110001"
+   inkscape:export-ydpi="36.110001">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.58"
+     inkscape:cx="902.97312"
+     inkscape:cy="419.77092"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1916"
+     inkscape:window-height="1173"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(34.860743,-37.102276)">
+    <g
+       id="g951"
+       transform="matrix(-1,0,0,1,344.47745,-15.782807)">
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835"
+         width="85.149696"
+         height="83.738121"
+         x="35.317394"
+         y="56.307098" />
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835-9"
+         width="85.149696"
+         height="83.738121"
+         x="120.46709"
+         y="56.30711" />
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835-9-6"
+         width="85.149696"
+         height="83.738121"
+         x="205.61679"
+         y="56.307106" />
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835-9-6-4"
+         width="85.149696"
+         height="83.738121"
+         x="120.46709"
+         y="140.04523" />
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835-9-6-4-3"
+         width="85.149696"
+         height="83.738121"
+         x="205.61679"
+         y="140.04523" />
+      <rect
+         style="opacity:1;fill:#800000;stroke:#000000;stroke-width:6.84403;stroke-miterlimit:4;stroke-dasharray:none;stop-color:#000000"
+         id="rect835-9-6-4-3-4"
+         width="85.149696"
+         height="83.738121"
+         x="290.76648"
+         y="140.04523" />
+    </g>
+  </g>
+</svg>

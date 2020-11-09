@@ -14,6 +14,8 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+## [0.4.1] (released: 2020-11-09)
+
 ### Added
 
 - Mental rotation example
@@ -50,7 +52,8 @@ please take a look at related PRs and issues and see if the change affects you.
   separate projects.
 
 
-[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.0...HEAD
+[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.1...HEAD
+[0.4.1]: https://github.com/pyflies/pyflies/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/pyflies/pyflies/compare/v0.3...0.4.0
 
 [keepachangelog]: https://keepachangelog.com/

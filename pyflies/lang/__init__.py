@@ -25,6 +25,7 @@ def pyflies_language():
         builtin_models.add_model(cm)
 
     mm = metamodel_from_file(join(current_dir, 'pyflies.tx'),
+                             autokwd=True,
                              classes=pyflies_classes, builtin_models=builtin_models)
 
     mm.model_param_defs.add(

@@ -115,10 +115,10 @@ class ComponentParamInst(EvaluatedBase):
             self.is_constant = '{{' not in self.value.value
         else:
             # expressions with variables or messages are considered non-constant
-            self.is_constant = not any([r.name in cond_var_names
-                                        for r in unresolvable_refs(self.value)])\
-                                            and not get_children_of_type("MessageExpression",
-                                                                         self.value)
+            self.is_constant = \
+                not any([r.name in cond_var_names
+                         for r in unresolvable_refs(self.value)])\
+                and not get_children_of_type("MessageExpression", self.value)
 
         if not self.is_constant and context is None:
             # Use default value

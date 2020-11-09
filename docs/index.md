@@ -115,6 +115,25 @@ from `examples` folder in the VS Code editor. Update experiment definition to
 your taste. Generate and run experiment.
 
 
+### Planned features
+
+Besides language improvement which we are constantly work on, there are two
+bigger features that will greatly improve overall user experience in working in
+the pyFlies editor:
+
+- Running generators from the context menu in VS Code and getting feedback and
+  errors.
+- "Smart" code-completion and code navigation. Currently, we provide only code
+  snippets which can help a lot but implementing [Language Server
+  Protocol](https://microsoft.github.io/language-server-protocol/) for pyFlies
+  we can get much better editing experience. For example, when you type `exec ->
+  ` editor can offer just the components, or when you are inside the component
+  parameters editor can offer just the parameters for that component (without
+  those that are already specified) with explanation extracted from the
+  component description in the tooltip. Furthermore, navigation will enable to
+  click on a variable and jump to its definition.
+
+
 ### Discuss, ask questions
 
 For all questions, ideas, feature requests and bug report please use [the GitHub

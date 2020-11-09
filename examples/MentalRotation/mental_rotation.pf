@@ -8,7 +8,7 @@ test MentalRotation {
     | --------- | ----------- | ----------------- |
     | 1..5 loop | images loop | categories choose |
 
-    fix -> cross() for 500
+    fix -> circle(size 3) for 500
     exec-> 
         image(file "images/{{image_no}}_{{is_mirrored}}.png", position left, ori orientations choose)
         image(file "images/{{image_no}}_not_mirrored.png", position right, ori orientations choose)

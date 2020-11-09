@@ -16,9 +16,22 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ### Added
 
+- Mental rotation example
+
 ### Fixed
 
+- Require keywords to be matched on word boundaries (turn `autokwd` feature of
+  textX). The problem was that keywords are recognized if being start of the
+  larger word (like `or` in `orientation`).
+- Consider component parameter non-constant if it contains message
+  sub-expression. Constant param expressions are set on the component before the
+  test run and are not changed afterwards. The bug was that expression like
+  `1..100 choose` would be treated as constant although a new random value
+  should be calculated for each trial.
+
 ### Changed
+
+- Docs improvements
 
 ## [0.4.0] (released: 2020-11-01)
 

@@ -1,0 +1,2 @@
+# Need for testing of proper CRLF parsing
+tests/test_newlines_crlf.pf text eol=crlf

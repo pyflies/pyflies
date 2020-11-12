@@ -53,7 +53,7 @@ ConditionsTable[noskipws]:
     cond_specs+=Condition
 ;
 
-WSWithNL: /[ \t]*\n/;
+WSWithNL: /[ \t]*\r?\n/;
 WSNoNL: /[ \t]*/;
 
 TableVarName: WSNoNL- WORD WSNoNL-;

@@ -14,6 +14,12 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+### Fixed
+
+- Parsing of CRLF line endings in condition tables. This problem was triggered
+  on Windows which uses CRLF line endings by default preventing condition tables
+  from being parsed ([]).
+
 ## [0.4.1] (released: 2020-11-09)
 
 ### Added

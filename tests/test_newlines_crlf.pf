@@ -1,0 +1,28 @@
+"""
+Model for testing parsing if CRLF line endings are used.
+This file uses CRLF and is set so in .gitattributes
+"""
+a = 10
+b = 5
+test TestModel {
+
+    | direction | position | response |
+    |-----------+----------+----------|
+    | left      | (0, 50)  | left     |
+
+    exec -> at a + 100 c1:circle(position 0, radius 5 + 15) for a + b * a + 140
+            at .+100 c2:circle(position 0, radius 20) for 200
+            at +100 c3:circle(position 0, radius 20) for 200
+            c4:circle(position 0, radius 20) for 200
+            at 100 c5:circle(position 0, radius 20)
+}
+
+flow {
+     repeat {
+            execute TestModel
+     } with
+     | just_testing |
+     |--------------|
+     | true         |
+     | false        |
+}

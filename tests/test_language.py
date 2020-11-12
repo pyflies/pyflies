@@ -798,3 +798,13 @@ def test_jinja_filters_in_screens():
     """
     Test that Jinja filters are working as expected
     """
+
+
+def test_crlf_line_endings():
+    """
+    Test parsing of files using CRLF line endings.
+    """
+    mm = metamodel_for_language('pyflies')
+    m = mm.model_from_file(join(this_folder, 'test_newlines_crlf.pf'))
+
+    assert len(m.flow.insts) == 2

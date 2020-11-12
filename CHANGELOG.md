@@ -14,6 +14,12 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+
+[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.1...HEAD
+
+
+## [0.4.2] (released: 2020-11-12)
+
 ### Fixed
 
 - Parsing of CRLF line endings in condition tables. This problem was triggered
@@ -21,6 +27,8 @@ please take a look at related PRs and issues and see if the change affects you.
   from being parsed ([e7291126]).
 
 [e7291126]: https://github.com/pyflies/pyflies/commit/e7291126
+[0.4.2]: https://github.com/pyflies/pyflies/compare/0.4.1...0.4.2
+
 
 ## [0.4.1] (released: 2020-11-09)
 
@@ -43,6 +51,9 @@ please take a look at related PRs and issues and see if the change affects you.
 
 - Docs improvements
 
+[0.4.1]: https://github.com/pyflies/pyflies/compare/0.4.0...0.4.1
+
+
 ## [0.4.0] (released: 2020-11-01)
 
 - Complete rework/redesign of the language:
@@ -60,8 +71,6 @@ please take a look at related PRs and issues and see if the change affects you.
   separate projects.
 
 
-[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.1...HEAD
-[0.4.1]: https://github.com/pyflies/pyflies/compare/0.4.0...0.4.1
 [0.4.0]: https://github.com/pyflies/pyflies/compare/v0.3...0.4.0
 
 [keepachangelog]: https://keepachangelog.com/

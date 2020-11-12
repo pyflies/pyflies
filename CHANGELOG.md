@@ -18,7 +18,9 @@ please take a look at related PRs and issues and see if the change affects you.
 
 - Parsing of CRLF line endings in condition tables. This problem was triggered
   on Windows which uses CRLF line endings by default preventing condition tables
-  from being parsed ([]).
+  from being parsed ([e7291126]).
+
+[e7291126]: https://github.com/pyflies/pyflies/commit/e7291126
 
 ## [0.4.1] (released: 2020-11-09)
 

@@ -64,7 +64,7 @@ This will create folder `pyflies-venv` where your libraries will be installed.
 You need to activate virtual environment before usage:
 
     source pyflies-venv/bin/activate    (for Linux and other POSIX systems)
-    pyflies-env\Scripts\activate.bat    (for Windows)
+    pyflies-venv\Scripts\activate.bat    (for Windows)
 
 
 Now, you can install pyFlies and generator for PsychoPy with:

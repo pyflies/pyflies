@@ -87,4 +87,7 @@ target PsychoPy {
   left = 'left'
   right = 'right'
   some_config = 5
+  // Test parsing of component scoped symbols
+  // Here symbol `red` should in the context of keyboard treated as `left`
+  keyboard.red = left
 }

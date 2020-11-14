@@ -135,8 +135,10 @@ Target:
 ;
 
 Setting:
-  name=ID '=' value=BASETYPE
+  name=SettingName '=' value=BASETYPE
 ;
+
+SettingName: ID*['.'];
 
 
 ScreenType:

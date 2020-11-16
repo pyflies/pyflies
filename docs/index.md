@@ -96,15 +96,15 @@ for your operating system. In the list of extensions find pyFlies and click on
 
 !!! note
 
-    You can watch the process of installation in [this video]() (to be done
-    soon). In the video we are using Linux but most of the information is valid 
-    for other OSes.
+    You can watch the process of installation in 
+    [this video](https://www.youtube.com/watch?v=NVB2JHbCLY0). In the video we 
+    are using Linux but most of the information is valid for other OSes.
 
 
 ### Video tutorials
 
-The best way to start with pyFlies is by watching some of our video tutorials
-(to be done soon).
+The best way to start with pyFlies is by watching some of [our video
+tutorials](https://www.youtube.com/playlist?list=PLOgHC04drILVjnXQTFEL7sJDyfKMR21Vg).
 
 
 ### Try examples

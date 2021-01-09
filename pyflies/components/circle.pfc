@@ -1,6 +1,6 @@
 component circle extends visual
 """
-Visual stimuli in the shape of a circle.
+Visual stimulus in the shape of a circle.
 """
 {
     param radius:int = 20

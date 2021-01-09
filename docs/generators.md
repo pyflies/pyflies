@@ -17,7 +17,7 @@ line tools. To see all installed generators use `textx list-generators` command:
 
 
 You will see all generators installed in your Python environment. First column
-is in `langauge -> target` format and you can see here that we have three
+is in `language -> target` format and you can see here that we have three
 pyFlies generators registered:
 
 - `pyflies -> log` -- produces log files from `.pf` files and is a builtin

@@ -16,6 +16,7 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ### Fixed
 
+- `target` block values can be of any pyFlies base type (e.g. `Point`).
 - Parsing of component scoped target mappings. E.g.
   ```
   target ... {

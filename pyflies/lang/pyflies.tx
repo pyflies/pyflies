@@ -135,7 +135,7 @@ Target:
 ;
 
 Setting:
-  name=SettingName '=' value=BASETYPE
+  name=SettingName '=' value=BaseValue
 ;
 
 SettingName: ID*['.'];

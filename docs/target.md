@@ -2,23 +2,23 @@
 
 ---
 
-Target configuration is optional and is used to configure target generator.
+Target configuration is optional and is used to configure a target generator.
 
 It is specified at the end of the experiment and there can be multiple target
 configurations as we might have generators for different platforms.
 
-The content of the target block is given in:
+The content of the target block is given as a sequence of assignments in the
+form:
 
     <configuration param> = <value>
     
     
-Where configuration parameters are defined by target generator and should be
+Where configuration parameters are defined by the target generator and should be
 specified in its documentation.
 
 For example:
 
     target PsychoPy {
-      soundBackend = 'backend_sounddevice.SoundDeviceSound'
       background = grey
       fullScreen = true
     }

@@ -706,6 +706,24 @@ def test_experiment_structure():
     assert rtest.what.random
 
 
+def test_target_configuration():
+    """
+    Test that target configuration is parsed correctly.
+    """
+    mm = metamodel_for_language('pyflies')
+
+    m = mm.model_from_file(join(this_folder, 'TestModel.pf'))
+
+    t = m.targets[0]
+    assert t.settings[0].value == 'left'
+    assert t.settings[2].value == 5
+
+    assert t.settings[4].name == 'resolution'
+    v = t.settings[4].value.value
+    assert v.x == 1024
+    assert v.y == 768
+
+
 def test_flow_instances_expansion():
     """
     Test that flow instances are correctly created.

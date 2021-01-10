@@ -90,4 +90,7 @@ target PsychoPy {
   // Test parsing of component scoped symbols
   // Here symbol `red` should in the context of keyboard treated as `left`
   keyboard.red = left
+  // Test parsing of Point type
+  resolution = (1024, 768)
+
 }

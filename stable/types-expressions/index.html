@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Igor Dejanović">
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Types and expressions - pyFlies</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../style.css" rel="stylesheet" />
+  <link href="../js/version-select.css" rel="stylesheet" />
+  <link href="../css/version-select.css" rel="stylesheet" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Types and expressions";
+    var mkdocs_page_input_path = "types-expressions.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> pyFlies</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../test/">Test definition</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Types and expressions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#types">Types</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#expressions">Expressions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#if">if</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#loop">loop</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#logic">Logic</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#comparison">Comparison</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#arithmetic-operators">Arithmetic operators</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#randomization">Randomization</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../condition-tables/">Condition tables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../timing/">Timing specification</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../components/">Components</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../screens/">Screens</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../flow/">Flow</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../generators/">Running generators</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../metrics/">Metrics</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../target/">Target configuration</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">About</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/release_notes/">Release Notes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/contributing/">Contributing</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/license/">License</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">pyFlies</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Types and expressions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/pyflies/pyflies/edit/master/docs/types-expressions.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="types-and-expressions">Types and expressions</h1>
+<hr />
+<p>pyFlies has a type system with a some usual types you can find in other
+languages, but also some types that are useful in the context of experiments
+specification. Operations on these types can form complex expressions. You can
+use expressions in various places of your experiment specification.</p>
+<h2 id="types">Types</h2>
+<p>pyFlies values can be of the following types:</p>
+<ul>
+<li><code>bool</code> - with values of <code>true</code> and <code>false</code>. You will rarely need to use these
+  values directly. They are usually produced as a results of boolean expression
+  evaluation. For example, an expression<pre><code>direction == right
+</code></pre>
+</li>
+</ul>
+<p>will have a <code>bool</code> value</p>
+<ul>
+<li><code>int</code> - is an integer number (e.g. <code>42</code>)</li>
+<li><code>float</code> - is a float number (e.g. <code>3.44</code>)</li>
+<li><code>point</code> - specifies a location in two dimensional space (e.g. <code>(2, 5)</code>)</li>
+<li><code>color</code> - specifies a color in a standard CSS like notation where we have a <code>#</code>
+  prefix and 6 hex digits, 3 groups of 2 digit where each group represents
+  <code>red</code>, <code>green</code> and <code>blue</code> component of the color (e.g. <code>#455a45</code>). </li>
+<li><code>string</code> - a string of characters enclosed with quotes (e.g. <code>"Hello"</code>).
+  Strings content is piped through <a href="https://jinja.palletsprojects.com/">Jinja template
+  engine</a> during evaluation so a powerful
+  string interpolation is available. This interpolation is also done for
+  <a href="../screens/">screens</a>.</li>
+<li><code>list</code> - a list of values of any type (e.g. <code>[1, 2, "hi", [true, 2.3], left]</code>)</li>
+<li><code>range</code> - is a shorthand for definition of a list with consecutive numbers
+  (e.g. <code>1..5</code>). Usually used for looping in table expansion, or producing a
+  random value from a given range (e.g. <code>1..100 choose</code>).</li>
+<li>
+<p><code>symbol</code> - is just a word which might get bound to a value if the variable of
+  the same name is available in the context. If not, a symbol can be mapped to a
+  value by the compiler. Usually used to express abstract terms. For example:</p>
+<pre><code>directions = [left, right]
+</code></pre>
+<p>Here, values in the <code>directions</code> list are symbols whose meaning may be
+determined by variables or by the compiler.</p>
+</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When editing colors in the experiment specification in VS Code editor, various
+extension from the VS Code marketplace may help. For example <a href="https://marketplace.visualstudio.com/items?itemName=RoyAction.color-manager">Color
+Manager</a>.</p>
+</div>
+<h2 id="expressions">Expressions</h2>
+<h3 id="if">if</h3>
+<p>An expression used to provide a value that depend on a condition.
+For example:</p>
+<pre><code>left if cue_pos == right else right
+</code></pre>
+<p>So, the form is always:</p>
+<pre><code>&lt;value if true&gt; if &lt;condition&gt; else &lt;value if false&gt;
+</code></pre>
+<h3 id="loop">loop</h3>
+<p><code>loop</code> expression is used in <a href="../condition-tables/#tables-expansion">table
+expansion</a>. Its form is:</p>
+<pre><code>&lt;expression&gt; loop
+</code></pre>
+<p>where <code>expression</code> evaluates to a list or range.</p>
+<p>For example:</p>
+<pre><code>[left, right, up, down] loop
+</code></pre>
+<h3 id="logic">Logic</h3>
+<p>Logic operators are: <code>or</code>, <code>not</code>, and <code>and</code>. <code>or</code> and <code>and</code> are standard infix
+binary operators while <code>not</code> is a standard unary prefix operator:</p>
+<pre><code>color == blue and not practice
+</code></pre>
+<h3 id="comparison">Comparison</h3>
+<p>Comparison operators can compare values. They are used as standard infix binary
+operators. Following operators are supported:</p>
+<ul>
+<li><code>==</code> - equal</li>
+<li><code>!=</code> - not equal</li>
+<li><code>&lt;=</code> - less or equals than</li>
+<li><code>&gt;=</code> - greater or equals than</li>
+<li><code>&gt;</code> - greater than</li>
+<li><code>&lt;</code> - less than</li>
+</ul>
+<h3 id="arithmetic-operators">Arithmetic operators</h3>
+<p>Standard arithmetic operators are supported: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code> and they work as
+usual.</p>
+<h3 id="randomization">Randomization</h3>
+<p>Randomization is supported with <code>choose</code> and <code>shuffle</code> operations. These
+operations are given in a postfix form and are applicable only to lists and ranges.</p>
+<ul>
+<li>
+<p><code>choose</code> will choose a random element from list/range. For example: </p>
+<pre><code>[red, green, blue] choose
+1..100 choose
+</code></pre>
+</li>
+<li>
+<p><code>shuffle</code> will produce a list where elements are in a random order. For example:</p>
+<pre><code>1..100 shuffle
+</code></pre>
+</li>
+</ul>
+<p>In the current implementation of the compiler all expressions are pre-evaluated
+by the compilation process. E.g. random values are predetermined at compile
+time, not run-time. This is done to make generator development easier as
+otherwise compiler would need to translate all expressions to the target
+language expressions. This is an implementation detail that might change in the
+future.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../condition-tables/" class="btn btn-neutral float-right" title="Condition tables">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../test/" class="btn btn-neutral" title="Test definition"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/pyflies/pyflies/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../test/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../condition-tables/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../js/version-select.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

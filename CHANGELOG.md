@@ -14,6 +14,11 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+[Unreleased]: https://github.com/pyflies/pyflies/compare/0.5.0...HEAD
+
+
+## [0.5.0] (released: 2021-01-12)
+
 ### Fixed
 
 - `target` block values can be of any pyFlies base type (e.g. `Point`).
@@ -24,8 +29,7 @@ please take a look at related PRs and issues and see if the change affects you.
   }
   ```
 
-
-[Unreleased]: https://github.com/pyflies/pyflies/compare/0.4.2...HEAD
+[0.5.0]: https://github.com/pyflies/pyflies/compare/0.4.2...0.5.0
 
 
 ## [0.4.2] (released: 2020-11-12)

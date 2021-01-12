@@ -142,17 +142,17 @@
               
                 <h1 id="target-configuration">Target configuration</h1>
 <hr />
-<p>Target configuration is optional and is used to configure target generator.</p>
+<p>Target configuration is optional and is used to configure a target generator.</p>
 <p>It is specified at the end of the experiment and there can be multiple target
 configurations as we might have generators for different platforms.</p>
-<p>The content of the target block is given in:</p>
+<p>The content of the target block is given as a sequence of assignments in the
+form:</p>
 <pre><code>&lt;configuration param&gt; = &lt;value&gt;
 </code></pre>
-<p>Where configuration parameters are defined by target generator and should be
+<p>Where configuration parameters are defined by the target generator and should be
 specified in its documentation.</p>
 <p>For example:</p>
 <pre><code>target PsychoPy {
-  soundBackend = 'backend_sounddevice.SoundDeviceSound'
   background = grey
   fullScreen = true
 }

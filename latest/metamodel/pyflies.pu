@@ -1,0 +1,344 @@
+@startuml
+set namespaceSeparator .
+
+
+class pyflies.PyFliesModel  {
+  description : Description
+}
+
+
+class pyflies.RoutineType <<abstract>> {
+}
+
+
+class pyflies.VariableAssignment  {
+  name : VariableName
+}
+
+
+class pyflies.TestType  {
+  name : ID
+}
+
+
+class pyflies.ConditionsTable  {
+  variables : list[TableVarName]
+}
+
+
+class pyflies.TableExpression  {
+}
+
+
+class pyflies.Condition  {
+}
+
+
+class pyflies.ComponentsCondition  {
+}
+
+
+class pyflies.TimeReference  {
+  start_relative : optional<BOOL>
+  relative_op : SignOperator
+}
+
+
+class pyflies.ComponentTime  {
+  name : ID
+}
+
+
+class pyflies.Component  {
+}
+
+
+class pyflies.ComponentParam  {
+}
+
+
+class pyflies.Flow  {
+}
+
+
+class pyflies.Block  {
+  random : optional<BOOL>
+}
+
+
+class pyflies.Statement <<abstract>> {
+}
+
+
+class pyflies.Argument  {
+  name : ID
+}
+
+
+class pyflies.Repeat  {
+  with_random : optional<BOOL>
+}
+
+
+class pyflies.Repeatable <<abstract>> {
+}
+
+
+class pyflies.Routine <<abstract>> {
+}
+
+
+class pyflies.Test  {
+}
+
+
+class pyflies.Show  {
+}
+
+
+class pyflies.Screen  {
+}
+
+
+class pyflies.Target  {
+  name : ID
+}
+
+
+class pyflies.Setting  {
+  name : SettingName
+}
+
+
+class pyflies.SettingValue <<abstract>> {
+}
+
+
+class pyflies.ScreenType  {
+  name : ID
+  content : STRING
+}
+
+
+class common.Value <<abstract>> {
+}
+
+
+class common.BaseValue  {
+  value : OBJECT
+}
+
+
+class common.String  {
+  value : STRING
+}
+
+
+class common.CompoundTypeValue <<abstract>> {
+}
+
+
+class common.Range  {
+}
+
+
+class common.RangeIndex <<abstract>> {
+}
+
+
+class common.List  {
+}
+
+
+class common.VariableRef  {
+  name : VariableName
+}
+
+
+class common.Point  {
+  x : INT
+  y : INT
+}
+
+
+class common.Expression <<abstract>> {
+}
+
+
+class common.IfExpression  {
+}
+
+
+class common.OrExpression  {
+}
+
+
+class common.AndExpression  {
+}
+
+
+class common.NotExpression  {
+  opn : STRING
+}
+
+
+class common.ComparisonExpression  {
+  opn : optional<list[ComparisonOperator]>
+}
+
+
+class common.AdditiveExpression  {
+  opn : optional<list[AdditiveOperator]>
+}
+
+
+class common.MultiplicativeExpression  {
+  opn : optional<list[MultiplicativeOperator]>
+}
+
+
+class common.UnaryExpression  {
+  opn : SignOperator
+}
+
+
+class common.PrimaryExpression <<abstract>> {
+}
+
+
+class common.MessageExpression  {
+  message : Message
+}
+
+
+class common.MessageReceiver <<abstract>> {
+}
+
+
+class common.LoopExpression  {
+}
+
+
+class components.CompModel  {
+}
+
+
+class components.ComponentType  {
+  abstract : optional<BOOL>
+  name : ID
+  description : Description
+}
+
+
+class components.ParamType  {
+  name : ID
+  types : list[Type]
+  description : Description
+}
+
+
+pyflies.PyFliesModel *-- "0..*" pyflies.VariableAssignment
+pyflies.PyFliesModel *-- "1..*" pyflies.RoutineType
+pyflies.PyFliesModel *-- pyflies.Flow
+pyflies.PyFliesModel *-- "0..*" pyflies.Target
+pyflies.RoutineType <|-- pyflies.TestType
+pyflies.RoutineType <|-- pyflies.ScreenType
+pyflies.VariableAssignment *-- common.Expression
+pyflies.TestType *-- pyflies.ConditionsTable
+pyflies.TestType *-- "0..*" pyflies.VariableAssignment
+pyflies.TestType *-- "0..*" pyflies.ComponentsCondition
+pyflies.ConditionsTable *-- "1..*" pyflies.Condition
+pyflies.TableExpression *-- common.Expression
+pyflies.Condition *-- "1..*" pyflies.TableExpression
+pyflies.ComponentsCondition *-- common.Expression
+pyflies.ComponentsCondition *-- "1..*" pyflies.ComponentTime
+pyflies.TimeReference o-- pyflies.ComponentTime
+pyflies.TimeReference *-- common.AdditiveExpression
+pyflies.ComponentTime *-- pyflies.TimeReference
+pyflies.ComponentTime *-- pyflies.Component
+pyflies.ComponentTime *-- common.Expression
+pyflies.Component o-- components.ComponentType
+pyflies.Component *-- "0..*" pyflies.ComponentParam
+pyflies.ComponentParam o-- components.ParamType
+pyflies.ComponentParam *-- common.Expression
+pyflies.Flow *-- pyflies.Block
+pyflies.Block *-- "0..*" pyflies.Statement
+pyflies.Statement <|-- pyflies.Repeat
+pyflies.Statement <|-- pyflies.Show
+pyflies.Argument *-- common.Expression
+pyflies.Repeat *-- common.Expression
+pyflies.Repeat *-- pyflies.Repeatable
+pyflies.Repeat *-- pyflies.ConditionsTable
+pyflies.Repeatable <|-- pyflies.Block
+pyflies.Repeatable <|-- pyflies.Routine
+pyflies.Routine <|-- pyflies.Test
+pyflies.Routine <|-- pyflies.Screen
+pyflies.Test o-- pyflies.TestType
+pyflies.Test *-- "0..*" pyflies.Argument
+pyflies.Show *-- pyflies.Screen
+pyflies.Show *-- common.Expression
+pyflies.Screen o-- pyflies.ScreenType
+pyflies.Screen *-- "0..*" pyflies.Argument
+pyflies.Target *-- "0..*" pyflies.Setting
+pyflies.Setting *-- pyflies.SettingValue
+pyflies.SettingValue <|-- common.BaseValue
+common.Value <|-- common.String
+common.Value <|-- common.CompoundTypeValue
+common.Value <|-- common.BaseValue
+
+
+class OBJECT <<abstract>> {
+}
+common.CompoundTypeValue <|-- common.Range
+common.CompoundTypeValue <|-- common.List
+common.Range *-- common.RangeIndex
+common.Range *-- common.RangeIndex
+common.RangeIndex <|-- common.VariableRef
+common.List *-- "0..*" common.Expression
+common.Expression <|-- common.IfExpression
+common.Expression <|-- common.LoopExpression
+common.Expression <|-- common.OrExpression
+common.IfExpression *-- common.OrExpression
+common.IfExpression *-- common.OrExpression
+common.IfExpression *-- common.OrExpression
+common.OrExpression *-- "0..*" common.AndExpression
+common.AndExpression *-- "0..*" common.NotExpression
+common.NotExpression *-- common.ComparisonExpression
+common.ComparisonExpression *-- "0..*" common.AdditiveExpression
+common.AdditiveExpression *-- "0..*" common.MultiplicativeExpression
+common.MultiplicativeExpression *-- "0..*" common.UnaryExpression
+common.UnaryExpression *-- common.PrimaryExpression
+common.PrimaryExpression <|-- common.Expression
+common.PrimaryExpression <|-- common.MessageExpression
+common.PrimaryExpression <|-- common.Value
+common.PrimaryExpression <|-- common.VariableRef
+common.MessageExpression *-- common.MessageReceiver
+common.MessageReceiver <|-- common.CompoundTypeValue
+common.MessageReceiver <|-- common.VariableRef
+common.LoopExpression *-- common.OrExpression
+components.CompModel *-- "1..*" components.ComponentType
+components.ComponentType o-- "1..*" components.ComponentType
+components.ComponentType *-- "0..*" components.ParamType
+components.ParamType *-- common.Expression
+
+legend
+  Match rules:
+  |= Name  |= Rule details |
+  | Comment | \\/\\/.*$\|\\/\\*(.\|\\n)*\?\\*\\/ |
+  | Message | choose\|shuffle |
+  | TableVarName | WSNoNL- WORD WSNoNL- |
+  | MultiplicativeOperator | *\|/ |
+  | VariableName | ID |
+  | Description | \"\"\"- ((\?!\"\"\")(.\|\\n))* \"\"\"- |
+  | Color | #[0-9a-fA-F]\{6\} |
+  | WSNoNL | [ \\t]* |
+  | AdditiveOperator | +\|- |
+  | SignOperator | -\|+ |
+  | WSWithNL | [ \\t]*\\r\?\\n |
+  | Type | int\|float\|string\|bool\|symbol\|list\|point\|color |
+  | SettingName | SettingName |
+  | ComparisonOperator | ==\|!=\|\<=\|\>=\|\>\|\< |
+  | WORD | INT\|[-\\w]*\\b |
+end legend
+
+@enduml

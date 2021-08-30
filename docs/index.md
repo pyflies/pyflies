@@ -139,6 +139,27 @@ the pyFlies editor:
 For all questions, ideas, feature requests and bug report please use [the GitHub
 issue tracker](https://github.com/pyflies/pyflies/issues).
 
+### Citing
+
+If you are using PyFlies in your research or you are referring to PyFlies in your papers please cite [this
+paper](https://www.mdpi.com/2076-3417/11/17/7823):
+
+Dejanović, I.; Dejanović, M.; Vidaković, J.; Nikolić, S. PyFlies: A Domain-Specific Language for Designing Experiments in Psychology. Appl. Sci. 2021, 11, 7823. https://doi.org/10.3390/app11177823
+
+```bibtex
+@Article{app11177823,
+AUTHOR = {Dejanović, Igor and Dejanović, Mirjana and Vidaković, Jovana and Nikolić, Siniša},
+TITLE = {PyFlies: A Domain-Specific Language for Designing Experiments in Psychology},
+JOURNAL = {Applied Sciences},
+VOLUME = {11},
+YEAR = {2021},
+NUMBER = {17},
+ARTICLE-NUMBER = {7823},
+URL = {https://www.mdpi.com/2076-3417/11/17/7823},
+ISSN = {2076-3417},
+DOI = {10.3390/app11177823}
+}
+```
 
 ## Screenshots (click for a popup)
 

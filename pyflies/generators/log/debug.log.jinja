@@ -25,7 +25,7 @@ Screens: {{screens|map(attribute='name')|join(', ')}}
 {% for test in tests %}
 
 Test: {{test.name}}
-{% filter indent(width=2, indentfirst=True) %}
+{% filter indent(width=2, first=True) %}
 --------------------------------------------------------------------------
 Conditions:
 
@@ -47,25 +47,25 @@ Components with param values:
   {% set outer_loop = loop %} 
   {% if inst.__class__.__name__ == 'ScreenInst' %}
 {{loop.index}}. SCREEN  {{inst.name}}
-    {% filter indent(width=2, indentfirst=True) %}
+    {% filter indent(width=2, first=True) %}
 ----------------------------------------------------------------------------
 
 {{inst.content|unindent}}
     {% endfilter %}
   {% else %}
 {{loop.index}}. TEST {{inst.name}}
-    {% filter indent(width=2, indentfirst=True) %}
+    {% filter indent(width=2, first=True) %}
 ----------------------------------------------------------------------------
 
 Condition table (random={{inst.random}}, practice={{inst.practice}})
 {{inst.table}}
 
 ---- Trials -----
-    {% filter indent(width=2, indentfirst=True) %}
+    {% filter indent(width=2, first=True) %}
     {% for row in inst.table %}
 
 TRIAL {{outer_loop.index}}:{{loop.index}}
-    {% filter indent(width=2, indentfirst=True) %}
+    {% filter indent(width=2, first=True) %}
 
 {{inst.table.header_str()-}}
 {{row}}

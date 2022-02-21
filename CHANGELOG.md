@@ -14,6 +14,10 @@ please take a look at related PRs and issues and see if the change affects you.
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed/upgraded jinja template for log generator.
+
 [Unreleased]: https://github.com/pyflies/pyflies/compare/0.5.0...HEAD
 
 
